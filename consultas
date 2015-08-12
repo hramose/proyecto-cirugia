@@ -1,0 +1,7 @@
+UPDATE `citas` set `estado`= "Vencida" WHERE `fecha_cita` < CURDATE() and estado = "Programada"
+
+SELECT cita_id, COUNT( * ) Total
+FROM contratos_tratamiento_realizados
+GROUP BY cita_id
+HAVING COUNT( * ) >1
+LIMIT 0 , 30
