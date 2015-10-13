@@ -117,6 +117,7 @@ if ($elEquipo)
 	?>
 	<h4 class="text-center">Motivo de Cancelación de Cita</h4>
 	<p class="text-center"><?php echo $model->motivo_cancelacion; ?></p>
+	<p class="text-center"><small><b>Fecha de Cancelación: </b><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_accion); ?></small></p>	
 	<?php
 } ?>
 </div>
@@ -190,7 +191,7 @@ if ($elEquipo)
 	}
 
 	if ($medicina > 0) {
-		$losPlanes = HistorialMedicinaBiologicaDetalle::model()->findAll("historial_medicina_biologica_id = $idDiagnostico->id");
+		$losPlanes = HistorialMedicinaBiologicaDetalle::model()->findAll("historial_medicina_biologica_id = $idMedicina->id");
 	}else{
 		$losPlanes = HistorialMedicinaBiologicaDetalle::model()->findAll("historial_medicina_biologica_id = 0");
 	}
@@ -583,9 +584,17 @@ if ($elEquipo)
 	</div>
 	<div class="span5 text-center">
 		<br>
-		<a href="index.php?r=paciente/view&id=<?php echo $model->paciente->id ?>" role="button" class="btn btn-small btn-primary" data-toggle="modal"><i class="icon-file icon-white"></i> Ver Ficha de Paciente</a>
-		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$fecha_cita ?>" role="button" class="btn btn-small btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
-		<a href="#cita" role="button" class="btn btn-small btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
+		<a href="index.php?r=paciente/view&id=<?php echo $model->paciente->id ?>" role="button" class="btn btn-mini btn-primary" data-toggle="modal"><i class="icon-file icon-white"></i> Ver Ficha de Paciente</a>
+		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$fecha_cita ?>" role="button" class="btn btn-mini btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
+		<a href="#cita" role="button" class="btn btn-mini btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
+		<?php
+			if ($model->confirmacion == null) {
+				?>
+				<a href="#confirmar" role="button" class="btn btn-mini btn-info" data-toggle="modal"><i class="icon-thumbs-up icon-white"></i> Confirmar Cita</a>
+			<?php
+			}
+		?>
+
 		<br><br>
 	
 	
@@ -1112,14 +1121,26 @@ if ($elEquipo)
 				<th>Sesión</th>
 				<th>Medicamento</th>
 			</tr>
-		<?php $losMedicamentos = HistorialMedicinaBiologicaDetalle::model()->findAll("historial_medicina_biologica_id = $idMedicina->id") ?>
+		<?php $losMedicamentos = HistorialMedicinaBiologicaDetalle::model()->findAll("historial_medicina_biologica_id = $idMedicina->id"); 
+			  $losCiclos = HistorialMedicinaBiologica::model()->findAll(array("condition" => "paciente_id = $model->paciente_id", 'order'=>'id asc'));
+			  $i = 1;
+			  $nCita = 0;
+			  foreach ($losCiclos as $los_ciclos) 
+			  {
+			  	if ($los_ciclos->cita_id = $model->id) {
+			  		$nCita = $i;
+			  	}
+			  	$i++;
+			  }
+
+		?>
 		<?php 
 			foreach ($losMedicamentos as $los_medicamentos) 
 			{
 				?>
 				<tr>
-					<td><b>Ciclo <?php echo $los_medicamentos->ciclo; ?></b></td>
-					<td>Sesión <?php echo $los_medicamentos->sesion; ?></td>
+					<td>Ciclo <?php echo $nCita; ?></td>
+					<td>Sesión <?php echo $los_medicamentos->ciclo; ?></td>
 					<td><?php echo $los_medicamentos->medicamentosBiologicos->medicamento; ?></td>
 				</tr>
 				<?php
@@ -2317,8 +2338,61 @@ if ($elEquipo)
 <?php } ?>
 
 
+<!-- Confirmar Cita -->
+<?php //if ($losmedicos): ?>
+<div id="confirmar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabelaa" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Confirmar Cita</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>Complete el siguiente formulario</p>
+ 	
+	 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'confirmar-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/confirmar&irCita=1&idpersonal='.$model->personal_id,
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>true,
+		)); ?>
+	 	<?php 
+	 		$tabla_confirma = new Citas;	 		
+	 	?>
+				<div class = 'span10'>
+					<?php echo $form->labelEx($tabla_confirma,'confirmacion'); ?>
+					<?php echo $form->textArea($tabla_confirma,'confirmacion',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($tabla_confirma,'confirmacion'); ?>
+				</div>
+
+				<div class="span10" style="display:none;">
+					<?php echo $form->textField($tabla_confirma, 'contrato_id', array('value'=>$model->id)); ?>
+					<?php echo $form->textField($tabla_confirma,'estado'); ?>
+				</div>
+	
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($tabla_confirma->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 	echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+<?php //endif ?>
+
+
 <script>
 	$("#valoracion").keyup(function (){
 	    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
 	});
 </script>
+
+

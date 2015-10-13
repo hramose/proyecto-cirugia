@@ -30,6 +30,7 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
+<DIV style='width:150%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'citas-grid',
 	'dataProvider'=>$model->search(),
@@ -62,10 +63,16 @@ $('.search-form form').submit(function(){
 		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
 		array(
-			'name'=>'n_identificacion',
-			'value'=>'$data[\'n_identificacion\']',
-			'htmlOptions'=>array('width'=>'100'),
+		   'name'=>'cedula_paciente',
+		   'value'=>'$data->paciente->n_identificacion',
+		   //'htmlOptions'=>array('width'=>'100'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
+		// array(
+		// 	'name'=>'n_identificacion',
+		// 	'value'=>'$data[\'n_identificacion\']',
+		// 	'htmlOptions'=>array('width'=>'100'),
+		// ),
 		array(
 			'header'=>'Celular',
 			'value'=>'$data[\'paciente\'][\'celular\']',
@@ -179,6 +186,17 @@ $('.search-form form').submit(function(){
 			'htmlOptions'=>array('width'=>'80'),
 		),
 		array(
+			'header'=>'Confirmación',
+			'name'=>'confirmacion',
+			'value'=>'$data[\'confirmacion\']',
+		),
+		array(
+			'header'=>'Comentario',
+			'name'=>'comentario',
+			'value'=>'$data[\'comentario\']',
+			'htmlOptions'=>array('width'=>'500'),
+		),
+		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
 		),
@@ -196,6 +214,7 @@ function reinstallDatePicker(id, data) {
 ");
 
  ?>
+</div>
 
  <div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">

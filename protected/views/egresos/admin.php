@@ -41,12 +41,20 @@ $('.search-form form').submit(function(){
 			'value'=>'$data->id',
 			'htmlOptions'=>array('width'=>'30'),
 		),
+		// array(
+		// 	'header'=>'Proveedor',
+		// 	'name'=>'proveedor_id',
+		// 	'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+		// 	'value'=>'$data[\'proveedor\'][\'nombre\']',
+		// 	'htmlOptions'=>array('width'=>'220'),
+		// ),
+
 		array(
-			'header'=>'Proveedor',
-			'name'=>'proveedor_id',
-			'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
-			'value'=>'$data[\'proveedor\'][\'nombre\']',
-			'htmlOptions'=>array('width'=>'220'),
+		   'header'=>'Proveedor',
+		   'name'=>'elproveedor',
+		   'value'=>'$data->proveedor->nombre',
+		   'htmlOptions'=>array('width'=>'220'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
 		array(
 			'name'=>'n_identificacion',

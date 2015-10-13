@@ -102,17 +102,25 @@ if ($model->fecha_nacimiento!='') {
 				'usuario',
 				//'clave',
 				'estado',
+				'perfilSistema.perfil',
 			),
 		));
+		
+		if (Yii::app()->user->perfil == 5) 
+		{	
 		?>
-			<div class="text-center"><a href="index.php?r=usuarios/update&id=<?php echo $model->id; ?>" class="btn btn-small btn-info"><i class="icon-search icon-white"></i>Actualizar Accesos</a></div>
+		<div class="text-center"><a href="index.php?r=usuarios/update&id=<?php echo $model->id; ?>" class="btn btn-small btn-info"><i class="icon-search icon-white"></i>Actualizar Accesos</a></div>
 		<?php
 		}
+		}
 		else
+		{
+		if (Yii::app()->user->perfil == 5) 
 		{
 		?>
 			<div class="text-center"><a href="index.php?r=usuarios/create&id=<?php echo $model->id; ?>" class="btn btn-small btn-info"><i class="icon-search icon-white"></i>Agergar Acceso a Sistema</a></div>
 		<?php
+		}
 		}
 		?>
 

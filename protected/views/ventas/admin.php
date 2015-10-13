@@ -50,13 +50,15 @@ $this->menu=array(
 			'name'=>'sub_total',
 			'value'=>'number_format($data->sub_total,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->search()),2).'</h5>',
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal5($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'total_iva',
 			'value'=>'number_format($data->total_iva,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal4($model->search()),2).'</h5>',
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal4($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal4($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'descuento',
@@ -67,31 +69,34 @@ $this->menu=array(
 			'name'=>'descuento_valor',
 			'value'=>'number_format($data->descuento_valor,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal3($model->search()),2).'</h5>',
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal3($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal3($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'descuento_total',
 			'value'=>'number_format($data->descuento_total,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal2($model->search()),2).'</h5>',
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal2($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal2($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'total_venta',
 			'value'=>'number_format($data->total_venta,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal($model->search()),2).'</h5>',
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'header'=>'Vendido por:',
 			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'vendedor_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Usuarios::model()->findAll(array()), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal0->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),

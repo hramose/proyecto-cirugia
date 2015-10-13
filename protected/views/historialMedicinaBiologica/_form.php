@@ -37,6 +37,44 @@ else
 
 $paciente = Paciente::model()->find("id=$elPaciente");
 
+//conteo de ciclos
+$losCiclos = HistorialMedicinaBiologica::model()->count("paciente_id = $elPaciente");
+
+if (isset($_GET['idCiclo'])) 
+{
+	$nCiclo = $_GET['idCiclo'];
+}
+else
+{
+	if ($losCiclos == 0) {
+		$nCiclo = 1;
+	}
+	else
+	{
+		if ($losCiclos == 1) {
+			if ($losCiclos == 1 and $model->id == "") {
+				$nCiclo = $losCiclos + 1;
+			}
+
+			if ($losCiclos == 1 and $model->id != "") {
+				$nCiclo = $losCiclos;
+			}
+		}
+		else
+		{
+			if ($model->id == "") {
+				$nCiclo = $losCiclos + 1;
+			}
+			else
+			{
+				$nCiclo = $losCiclos;	
+			}
+			
+		}
+		
+	}
+}
+
 //Calculo de Edad
 	$anio_nacimiento = Yii::app()->dateformatter->format("yyyy",$paciente->fecha_nacimiento);
 	$edadpaciente = date("Y") - $anio_nacimiento;
@@ -90,8 +128,8 @@ if(isset($_GET['id']))
 			{
 				?>
 				<tr>
-					<td><b>Ciclo <?php echo $los_medicamentos->ciclo; ?></b></td>
-					<td>Sesión <?php echo $los_medicamentos->sesion; ?></td>
+					<td>Ciclo <?php echo $nCiclo; ?></td>
+					<td>Sesión <?php echo $los_medicamentos->ciclo; ?></td>
 					<td><?php echo $los_medicamentos->medicamentosBiologicos->medicamento; ?></td>
 				</tr>
 				<?php
@@ -124,18 +162,19 @@ $elCiclo = HistorialMedicinaBiologicaDetalle::model()->find(array("condition" =>
 	$elid = $row['ciclo']+1;
 	//$elid = $row['ciclo'];
 ?>
-<h3 class="text-center">Ciclo <?php echo $elid; ?></h3>
+<h3 class="text-center">Ciclo <?php echo $nCiclo; ?> - Sesión <?php echo $elid; ?></h3>
 
 <?php 
 }else{
 ?>
-<h3 class="text-center">Ciclo 1</h3>
+
+<h3 class="text-center">Ciclo <?php echo $nCiclo; ?> - Sesión 1</h3>
 <?php } ?>
 <div class="row">
 	<div class="span2"></div>
 	<div class="span8">
 		<form id="Medicamento" name="Medicamento" action="index.php?r=HistorialMedicinaBiologica/guardarMedicina&idPaciente=<?php echo $elPaciente;?>&idCita=<?php echo $laCita; ?>&idMedicina=<?php echo $idMedicina;?>" method = "post" onsubmit="onEnviar()">
-		    <a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Sesión </a>
+		    <a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Medicamento </a>
 			<hr>
 			<table class "table" width="100%">
 				<tr>

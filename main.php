@@ -22,6 +22,7 @@ return array(
 		'application.components.*',
 		'application.extensions.coco.*',
 		'ext.yii-mail.YiiMailMessage',
+		'ext.smtpmail.PHPMailer',
 		'application.extensions.yii-pdf.*',
 		'ext.EAutoCompleteAction', 
 		'ext.eexcelview.*',
@@ -46,6 +47,14 @@ return array(
 			'allowAutoLogin'=>true,
 
 		),
+		
+          'mail' => array(
+		    'class' => 'ext.yii-mail.YiiMail',
+		    'transportType' => 'php',
+		    'viewPath' => 'application.views.mail',
+		    'logging' => true,
+		    'dryRun' => false,),
+
 		 'format' => array(
             'datetimeFormat'=>"d M, Y h:m:s a",
         ),
@@ -134,18 +143,82 @@ return array(
 
 
 
-	'mail' => array(
-        'class' => 'ext.yii-mail.YiiMail',
-        'transportType' => 'smtp',
-        'transportOptions' => array(
-            'host' => 'smtp.gmail.com',
-            'username' => 'noresponder@smadiaclinic.com',
-            'password' => '2015responder',
-            'port' => 25,
+	// 'mail' => array(
+ //        'class' => 'ext.smtpmail.PHPMailer',
+ //        'Host'=>"smtp.gmail.com",
+ //            'Username'=>'noresponder@smadiaclinic.com',
+ //            'Password'=>'2015responder',
+ //            'Mailer'=>'smtp',
+ //            'Port'=>587,
+ //            'SMTPAuth'=>true,
+ //    	),
+	// ),
+
+	// 'mail' => array(
+	//     'class' => 'ext.yii-mail.YiiMail',
+	//      'transportType'=>'smtp',
+	//      'transportOptions'=>array(
+	//        'host'=>'smtp.gmail.com',
+	//        'username'=>'josterricardo@gmail.com',//contohna nama_email@yahoo.co.id
+	//        'password'=>'jos++er01',
+	//        'port'=>'465',
+	//        'encryption'=>'ssl',
+	//      ),
+	//     'viewPath' => 'application.views.mail',
+	//    // 'logging' => true,
+	//     //'dryRun' => false
+	// ),
+
+
+	 	// 'mail' => array(
+		 // 'class' => 'ext.yii-mail.YiiMail',
+		 // 'transportType'=>'smtp',
+			//  'transportOptions'=>array(
+			//  'host'=>'smtp.gmail.com',
+			//  'username'=>'noresponder@smadiaclinic.com',
+			//  'password'=>'responder2015',
+			//  'port'=>'465',
+			//  'encryption'=>'ssl',
+			//  ),
+		 // 'viewPath' => 'application.views.mail',
+		 // 'logging' => true,
+		 // 'dryRun' => false
+		 // ),
+
+'components'=>array(
+        'Smtpmail'=>array(
+            'class'=>'application.extensions.smtpmail.PHPMailer',
+            'Host'=>"74.125.130.108",
+            'Username'=>'noresponder@smadiaclinic.com',
+            'Password'=>'2015responder',
+            'Mailer'=>'smtp',
+            'Port'=>465,
+            'SMTPAuth'=>true, 
+            'SMTPSecure' => 'tls',
         ),
-        'viewPath' => 'application.views.mails',
-    	),
+),
+
+	 	
+	'user'=>array(
+	 // enable cookie-based authentication
+	 'allowAutoLogin'=>true,
 	),
+	),
+
+
+	// 'mail' => array(
+ //        'class' => 'ext.yii-mail.YiiMail',
+ //        'transportType' => 'smtp',
+ //        'transportOptions' => array(
+ //            'host' => 'smtp.gmail.com',
+ //            'username' => 'noresponder@smadiaclinic.com',
+ //            'password' => '2015responder',
+ //            'encryption' => 'tls',
+ //            'port' => 587,
+ //        ),
+ //        'viewPath' => 'application.views.mails',
+ //    	),
+	// ),
 
 
 	// application-level parameters that can be accessed

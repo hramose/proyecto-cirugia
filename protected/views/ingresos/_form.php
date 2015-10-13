@@ -351,7 +351,7 @@ $idContrato = 0;
 <div class="row">
 	<div class="span12">
 		<div class="row buttons">
-			<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'id'=>'guardar', 'name'=>'guardar')); ?>
+			<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'id'=>'guardar', 'name'=>'guardar', 'onclick'=>'js:antesdeEnviar();')); ?>
 		</div>
 	</div>
 </div>
@@ -602,5 +602,9 @@ function quitarCampo(iddiv){
   $("#Ingresos_cheques_cantidad").val(nCheques);
 }
 
+function antesdeEnviar()
+{
+	swal({   title: "Estamos procesando el ingreso!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
+}
 
 </script>

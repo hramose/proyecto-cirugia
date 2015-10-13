@@ -24,6 +24,9 @@
 <!-- <div style="height:175px"></div> -->
 <div style="padding:150px 0px 0px 0px;">
 <h4>Contrato de Prestación de Servicios</h4>
+<small id="parrafo">Impreso el: <?php echo date("d-m-Y"); ?></small>
+
+
 
 <p id="parrafo">Yo <?php echo "  <b>".$elContrato->paciente->nombreCompleto."</b>  "; ?>  Identificado  con  CC   <?php echo "  <b>".$elContrato->paciente->n_identificacion."</b>  "; ?>  quien  en  adelante  seré  EL 
 CONTRATANTE  y  SMADIA  CLINIC  S.A.S.  identificada  con  Nit  900.423.704-7,  quien  en  adelante  y 
@@ -31,32 +34,34 @@ para  efectos  del  presente  contrato  será  EL  CONTRATISTA,  suscribimos  el
 Prestación de Servicio bajo las siguientes clausulas.</p>
 
 <div style="width:700px">
-			<small id="parrafo">PRIMERA:  EL  CONTRATISTA  me  ha  informado  que  sí,  y  solo  si  podre  dar  inicio  al  tratamiento 
+			<small id="parrafo"><b>PRIMERA:</b>  EL  CONTRATISTA  me  ha  informado  que  sí,  y  solo  si  podre  dar  inicio  al  tratamiento 
 			adquirido en el momento de haber pagado la totalidad del mismo.</small>
-			<br><br>
-
-			<small id="parrafo">SEGUNDA: EL CONTRATISTA me ha informado que en el caso en que yo decida no realizarme el 
+			<br>
+			<small id="parrafo"><b>SEGUNDA:</b> EL CONTRATISTA me ha informado que en el caso en que yo decida no realizarme el 
 			tratamiento, ya sea por una causa personal o por otra de cualquier índole, EL CONTRATISTA no 
 			hará devolución del dinero dejado de consumir, solo me entregara un BONO por el valor dejado de 
 			consumir que yo podré  utilizar en otros servicios que EL CONTRATISTA ofrezca, o podre regalar o 
 			vender a un tercero este BONO para que sea utilizado, en un  término  no mayor a 2 años después 
 			de adquirido el servicio.</small>
-			<br><br>
-			<small id="parrafo">TERCERA: Los descuentos que EL CONTRATISTA me ofrece en el momento de la compra, aplican si 
+			<br>
+			<small id="parrafo"><b>TERCERA:</b> Los descuentos que EL CONTRATISTA me ofrece en el momento de la compra, aplican si 
 			y  solo  si  me  realizo  la  totalidad  del  tratamiento  adquirido,  en  caso  que  por  alguna  razón  EL 
 			CONTRATANTE decida no continuar con el  tratamiento adquirido o desee cambiarlo por otro, las 
 			sesiones realizadas del tratamiento iniciado se liquidaran a precio público sin descuento y el valor 
 			restante se aplicara al nuevo tratamiento.</small>
-			<br><br>
-			<small id="parrafo">CUARTA: Para procedimientos de Mad Laser y/o Cirugias en las que se realiza una programacion previa, 
+			<br>
+			<small id="parrafo"><b>CUARTA:</b> Para procedimientos de Mad Laser y/o Cirugias en las que se realiza una programacion previa, 
 			el Paciente o CONTRATANTE debe llegar 20 minutos antes de la hora indicada, en caso de que el paciente llegue 30 minutos 
 			despues de la hora establecida, se suspenderá la programacion del procedimiento y se reprogramara para otra fecha, como 
 			consecuencia el paciente debe cancelar la suma de $300.000 Pesos correspondientes a gastos ocasionados por la reprogramacion 
 			del servicio, que serán descontados del dinero abonado al procedimiento.</small>
-			<br><br>
-			<small id="parrafo">PARRAGRAFO 1: Los cambios de fecha de procedimientos de M.A.D. Laser y/o Cirugias, se deben realizar con 
+			<br>
+			<small id="parrafo"><b>PARÁGRAFO 1:</b> Los cambios de fecha de procedimientos de M.A.D. Laser y/o Cirugias, se deben realizar con 
 			mínimo 72 horas hábiles de anticipación a la fecha programada, en caso contrario, el paciente o CONTRATANTE debe cancelar la 
 			suma de $300.000 Pesos, que serán descontados del dinero abonado al mismo.</small>
+			<br>
+			<small id="parrafo"><b>QUINTA:</b> Los tratamientos aquí contratados, tienen una vigencia de 18 meses a partir de la firma del presente 
+			contrato, si pasado este tiempo el paciente no se los ha realizado en su totalidad, perderá su derecho a hacerlo.</small>
 </div>
 
 

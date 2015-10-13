@@ -39,6 +39,33 @@ $this->menu=array(
 	array('label'=>"<i class='icon-plus-sign'> </i> Fotografías", 'url'=>'index.php?r=PacienteFotografias/create'.$urlComplemento),
 	array('label'=>"<i class='icon-plus-sign'> </i> Resultados de Laboratorio", 'url'=>'index.php?r=PacienteResultadosLab/create'.$urlComplemento),
 );
+
+//conteo de ciclos
+$losCiclos = HistorialMedicinaBiologica::model()->count("paciente_id = $model->paciente_id");
+
+if (isset($_GET['idCiclo'])) 
+{
+	$nCiclo = $_GET['idCiclo'];
+}
+else
+{
+	if ($losCiclos == 0) {
+		$nCiclo = 1;
+	}
+	else
+	{
+		if ($losCiclos == 1) {
+			$nCiclo = 1;
+		}
+
+		if ($losCiclos > 1) {
+			$nCiclo = $losCiclos;
+		}
+	}
+}
+
+
+
 ?>
 
 <h1>Plan de Medicina Biologica #<?php echo $model->id; ?></h1>
@@ -56,7 +83,7 @@ $this->menu=array(
 	)); ?>
 	</div>
 	<div class="span5">
-		<a href="index.php?r=historialMedicinaBiologica/update&id=<?php echo $model->id; ?>&idPaciente=<?php echo $model->paciente_id; ?>&idCita=<?php echo $model->cita_id; ?>" role="button" class="btn btn-small btn-primary" data-toggle="modal">Agregar Ciclo</a>
+		<a href="index.php?r=historialMedicinaBiologica/update&id=<?php echo $model->id; ?>&idPaciente=<?php echo $model->paciente_id; ?>&idCita=<?php echo $model->cita_id; ?>&idCiclo=<?php echo $nCiclo; ?>" role="button" class="btn btn-small btn-primary" data-toggle="modal">Agregar Sesión</a>
 	</div>
 	<div class="span1"></div>
 </div>
@@ -77,8 +104,8 @@ $this->menu=array(
 			{
 				?>
 				<tr>
-					<td><b>Ciclo <?php echo $los_medicamentos->ciclo; ?></b></td>
-					<td>Sesión <?php echo $los_medicamentos->sesion; ?></td>
+					<td>Ciclo <?php echo $nCiclo; ?></td>
+					<td>Sesión <?php echo $los_medicamentos->ciclo; ?></td>
 					<td><?php echo $los_medicamentos->medicamentosBiologicos->medicamento; ?></td>
 				</tr>
 				<?php

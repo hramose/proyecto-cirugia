@@ -47,7 +47,7 @@ class EgresosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'consultaFacturas', 'anular', 'imprimirEgresos', 'exportar'),
+				'actions'=>array('admin','delete', 'consultaFacturas', 'envioCorreoEgresos', 'anular', 'imprimirEgresos', 'exportar'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -131,7 +131,8 @@ class EgresosController extends Controller
 			{
 				if ($model->forma_pago == "Efectivo") 
 				{
-				
+					//Para envio de correos
+					$this->actionEnvioCorreoEgresos($model->id);
 					//Afectar Caja
 					$datosCaja = CajaEfectivo::model()->findByPk(Yii::app()->user->usuarioId);
 					$datosCaja->total = $datosCaja->total - $model->valor_egreso;
@@ -152,11 +153,15 @@ class EgresosController extends Controller
 			 			$laCompra->save();
 					}
 				}
+
+				
 				
 				$this->redirect(array('view','id'=>$model->id));
 			}
 				
 		}
+
+		
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -327,6 +332,32 @@ class EgresosController extends Controller
 			'model'=>$model,
 			));	
 		}
+	}
+
+	public function actionEnvioCorreoEgresos($idEgreso)
+	{
+		$model=Egresos::model()->findByPk($idEgreso);	
+
+		Yii::import('ext.yii-mail.YiiMailMessage');
+		$message = new YiiMailMessage;
+		//$message = Yii::app()->Smtpmail;
+        $message->subject = 'Detalle de Egreso: N° '.$model->id;
+        /*$message->view ='prueba';//nombre de la vista q conformara el mail*/
+        $message->setBody('<b>Egreso número:</b>'.$model->id.'<br>
+        				   <b>Fecha Egreso:</b>'.Yii::app()->dateformatter->format("dd-MM-yyyy H:m:s",$model->fecha).'<br><br>
+        				   <b>Doc. Beneficiario:</b><br>'.$model->n_identificacion.'<br>
+        				   <b>Beneficiario:</b><br>'.$model->proveedor->nombre.'<br>
+        				   <b>Forma de Pago:</b><br>'.$model->forma_pago.'<br>
+        				   <b>Valor: $ </b><br>'.$model->total_egreso.'<br>
+        				   <b>Centro de Costos:</b><br>'.$model->centroCosto->nombre.'<br>
+        				   <b>Comentario:</b><br>'.$model->observaciones.'<br><br>
+        				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
+        $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
+        //recorrer a los miembros del equipo
+        $message->setTo(array('josterricardo@gmail.com', 'hramirez@myrs.com.co')); // a quien se le envia
+        //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
+        Yii::app()->mail->send($message);
+
 	}
 
 	/**

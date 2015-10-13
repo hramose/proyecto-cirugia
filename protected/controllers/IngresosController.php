@@ -275,10 +275,12 @@ class IngresosController extends Controller
 				 	}					
 				}
 
+				
 
 				if ($model->forma_pago == "Efectivo")
 				{
-					//$this->actionEnvioCorreoIngreso($model->id);
+					//Para envio de correos
+					$this->actionEnvioCorreoIngreso($model->id);
 					$laCaja=CajaEfectivo::model()->findByPk($model->personal_id);
 					if($laCaja===null)//no esta vacio
 					{
@@ -536,14 +538,14 @@ class IngresosController extends Controller
         				   <b>Doc. Paciente:</b><br>'.$model->paciente->n_identificacion.'<br>
         				   <b>Paciente:</b><br>'.$model->paciente->nombreCompleto.'<br>
         				   <b>Forma de Pago:</b><br>'.$model->forma_pago.'<br>
-        				   <b>Valor:</b><br>'.$model->valor.'<br>
+        				   <b>Valor: $ </b><br>'.$model->valor.'<br>
         				   <b>Centro de Costos:</b><br>'.$model->centroCosto->nombre.'<br>
         				   <b>Comentario:</b><br>'.$model->descripcion.'<br><br>
         				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo
-        $message->setTo('josterricardo@gmail.com'); // a quien se le envia
-        //$message->setTo('gerencia@smadiaclinic.com'); // a quien se le envia
+        $message->setTo(array('gerencia@smadiaclinic.com')); // a quien se le envia
+        //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
         Yii::app()->mail->send($message);
 
 

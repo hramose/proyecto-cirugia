@@ -64,7 +64,7 @@ $this->menu=array(
 		<table class="table table-striped">
 			<tr>
 				<th>Examen</th>
-				<th>Descripción</th>
+				<th>Otro Examen</th>
 			</tr>
 		<?php $losExamenes = HistorialLaboratorioDetalle::model()->findAll("historial_laboratorio_id = $model->id") ?>
 		<?php 
@@ -108,5 +108,24 @@ $this->menu=array(
 	</div>
 	<div class="span5"></div>
 	<div class="span1"></div>
+</div>
+
+<div class="text-center">
+	<?php 
+		$this->widget('ext.popup.JPopupWindow', array( 
+		'tagName'=>'button',
+		'content'=> ' Imprimir ', 
+		'url'=>array('HistorialLaboratorio/laboratorio', 'id'=>$model->id),
+		/*'url'=>array('/site/contact'), */
+		'htmlOptions'=>array('class'=>'btn btn-mini btn-primary'),
+		'options'=>array( 
+		'height'=>700, 
+		'width'=>800, 
+		'top'=>50, 
+		'left'=>50, 
+		), 
+		)); 
+	?>
+
 </div>
 

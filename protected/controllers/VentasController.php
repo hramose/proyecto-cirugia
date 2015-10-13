@@ -335,7 +335,6 @@ class VentasController extends Controller
 	 */
 	public function actionAdmin()
 	{
-
 		$model=new Ventas('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Ventas']))

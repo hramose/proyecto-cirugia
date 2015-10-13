@@ -197,6 +197,57 @@ class Ventas extends CActiveRecord
 		));
 	}
 
+	public function searchSuma()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('paciente_id',$this->paciente_id);
+		$criteria->compare('vendedor_id',$this->vendedor_id);
+		$criteria->compare('descripcion',$this->descripcion,true);
+		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('sub_total',$this->sub_total,true);
+		$criteria->compare('total_iva',$this->total_iva,true);
+		$criteria->compare('descuento',$this->descuento,true);
+		$criteria->compare('descuento_tipo',$this->descuento_tipo,true);
+		$criteria->compare('descuento_valor',$this->descuento_valor,true);
+		$criteria->compare('descuento_total',$this->descuento_total,true);
+		$criteria->compare('cant_productos',$this->cant_productos);
+		$criteria->compare('total_orden',$this->total_orden,true);
+		$criteria->compare('forma_pago',$this->forma_pago,true);
+		$criteria->compare('dinero_recibido',$this->dinero_recibido,true);
+		$criteria->compare('dinero_cambio',$this->dinero_cambio,true);
+		$criteria->compare('total_venta',$this->total_venta,true);
+		$criteria->compare('credito_dias',$this->credito_dias);
+		$criteria->compare('credito_fecha',$this->credito_fecha,true);
+		$criteria->compare('cheques_cantidad',$this->cheques_cantidad);
+		$criteria->compare('cheques_total',$this->cheques_total);
+		$criteria->compare('cheques_cuenta_banco',$this->cheques_cuenta_banco);
+		$criteria->compare('tarjeta_tipo',$this->tarjeta_tipo,true);
+		$criteria->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
+		$criteria->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
+		$criteria->compare('tarjeta_cuenta_banco',$this->tarjeta_cuenta_banco);
+		$criteria->compare('consignacion_cuenta_banco',$this->consignacion_cuenta_banco);
+		$criteria->compare('consignacion_banco',$this->consignacion_banco,true);
+		$criteria->compare('consignacion_cuenta',$this->consignacion_cuenta,true);
+		$criteria->compare('personal',$this->personal);
+		$criteria->compare('fecha_hora',$this->fecha_hora,true);
+		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
+		$criteria->compare('estado',$this->estado);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination'=>array('pageSize'=>9000000),
+			
+			//'name'=>'Time',
+		    //'value'=>'sprintf(\'%02s:%02s\',$data->hours,$data->minutes)',
+		    //'type'=>'text',
+			//'footer'=>$provider->itemCount===0 ? '' : $model->getTotal(),
+		));
+	}
+
 		public static function getTotal($provider)
         {
                 $total=0;

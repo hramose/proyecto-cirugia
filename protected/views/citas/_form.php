@@ -222,7 +222,7 @@ else
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-info')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-info', 'id'=>'guardar', 'name'=>'guardar', 'onclick'=>'js:antesdeEnviar();')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -247,4 +247,9 @@ else
 				return true; 
 			}
 		}
+
+function antesdeEnviar()
+{
+	swal({   title: "Estamos agendando la cita!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
+}
 </script>

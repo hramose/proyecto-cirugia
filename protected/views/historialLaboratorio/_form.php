@@ -72,7 +72,7 @@ $laboratorios = Laboratorio::model()->findAll(array("condition" => "id > 0", 'or
 			<table class "table" width="100%">
 				<tr>
 					<th width="45%">Examen</th>
-					<th width="45%">Descripción</th>
+					<th width="45%">Otro Examen</th>
 					<th width="10%"></th>
 				</tr>
 			</table>

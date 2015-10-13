@@ -121,7 +121,7 @@ class Contratos extends CActiveRecord
 		$criteria->compare('descuento',$this->descuento,true);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('saldo',$this->saldo,true);
-		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('observaciones',$this->observaciones,true);

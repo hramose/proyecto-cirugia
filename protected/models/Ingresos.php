@@ -186,11 +186,11 @@ class Ingresos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('paciente_id',$this->paciente_id);
 		$criteria->compare('contrato_id',$this->contrato_id);
 		$criteria->compare('cita_id',$this->cita_id);
-		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('valor',$this->valor,true);
 		$criteria->compare('descripcion',$this->descripcion,true);
 		$criteria->compare('centro_costo_id',$this->centro_costo_id);
@@ -211,6 +211,9 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('consigna_banco_d_cuenta_id',$this->consigna_banco_d_cuenta_id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
+		$criteria->with = array('paciente');
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -230,13 +233,29 @@ class Ingresos extends CActiveRecord
                 {
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
-                	if ($data->estado == "Activo") {
+                	//if ($data->estado == "Activo") {
                 		$t = $data->valor;
                         $total += $t;
-                    }
+                    //}
                 }
                 return $total;
         }
+
+
+        //  	public static function getTotal($provider)
+        // {
+        //         $total=0;
+        //         foreach($provider->data as $data)
+        //         {
+        //                 //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
+        //                 //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+        //         	if ($data->estado == "Activo") {
+        //         		$t = $data->valor;
+        //                 $total += $t;
+        //             }
+        //         }
+        //         return $total;
+        // }
 
         
 

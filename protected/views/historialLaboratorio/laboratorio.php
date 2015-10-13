@@ -41,7 +41,7 @@
 <table border=1 cellspacing=0 cellpadding=2>
 			<tr>
 				<th width="300">Exámen</th>
-				<th width="300">Descripción</th>
+				<th width="300">Otro Examen</th>
 			</tr>
 		<?php 
 			foreach ($detalleLaboratorios as $los_laboratorios) 
@@ -65,8 +65,13 @@
 		?>
 		</table>
 <br><br>
+<p>Observaciones:</p>
+<div style="width:700px">
+	<?php 
+		echo $historialLaboratorios->comentarios;
+	?>
 
-
+</div>
 </div>
 </div>
 </body>

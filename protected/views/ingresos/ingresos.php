@@ -20,7 +20,8 @@
 	<p>NIT: 900-423-704-7</p>
 	<p>CALLE 87 N° 47 - 47</p>
 	<p>PBX: 3177190</p>
-	<p>RES. 20000160110 del 2013/10/23 del 1 al 2000</p>
+	<p>RES. 20000160110 del 2013/10/23</p>
+	<p>del 1 al 2000</p>
 	<br>
 	<p>FACTURA N°: <?php echo $elIngresos->id; ?></p>
 	<p>FECHA: <?php echo $elIngresos->fecha; ?></p>

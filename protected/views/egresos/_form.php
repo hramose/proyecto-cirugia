@@ -319,7 +319,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary','onclick'=>'js:antesdeEnviar();')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -790,7 +790,10 @@ $("#Egresos_retencion_id").change(function(e) {
 });
 
 
-
+function antesdeEnviar()
+{
+	swal({   title: "Estamos procesando el egreso!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
+}
 
 
 

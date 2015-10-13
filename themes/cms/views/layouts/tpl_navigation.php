@@ -4,6 +4,8 @@
 
 //$pendientes = Reservacion::model()->count("cambio_tarifa = 'Pendiente'"); //Reservadas
 $perfiles = Perfil::model()->find("estado='Activo'");
+
+
 ?>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,7 +21,10 @@ $perfiles = Perfil::model()->find("estado='Activo'");
           <a class="brand" href="#"><?php /*echo CHtml::encode($this->pageTitle); */?>Smadia Clinic</a>
           
           <div class="nav-collapse">
-			<?php $this->widget('zii.widgets.CMenu',array(
+			<?php 
+            if (!Yii::app()->user->isGuest) 
+            {
+            $this->widget('zii.widgets.CMenu',array(
                     'htmlOptions'=>array('class'=>'pull-right nav'),
                     'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
 					'itemCssClass'=>'item-test',
@@ -29,7 +34,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                         //array('label'=>'Formularios', 'url'=>array('/site/page', 'view'=>'forms')),
                         //array('label'=>'Tablas', 'url'=>array('/site/page', 'view'=>'tables')),
                         //array('label'=>'Solicitudes', 'url'=>array('/correspondencia', 'view'=>'tables')
-                        array('label'=>'<i class="icon-user icon-white"></i> Pacientes <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-user icon-white"></i> Pacientes <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Ingresar', 'url'=>array('/paciente/create')),
                                 array('label'=>'Buscar', 'url'=>array('/paciente/admin')),
@@ -40,8 +45,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Seguimiento Comercial Vencidos', 'url'=>array('/seguimientoComercial/admin&filtro=3')),
                         )),
 
-
-                        array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6,'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                     array('label'=>'Agenda de Citas', 'url'=>array('/citas/citas')),
                                     array('label'=>'Listado de Citas', 'url'=>array('/citas/admin')),
@@ -50,20 +54,20 @@ $perfiles = Perfil::model()->find("estado='Activo'");
 
                         )),
 
-                        array('label'=>'<i class="icon-briefcase icon-white"></i> Contratos <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-briefcase icon-white"></i> Contratos <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Listado de Contratos', 'url'=>array('/contratos/admin')),
                                 array('label'=>'Listado de Presupuestos', 'url'=>array('/Presupuesto/admin')),
                         )),
 
-                        array('label'=>'<i class="icon-leaf icon-white"></i> Asistenciales <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-leaf icon-white"></i> Asistenciales <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Pagos a Asistenciales', 'url'=>array('/PagoCosmetologas/admin')),
                                 /*array('label'=>'Ordenes de Pago', 'url'=>array('/pacienteOrden/create')),*/
                                 /*array('label'=>'Autorizaciones Pendientes <span class="badge badge-success pull-right">'.$pendientes.'</span>', 'url'=>array('/reservacion/autorizar'), 'visible'=> !Yii::app()->user->isGuest and Yii::app()->user->cargo == "Administrador"),*/                                                       
                         )),
 
-                        array('label'=>'<i class="icon-inbox icon-white"></i> Caja <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-inbox icon-white"></i> Caja <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Cuentas por Cobrar', 'url'=>array('/cuentasXc/admin')),
                                 array('label'=>'Cuentas por Pagar', 'url'=>array('/ProductoCompras/cxp')),
@@ -95,7 +99,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 /*array('label'=>'Autorizaciones Pendientes <span class="badge badge-success pull-right">'.$pendientes.'</span>', 'url'=>array('/reservacion/autorizar'), 'visible'=> !Yii::app()->user->isGuest and Yii::app()->user->cargo == "Administrador"),*/                                                       
                         )),
 
-                        array('label'=>'<i class="icon-th-list icon-white"></i> Invetario <span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-th-list icon-white"></i> Invetario <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 4, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Inventarios Personales', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
@@ -128,7 +132,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                     array('label'=>'Orden de Pedido', 'url'=>array('/OrdenPedido/admin')),
                              )),
 
-                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Personal', 'url'=>array('/Personal/admin')),
                                 array('label'=>'Lineas de Servicio', 'url'=>array('/LineaServicio/admin')),
@@ -142,6 +146,12 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Laboratorios', 'url'=>array('/Laboratorio/admin')), 
                                 array('label'=>'Medicamentos Biológicos', 'url'=>array('/MedicamentosBiologicos/admin')), 
                                 array('label'=>'Diagnosticos', 'url'=>array('/Diagnosticos/admin')),
+                                array('label'=>'Correos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Confirmación de Cita', 'url'=>array("/Correos/update&id=1")),
+                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
+
+                                    )), 
                          )),
 
                         // /*array('label'=>'Seguimiento',  'url'=>array('/noticia')),*/
@@ -184,7 +194,9 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                         array('label'=>'Ingresar', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'Cerrar ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
-                )); ?>
+                )); 
+                }
+                ?>
     	</div>
     </div>
 	</div>

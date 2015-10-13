@@ -375,21 +375,26 @@ $this->menu=array(
 		                	<table class="table table-condensed">
 		                		<tr>
 		                			<th>Fecha</th>
+		                			<th>Ciclo</th>
 		                			<th>Responsable</th>
 		                			<th></th>
 		                		</tr>
 		                
 		                	<?php 
 		                		$losBiologica = HistorialMedicinaBiologica::model()->findAll("paciente_id = $model->id"); 
+		                		$i = 1;
 						 		foreach ($losBiologica as $los_biologica)
 						 		{
+
 						 			?>
 						 			<tr>
 						 				<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$los_biologica->fecha); ?></td>
+						 				<td>Ciclo <?php echo $i; ?></td>
 						 				<td><?php echo $los_biologica->personal->nombreCompleto; ?></td>
-						 				<td><a href="index.php?r=historialMedicinaBiologica/view&id=<?php echo $los_biologica->id; ?>" class="btn btn-mini btn-info"><i class="icon-search icon-white"></i></a></td>
+						 				<td><a href="index.php?r=historialMedicinaBiologica/view&id=<?php echo $los_biologica->id; ?>&idCiclo=<?php echo $i; ?>" class="btn btn-mini btn-info"><i class="icon-search icon-white"></i></a></td>
 						 			</tr>
 						 			<?php
+						 			$i++;
 						 		}
 		                	?>
 		                	</table>

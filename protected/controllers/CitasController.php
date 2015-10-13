@@ -43,15 +43,26 @@ class CitasController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'calendario', 'citas', 'ver', 'exportar', 'seguimientoComercial'),
 				'users'=>array('@'),
-				//'expression'=>"Yii::app()->user->perfil == 5"
+				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
+				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
+				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
+				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'cancelar', 'PagoCosmetologa', 'confirmar', 'filtroContrato'),
+				'actions'=>array('admin','delete', 'cancelar', 'PagoCosmetologa', 'confirmar', 'filtroContrato', 'correoConfirma'),
 				'users'=>array('@'),
+				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
+				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
+				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
+				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('descuento', 'exportar', 'exportarAgenda'),
 				'users'=>array('@'),
+				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
+				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
+				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
+				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -168,7 +179,7 @@ class CitasController extends Controller
 					$reservaEquipos->fecha = $fechaCita;
 					$reservaEquipos->equipo_id = $unEquipo->id;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
-					Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
+					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 				}
 
 				if ($sihayDisponible == 1) 
@@ -177,7 +188,7 @@ class CitasController extends Controller
 					$reservaEquipos->fecha = $fechaCita;
 					$reservaEquipos->equipo_id = $numerodeEquipo;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
-					Yii::app()->user->setFlash('error',"Esta es una maravilla".$equipos_disponibles->id);
+					//Yii::app()->user->setFlash('error',"Esta es una maravilla".$equipos_disponibles->id);
 				}
 			}
 			else
@@ -223,6 +234,12 @@ class CitasController extends Controller
 				$reservaEquipos->cita_id = $model->id;
 				$reservaEquipos->save();
 
+				//Envio de Correo
+				if ($model->correo == "Si") {
+					$this->actionEnvioCorreo($model->id);
+				}
+				
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -254,8 +271,141 @@ class CitasController extends Controller
 			$model->usuario_id = Yii::app()->user->usuarioId;
 			//$model->equipo_adicional = $_POST['Citas']['equipo_adicional'];
 
+			$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
+			$horadeFin = $_POST['Citas']['hora_fin'];
+			$horadeInicio = $_POST['Citas']['hora_inicio'];
 
+			$laLineaServicio = $_POST['Citas']['linea_servicio_id'];
+
+			/////Actualizar equipo a reserva
+			//Buscar equipo de la linea de servicio seleccionada.
+			$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $laLineaServicio");
+			if ($equiposDisponibles) 
+			{
+				$sihayDisponible = 0;
+				$lasuperllave = 0;
+				$lallave = 0;
+				//Consultar en agenda de equipos reservados
+				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
+				if ($agendaEquipos) 
+				{
+					//Verificar equipo en la agenda
+					
+					foreach ($equiposDisponibles as $equipos_disponibles)
+					{
+						$lallave = 0;
+						$laInsidencia = 0;
+						foreach ($agendaEquipos as $agenda_equipos) 
+						{
+							
+							if ($equipos_disponibles->id == $agenda_equipos->equipo_id) 
+							{
+								
+								$lallave = 1; //Si hay uno
+								if ($horadeInicio >= $agenda_equipos->hora_inicio and $horadeInicio <= $agenda_equipos->hora_fin)
+								{
+									$laInsidencia = 1;	
+								}
+
+								if ($horadeFin >= $agenda_equipos->hora_inicio and $horadeFin <= $agenda_equipos->hora_fin) 
+								{
+									$laInsidencia = 1;
+								}
+
+								if ($laInsidencia == 1) {
+									//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$laInsidencia);
+									//$this->redirect(array('update','id'=>$model->id));
+								}
+							}
+
+						
+						}
+
+							//Comienza ingreso de equipo a reserva
+							if ($laInsidencia == 0) 
+							{
+								if ($lasuperllave == 0) 
+								{
+									$lasuperllave = 1;
+									$lallave = 2; //Guardo
+									//$reservaEquipos = new CitasEquipo;
+									$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
+									$reservaEquipos->fecha = $fechaCita;
+									$reservaEquipos->equipo_id = $equipos_disponibles->id;
+									$reservaEquipos->linea_servicio_id = $laLineaServicio;
+								}
+							}
+
+						//Evaluar llave
+						if ($lallave == 0) 
+						{
+							if ($sihayDisponible == 0) 
+							{
+								$numerodeEquipo = $equipos_disponibles->id;
+								$sihayDisponible = 1;
+							}
+							
+						}
+					}
+
+				}
+				else //Preparar ingreso de registro
+				{
+					$unEquipo = Equipos::model()->find("linea_servicio_id = $laLineaServicio");
+					//$reservaEquipos = new CitasEquipo;
+					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
+					$reservaEquipos->fecha = $fechaCita;
+					$reservaEquipos->equipo_id = $unEquipo->id;
+					$reservaEquipos->linea_servicio_id = $laLineaServicio;
+					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
+				}
+
+				if ($sihayDisponible == 1) 
+				{
+					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
+					//$reservaEquipos = new CitasEquipo;
+					$reservaEquipos->fecha = $fechaCita;
+					$reservaEquipos->equipo_id = $numerodeEquipo;
+					$reservaEquipos->linea_servicio_id = $laLineaServicio;
+					//Yii::app()->user->setFlash('error',"Esta es una maravilla".$equipos_disponibles->id);
+				}
+			}
+			else
+			{
+				$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
+				//$reservaEquipos = new CitasEquipo;
+			}
+
+
+
+
+
+			if($model->validate())
+			{
 			if($model->update())
+
+				//Actualizar Cita Equipo
+				$losEquipos = CitasEquipo::model()->findByPk($model->id);
+				//Si encuentra registros
+				if($losEquipos)
+				{
+					// $losEquipos->fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
+					// $losEquipos->hora_inicio = $_POST['Citas']['hora_inicio'];
+					// $losEquipos->hora_fin = $_POST['Citas']['hora_fin'] - 1;
+					// $losEquipos->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
+					// $losEquipos->update();
+				}
+
+				//Terminar consulta de reserva de equipo
+				if(isset($reservaEquipos))	
+				{
+					$reservaEquipos->hora_inicio = $horadeInicio;
+					$reservaEquipos->hora_fin = $horadeFin;
+					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+					$reservaEquipos->cita_id = $model->id;
+					$reservaEquipos->update();	
+				}
+				
 				//Actualizar estado de Detalle de Contrato
 				if ($model->contrato_id != NULL) 
 				{
@@ -271,7 +421,14 @@ class CitasController extends Controller
 						}
 					}
 				}
+
+				//Envio de Correo
+				if ($model->correo == "Si") {
+					$this->actionEnvioCorreo($model->id);
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
+		}
 		}
 
 		$this->render('update',array(
@@ -338,6 +495,37 @@ class CitasController extends Controller
 		));
 	}
 
+	public function actionEnvioCorreo($idCita)
+	{
+		$model=Citas::model()->findByPk($idCita);
+
+		$lahora = HorasServicio::model()->findByPK($model->hora_fin + 1);
+
+		//Buscar Correo en la plantilla
+		$plantillaCorreo = Correos::model()->findByPK(1);
+
+		Yii::import('ext.yii-mail.YiiMailMessage');
+		$message = new YiiMailMessage;
+		//$message = Yii::app()->Smtpmail;
+        $message->subject = 'Notificación de Cita en SMADIA Clinic: N° '.$model->id;
+        /*$message->view ='prueba';//nombre de la vista q conformara el mail*/      
+        $message->setBody($plantillaCorreo->detalle.'<br><br>
+        				   <b>Paciente: </b>'.$model->paciente->nombreCompleto.'<br>
+        				   <b>Fecha de Cita: </b>'.Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_cita).'<br><br>
+        				   <b>Hora Inicio de la Cita: </b>'.$model->horaInicio->hora.'<br>
+        				   <b>Hora Fin de la Cita: </b>'.$lahora->hora.'<br>
+        				   <b>Linea de Servicio: </b>'.$model->lineaServicio->nombre.'<br>
+        				   <br>'.$plantillaCorreo->pie.'<br><br>','text/html');//codificar el html de la vista
+        $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
+        //recorrer a los miembros del equipo
+        $message->setTo(array('hramirez@myrs.com.co', 'josterricardo@gmail.com')); // a quien se le envia
+        //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
+        Yii::app()->mail->send($message);
+
+        //Yii::app()->user->setFlash('success',"Se entro al proceso de correo. " .$plantillaCorreo->id);
+
+	}
+
 
 	public function actionExportar()
 	{
@@ -361,7 +549,9 @@ class CitasController extends Controller
 	    $this->toExcel($rows,
 	    	array(
             'id::ID',
-            'paciente.nombreCompleto',
+            'paciente.nombre',
+            'paciente.apellido',
+            'paciente.celular',
             'n_identificacion::Cedula',
             'personal.nombreCompleto::Ingresado Por',
 			'usuario.nombreCompleto::Registrado por',
@@ -433,7 +623,10 @@ class CitasController extends Controller
 
 				//Cancelar Reservación de Equipo
 				$equipoReservado = CitasEquipo::model()->findByPk($elid);
-				$equipoReservado->delete();
+				if ($equipoReservado) {
+					$equipoReservado->delete();
+				}
+				
 
 				//Actualizar estado de Detalle de Contrato
 					if ($lacita->contrato_id != NULL) 
@@ -484,7 +677,14 @@ class CitasController extends Controller
 				/*$this->render('calendario',array(
 					'dataProvider'=>$dataProvider,
 				));*/
-			$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+			if (isset($_GET['irCita'])) {
+				$this->redirect(array('view','id'=>$lacita->id));
+			}
+			else
+			{
+				$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+			}
+
 		}
 		else
 		{

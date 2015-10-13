@@ -267,6 +267,11 @@ else
 
 <?php 
 	//Consignación
+
+
+
+
+
 	if ($model->forma_pago == "Consignación") {
 		?>
 		<?php $this->widget('zii.widgets.CDetailView', array(
@@ -274,9 +279,9 @@ else
 			'attributes'=>array(
 				'consigna_banco_o',
 				'consigna_cuenta_o',
-				'consigna_banco_d_cuenta_id',
-				array('name'=>'Banco', 'value'=>$model->consignaBancoDCuenta->idBanco->nombre,''),
-				array('name'=>'Cuenta', 'value'=>$model->consignaBancoDCuenta->numero,''),
+				//'consigna_banco_d_cuenta_id',
+				array('name'=>'Banco', 'value'=>$model->consignaBancoDCuenta->nombre,''),
+				//array('name'=>'Cuenta', 'value'=>$model->consignaBancoDCuenta->bancosCuentases->numero,''),
 			),
 		)); ?>
 		<?php

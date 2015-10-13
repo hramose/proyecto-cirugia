@@ -32,6 +32,7 @@ class Usuarios extends CActiveRecord
 			array('personal_id, usuario, clave, estado', 'required'),
 			array('personal_id', 'numerical', 'integerOnly'=>true),
 			array('usuario, clave', 'length', 'max'=>20),
+			array('usuario', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('personal_id, usuario, clave, perfil_sistema_id', 'safe', 'on'=>'search'),

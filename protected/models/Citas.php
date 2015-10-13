@@ -32,6 +32,7 @@ class Citas extends CActiveRecord
 
 	public $nombre_paciente;
 	public $apellido_paciente;
+	public $cedula_paciente;
 
 	public function tableName()
 	{
@@ -52,12 +53,13 @@ class Citas extends CActiveRecord
 			array('correo', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento', 'safe', 'on'=>'search'),
+			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, cedula_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento', 'safe', 'on'=>'search'),
 			array('hora_inicio','validarHora'),
 			array('hora_fin','validarHoraMenor'),
 			array('hora_fin','validarHoraFin'),
 			array('hora_inicio','validarHoraAm'),
 			array('fecha_cita','validarFecha'),
+			array('fecha_cita','validarHora'),
 			
 		);
 	}
@@ -163,6 +165,7 @@ class Citas extends CActiveRecord
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
+		$criteria->compare('paciente.n_identificacion', $this->cedula_paciente, true );
 		//$criteria->addCondition('DATE_FORMAT(fecha_cita, \'%d-%m-%Y\') = ' . $this->fecha_cita);
 
 		return new CActiveDataProvider($this, array(

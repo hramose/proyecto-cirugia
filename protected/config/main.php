@@ -26,6 +26,7 @@ return array(
 		'application.extensions.yii-pdf.*',
 		'ext.EAutoCompleteAction', 
 		'ext.eexcelview.*',
+		'application.extensions.redactor.*', 
 	),
 
 	'modules'=>array(
@@ -188,7 +189,8 @@ return array(
 'components'=>array(
         'Smtpmail'=>array(
             'class'=>'application.extensions.smtpmail.PHPMailer',
-            'Host'=>"smtp.gmail.com",
+            //'Host'=>"smtp.gmail.com",
+            'Host'=>"74.125.130.108",
             'Username'=>'noresponder@smadiaclinic.com',
             'Password'=>'2015responder',
             'Mailer'=>'smtp',
