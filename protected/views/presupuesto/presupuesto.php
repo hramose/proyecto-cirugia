@@ -55,6 +55,7 @@
 		<table style="border: solid 0px #440000; width: 90%" cellspacing="0">
 			<tr>
 				<td width="700">
+					<b>Adicionales: </b><?php echo $elPresupuesto->adicionales; ?><br><br>
 					<b>Observaciones: </b><?php echo $elPresupuesto->observaciones; ?>
 				</td>
 			</tr>

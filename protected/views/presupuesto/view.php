@@ -28,6 +28,7 @@
 				'estado',
 				array('name'=>'Elaborado por:', 'value'=>$model->elusuario->nombreCompleto,''),
 				array('name'=>'Vendido por:', 'value'=>$model->vendedor->nombreCompleto,''),
+				'adicionales',
 				'observaciones',
 			),
 		)); ?>

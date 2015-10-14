@@ -675,7 +675,7 @@ if (count($elSeguimiento)>0) {
 		<!-- Presupuestos-->
 
 		<?php 
-			$elPresupuesto = Presupuesto::model()->findAll("paciente_id = $model->id and estado = 'Presupuestado'");
+			$elPresupuesto = Presupuesto::model()->findAll("paciente_id = $model->id");
 			if (count($elPresupuesto)>0) {
 				?>
 				

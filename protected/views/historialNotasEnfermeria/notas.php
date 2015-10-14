@@ -27,35 +27,20 @@
 	</tr>
 	<tr>
 		<td width="400"><p><b>NOMBRE: </b><?php echo $historialNotas->paciente->nombreCompleto; ?></p></td>
-		<td width="200"><p><b>FECHA: </b><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$historialNotas->fecha); ?></p></td>
+		<td width="200"><p><b>FECHA: </b><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$historialNotas->fecha_nota); ?> <b>Hora: </b><?php echo $historialNotas->hora; ?></p></td>
 	</tr>
 </table>
 
-<table border=1 cellspacing=0 cellpadding=2>
-			<tr>
-				<th width="100">Fecha</th>
-				<th width="100">Hora</th>
-				<th width="150">Nota</th>
-				<th width="150">Fima</th>
 
-			</tr>
-		<?php 
-			foreach ($detalleNotas as $las_notas) 
-			{
-				?>
-				<tr>
-					<td><?php echo $las_notas->fecha; ?></td>
-					<td><?php echo $las_notas->hora; ?></td>
-					<td width="300"><?php echo $las_notas->nota; ?></td>
-					<td></td>
-				</tr>
-				<?php
-			}
-		?>
-		</table>
 <br><br>
 
-
+<table>
+	<tr>
+		<td width="600">
+			<?php echo $historialNotas->nota; ?>
+		</td>
+	</tr>
+</table>
 </div>
 </div>
 </body>

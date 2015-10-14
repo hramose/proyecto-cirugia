@@ -122,9 +122,12 @@ $numPresupuesto = PresupuestoDetalle::model()->count("presupuesto_id = $model->i
 		  	
 		  <div>
 			<br>
-			<?php $elPersonal = Personal::model()->findAll("activo = 'SI'"); ?>
+			<div class="row">
+				<div class="span1"></div>
+				<div class="span5">
+					<?php $elPersonal = Personal::model()->findAll("activo = 'SI'"); ?>
 			<label>Vendedor:</label>
-		  	<select name='vendedor_id' id='vendedor_id' class="input-xxlarge">
+		  	<select name='vendedor_id' id='vendedor_id' class="input-xlarge">
 					<?php 
 						foreach($elPersonal as $el_personal){
 							if ($el_personal->id == $model->usuario_id) {
@@ -143,6 +146,13 @@ $numPresupuesto = PresupuestoDetalle::model()->count("presupuesto_id = $model->i
 					
 					<?php } ?>
 			</select>
+				</div>
+				<div class="span6">
+					<label>Adicionales:</label>
+			<textarea rows="3" class = "input-xxlarge" name ="adicionales" id="adicionales"><?php echo $model->adicionales; ?></textarea>
+				</div>
+			</div>
+			
 			<br>
 			<label>Observaciones:</label>
 			<textarea rows="6" class = "input-xxlarge" name ="observaciones" id="observaciones"><?php echo $model->observaciones; ?></textarea>

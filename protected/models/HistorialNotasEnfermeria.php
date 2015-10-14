@@ -33,11 +33,11 @@ class HistorialNotasEnfermeria extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('paciente_id, cita_id, fecha, observaciones', 'required'),
+			array('hora, fecha_nota, nota', 'required'),
 			array('paciente_id, cita_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, cita_id, fecha, personal_id, observaciones', 'safe', 'on'=>'search'),
+			array('id, paciente_id, cita_id, fecha, fecha_nota, nota, hora, personal_id, observaciones', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +68,9 @@ class HistorialNotasEnfermeria extends CActiveRecord
 			'fecha' => 'Fecha',
 			'observaciones' => 'Observaciones',
 			'personal_id' => 'Personal',
+			'fecha_nota' => 'Fecha de Nota',
+			'nota' => 'Nota',
+			'hora' => 'Hora de Nota',
 		);
 	}
 

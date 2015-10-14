@@ -44,7 +44,7 @@ class Presupuesto extends CActiveRecord
 			array('estado', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, total, fecha, usuario_id, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, estado, observaciones', 'safe', 'on'=>'search'),
+			array('id, paciente_id, total, fecha, adicionales, usuario_id, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, estado, observaciones', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,6 +79,7 @@ class Presupuesto extends CActiveRecord
 			//'n_identificacion' => 'Cedula',
 			'estado' => 'Estado',
 			'observaciones' => 'Observaciones',
+			'adicionales' => 'Adicionales',
 		);
 	}
 

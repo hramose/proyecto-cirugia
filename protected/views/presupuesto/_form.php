@@ -66,23 +66,44 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 		   
 		   </div>
 		  	
-		  <div>
+		  
 			<br>
-			<label>Vendedor:</label>
-			<select name='vendedor_id' id='vendedor_id'>
-				<?php 
-				$losVendedores = Personal::model()->findAll("activo = 'SI' and id > 0 order by 'nombres'");
-				foreach($losVendedores as $los_vendedores){ ?>
-				<option value='<?php echo $los_vendedores->id; ?>'><?php echo $los_vendedores->nombreCompleto; ?></option>
-				<?php } ?>
-			</select>
-		  	<br>
-		  	<label>Observaciones:</label>
-		  	<textarea rows="6" class = "input-xxlarge" name ="observaciones" id="observaciones"></textarea>
-		  	<input id='variable' name='variable' type='hidden' />
+			<div class="row">
+				<div class="span1"></div>
+			<div class="span5">
+				<label>Vendedor:</label>
+				<select name='vendedor_id' id='vendedor_id'>
+					<?php 
+					$losVendedores = Personal::model()->findAll("activo = 'SI' and id > 0 order by 'nombres'");
+					foreach($losVendedores as $los_vendedores){ ?>
+					<option value='<?php echo $los_vendedores->id; ?>'><?php echo $los_vendedores->nombreCompleto; ?></option>
+					<?php } ?>
+				</select>
+			</div>
+			<div class="span6">
+				<label>Adicionales:</label>
+		  		<textarea rows="2" class = "input-xxlarge" name ="adicionales" id="adicionales"></textarea>	
+			</div>
+			</div>
+			
+			<div class="row">
 		  	
+		  	<div class="span1"></div>
+		  	<span class="span11">
+		  		<label>Observaciones:</label>
+		  		<textarea rows="6" class = "input-xxlarge" name ="observaciones" id="observaciones"></textarea>	
+		  	</span>
+		  	
+		  	</div>
+		  	<input id='variable' name='variable' type='hidden' />
+		  		  <div class="row">
+		  		  <div class="span1"></div>
+		  		  <div class="span11"><input type="submit" value="Guardar" name="Guardar" class="btn btn-warning"></div>
+				  	
+				  </div>
 		  </div>
-		   <input type="submit" value="Guardar" name="Guardar" class="btn btn-warning">
+	
+		   
 		   <?php //echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 		</form>
 	</div>

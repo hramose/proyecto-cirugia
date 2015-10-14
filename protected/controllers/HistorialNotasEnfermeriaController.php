@@ -73,25 +73,14 @@ class HistorialNotasEnfermeriaController extends Controller
 			$model->paciente_id = $_GET['idPaciente'];
 			$model->cita_id = $_GET['idCita'];
 			$model->observaciones = $_POST['HistorialNotasEnfermeria']['observaciones'];
+			$model->hora = $_POST['HistorialNotasEnfermeria']['hora'];
+			$model->fecha_nota =  Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['HistorialNotasEnfermeria']['fecha_nota']);
+			$model->nota = $_POST['HistorialNotasEnfermeria']['nota'];
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->personal_id = Yii::app()->user->usuarioId;
 
 			if($model->save())
 			{
-				//Los detalles de la Compra
-				for ($i=0; $i <= $_POST['variable']; $i++) {
-
-			 		if (isset($_POST['nota_'.$i])) 
-			 		{
-			 			$detalleC = new HistorialNotasEnfermeriaDetalles;
-			 			$detalleC->historial_notas_enfermeria_id = $model->id;
-			 			$detalleC->fecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_'.$i]);
-			 			$detalleC->hora = $_POST['hora_'.$i];
-			 			$detalleC->nota = $_POST['nota_'.$i];
-			 			$detalleC->save();
-
-			 		}			 		
-			 	}
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -113,27 +102,13 @@ class HistorialNotasEnfermeriaController extends Controller
 		{
 		$model= HistorialNotasEnfermeria::model()->findByPk($_GET['id']);
 		$model->observaciones = $_POST['HistorialNotasEnfermeria']['observaciones'];
+		$model->hora = $_POST['HistorialNotasEnfermeria']['hora'];
+		$model->fecha_nota =  Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['HistorialNotasEnfermeria']['fecha_nota']);
+		$model->nota = $_POST['HistorialNotasEnfermeria']['nota'];
 
 		if($model->save())
 			{
-				$detalleP = HistorialNotasEnfermeriaDetalles::model()->findAll("historial_notas_enfermeria_id = $model->id");
-	 			foreach ($detalleP as $detalle_P) {
-					$detalle_P->delete();					 		
-	 			}
 				//Los detalles de la Compra
-				for ($i=0; $i <= $_POST['variable']; $i++) {
-
-			 		if (isset($_POST['nota_'.$i])) 
-			 		{
-			 			$detalleC = new HistorialNotasEnfermeriaDetalles;
-			 			$detalleC->historial_notas_enfermeria_id = $model->id;
-			 			$detalleC->fecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_'.$i]);
-			 			$detalleC->hora = $_POST['hora_'.$i];
-			 			$detalleC->nota = $_POST['nota_'.$i];
-			 			$detalleC->save();
-
-			 		}			 		
-			 	}
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}

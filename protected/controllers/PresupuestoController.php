@@ -135,6 +135,7 @@ class PresupuestoController extends Controller
 			 $model->fecha = date("Y-m-d");
 			 $model->vendedor_id = $_POST['vendedor_id'];
 			 $model->observaciones = $_POST['observaciones'];
+			 $model->adicionales =$_POST['adicionales'];
 			 $model->usuario_id = Yii::app()->user->usuarioId;
 
 			
@@ -191,6 +192,7 @@ class PresupuestoController extends Controller
 			 $model->fecha = date("Y-m-d");
 			 $model->observaciones = $_POST['observaciones'];
 			 $model->vendedor_id = $_POST['vendedor_id'];
+			 $model->adicionales =$_POST['adicionales'];
 			 $model->usuario_id = Yii::app()->user->usuarioId;
 
 

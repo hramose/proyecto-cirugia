@@ -492,20 +492,33 @@ class CitasController extends Controller
 		//Buscar Correo en la plantilla
 		$plantillaCorreo = Correos::model()->findByPK(1);
 
-		Yii::import('ext.yii-mail.YiiMailMessage');
-		$message = new YiiMailMessage;
-		//$message = Yii::app()->Smtpmail;
-        $message->subject = 'Notificación de Cita en SMADIA Clinic: N° '.$model->id;
-        /*$message->view ='prueba';//nombre de la vista q conformara el mail*/      
-        $message->setBody('<br><b>Apreciado Sr (a). : </b>'.$model->paciente->nombreCompleto.'<br><br>
-        				   Su Cita N°: '.$model->id. ' de <b>'.$model->lineaServicio->nombre.'</b> en Smadia Clinic se encuentra agendada para el día: <b>'.Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_cita).'</b>
-        				   a las: <b>'.$model->horaInicio->hora.'</b> con el <b>'.$model->personal->idPerfil->nombre.' '.$model->personal->nombreCompleto.'.</b>
-        <br><br>'.$plantillaCorreo->detalle.'<br>'.$plantillaCorreo->pie.'','text/html');//codificar el html de la vista
-        $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
-        //recorrer a los miembros del equipo
-        $message->setTo(array('hramirez@myrs.com.co', 'josterricardo@gmail.com')); // a quien se le envia
-        //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
-        Yii::app()->mail->send($message);
+		$elCorreo = $model->paciente->email;
+
+		if (filter_var($elCorreo, FILTER_VALIDATE_EMAIL)) 
+		{
+			$soloCorreo = array($elCorreo);
+			Yii::import('ext.yii-mail.YiiMailMessage');
+			$message = new YiiMailMessage;
+			//$message = Yii::app()->Smtpmail;
+	        $message->subject = 'Notificación de Cita en SMADIA Clinic: N° '.$model->id;
+	        /*$message->view ='prueba';//nombre de la vista q conformara el mail*/      
+	        $message->setBody('<br><b>Apreciado Sr (a). : </b>'.$model->paciente->nombreCompleto.'<br><br>
+	        				   Su Cita N°: '.$model->id. ' de <b>'.$model->lineaServicio->nombre.'</b> en Smadia Clinic se encuentra agendada para el día: <b>'.Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_cita).'</b>
+	        				   a las: <b>'.$model->horaInicio->hora.'</b> con el <b>'.$model->personal->idPerfil->nombre.' '.$model->personal->nombreCompleto.'.</b>
+	        <br><br>'.$plantillaCorreo->detalle.'<br>'.$plantillaCorreo->pie.'','text/html');//codificar el html de la vista
+	        $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
+	        //recorrer a los miembros del equipo
+	        $message->setTo($soloCorreo); // a quien se le envia
+	        //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
+	        Yii::app()->mail->send($message);
+
+	        //Yii::app()->user->setFlash('success',"El correo es. " .$elCorreo);
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error',"No se envio confirmación por correo electrónico." .$elCorreo);	
+		}
+		
 
         //Yii::app()->user->setFlash('success',"Se entro al proceso de correo. " .$plantillaCorreo->id);
 

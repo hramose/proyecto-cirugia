@@ -74,26 +74,74 @@ else
 		<div class="span1"></div>
 	</div>
 
-<input id='variable' name='variable' type='hidden' />
-
-	<a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Nota </a>
-		<hr>
-		<div class="row">
-		<div class="span12">
-		<table class "table" width="100%">
-			<tr>
-				<th width="0%"><small>Fecha</small></th>
-				<th width="0%"><small>Hora</small></th>
-				<th width="80%"><small>Nota</small></th>
-				<th></th>
-			</tr>
-		</table>
-
-	   <div id="contenedorcampos">
-	   
-	   </div>
-	   </div>
+<div class="row">
+	<div class="span4">
+		<?php echo $form->labelEx($model,'fecha_nota'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+					'name'=>'fecha_nota',
+					'language'=>'es',
+					'model' => $model,
+					'attribute' => 'fecha_nota',
+					'value'=> $model->fecha_nota,
+					// additional javascript options for the date picker plugin
+					'options'=>array(
+						'showAnim'=>'fold',
+						'language' => 'es',
+						'dateFormat' => 'dd-mm-yy',
+						'changeMonth'=>true,
+        				'changeYear'=>true,
+        				'yearRange'=>'2014:2025',
+					),
+					'htmlOptions'=>array(
+						'style'=>'height:20px;width:80px;'
+					),
+				)); ?>
+		<?php echo $form->error($model,'fecha_nota'); ?>
 	</div>
+	<div class="span4">
+		<?php echo $form->labelEx($model,'hora'); ?>
+		<?php echo $form->textField($model,'hora',array('class'=>'input-small')); ?>
+		<?php echo $form->error($model,'hora'); ?>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<?php echo $form->labelEx($model,'nota'); ?>
+		<?php 
+			 $attribute='nota';
+				$this->widget('ext.redactor.ImperaviRedactorWidget',array(
+				 'model'=>$model,
+					'attribute'=>$attribute,
+					'options'=>array(
+						'lang'=>'es',
+						 'width'=>'900',
+	   			          'height'=>'250',
+
+					    'fileUpload'=>Yii::app()->createUrl('post/fileUpload',array(
+					        'attr'=>$attribute
+					    )),
+					    'fileUploadErrorCallback'=>new CJavaScriptExpression(
+					        'function(obj,json) { alert(json.error); }'
+					    ),
+					    'imageUpload'=>Yii::app()->createUrl('post/imageUpload',array(
+					        'attr'=>$attribute
+					    )),
+					    'imageGetJson'=>Yii::app()->createUrl('post/imageList',array(
+					        'attr'=>$attribute
+					    )),
+					    'imageUploadErrorCallback'=>new CJavaScriptExpression(
+					        'function(obj,json) { alert(json.error); }'
+					    ),
+					),
+					));
+		?>
+		<?php echo $form->error($model,'nota'); ?>
+	</div>
+</div>
+
+
+
 
 <hr>
 <div class="row">
@@ -112,91 +160,3 @@ else
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
-
-<script type="text/javascript">
-$(document).ready( agregarCampo );
-
-	var variableJs = 0
-	var campos = 1;
-	var eltotal = 0;
-
-function agregarCampo(){
-
-	campos = campos + 1;
-	variableJs = campos;
-	var NvoCampo= document.createElement("div");
-	NvoCampo.id= "divcampo_"+(campos);
-	NvoCampo.innerHTML= 
-		"<table class='table'>" +
-		"   <tr>" +
-		"     <td nowrap='nowrap' width='12%'>" +
-		"        <input type='text' class='input-small' autocomplete = 'off' placeholder='DD-MM-AAAA' name='fecha_" + campos + "' id='fecha_" + campos + "' onkeyup='mascara(this,\"-\",patron,true)' maxlength='10'>" +
-		"     </td>" +
-		"     <td nowrap='nowrap' width='20%'>" +
-		"        <input type='text' class='input-mini' placeholder='' name='hora_" + campos + "' id='hora_" + campos + "' maxlength='7'>" +
-		"     </td>" +
-		"     <td nowrap='nowrap'>" +
-		"		 <textarea rows='6' class = 'input-xxlarge' placeholder='' name ='nota_" + campos + "' id='nota_" + campos + "'></textarea>" +
-		"     </td>" +
-		"     <td nowrap='nowrap'>" +
-		"        <a href='JavaScript:quitarCampo(" + campos +");' class='btn btn-mini btn-danger'> [x] </a>" +
-		"     </td>" +
-		"   </tr>" +
-		"</table>";
-	
-	$("#variable").val(variableJs);
-
-	var contenedor= document.getElementById("contenedorcampos");
-    contenedor.appendChild(NvoCampo);
-    
-
-	
-    }
-
-var patron = new Array(2,2,4);
-function mascara(d,sep,pat,nums){
-if(d.valant != d.value){
-	val = d.value
-	largo = val.length
-	val = val.split(sep)
-	val2 = ''
-	for(r=0;r<val.length;r++){
-		val2 += val[r]	
-	}
-	if(nums){
-		for(z=0;z<val2.length;z++){
-			if(isNaN(val2.charAt(z))){
-				letra = new RegExp(val2.charAt(z),"g")
-				val2 = val2.replace(letra,"")
-			}
-		}
-	}
-	val = ''
-	val3 = new Array()
-	for(s=0; s<pat.length; s++){
-		val3[s] = val2.substring(0,pat[s])
-		val2 = val2.substr(pat[s])
-	}
-	for(q=0;q<val3.length; q++){
-		if(q ==0){
-			val = val3[q]
-		}
-		else{
-			if(val3[q] != ""){
-				val += sep + val3[q]
-				}
-		}
-	}
-	d.value = val
-	d.valant = val
-	}
-}
-
-function quitarCampo(iddiv){
-  var eliminar = document.getElementById("divcampo_" + iddiv);
-  var contenedor= document.getElementById("contenedorcampos");
-  contenedor.removeChild(eliminar);
-}
-
-
-</script>

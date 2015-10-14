@@ -18,8 +18,10 @@ $this->menu=array(
 	array('label'=>'Actualizar Notas de Enfermería', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Borrar Notas de Enfermería', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Buscar Notas de Enfermería', 'url'=>array('admin')),*/
+	array('label'=>'Actualizar', 'url'=>array('update', 'id'=>$model->id, 'idPaciente'=>$model->paciente_id)),
 	array('label'=>"<i class='icon-circle-arrow-left'></i> ".$textoMenu, 'url'=>$laRuta),
 	/*Botones de Historia Clinica*/
+
 	array('label'=>"<i class='icon-plus-sign'> </i> Anamnesis", 'url'=>'index.php?r=HistorialAnamnesis/create'.$urlComplemento),
 	array('label'=>"<i class='icon-plus-sign'> </i> Revisión de Sistemas", 'url'=>'index.php?r=HistorialRevisionSistema/create'.$urlComplemento),
 	array('label'=>"<i class='icon-plus-sign'> </i> Examen Físico", 'url'=>'index.php?r=HistorialExamenFisico/create'.$urlComplemento),
@@ -50,7 +52,10 @@ $this->menu=array(
 			'data'=>$model,
 			'attributes'=>array(
 				array('name'=>'Paciente', 'value'=>$model->paciente->nombreCompleto,''),
-				array('name'=>'LLeno la hoja', 'value'=>$model->personal->nombreCompleto,''),
+				array('name'=>'Lleno la hoja', 'value'=>$model->personal->nombreCompleto,''),
+				array('name'=>'Fecha de Llenado', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$model->fecha),''),
+				'hora',
+				array('name'=>'Fecha de Nota', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_nota),''),
 				'observaciones',
 			),
 		)); ?>
@@ -74,32 +79,13 @@ $this->menu=array(
 	</div>
 	<div class="span1"></div>
 </div>
-
-
-<h3 class="text-center">Notas</h3>
+<h4>Nota de Enfermería</h4><br>
 <div class="row">
-	<div class="span1"></div>
-	<div class="span10">
-		<table class="table table-striped">
-			<tr>
-				<th width=10%>Fecha </th>
-				<th width=8%>Hora</th>
-				<th>Nota</th>
-			</tr>
-		<?php $lasNotas = HistorialNotasEnfermeriaDetalles::model()->findAll("historial_notas_enfermeria_id = $model->id") ?>
-		<?php 
-			foreach ($lasNotas as $las_notas) 
-			{
-				?>
-				<tr>
-					<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$las_notas->fecha) ?></td>
-					<td><?php echo $las_notas->hora; ?></td>
-					<td><?php echo $las_notas->nota; ?></td>
-				</tr>
-				<?php
-			}
-		?>
-		</table>
+	<div class="span2"></div>
+	<div class="span8">
+		<?php echo $model->nota; ?>
 	</div>
+	<div class="span2"></div>
+</div>
 	
 </div>
