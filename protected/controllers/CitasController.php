@@ -43,26 +43,14 @@ class CitasController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'calendario', 'citas', 'ver', 'exportar', 'seguimientoComercial'),
 				'users'=>array('@'),
-				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
-				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
-				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
-				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete', 'cancelar', 'PagoCosmetologa', 'confirmar', 'filtroContrato', 'correoConfirma'),
 				'users'=>array('@'),
-				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
-				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
-				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
-				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('descuento', 'exportar', 'exportarAgenda'),
 				'users'=>array('@'),
-				//'expression'=>"Yii::app()->user->perfil == 1", //Auxiliar
-				//'expression'=>"Yii::app()->user->perfil == 2", //Asistencial
-				//'expression'=>"Yii::app()->user->perfil == 3", //Administrativo
-				//'expression'=>"Yii::app()->user->perfil == 5", //SUper Admin
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -509,13 +497,10 @@ class CitasController extends Controller
 		//$message = Yii::app()->Smtpmail;
         $message->subject = 'Notificación de Cita en SMADIA Clinic: N° '.$model->id;
         /*$message->view ='prueba';//nombre de la vista q conformara el mail*/      
-        $message->setBody($plantillaCorreo->detalle.'<br><br>
-        				   <b>Paciente: </b>'.$model->paciente->nombreCompleto.'<br>
-        				   <b>Fecha de Cita: </b>'.Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_cita).'<br><br>
-        				   <b>Hora Inicio de la Cita: </b>'.$model->horaInicio->hora.'<br>
-        				   <b>Hora Fin de la Cita: </b>'.$lahora->hora.'<br>
-        				   <b>Linea de Servicio: </b>'.$model->lineaServicio->nombre.'<br>
-        				   <br>'.$plantillaCorreo->pie.'<br><br>','text/html');//codificar el html de la vista
+        $message->setBody('<br><b>Apreciado Sr (a). : </b>'.$model->paciente->nombreCompleto.'<br><br>
+        				   Su Cita N°: '.$model->id. ' de <b>'.$model->lineaServicio->nombre.'</b> en Smadia Clinic se encuentra agendada para el día: <b>'.Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_cita).'</b>
+        				   a las: <b>'.$model->horaInicio->hora.'</b> con el <b>'.$model->personal->idPerfil->nombre.' '.$model->personal->nombreCompleto.'.</b>
+        <br><br>'.$plantillaCorreo->detalle.'<br>'.$plantillaCorreo->pie.'','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo
         $message->setTo(array('hramirez@myrs.com.co', 'josterricardo@gmail.com')); // a quien se le envia
