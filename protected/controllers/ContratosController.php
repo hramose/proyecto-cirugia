@@ -89,13 +89,13 @@ class ContratosController extends Controller
 		$model=new Contratos;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['Contratos']))
 		{
-			$model->attributes=$_POST['Contratos'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			// $model->attributes=$_POST['Contratos'];
+			// if($model->save())
+			// 	$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(

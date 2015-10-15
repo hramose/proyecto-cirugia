@@ -115,6 +115,7 @@ class PacienteController extends Controller
 			{
 				$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);	
 			}
+			$model->observaciones = $_POST['Paciente']['observaciones'];
 			$model->fecha_registro = date("Y-m-d");
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -140,6 +141,7 @@ class PacienteController extends Controller
 		if(isset($_POST['Paciente']))
 		{
 			$model->attributes=$_POST['Paciente'];
+			$model->observaciones = $_POST['Paciente']['observaciones'];
 			$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

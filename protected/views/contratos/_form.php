@@ -42,7 +42,7 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 
 <div class="row">
 	<div class="span11">
-		<form id="Contrato" name="Contrato" action="index.php?r=contratos/guardarContratos&idPaciente=<?php echo $elPaciente;?>" method = "post" onsubmit="onEnviar()">
+		<form id="Contrato" onsubmit="return onEnviar()" name="Contrato" action="index.php?r=contratos/guardarContratos&idPaciente=<?php echo $elPaciente;?>" method = "post" >
 		  
 
 		    <a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Linea de Servicio </a>
@@ -88,7 +88,7 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 </div>
 
 
-<script type="text/javascript">
+<script language='JavaScript' type='text/javascript'>
    $(document).ready( agregarCampo );
 
 	var variableJs = 0
@@ -331,7 +331,31 @@ function quitarCampo(iddiv){
 }
 
  function onEnviar(){
+ 	
+ 	//alert("No se envía el formulario");
+ 	
        document.getElementById("variable").value=variableJs;
        //document.getElementById("total").value=variableJs;
+
+       //Validar todos los controles
+
+       if($("#total").val() == "")
+       {
+       		swal("Falta completar información", "No ha seleccionado ninguna Linea de Servicio");
+ 			return false
+       }
+
+       var observaciones = $("#observaciones").val();
+       if(observaciones == "")
+       {
+       		swal("Falta completar información", "Campo Observaciones esta vacio");
+ 			return false
+       }
     }
+
+function antesdeEnviar()
+{
+	swal({   title: "Estamos agendando la cita!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
+
+}
 </script>

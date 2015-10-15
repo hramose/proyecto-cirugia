@@ -110,6 +110,7 @@ $this->menu=array(
 			'relacion_responsable',
 			'telefono_responsable',
 			array('name'=>'Tratamiento de Interes', 'value'=>$trata),
+			'observaciones',
 		),
 	)); ?>
 	</div>
@@ -729,6 +730,7 @@ if (count($elSeguimiento)>0) {
 								<th>Fecha</th>
 								<th>Estado</th>
 								<th>Total</th>
+								<th>Saldo</th>
 								<th></th>
 							</tr>
 						<?php 
@@ -740,6 +742,7 @@ if (count($elSeguimiento)>0) {
 								<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$el_contrato->fecha); ?></td>
 								<td><?php echo $el_contrato->estado; ?></td>
 								<td><?php echo number_format($el_contrato->total,2); ?></td>
+								<td><?php echo number_format($el_contrato->saldo,2); ?></td>
 								<td><small><a href='index.php?r=contratos/view&id=<?php echo $el_contrato->id;?>'>[Ver]</a></small></td>
 							</tr>
 						<?php

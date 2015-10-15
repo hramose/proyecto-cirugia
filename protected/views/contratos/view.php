@@ -682,7 +682,8 @@ if (count($detalleContrato)>0) {
 		<?php 
 			if ($elPresupuesto) {
 				?>
-					<p>Observaciones: <?php echo $elPresupuesto->observaciones ?></p>
+					<p><b>Fecha de Registro: </b><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$elPresupuesto->fecha); ?></p>
+					<p><b>Observaciones: </b><?php echo $elPresupuesto->observaciones ?></p>
 					<br>
 					<?php
 					$detallePresupuesto = PresupuestoDetalle::model()->findAll("presupuesto_id = $elPresupuesto->id");

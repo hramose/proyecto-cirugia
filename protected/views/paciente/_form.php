@@ -248,6 +248,16 @@
 			<?php echo $form->error($model,'fuente_contacto_id'); ?>
 		</div>
 	</div>
+
+	<h3>Observaciones</h3>
+	<hr class="linea-titulo">
+	<div class="row">
+		<div class="span5">
+			<?php //echo $form->labelEx($model,'fuente_contacto_id'); ?>
+			<?php echo $form->textArea($model, 'observaciones', array('rows'=>6, 'cols'=>50, 'class'=>'input-xxlarge'));?>
+			<?php echo $form->error($model,'observaciones'); ?>
+		</div>
+	</div>
 	
 </div>
 <div class="row buttons">

@@ -43,6 +43,7 @@ class Contratos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('presupuesto_id, paciente_id, estado, fecha, total, usuario_id, observaciones', 'required'),
+			//array('observaciones', 'required'),
 			array('presupuesto_id, paciente_id, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('estado', 'length', 'max'=>25),
 			array('total, saldo, descuento_liquidacion, porcentaje_descuento_liquidacion', 'length', 'max'=>15),

@@ -279,8 +279,7 @@ class IngresosController extends Controller
 
 				if ($model->forma_pago == "Efectivo")
 				{
-					//Para envio de correos
-					$this->actionEnvioCorreoIngreso($model->id);
+					
 					$laCaja=CajaEfectivo::model()->findByPk($model->personal_id);
 					if($laCaja===null)//no esta vacio
 					{
@@ -316,7 +315,8 @@ class IngresosController extends Controller
 					}
 				}
 
-					
+					//Para envio de correos
+				$this->actionEnvioCorreoIngreso($model->id);
 
 					if ($model->contrato_id != NULL) 
 					{
@@ -327,6 +327,7 @@ class IngresosController extends Controller
 		 				$this->redirect(array('view','id'=>$model->id));	
 		 			}
 		 			//$this->actionImprimirIngresos($model->id);
+				
 				
 				
 				
@@ -541,6 +542,7 @@ class IngresosController extends Controller
         				   <b>Valor: $ </b><br>'.$model->valor.'<br>
         				   <b>Centro de Costos:</b><br>'.$model->centroCosto->nombre.'<br>
         				   <b>Comentario:</b><br>'.$model->descripcion.'<br><br>
+        				   <b>Vendedor:</b><br>'.$model->vendedor->nombreCompleto.'<br><br>
         				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo

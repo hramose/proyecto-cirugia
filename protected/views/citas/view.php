@@ -1285,19 +1285,13 @@ if ($elEquipo)
 				<th>Hora</th>
 				<th>Nota</th>
 			</tr>
-		<?php $lasNotas = HistorialNotasEnfermeriaDetalles::model()->findAll("historial_notas_enfermeria_id = $idNotas->id") ?>
-		<?php 
-			foreach ($lasNotas as $las_notas) 
-			{
-				?>
+
 				<tr>
-					<td><?php echo $las_notas->fecha; ?></td>
-					<td><?php echo $las_notas->hora; ?></td>
-					<td><?php echo $las_notas->nota; ?></td>
+					<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$idNotas->fecha_nota); ?></td>
+					<td><?php echo $idNotas->hora; ?></td>
+					<td><?php echo $idNotas->nota; ?></td>
 				</tr>
-				<?php
-			}
-		?>
+			
 		</table>
  	
   </div>
