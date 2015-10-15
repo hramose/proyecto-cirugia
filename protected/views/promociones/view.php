@@ -25,9 +25,8 @@ $this->menu=array(
 	),
 )); ?>
 
-<div class="row">
+
 	<h3>Detalle de Promoción</h3>
-	<div class="span12">
+
 		<?php echo $model->promocion; ?>
-	</div>
-</div>
+

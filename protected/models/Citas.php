@@ -57,7 +57,7 @@ class Citas extends CActiveRecord
 			array('hora_inicio','validarHora'),
 			array('hora_fin','validarHoraMenor'),
 			array('hora_fin','validarHoraFin'),
-			array('hora_inicio','validarHoraAm'),
+			//array('hora_inicio','validarHoraAm'),
 			array('fecha_cita','validarFecha'),
 			array('fecha_cita','validarHora'),
 			
