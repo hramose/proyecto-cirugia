@@ -146,7 +146,15 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Laboratorios', 'url'=>array('/Laboratorio/admin')), 
                                 array('label'=>'Medicamentos Biológicos', 'url'=>array('/MedicamentosBiologicos/admin')), 
                                 array('label'=>'Diagnosticos', 'url'=>array('/Diagnosticos/admin')),
-                                array('label'=>'Promociones', 'url'=>array('/Promociones/admin')),
+                                array('label'=>'Promociones', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Activas', 'url'=>array("/Promociones/activas")),
+                                    array('label'=>'Vencidas', 'url'=>array("/Promociones/vencidas")),
+                                    array('label'=>'Crear', 'url'=>array("/Promociones/create")),
+                                    array('label'=>'Listado', 'url'=>array("/Promociones/admin")),
+                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
+
+                                    )), 
                                 array('label'=>'Correos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Confirmación de Cita', 'url'=>array("/Correos/update&id=1")),

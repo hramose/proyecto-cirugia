@@ -36,26 +36,54 @@ $this->menu=array(
 		if (estado=="Completada") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Completada";
+				document.getElementById('omitir').style.display = 'block';
 			};
 
 		if (estado=="Vencida") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Vencida";
+				document.getElementById('omitir').style.display = 'block';
 			};
 
 		if (estado=="Cancelada") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Cancelada";
+				document.getElementById('omitir').style.display = 'block';
 			};
 		if (estado=="Fallida") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Fallida";
+				document.getElementById('omitir').style.display = 'none';
+
 			};
 		if (estado=="Confirmada") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Programada";
+				document.getElementById('omitir').style.display = 'block';
 			};
 	}
+
+	function onEnviar(){
+
+       //Validar todos los controles
+       var aplica = $("#aplica").val();
+       if(aplica == "No")
+       {
+	       var fecha = $("#fecha_accion").val();
+	       if(fecha == "")
+	       {
+	       		swal("Falta completar información", "Campo fecha esta vacio");
+	 			return false
+	       }
+
+	       var observaciones = $("#SeguimientoComercial_observaciones").val();
+	       if(observaciones == "")
+	       {
+	       		swal("Falta completar información", "Campo Observaciones esta vacio");
+	 			return false
+	       }
+	    }
+    }
 </script>
 
 <?php
@@ -450,6 +478,8 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 		// controller action is handling ajax validation correctly.
 		// There is a call to performAjaxValidation() commented in generated controller code.
 		// See class documentation of CActiveForm for details on this.
+		//'onsubmit'=>"return onEnviar()",
+		'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
 		'enableAjaxValidation'=>false,
 		)); ?>
 	 	<?php 
@@ -485,7 +515,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 					<?php echo $form->error($tabla_seguimiento,'fecha_accion'); ?>
 				</div>
 
-				<div class="span5">
+				<div class="span5" id="omitir">
 					<label for="">Omitir Seguimiento Comercial</label>
 					<select class="input-mini" id="aplica" name ="aplica">
 					  <option value="No">No</option>

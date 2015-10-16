@@ -30,7 +30,7 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<DIV style='width:150%; overflow:scroll;'>
+<DIV style='width:175%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'citas-grid',
 	'dataProvider'=>$model->search(),
@@ -189,6 +189,12 @@ $('.search-form form').submit(function(){
 			'header'=>'Confirmación',
 			'name'=>'confirmacion',
 			'value'=>'$data[\'confirmacion\']',
+		),
+		array(
+			'header'=>'Comentario de Seguimiento',
+			'name'=>'comentario_cierre',
+			'value'=>'$data[\'comentario_cierre\']',
+			'htmlOptions'=>array('width'=>'500'),
 		),
 		array(
 			'header'=>'Comentario',
