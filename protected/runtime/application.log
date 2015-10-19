@@ -1079,3 +1079,36 @@ REQUEST_URI=/smadia/index.php?r=Promociones/activas
 in C:\xampp\htdocs\smadia\protected\views\promociones\activas.php (8)
 in C:\xampp\htdocs\smadia\protected\controllers\PromocionesController.php (63)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:01:22 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (584)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:27:42 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:27:42 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:27:42 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:27:42 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 17:27:42 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 22:19:31 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 22:19:31 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 22:19:31 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 22:19:31 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/19 22:19:31 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)

@@ -137,7 +137,7 @@
 	<div class = "row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal'));?>
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal', 'onChange'=>"tipoPago()"));?>
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
 
@@ -375,7 +375,31 @@ $("#cantidad_"+ campos + "").keyup(function (){
     	{
     		//Calcular el total de cada producto
     		var eltotal = eval($("#valor_"+ posicion + "").val()) * eval($(this).val());
-    		$("#total_"+ posicion + "").val(eltotal);		
+    		var miTotalDecimal = eltotal.toFixed(2);
+    		$("#total_"+ posicion + "").val(miTotalDecimal);		
+    	}
+    
+    	superTotal();
+
+});
+
+$("#valor_"+ campos + "").keyup(function (){
+	var posicion = this.name.replace(/[^\d]/g, '');
+	//alert("Hola");
+    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
+    //superTotal();
+    //si la cantidad es cero no hacer nada
+     if ($(this).val() == "" || $(this).val() == "0") 
+    	{
+    		$("#total_"+ posicion + "").val(0);		
+    		
+    	}
+    	else
+    	{
+    		//Calcular el total de cada producto
+    		var eltotal = eval($(this).val()) * eval($("#cantidad_"+ posicion + "").val());
+    		var miTotalDecimal = eltotal.toFixed(2);
+    		$("#total_"+ posicion + "").val(miTotalDecimal);		
     	}
     
     	superTotal();

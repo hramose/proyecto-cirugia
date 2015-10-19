@@ -239,7 +239,7 @@ class Citas extends CActiveRecord
 					//Es solo un equipo
 					foreach ($agendaEquipos as $agenda_equipos) 
 					{
-						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
+						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id)
 						{
 							$this->addError('hora_inicio', "El equipo esta reservado a esta Hora");
 						}	
@@ -321,7 +321,7 @@ class Citas extends CActiveRecord
 					//Es solo un equipo
 					foreach ($agendaEquipos as $agenda_equipos) 
 					{
-						if ($this->hora_fin >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin) 
+						if ($this->hora_fin >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id) 
 						{
 							$this->addError('hora_fin', "El equipo esta reservado a esta Hora");
 						}	
