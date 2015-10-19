@@ -1,26 +1,29 @@
 <?php
 
 /**
- * This is the model class for table "promociones".
+ * This is the model class for table "paciente_sucesos".
  *
- * The followings are the available columns in table 'promociones':
+ * The followings are the available columns in table 'paciente_sucesos':
  * @property integer $id
- * @property string $titulo_promocion
- * @property string $fecha_inicio
- * @property string $fecha_fin
- * @property string $promocion
- * @property string $estado
+ * @property integer $paciente_id
+ * @property string $suceso
+ * @property string $fecha
+ * @property integer $hora
  * @property integer $usuario_id
- * @property string $fecha_creacion
+ *
+ * The followings are the available model relations:
+ * @property Paciente $paciente
+ * @property HorasServicio $hora0
+ * @property Usuarios $usuario
  */
-class Promociones extends CActiveRecord
+class PacienteSucesos extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'promociones';
+		return 'paciente_sucesos';
 	}
 
 	/**
@@ -31,13 +34,11 @@ class Promociones extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo_promocion, fecha_inicio, fecha_fin, promocion', 'required'),
-			array('usuario_id', 'numerical', 'integerOnly'=>true),
-			array('titulo_promocion', 'length', 'max'=>100),
-			array('estado', 'length', 'max'=>10),
+			array('paciente_id, suceso, fecha, usuario_id', 'required'),
+			array('paciente_id, hora, usuario_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, titulo_promocion, fecha_inicio, fecha_fin, promocion, estado, usuario_id, fecha_creacion', 'safe', 'on'=>'search'),
+			array('id, paciente_id, suceso, fecha, hora, usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +50,9 @@ class Promociones extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuario' => array(self::BELONGS_TO, 'Personal', 'usuario_id'),
+			'paciente' => array(self::BELONGS_TO, 'Paciente', 'paciente_id'),
+			'hora0' => array(self::BELONGS_TO, 'HorasServicio', 'hora'),
+			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'usuario_id'),
 		);
 	}
 
@@ -60,13 +63,11 @@ class Promociones extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'titulo_promocion' => 'Titulo de Promoción',
-			'fecha_inicio' => 'Fecha de Inicio',
-			'fecha_fin' => 'Fecha Fin',
-			'promocion' => 'Promoción',
-			'estado' => 'Estado',
+			'paciente_id' => 'Paciente',
+			'suceso' => 'Suceso',
+			'fecha' => 'Fecha',
+			'hora' => 'Hora',
 			'usuario_id' => 'Usuario',
-			'fecha_creacion' => 'Fecha de Creación',
 		);
 	}
 
@@ -89,15 +90,11 @@ class Promociones extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('titulo_promocion',$this->titulo_promocion,true);
-		//$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
-		$criteria->compare('DATE_FORMAT(fecha_inicio, \'%d-%m-%Y\')',$this->fecha_inicio,true);
-		$criteria->compare('DATE_FORMAT(fecha_fin, \'%d-%m-%Y\')',$this->fecha_fin,true);
-		//$criteria->compare('fecha_fin',$this->fecha_fin,true);
-		$criteria->compare('promocion',$this->promocion,true);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('paciente_id',$this->paciente_id);
+		$criteria->compare('suceso',$this->suceso,true);
+		$criteria->compare('fecha',$this->fecha,true);
+		$criteria->compare('hora',$this->hora);
 		$criteria->compare('usuario_id',$this->usuario_id);
-		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -108,7 +105,7 @@ class Promociones extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Promociones the static model class
+	 * @return PacienteSucesos the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

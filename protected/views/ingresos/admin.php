@@ -113,10 +113,10 @@ $('.search-form form').submit(function(){
 		
 		'forma_pago',
 		array(
-			'header'=>'Realizado por:',
-			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
-			'value'=>'$data->personal->nombreCompleto',
+			'header'=>'Vendido por:',
+			'name'=>'vendedor_id',
+			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
 		array(
@@ -151,10 +151,10 @@ $('.search-form form').submit(function(){
 			'htmlOptions'=>array('width'=>'150'),
 		),
 		array(
-			'header'=>'Vendido por:',
-			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
-			'value'=>'$data->vendedor->nombreCompleto',
+			'header'=>'Realizado por:',
+			'name'=>'personal_id',
+			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data->personal->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
 		/*

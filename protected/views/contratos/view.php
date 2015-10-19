@@ -619,14 +619,14 @@ if (count($detalleContrato)>0) {
 
 <!-- Modal Contrato de Servicio -->
 <div id="cancelar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Liquidar Contrato de Servicio</h3>
-  </div>
-  <div class="modal-body">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Liquidar Contrato de Servicio</h3>
+	</div>
+	<div class="modal-body">
  	<!-- Evaluar politicas de cancelación -->
  	<!-- <p>Desea cancelar Contrato de Servicio y activarlo?</p> -->
-
+	
 	<!-- Evaluar politicas de cancelación -->
  	<p>Se dispone a liquidar el contrato.<?php echo $texto_liquidar; ?></p>
  	<p><strong>¿Desea liquidar el monto total o realizar descuento?</strong></p>
@@ -637,11 +637,11 @@ if (count($detalleContrato)>0) {
 	</center>
  	
  	
-  </div>
+ 	</div>
   
-   <div class="modal-footer">
-    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
-  </div>
+	<div class="modal-footer">
+		<!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+	</div>
 </div>
 
 <!-- Anular Contrato -->

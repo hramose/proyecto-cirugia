@@ -59,6 +59,9 @@ $this->menu=array(
 						'left'=>50, 
 						), 
 						));
+
+				//Boton de anulación de venta
+				
 			?>
 		</div>
 	</div>

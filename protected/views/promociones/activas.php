@@ -32,12 +32,18 @@ $lasActivas = Promociones::model()->findAll("estado = 'Activa'");
 </style>
 	<h2>Promociones Activas</h2>
 	<hr>
-	<?php 
+	<?php
+
+	if (!$lasActivas) 
+	{
+		echo "<h4 class='text-error'>No hay promociones activas</h4>";
+	}
+
 	foreach ($lasActivas as $las_activas) 
 	{
 		?>
 		<div id="anuncios">
-			<h4><?php echo $las_activas->titulo_promocion; ?> - <a href="index.php?r=Promociones/view&id=<?php echo $las_activas->id; ?>" role="button" class="btn btn-success">Ver Completa</a></h4>
+			<h4><?php echo $las_activas->titulo_promocion; ?> - <a href="index.php?r=Promociones/view&id=<?php echo $las_activas->id; ?>" role="button" class="btn btn-success"><i class="icon-eye-open icon-white"></i> Ver Completa</a></h4>
 			<h4>Valida del: <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$las_activas->fecha_inicio); ?> al <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$las_activas->fecha_fin); ?></h4>
 			<?php echo $las_activas->promocion; ?>
 		</div>

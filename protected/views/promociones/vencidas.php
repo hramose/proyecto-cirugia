@@ -5,37 +5,15 @@
 $this->menu=array(
 	//array('label'=>'List Promociones', 'url'=>array('index')),
 	array('label'=>'Crear Promociones', 'url'=>array('create')),
-	array('label'=>'Actualizar Promociones', 'url'=>array('update', 'id'=>$model->id)),
+	//array('label'=>'Actualizar Promociones', 'url'=>array('update', 'id'=>$model->id)),
 	//array('label'=>'Delete Promociones', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Buscar Promociones', 'url'=>array('admin')),
 );
+
+$lasVencidas = Promociones::model()->findAll("estado = 'Vencida'");
+
 ?>
 
-<h2>Promoción: <?php echo $model->titulo_promocion; ?></h2>
-
-<div class="row">
-	<div class="span1"></div>
-	<div class="span5">
-		<?php $this->widget('zii.widgets.CDetailView', array(
-			'data'=>$model,
-			'attributes'=>array(
-				'titulo_promocion',
-				array('name'=>'fecha_inicio', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_inicio),''),
-				array('name'=>'fecha_fin', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_fin),''),
-			),
-		)); ?>
-	</div>
-	<div class="span5">
-		<?php $this->widget('zii.widgets.CDetailView', array(
-			'data'=>$model,
-			'attributes'=>array(
-				'estado',
-				array('name'=>'Usuario que la creo', 'value'=>$model->usuario->nombreCompleto),
-				array('name'=>'fecha_creacion', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$model->fecha_creacion),''),
-			),
-		)); ?>
-	</div>
-</div>
 
 <style>
 	#anuncios table{
@@ -52,11 +30,28 @@ $this->menu=array(
   	border: black 1px solid;
 	}
 </style>
-	<h3>Detalle de Promoción</h3>
-	<p><small>Comienza vista de promoción</small></p>
+	<h2>Promociones Vencidas</h2>
 	<hr>
-	<div id="anuncios">
-		<?php echo $model->promocion; ?>
-	</div>
+
+	<?php
+
+	if (!$lasVencidas) 
+	{
+		echo "<h4 class='text-error'>No hay promociones vencidas</h4>";
+	}
+
+	foreach ($lasVencidas as $las_vencidas) 
+	{
+		?>
+		<div id="anuncios">
+			<h4><?php echo $las_vencidas->titulo_promocion; ?> - <a href="index.php?r=Promociones/view&id=<?php echo $las_vencidas->id; ?>" role="button" class="btn btn-success">Ver Completa</a></h4>
+			<h4>Valida del: <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$las_vencidas->fecha_inicio); ?> al <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$las_vencidas->fecha_fin); ?></h4>
+			<?php echo $las_vencidas->promocion; ?>
+		</div>
+		<br><br><hr>
+		<?php
+	}
+	?>
+	
 		
 
