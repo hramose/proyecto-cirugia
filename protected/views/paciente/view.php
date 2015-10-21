@@ -671,6 +671,44 @@ if (count($elSeguimiento)>0) {
 <?php } ?>
 
 
+<div class="row">
+	<div class="span1"></div>
+	<div class="span10">
+		<?php $losSucesos = PacienteSucesos::model()->findAll("paciente_id = $model->id");
+			if($losSucesos)
+			{
+				
+		?>
+			<h3 class="text-center">Sucesos Registrados</h3>
+			<table class="table table-striped">
+				<tr>
+					<th>Fecha</th>
+					<th>Suceso</th>
+					<th>Registrado por:</th>
+					<th></th>
+				</tr>
+				<?php 
+				
+				foreach ($losSucesos as $los_sucesos) 
+				{
+
+				 ?>
+				<tr>
+					<td><small><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss	",$los_sucesos->fecha); ?></small></td>
+					<td><?php echo $los_sucesos->suceso; ?></td>
+					<td><?php echo $los_sucesos->usuario->personal->nombreCompleto; ?></td>
+					<td></td>
+				</tr>
+			
+		<?php
+				}
+			}
+		?>
+		</table>
+	</div>	
+</div>
+
+
 <div clas = "row">
 	<div class="span6">
 		<!-- Presupuestos-->
@@ -759,6 +797,7 @@ if (count($elSeguimiento)>0) {
 
 	</div>
 </div>
+
 
 
 

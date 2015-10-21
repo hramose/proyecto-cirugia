@@ -92,8 +92,10 @@ class PacienteController extends Controller
 		{
 			$model=new PacienteSucesos;
 			$model->attributes=$_POST['PacienteSucesos'];
+			$model->suceso = $_POST['PacienteSucesos']['suceso'];
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->usuario_id = Yii::app()->user->usuarioId;
+			$model->save();
 			//Redireccionar
 			Yii::app()->user->setFlash('success',"Se Registro el Suceso.");
 				$this->render('view',array(

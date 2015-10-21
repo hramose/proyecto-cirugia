@@ -224,7 +224,7 @@ class CitasController extends Controller
 
 				//Envio de Correo
 				if ($model->correo == "Si") {
-					//$this->actionEnvioCorreo($model->id);
+					$this->actionEnvioCorreo($model->id);
 				}
 				
 
@@ -412,7 +412,7 @@ class CitasController extends Controller
 
 				//Envio de Correo
 				if ($model->correo == "Si") {
-					//$this->actionEnvioCorreo($model->id);
+					$this->actionEnvioCorreo($model->id);
 				}
 
 				$this->redirect(array('view','id'=>$model->id));

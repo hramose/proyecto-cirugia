@@ -31,11 +31,12 @@ $baseUrl = Yii::app()->theme->baseUrl;
 $laurl = "index.php?r=imprimir/Huespedes&pdf=T";
 ?>
 				<div class="well text-center">
+					<p><b>Seleccione el Especialista</b></p>
 					<?php 
 						$elPersonal = Perfil::model()->findAll("Estado = 'Activo' and agenda = 'Si'");
 			 			foreach ($elPersonal as $el_personal) 
 			 			{
-			 			echo CHtml::submitButton($el_personal->nombre, array('submit'=>array('citas/calendario&idpersonal='.$el_personal->id), 'class'=>'btn-large btn-primary'))."<br><br>";
+			 			echo CHtml::submitButton($el_personal->nombre, array('submit'=>array('citas/calendario&idpersonal='.$el_personal->id), 'class'=>'btn btn-primary'))."  ";
 
 						}	 
 					?>

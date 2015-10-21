@@ -35,10 +35,10 @@ class PacienteSucesos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('paciente_id, suceso, fecha, usuario_id', 'required'),
-			array('paciente_id, hora, usuario_id', 'numerical', 'integerOnly'=>true),
+			array('paciente_id, usuario_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, suceso, fecha, hora, usuario_id', 'safe', 'on'=>'search'),
+			array('id, paciente_id, suceso, fecha, usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 

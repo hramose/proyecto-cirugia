@@ -180,7 +180,16 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 
 	if(isset($npersonal))
 	{
-		$losmedicos = Personal::model()->findAll("activo = 'si' and id_perfil= $npersonal and agenda = 'SI'"); 
+		if(isset($_GET['idEspecialista']))
+		{
+			$numEspecialista = $_GET['idEspecialista'];
+			$losmedicos = Personal::model()->findAll("activo = 'si' and id_perfil= $npersonal and agenda = 'SI' and id = $numEspecialista"); 	
+		}
+		else
+		{
+			$losmedicos = Personal::model()->findAll("activo = 'si' and id_perfil= $npersonal and agenda = 'SI'"); 		
+		}
+		
 	}
 	else
 	{
@@ -199,7 +208,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 				{
 					?>
 						<th>						
-								<?php echo "<b>".$los_medicostitulo->nombreCompleto."</b> - <a href='index.php?r=citas/exportarAgenda&lafecha=$lafecha&elpersonal=$los_medicostitulo->id'>[Exportar]</a>"; ?>
+								<?php echo "<b><a href='index.php?r=citas/calendario&idpersonal=$los_medicostitulo->id_perfil&idEspecialista=$los_medicostitulo->id'>".$los_medicostitulo->nombreCompleto."</a></b> - <a href='index.php?r=citas/exportarAgenda&lafecha=$lafecha&elpersonal=$los_medicostitulo->id'>[Exportar]</a>"; ?>
 						</th>
 					<?php
 				}
