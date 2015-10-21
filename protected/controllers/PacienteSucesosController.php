@@ -37,7 +37,7 @@ class PacienteSucesosController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -70,6 +70,8 @@ class PacienteSucesosController extends Controller
 		if(isset($_POST['PacienteSucesos']))
 		{
 			$model->attributes=$_POST['PacienteSucesos'];
+			$model->fecha = date("Y-m-d H:i:s");
+			$model->usuario_id = Yii::app()->user->usuarioId;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

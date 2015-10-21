@@ -769,6 +769,7 @@ if (count($elSeguimiento)>0) {
 		<div class="hero-unit">
 		<h2 class="text-center">Opciones de Paciente</h2>
 		<div class="text-center">
+			<a href="#suceso" role="button" class="btn btn-small btn" data-toggle="modal"><i class="icon-pencil"></i> Agregar Suceso</a>
 			<a href="index.php?r=Presupuesto/create&idPaciente=<?php echo $model->id; ?>" class="btn btn-small btn-info"><i class="icon-file icon-white"></i> Crear Presupuesto</a>
 			<a href="#contrato" role="button" class="btn btn-small btn-primary" data-toggle="modal"><i class="icon-folder-close icon-white"></i> Crear Contrato de Servicio</a>
 			<a href="#llamada" role="button" class="btn btn-small btn-warning" data-toggle="modal"><i class="icon-folder-close icon-white"></i> Crear Seguimiento</a>
@@ -858,6 +859,54 @@ if (count($elSeguimiento)>0) {
   </div>  
    <div class="modal-footer">
     <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+
+
+<!-- Modal Sucesos -->
+<div id="suceso" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Registrar Suceso</h3>
+  </div>
+  <div class="modal-body">
+ 	<!-- Evaluar politicas de cancelación -->
+ 	<?php $form=$this->beginWidget('CActiveForm', array(
+		'id'=>'paciente-sucesos-form',
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>false,
+	)); 
+ 		$tablaSuceso = new PacienteSucesos;
+	?>
+	<div class = 'span6'>
+		<p>Detalle el suceso.</p>
+
+		<?php echo $form->errorSummary($tablaSuceso); ?>
+
+		<div class="span6">
+			<?php echo $form->labelEx($tablaSuceso,'suceso'); ?>
+			<?php echo $form->textArea($tablaSuceso,'suceso',array('rows'=>6, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+			<?php echo $form->error($tablaSuceso,'suceso'); ?>
+		</div>
+
+		<div class="span6" style="display:none;">
+			<?php echo $form->textField($tablaSuceso,'paciente_id', array('value'=>$model->id)); ?>
+		</div>
+
+		<div class="span6 buttons">
+			<?php echo CHtml::submitButton($tablaSuceso->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary')); ?>
+		</div>
+		</div>
+
+	<?php $this->endWidget(); ?>
+  </div>  
+   <div class="modal-footer">
+    <?php 
+   		 	echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
   </div>
 </div>
 

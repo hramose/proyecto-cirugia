@@ -34,7 +34,7 @@ class PacienteSucesos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('paciente_id, suceso, fecha, usuario_id', 'required'),
+			//array('paciente_id, suceso, fecha, usuario_id', 'required'),
 			array('paciente_id, hora, usuario_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -51,7 +51,7 @@ class PacienteSucesos extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'paciente' => array(self::BELONGS_TO, 'Paciente', 'paciente_id'),
-			'hora0' => array(self::BELONGS_TO, 'HorasServicio', 'hora'),
+			//'hora0' => array(self::BELONGS_TO, 'HorasServicio', 'hora'),
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'usuario_id'),
 		);
 	}

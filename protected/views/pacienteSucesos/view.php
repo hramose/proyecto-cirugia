@@ -2,11 +2,6 @@
 /* @var $this PacienteSucesosController */
 /* @var $model PacienteSucesos */
 
-$this->breadcrumbs=array(
-	'Paciente Sucesoses'=>array('index'),
-	$model->id,
-);
-
 $this->menu=array(
 	array('label'=>'List PacienteSucesos', 'url'=>array('index')),
 	array('label'=>'Create PacienteSucesos', 'url'=>array('create')),

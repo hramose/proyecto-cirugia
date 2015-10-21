@@ -38,12 +38,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'hora'); ?>
-		<?php echo $form->textField($model,'hora'); ?>
-		<?php echo $form->error($model,'hora'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'usuario_id'); ?>
 		<?php echo $form->textField($model,'usuario_id'); ?>
 		<?php echo $form->error($model,'usuario_id'); ?>

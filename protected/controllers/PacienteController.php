@@ -86,12 +86,31 @@ class PacienteController extends Controller
 		}
 		else
 		{
+
+
+		if(isset($_POST['PacienteSucesos']))
+		{
+			$model=new PacienteSucesos;
+			$model->attributes=$_POST['PacienteSucesos'];
+			$model->fecha = date("Y-m-d H:i:s");
+			$model->usuario_id = Yii::app()->user->usuarioId;
+			//Redireccionar
+			Yii::app()->user->setFlash('success',"Se Registro el Suceso.");
+				$this->render('view',array(
+					'model'=>$this->loadModel($id),
+				));
+		}
+		else
+		{
 			$this->render('view',array(
 				'model'=>$this->loadModel($id),
-			));		
+			));	
 		}
+
 		
 	}
+	}
+
 
 	/**
 	 * Creates a new model.
