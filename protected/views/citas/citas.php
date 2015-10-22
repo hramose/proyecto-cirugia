@@ -40,6 +40,7 @@ $laurl = "index.php?r=imprimir/Huespedes&pdf=T";
 
 						}	 
 					?>
+					<p></p>
 				</div>
 
 			</div>

@@ -112,6 +112,16 @@ $('.search-form form').submit(function(){
 			
 		),
 		array(
+			'header'=>'Saldo ($)',
+			'name'=>'saldo',
+			'value'=>'number_format($data->saldo,2)',
+		),
+		array(
+			'header'=>'Saldo a Favor ($)',
+			'name'=>'saldo_favor',
+			'value'=>'number_format($data->saldo_favor,2)',
+		),
+		array(
 			'header'=>'Elaborado Por:',
 			'name'=>'usuario_id',
 			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro

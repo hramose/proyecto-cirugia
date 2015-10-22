@@ -9,6 +9,8 @@
 $this->menu=array(
 	array('label'=>'Listar Citas', 'url'=>array('index')),
 	array('label'=>'Buscar Citas', 'url'=>array('admin')),
+	array('label'=>"Todo el Personal", 'url'=>'index.php?r=citas/calendario&idpersonal='.$_GET['idpersonal']),
+	array('label'=>"Cambiar Especialista", 'url'=>'index.php?r=citas/citas'),
 );
 ?>
 <script type="text/javascript">
@@ -142,6 +144,16 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 	<div class="span4">
 	<h2>Fecha: 
 	<?php 
+
+		if (isset($_GET['idEspecialista'])) 
+		{
+			$numEspecialista = $_GET['idEspecialista'];
+		}
+		else
+		{
+			$numEspecialista = 0;	
+		}
+
 		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 					'name'=>'fecha_cita',
 					'language'=>'es',
@@ -159,15 +171,30 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 					),
 					'htmlOptions'=>array(
 						'style'=>'height:20px;width:80px;',
-						'onchange'=>"document.links.enlace.href='index.php?r=citas/calendario&idpaciente=$npaciente&idpersonal=$npersonal&fecha='+this.value",
+						'onchange'=>"document.links.enlace.href='index.php?r=citas/calendario&idpaciente=$npaciente&idpersonal=$npersonal&idEspecialista=$numEspecialista&fecha='+this.value",
 					),
 				));
 
 		//echo " ".CHtml::submitButton("Ir", array('submit'=>array('citas/calendario&idpaciente='.$_GET['idpaciente'].'&idpersonal='.$_GET['idpersonal'].'&fecha='.""), 'class'=>'btn btn-success','onclick'=>"capturar()"));
-		
+	?>
 
-	?>	
-	<a href="index.php?r=citas/calendario&idpaciente=<?php echo $npaciente; ?>&idpersonal=<?php echo $npersonal;?>" class="btn btn-success" name = "enlace">Ir</a>
+	<?php 
+		if (isset($_GET['idEspecialista'])) 
+		{
+			$numEspecialista = $_GET['idEspecialista'];
+			?>
+				<a href="index.php?r=citas/calendario&idpaciente=<?php echo $npaciente; ?>&idpersonal=<?php echo $npersonal;?>&idEspecialista=<?php echo $numEspecialista; ?>" class="btn btn-success" name = "enlace">Ir</a>
+			<?php
+			# code...
+		}
+		else
+		{
+			?>
+				<a href="index.php?r=citas/calendario&idpaciente=<?php echo $npaciente; ?>&idpersonal=<?php echo $npersonal;?>" class="btn btn-success" name = "enlace">Ir</a>
+			<?php
+		}
+	?>
+	
 	</h2>
 	</div>
 </div>
