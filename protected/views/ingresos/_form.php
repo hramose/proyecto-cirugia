@@ -168,6 +168,22 @@ $idContrato = 0;
 					}
 				?>
 			</div>
+
+
+			<div class="span5">
+				<label>Saldo a favor</label>
+				<?php 
+					if (isset($_GET['idContrato'])) {
+						?>
+						<div class="input-prepend">
+  							<span class="add-on">$</span>
+							<input type="text" id="elSaldoFavor" readOnly="readOnly" class="input-normal" value="<?php echo $losValores->saldo_favor; ?>">
+						</div>
+						<?php
+					}
+				?>
+			</div>
+			</div>
 		</div>
 	</div>
 <?php } ?>

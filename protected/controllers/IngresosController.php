@@ -405,6 +405,7 @@ class IngresosController extends Controller
             'descripcion',
             'centroCosto.nombre',
             'forma_pago',
+            'tarjeta_aprobacion',
             'personal.nombreCompleto::Ingresado Por',
             'contrato_id',
             'fecha_sola::Fecha',

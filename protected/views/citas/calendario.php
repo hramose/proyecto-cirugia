@@ -207,7 +207,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 
 	if(isset($npersonal))
 	{
-		if(isset($_GET['idEspecialista']))
+		if(isset($_GET['idEspecialista']) and $_GET['idEspecialista'] != 0)
 		{
 			$numEspecialista = $_GET['idEspecialista'];
 			$losmedicos = Personal::model()->findAll("activo = 'si' and id_perfil= $npersonal and agenda = 'SI' and id = $numEspecialista"); 	

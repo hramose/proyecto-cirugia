@@ -120,7 +120,7 @@ class ProductoComprasController extends Controller
 			 			//Aumentar inventario
 			 			$elProducto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
 			 			$elProducto->cantidad = $elProducto->cantidad + $_POST['cantidad_'.$i];
-			 			$elProducto->costo_iva = $_POST['total_'.$i];
+			 			$elProducto->costo_iva = $_POST['valor_'.$i];
 			 			$elProducto->save();
 			 		}			 		
 			 	}

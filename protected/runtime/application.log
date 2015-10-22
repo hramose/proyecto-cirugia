@@ -1199,3 +1199,129 @@ REQUEST_URI=/smadia/index.php?r=contratos/view&id=1348
 in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (102)
 in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:16:44 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:16:44 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:16:44 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:16:44 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:16:44 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:18:13 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:18:13 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:18:13 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:18:13 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:18:13 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:22:46 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:22:46 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:22:46 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:22:46 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/22 16:22:46 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 00:03:29 [error] [php] Undefined variable: tratamiendo_sindescuentoTodos (C:\xampp\htdocs\smadia\protected\views\contratos\view.php:838)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): ContratosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): ContratosController->renderPartial()
+#2 C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php(65): ContratosController->render()
+#3 unknown(0): ContratosController->actionView()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): ContratosController->runAction()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): ContratosController->filterAccessControl()
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(265): ContratosController->runActionWithFilters()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): ContratosController->run()
+#15 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=contratos/view&id=3
+in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (838)
+in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 00:03:37 [error] [php] Undefined variable: tratamiendo_sindescuentoTodos (C:\xampp\htdocs\smadia\protected\views\contratos\view.php:838)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): ContratosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): ContratosController->renderPartial()
+#2 C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php(65): ContratosController->render()
+#3 unknown(0): ContratosController->actionView()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): ContratosController->runAction()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): ContratosController->filterAccessControl()
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(265): ContratosController->runActionWithFilters()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): ContratosController->run()
+#15 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=contratos/view&id=1280
+in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (838)
+in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 00:04:52 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 0' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `contratos` `t` WHERE saldo_favor == 0.
+in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (828)
+in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 00:04:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 0' at line 1. The SQL statement executed was: SELECT * FROM `contratos` `t` WHERE saldo_favor == 0' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\contratos\view.php(828): CActiveRecord->findAll('saldo_favor == ...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php(65): CController->render('view', Array)
+#9 [internal function]: ContratosController->actionView('1280')
+#10 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ContratosController), Array)
+#11 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ContratosController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/view')
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/view&id=1280
+---

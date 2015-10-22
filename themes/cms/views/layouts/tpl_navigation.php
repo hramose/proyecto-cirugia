@@ -43,6 +43,16 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Seguimiento Comercial Abiertos', 'url'=>array('/seguimientoComercial/admin&filtro=1')),
                                 array('label'=>'Seguimiento Comercial Cerrados', 'url'=>array('/seguimientoComercial/admin&filtro=2')),
                                 array('label'=>'Seguimiento Comercial Vencidos', 'url'=>array('/seguimientoComercial/admin&filtro=3')),
+                                array('label'=>'<li class="divider"></li>'),
+                                array('label'=>'Promociones', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Activas', 'url'=>array("/Promociones/activas")),
+                                    array('label'=>'Vencidas', 'url'=>array("/Promociones/vencidas")),
+                                    array('label'=>'Crear', 'url'=>array("/Promociones/create")),
+                                    array('label'=>'Listado', 'url'=>array("/Promociones/admin")),
+                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
+
+                                    )), 
                         )),
 
                         array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6,'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
@@ -146,15 +156,6 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Laboratorios', 'url'=>array('/Laboratorio/admin')), 
                                 array('label'=>'Medicamentos Biológicos', 'url'=>array('/MedicamentosBiologicos/admin')), 
                                 array('label'=>'Diagnosticos', 'url'=>array('/Diagnosticos/admin')),
-                                array('label'=>'Promociones', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
-                                'items' => array(
-                                    array('label'=>'Activas', 'url'=>array("/Promociones/activas")),
-                                    array('label'=>'Vencidas', 'url'=>array("/Promociones/vencidas")),
-                                    array('label'=>'Crear', 'url'=>array("/Promociones/create")),
-                                    array('label'=>'Listado', 'url'=>array("/Promociones/admin")),
-                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
-
-                                    )), 
                                 array('label'=>'Correos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Confirmación de Cita', 'url'=>array("/Correos/update&id=1")),
