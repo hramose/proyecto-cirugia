@@ -1325,3 +1325,152 @@ Stack trace:
 #24 {main}
 REQUEST_URI=/smadia/index.php?r=contratos/view&id=1280
 ---
+2015/10/23 16:26:23 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (593)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 16:26:29 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (593)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 16:26:32 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (593)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:33:39 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:33:39 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:33:39 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:33:39 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:33:39 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php:105)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): IngresosController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): IngresosController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): IngresosController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): IngresosController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=3460&idContrato=1225
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (105)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:34:46 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:34:46 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:34:46 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:34:46 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:34:46 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php:105)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): IngresosController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): IngresosController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): IngresosController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): IngresosController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=3460&idContrato=1225
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (105)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:36:09 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:36:09 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:36:09 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:36:09 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:36:09 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php:105)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): IngresosController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): IngresosController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): IngresosController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): IngresosController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=3460&idContrato=1225
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (105)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:39:55 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:39:55 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:39:55 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:39:55 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:39:55 [error] [php] Undefined variable: los_contratos (C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php:114)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): IngresosController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): IngresosController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): IngresosController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): IngresosController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=3460&idContrato=1225
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (114)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:40:53 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:40:53 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:40:53 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 19:40:53 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/23 20:14:17 [error] [php] Undefined variable: model (C:\xampp\htdocs\smadia\protected\controllers\CitasController.php:774)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CitasController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CitasController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CitasController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CitasController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=citas/calendario&idpersonal=1&fecha=25-10-2015
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (774)
+in C:\xampp\htdocs\smadia\index.php (13)

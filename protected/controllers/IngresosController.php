@@ -95,6 +95,65 @@ class IngresosController extends Controller
 			$model->personal_id = Yii::app()->user->usuarioId;
 			if($model->save())
 			{
+				
+				//Actualizar Saldo a favor de contrato
+					$los_contratos = Contratos::model()->findByPk($model->contrato_id);
+					$tratamiento_condescuentoTodos = 0;
+					$tratamiendo_sindescuentoTodos = 0;
+					$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
+					
+					foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
+					{
+						$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
+						$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
+						$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
+					}
+
+
+					//Saldo a favor
+						if ($los_contratos->saldo == 0) 
+						{
+							if ($los_contratos->estado == "Liquidado") 
+							{
+								$saldo_favorTodos = 0;
+							}
+							else
+							{
+								$saldo_favorTodos = ($los_contratos->total - $model->saldo)-$tratamiento_condescuentoTodos;	
+							}
+							
+						}
+						else
+						{
+							if ($los_contratos->saldo == $los_contratos->total) 
+							{
+								if ($los_contratos->descuento == "Si") {
+									$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
+								}
+								else
+								{
+									$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
+								}
+								
+							}
+							else
+							{
+								if ($los_contratos->descuento == "Si") {
+									$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
+								}
+								else
+								{
+									$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
+								}
+								
+							}
+						}
+
+						$los_contratos->saldo_favor = $saldo_favorTodos;
+						$los_contratos->update();
+				
+
+				//Fin de actualizar saldo a favor
 
 				if ($model->contrato_id != NULL) 
 				{
@@ -547,7 +606,7 @@ class IngresosController extends Controller
         				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo
-        $message->setTo(array('gerencia@smadiaclinic.com')); // a quien se le envia
+        $message->setTo(array('josterricardi@gmail.com')); // a quien se le envia
         //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
         Yii::app()->mail->send($message);
 

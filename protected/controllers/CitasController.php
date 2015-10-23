@@ -310,8 +310,8 @@ class CitasController extends Controller
 						}
 
 							//Comienza ingreso de equipo a reserva
-							if ($laInsidencia == 0) 
-							{
+							//if ($laInsidencia == 0) 
+							//{
 								if ($lasuperllave == 0) 
 								{
 									$lasuperllave = 1;
@@ -319,10 +319,13 @@ class CitasController extends Controller
 									//$reservaEquipos = new CitasEquipo;
 									$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
 									$reservaEquipos->fecha = $fechaCita;
+									$reservaEquipos->hora_inicio = $model->hora_inicio;
+									$reservaEquipos->hora_fin = $model->hora_fin;
+									$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 									$reservaEquipos->equipo_id = $equipos_disponibles->id;
 									$reservaEquipos->linea_servicio_id = $laLineaServicio;
 								}
-							}
+							//}
 
 						//Evaluar llave
 						if ($lallave == 0) 
@@ -343,6 +346,9 @@ class CitasController extends Controller
 					//$reservaEquipos = new CitasEquipo;
 					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
 					$reservaEquipos->fecha = $fechaCita;
+					$reservaEquipos->hora_inicio = $model->hora_inicio;
+					$reservaEquipos->hora_fin = $model->hora_fin;
+					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 					$reservaEquipos->equipo_id = $unEquipo->id;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
@@ -353,6 +359,9 @@ class CitasController extends Controller
 					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
 					//$reservaEquipos = new CitasEquipo;
 					$reservaEquipos->fecha = $fechaCita;
+					$reservaEquipos->hora_inicio = $model->hora_inicio;
+					$reservaEquipos->hora_fin = $model->hora_fin;
+					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 					$reservaEquipos->equipo_id = $numerodeEquipo;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"Esta es una maravilla".$equipos_disponibles->id);
@@ -373,25 +382,29 @@ class CitasController extends Controller
 			if($model->update())
 
 				//Actualizar Cita Equipo
-				$losEquipos = CitasEquipo::model()->findByPk($model->id);
+				//$losEquipos = CitasEquipo::model()->findByPk($model->id);
 				//Si encuentra registros
-				if($losEquipos)
-				{
+				//if($losEquipos)
+				//{
 					// $losEquipos->fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
 					// $losEquipos->hora_inicio = $_POST['Citas']['hora_inicio'];
 					// $losEquipos->hora_fin = $_POST['Citas']['hora_fin'] - 1;
 					// $losEquipos->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
 					// $losEquipos->update();
-				}
+				//}
 
 				//Terminar consulta de reserva de equipo
 				if(isset($reservaEquipos))	
 				{
-					$reservaEquipos->hora_inicio = $horadeInicio;
-					$reservaEquipos->hora_fin = $horadeFin;
+					// $reservaEquipos->hora_inicio = $horadeInicio;
+					// $reservaEquipos->hora_fin = $horadeFin;
+					// $reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+					$reservaEquipos->hora_inicio = $model->hora_inicio;
+					$reservaEquipos->hora_fin = $model->hora_fin;
 					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 					$reservaEquipos->cita_id = $model->id;
-					$reservaEquipos->update();	
+					$reservaEquipos->update();
+					//Yii::app()->user->setFlash('error',"Se actualizo en equipo.");
 				}
 				
 				//Actualizar estado de Detalle de Contrato
@@ -732,6 +745,67 @@ class CitasController extends Controller
 			$lacita->usuario_estado_id = Yii::app()->user->usuarioId;
 			$lacita->update();
 
+			if(isset($lacita->contrato_id))
+					{
+
+						//Actualizar Saldo a favor de contrato
+						$los_contratos = Contratos::model()->findByPk($lacita->contrato_id);
+						$tratamiento_condescuentoTodos = 0;
+						$tratamiendo_sindescuentoTodos = 0;
+						$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
+						
+						foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
+						{
+							$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
+							$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
+							$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
+						}
+
+
+						//Saldo a favor
+							if ($los_contratos->saldo == 0) 
+							{
+								if ($los_contratos->estado == "Liquidado") 
+								{
+									$saldo_favorTodos = 0;
+								}
+								else
+								{
+									$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;	
+								}
+								
+							}
+							else
+							{
+								if ($los_contratos->saldo == $los_contratos->total) 
+								{
+									if ($los_contratos->descuento == "Si") {
+										$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
+									}
+									else
+									{
+										$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
+									}
+									
+								}
+								else
+								{
+									if ($los_contratos->descuento == "Si") {
+										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
+									}
+									else
+									{
+										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
+									}
+									
+								}
+							}
+
+							$los_contratos->saldo_favor = $saldo_favorTodos;
+							$los_contratos->update();
+					//Fin de actualizar saldo a favor
+					}
+
 			if ($_POST['aplica'] == "No") 
 			{			
 				$model=new SeguimientoComercial;
@@ -1008,6 +1082,7 @@ class CitasController extends Controller
 					$pagoCosmetologa->total_pago = $lacita->lineaServicio->precio_pago;
 					$pagoCosmetologa->save();
 
+					
 				}
 				else
 				{
