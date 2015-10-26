@@ -745,66 +745,7 @@ class CitasController extends Controller
 			$lacita->usuario_estado_id = Yii::app()->user->usuarioId;
 			$lacita->update();
 
-			if(isset($lacita->contrato_id))
-					{
 
-						//Actualizar Saldo a favor de contrato
-						$los_contratos = Contratos::model()->findByPk($lacita->contrato_id);
-						$tratamiento_condescuentoTodos = 0;
-						$tratamiendo_sindescuentoTodos = 0;
-						$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
-						
-						foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
-						{
-							$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
-							$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
-							$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
-						}
-
-
-						//Saldo a favor
-							if ($los_contratos->saldo == 0) 
-							{
-								if ($los_contratos->estado == "Liquidado") 
-								{
-									$saldo_favorTodos = 0;
-								}
-								else
-								{
-									$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;	
-								}
-								
-							}
-							else
-							{
-								if ($los_contratos->saldo == $los_contratos->total) 
-								{
-									if ($los_contratos->descuento == "Si") {
-										$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
-									}
-									else
-									{
-										$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
-									}
-									
-								}
-								else
-								{
-									if ($los_contratos->descuento == "Si") {
-										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
-									}
-									else
-									{
-										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
-									}
-									
-								}
-							}
-
-							$los_contratos->saldo_favor = $saldo_favorTodos;
-							$los_contratos->update();
-					//Fin de actualizar saldo a favor
-					}
 
 			if ($_POST['aplica'] == "No") 
 			{			
@@ -877,6 +818,73 @@ class CitasController extends Controller
 					}
 
 				}
+
+
+
+				if(isset($lacita->contrato_id))
+					{
+
+						//Actualizar Saldo a favor de contrato
+						$los_contratos = Contratos::model()->findByPk($lacita->contrato_id);
+						$tratamiento_condescuentoTodos = 0;
+						$tratamiendo_sindescuentoTodos = 0;
+						$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
+						
+						foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
+						{
+							$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
+							$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
+							$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
+						}
+
+
+						//Saldo a favor
+							if ($los_contratos->saldo == 0) 
+							{
+								if ($los_contratos->estado == "Liquidado") 
+								{
+									$saldo_favorTodos = 0;
+								}
+								else
+								{
+									$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;	
+								}
+								
+							}
+							else
+							{
+								if ($los_contratos->saldo == $los_contratos->total) 
+								{
+									if ($los_contratos->descuento == "Si") {
+										$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
+									}
+									else
+									{
+										$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
+									}
+									
+								}
+								else
+								{
+									if ($los_contratos->descuento == "Si") {
+										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
+									}
+									else
+									{
+										$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
+									}
+									
+								}
+							}
+
+							$los_contratos->saldo_favor = $saldo_favorTodos;
+							$los_contratos->update();
+							Yii::app()->user->setFlash('warning',"Saldo a Favor Actualizado.");	
+					//Fin de actualizar saldo a favor
+					}
+
+
+
 				
 				//Suma de tratamientos realizados
 				$saldo_tratamientos = 0;

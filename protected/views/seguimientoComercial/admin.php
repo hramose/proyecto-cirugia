@@ -94,7 +94,7 @@ $this->renderPartial('_search',array(
 				array(
 						'header'=>'Paciente',
 						'name'=>'paciente_id',
-						'filter'=>CHtml::listData(Paciente::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+						'filter'=>CHtml::listData(Paciente::model()->findAll("order by nombreCompleto"), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 						'value'=>'$data->paciente->nombreCompleto',
 						'htmlOptions'=>array('width'=>'220'),
 					),
