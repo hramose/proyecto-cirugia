@@ -34,7 +34,7 @@ $this->menu=array(
 		array(
 			'header'=>'Paciente',
 			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'paciente\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),

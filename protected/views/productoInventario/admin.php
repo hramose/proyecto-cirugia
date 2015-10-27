@@ -80,7 +80,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Producto',
 			'name'=>'id',
-			'filter'=>CHtml::listData(ProductoInventario::model()->findAll(), 'id','nombre_producto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(ProductoInventario::model()->findAll(array('order'=>'nombre_producto ASC')), 'id','nombre_producto'), // Colocamos un combo en el filtro
 			'value'=>'$data->nombre_producto',
 			'htmlOptions'=>array('width'=>'220'),
 		),

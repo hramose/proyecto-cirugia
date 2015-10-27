@@ -825,63 +825,63 @@ if (count($detalleContrato)>0) {
 
 <?php 
 //Esta es una locura
-	$losContratos = Contratos::model()->findAll("saldo_favor = 0");
-	foreach ($losContratos as $los_contratos) 
-	{
-		$tratamiento_condescuentoTodos = 0;
-		$tratamiendo_sindescuentoTodos = 0;
-		$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
+	// $losContratos = Contratos::model()->findAll("saldo_favor = 0");
+	// foreach ($losContratos as $los_contratos) 
+	// {
+	// 	$tratamiento_condescuentoTodos = 0;
+	// 	$tratamiendo_sindescuentoTodos = 0;
+	// 	$tratamientosRealizadosTodos = ContratosTratamientoRealizados::model()->findAll("contrato_id = $los_contratos->id");
 		
-		foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
-		{
-			$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
-			$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
-			$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
-		}
+	// 	foreach ($tratamientosRealizadosTodos as $tratamientos_realizadosTodos) 
+	// 	{
+	// 		$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizadosTodos->contrato_id and linea_servicio_id = $tratamientos_realizadosTodos->linea_servicio_id");
+	// 		$tratamiento_condescuentoTodos = $tratamiento_condescuentoTodos + $preciosTratamiento->vu_desc;
+	// 		$tratamiendo_sindescuentoTodos = $tratamiendo_sindescuentoTodos + $preciosTratamiento->vu;
+	// 	}
 
 
-		//Saldo a favor
-			if ($los_contratos->saldo == 0) 
-			{
-				if ($los_contratos->estado == "Liquidado") 
-				{
-					$saldo_favorTodos = 0;
-				}
-				else
-				{
-					$saldo_favorTodos = ($los_contratos->total - $model->saldo)-$tratamiento_condescuentoTodos;	
-				}
+	// 	//Saldo a favor
+	// 		if ($los_contratos->saldo == 0) 
+	// 		{
+	// 			if ($los_contratos->estado == "Liquidado") 
+	// 			{
+	// 				$saldo_favorTodos = 0;
+	// 			}
+	// 			else
+	// 			{
+	// 				$saldo_favorTodos = ($los_contratos->total - $model->saldo)-$tratamiento_condescuentoTodos;	
+	// 			}
 				
-			}
-			else
-			{
-				if ($los_contratos->saldo == $los_contratos->total) 
-				{
-					if ($los_contratos->descuento == "Si") {
-						$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
-					}
-					else
-					{
-						$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
-					}
+	// 		}
+	// 		else
+	// 		{
+	// 			if ($los_contratos->saldo == $los_contratos->total) 
+	// 			{
+	// 				if ($los_contratos->descuento == "Si") {
+	// 					$saldo_favorTodos = $tratamiento_condescuentoTodos *-1;
+	// 				}
+	// 				else
+	// 				{
+	// 					$saldo_favorTodos = $tratamiendo_sindescuentoTodos *-1;
+	// 				}
 					
-				}
-				else
-				{
-					if ($los_contratos->descuento == "Si") {
-						$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
-					}
-					else
-					{
-						$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
-					}
+	// 			}
+	// 			else
+	// 			{
+	// 				if ($los_contratos->descuento == "Si") {
+	// 					$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiento_condescuentoTodos;
+	// 				}
+	// 				else
+	// 				{
+	// 					$saldo_favorTodos = ($los_contratos->total - $los_contratos->saldo)-$tratamiendo_sindescuentoTodos;
+	// 				}
 					
-				}
-			}
+	// 			}
+	// 		}
 
-			$los_contratos->saldo_favor = $saldo_favorTodos;
-			$los_contratos->update();
+	// 		$los_contratos->saldo_favor = $saldo_favorTodos;
+	// 		$los_contratos->update();
 
-	}
+	// }
 
 ?>

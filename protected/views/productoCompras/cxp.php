@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Proveedor',
 			'name'=>'producto_proveedor_id',
-			'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'productoProveedor\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
@@ -106,7 +106,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Estado',
 			'name'=>'estado',
-			'filter' => array('Activo'=>'Activo','Pagada'=>'Pagada', 'Cancelada'=>'Cancelada'),
+			'filter' => array('Activo'=>'Activo', 'Cancelada'=>'Cancelada', 'Pagada'=>'Pagada'),
 			'value'=>'$data->estado',
 			'htmlOptions'=>array('width'=>'60'),
 		),

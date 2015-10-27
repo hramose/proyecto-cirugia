@@ -31,7 +31,7 @@ $this->menu=array(
 		array(
 			'header'=>'Paciente',
 			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'paciente\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
@@ -44,7 +44,7 @@ $this->menu=array(
 		array(
 			'name'=>'forma_pago',
 			'value'=>'$data->forma_pago',
-			'filter' => array('Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'),
+			'filter' => array('Cheque'=>'Cheque', 'Crédito'=>'Crédito', 'Consignación'=>'Consignación', 'Efectivo'=>'Efectivo', 'Tarjeta'=>'Tarjeta'),
 		),
 		array(
 			'name'=>'sub_total',

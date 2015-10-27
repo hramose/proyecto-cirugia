@@ -94,7 +94,7 @@ $this->renderPartial('_search',array(
 				array(
 						'header'=>'Paciente',
 						'name'=>'paciente_id',
-						'filter'=>CHtml::listData(Paciente::model()->findAll("order by nombreCompleto"), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+						'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 						'value'=>'$data->paciente->nombreCompleto',
 						'htmlOptions'=>array('width'=>'220'),
 					),
@@ -102,7 +102,7 @@ $this->renderPartial('_search',array(
 				array(
 					'header'=>'Tema',
 					'name'=>'tema_id',
-					'filter'=>CHtml::listData(SeguimientoTema::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+					'filter'=>CHtml::listData(SeguimientoTema::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 					'value'=>'$data[\'tema\'][\'nombre\']',
 					//'htmlOptions'=>array('width'=>'220'),
 				),
@@ -119,7 +119,7 @@ $this->renderPartial('_search',array(
 				array(
 					'header'=>'Responsable de Seguimiento',
 					'name'=>'responsable_id',
-					'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 					'value'=>'$data[\'responsable\'][\'nombreCompleto\']',
 					//'htmlOptions'=>array('width'=>'220'),
 				),

@@ -81,14 +81,14 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Personal',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'personal\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
 		array(
 			'name'=>'linea_servicio_id',
 			'htmlOptions'=>array('width'=>'180'),
-			'filter'=>CHtml::listData(LineaServicio::model()->findAll("estado = 'activo'"), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(LineaServicio::model()->findAll(array('order'=>'nombre ASC', 'condition' =>"estado = 'activo'")), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'lineaServicio\'][\'nombre\']',
 
 		),
@@ -100,7 +100,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'name'=>'estado',
-			'filter' => array('Programada'=>'Programada','Completada'=>'Completada', 'Cancelada'=>'Cancelada', 'Fallida'=>'Fallida', 'Vencida'=>'Vencida'),
+			'filter' => array('Cancelada'=>'Cancelada', 'Completada'=>'Completada', 'Fallida'=>'Fallida', 'Programada'=>'Programada', 'Vencida'=>'Vencida'),
 			'value'=>'$data->estado',
 		),
 		array(

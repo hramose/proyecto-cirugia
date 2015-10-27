@@ -52,7 +52,7 @@ $lasVentas = Ventas::model()->findAll();
 		array(
 			'header'=>'Compro',
 			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'venta\'][\'paciente\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
@@ -60,7 +60,7 @@ $lasVentas = Ventas::model()->findAll();
 		array(
 			'header'=>'Producto',
 			'name'=>'producto_id',
-			'filter'=>CHtml::listData(ProductoInventario::model()->findAll(), 'id','nombre_producto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(ProductoInventario::model()->findAll(array('order'=>'nombre_producto ASC')), 'id','nombre_producto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'producto\'][\'nombre_producto\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),

@@ -46,7 +46,7 @@ $('.search-form form').submit(function(){
 		'apellidos',
 		array(
 			'name'=>'id_perfil',
-			'filter'=>CHtml::listData(Perfil::model()->findAll("estado='Activo'"), 'nombre','nombre'),
+			'filter'=>CHtml::listData(Perfil::model()->findAll(array('order'=>'nombre ASC', 'condition' =>"estado = 'Activo'")), 'nombre','nombre'),
 			'value'=>'$data[\'idPerfil\'][\'nombre\']',
 		),
 

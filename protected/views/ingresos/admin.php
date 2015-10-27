@@ -106,7 +106,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Centro de Costo',
 			'name'=>'centro_costo_id',
-			'filter'=>CHtml::listData(CentroCosto::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(CentroCosto::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'centroCosto\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'200'),
 		),
@@ -115,7 +115,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Vendido por:',
 			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
@@ -133,7 +133,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'name'=>'tarjeta_tipo',
-			'filter' => array('Debito Maestro'=>'Debito Maestro','Mastercard'=>'Mastercard','VISA'=>'VISA','American Express'=>'American Express','Diners Club'=>'Diners Club'),
+			'filter' => array('American Express'=>'American Express', 'Debito Maestro'=>'Debito Maestro','Diners Club'=>'Diners Club', 'Mastercard'=>'Mastercard','VISA'=>'VISA'),
 			'value'=>'$data->tarjeta_tipo',
 		),
 		array(
@@ -145,7 +145,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Cuenta de Ingreso',
 			'name'=>'tarjeta_banco_cuenta_id',
-			'filter'=>CHtml::listData(BancosCuentas::model()->findAll(), 'id','numero'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(BancosCuentas::model()->findAll(array('order'=>'numero ASC')), 'id','numero'), // Colocamos un combo en el filtro
 			//'value'=>'$data->tarjetaBancoCuenta->numero',
 			'value'=>'$data[\'tarjetaBancoCuenta\'][\'numero\']',
 			'htmlOptions'=>array('width'=>'150'),

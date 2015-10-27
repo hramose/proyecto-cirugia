@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Tipo de Activo',
 			'name'=>'activo_tipo_id',
-			'filter'=>CHtml::listData(ActivosTipo::model()->findAll("id > 0 order by 'tipo'"),'id','tipo'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(ActivosTipo::model()->findAll(array('order'=>'tipo ASC', 'condition' =>"id > 0")),'id','tipo'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'activoTipo\'][\'tipo\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),

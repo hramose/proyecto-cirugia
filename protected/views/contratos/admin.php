@@ -69,7 +69,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'name'=>'estado',
-			'filter' => array('Activo'=>'Activo','Completado'=>'Completado','Liquidado'=>'Liquidado','Anulado'=>'Anulado','Sin Confirmar'=>'Sin Confirmar'),
+			'filter' => array('Activo'=>'Activo','Anulado'=>'Anulado','Completado'=>'Completado','Liquidado'=>'Liquidado','Sin Confirmar'=>'Sin Confirmar'),
 			'value'=>'$data->estado',
 			'htmlOptions'=>array('width'=>'150'),
 		),
@@ -124,13 +124,13 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Elaborado Por:',
 			'name'=>'usuario_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
 		),
 		array(
 			'header'=>'Vendido por:',
 			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),

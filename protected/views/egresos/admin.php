@@ -51,7 +51,7 @@ $('.search-form form').submit(function(){
 
 		array(
 		   'header'=>'Proveedor',
-		   'name'=>'elproveedor',
+		   'name'=>'proveedor_id',
 		   'value'=>'$data->proveedor->nombre',
 		   'htmlOptions'=>array('width'=>'220'),
 		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
@@ -122,7 +122,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Centro de Costo',
 			'name'=>'centro_costo_id',
-			'filter'=>CHtml::listData(CentroCosto::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(CentroCosto::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'centroCosto\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'200'),
 		),

@@ -43,7 +43,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Proveedor',
 			'name'=>'producto_proveedor_id',
-			'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(ProductoProveedor::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'productoProveedor\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
