@@ -1918,3 +1918,48 @@ Stack trace:
 #15 {main}
 REQUEST_URI=/smadia/index.php?r=configuraciones
 ---
+2015/10/28 18:42:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "view"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('view')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=view
+---
+2015/10/28 18:43:00 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('configuraciones...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=configuraciones/view
+---
+2015/10/28 20:39:20 [error] [exception.CException] exception 'CException' with message 'ConfiguracionesController no ha podido encontrar la vista "index" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#1 C:\xampp\htdocs\smadia\protected\controllers\ConfiguracionesController.php(128): CController->render('index', Array)
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ConfiguracionesController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('configuraciones...')
+#13 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/smadia/index.php?r=configuraciones/
+---

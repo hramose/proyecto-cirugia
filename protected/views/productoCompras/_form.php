@@ -34,7 +34,7 @@
 </div>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo'");
+	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo' and tipo_inventario = 'Productos'");
 ?>
 
 
@@ -137,7 +137,7 @@
 	<div class = "row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal', 'onChange'=>"tipoPago()"));?>
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal'));?>
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
 
@@ -300,6 +300,7 @@
 	var variableJs = 0
 	var campos = 1;
 	var eltotal = 0;
+	tipoPago();
 
 function agregarCampo(){
 	campos = campos + 1;
@@ -357,7 +358,7 @@ function agregarCampo(){
     hablilitarControlesDescuento();
     hablilitarControlesRetencion();
     hablilitarControlesRteICA();
-    tipoPago();
+
 
 
 $("#cantidad_"+ campos + "").keyup(function (){
