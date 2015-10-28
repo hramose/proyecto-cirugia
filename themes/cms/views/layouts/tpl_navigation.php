@@ -123,7 +123,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                     array('label'=>'Categoría de Productos', 'url'=>array('/ProductoCategoria/admin')),
                                     array('label'=>'Unidad de Medida de Productos', 'url'=>array('/ProductoUnidadMedida/admin')),
                                     array('label'=>'Proveedor de Productos', 'url'=>array('/ProductoProveedor/admin')),
-                                    array('label'=>'Ingresar Producto a Inventario', 'url'=>array('/ProductoInventario/create')),
+                                    array('label'=>'Crear Producto', 'url'=>array('/ProductoInventario/create')),
                                     array('label'=>'Listar Inventario', 'url'=>array('/ProductoInventario/admin&tipo=0')),
 
                                     )),            

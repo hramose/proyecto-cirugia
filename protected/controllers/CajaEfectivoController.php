@@ -136,7 +136,7 @@ class CajaEfectivoController extends Controller
 			$cajas_principales->update();
 		}
 
-		$dataProvider=new CActiveDataProvider('CajaEfectivo');
+		$dataProvider=new CActiveDataProvider('CajaEfectivo', array('criteria'=>array('condition'=>"Personal.activo = 'SI'", 'with'=>array('personal'),)));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
