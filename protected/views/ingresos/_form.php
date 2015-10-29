@@ -12,6 +12,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
+	'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -169,21 +170,6 @@ $idContrato = 0;
 				?>
 			</div>
 
-
-			<div class="span5">
-				<label>Saldo a favor</label>
-				<?php 
-					if (isset($_GET['idContrato'])) {
-						?>
-						<div class="input-prepend">
-  							<span class="add-on">$</span>
-							<input type="text" id="elSaldoFavor" readOnly="readOnly" class="input-normal" value="<?php echo $losValores->saldo_favor; ?>">
-						</div>
-						<?php
-					}
-				?>
-			</div>
-			</div>
 		</div>
 	</div>
 <?php } ?>
@@ -252,7 +238,7 @@ $idContrato = 0;
 	<div class="row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Cheque'=>'Cheque','Tarjeta'=>'Tarjeta','Consignación'=>'Consignación','Transferencia'=>'Transferencia','Tarjeta Recargable'=>'Tarjeta Recargable', 'Unificación de Software'=>'Unificación de Software'), array('class'=>'input-large'));?>	
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo','Cheque'=>'Cheque','Tarjeta'=>'Tarjeta','Consignación'=>'Consignación','Transferencia'=>'Transferencia','Tarjeta Recargable'=>'Tarjeta Recargable', 'Unificación de Software'=>'Unificación de Software'), array('class'=>'input-large'));?>	
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
 		<div class="span6">
@@ -460,6 +446,13 @@ $("#Ingresos_forma_pago").change(function (){
     		$("#consignacion").hide();	
     	}
 
+      if ($(this).val() == "Ninguna") 
+    	{
+    		$("#cheque").hide();
+    		$("#tarjeta").hide();
+    		$("#consignacion").hide();	
+    	}
+
     if ($(this).val() == "Cheque") 
     	{
     		$("#cheque").toggle("slow");
@@ -618,8 +611,18 @@ function quitarCampo(iddiv){
   $("#Ingresos_cheques_cantidad").val(nCheques);
 }
 
+function onEnviar(){
+	if($("#Ingresos_forma_pago").val() == "Ninguna") 
+			{ 
+				swal("No ha seleccionado metodo de pago", "Seleccione una opción");  	
+			 	return false
+			    
+			} 
+	}
+
 function antesdeEnviar()
 {
+	
 	swal({   title: "Estamos procesando el ingreso!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
 }
 
