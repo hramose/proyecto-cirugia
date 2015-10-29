@@ -41,13 +41,6 @@
 			<?php echo $form->textField($model,'iva',array('size'=>10,'maxlength'=>10, 'class'=>'input-small')); ?>
 			<?php echo $form->error($model,'iva'); ?>
 		</div>
-
-		<div class="span3">
-			<?php echo $form->labelEx($model,'costo_iva'); ?>
-			<?php echo $form->textField($model,'costo_iva',array('size'=>10,'maxlength'=>10, 'class'=>'input-small')); ?>
-			<?php echo $form->error($model,'costo_iva'); ?>
-		</div>
-
 		<div class="span3">
 			<?php echo $form->labelEx($model,'precio_publico'); ?>
 			<?php echo $form->textField($model,'precio_publico',array('size'=>10,'maxlength'=>10, 'class'=>'input-small')); ?>
@@ -65,11 +58,6 @@
 			<?php echo $form->error($model,'producto_presentacion_id'); ?>
 		</div>
 		<div class="span1"></div>
-		<div class="span2">
-			<?php echo $form->labelEx($model,'cantidad'); ?>
-			<?php echo $form->textField($model,'cantidad', array('class'=>'input-mini')); ?>
-			<?php echo $form->error($model,'cantidad'); ?>
-		</div>
 
 		<div class="span3">
 			<?php echo $form->labelEx($model,'producto_unidad_medida_id'); ?>

@@ -58,7 +58,7 @@ class ProductoCompras extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('producto_proveedor_id, factura_n, forma_pago, descuento, descuento_tipo, descuento_valor, descuento_total, iva, iva_total, aplica_retencion, retencion_retener, retencion_base, retencion_porcentaje, rte_iva, rte_iva_valor, rte_ica, rte_ica_porcentaje, rte_ica_valor, cantidad_productos, total_orden, total, total_compra, centro_costo_id, personal_id, fecha', 'required'),
-			array('producto_proveedor_id, descuento_tipo, retencion_id, cantidad_productos, centro_costo_id, personal_id', 'numerical', 'integerOnly'=>true),
+			array('producto_proveedor_id, descuento_tipo, retencion_id, cantidad_productos, centro_costo_id, centro_compra_id, personal_id', 'numerical', 'integerOnly'=>true),
 			array('factura_n', 'length', 'max'=>25),
 			array('forma_pago', 'length', 'max'=>15),
 			array('descuento, aplica_retencion, rte_iva, rte_ica', 'length', 'max'=>2),
@@ -81,6 +81,7 @@ class ProductoCompras extends CActiveRecord
 			'productoProveedor' => array(self::BELONGS_TO, 'ProductoProveedor', 'producto_proveedor_id'),
 			'laRetencion' => array(self::BELONGS_TO, 'ProductoRetenciones', 'retencion_id'),
 			'centroCosto' => array(self::BELONGS_TO, 'CentroCosto', 'centro_costo_id'),
+			'centroCompra' => array(self::BELONGS_TO, 'CentroCompra', 'centro_compra_id'),
 			'personal' => array(self::BELONGS_TO, 'Personal', 'personal_id'),
 		);
 	}
@@ -117,6 +118,7 @@ class ProductoCompras extends CActiveRecord
 			'total' => 'Total',
 			'total_compra' => 'Total de Compra',
 			'centro_costo_id' => 'Centro de Costo',
+			'centro_compra_id' => 'Centro de Compra',
 			'personal_id' => 'Personal',
 			'fecha' => 'Fecha Hora',
 			'fecha_sola' => 'Fecha',
@@ -174,6 +176,7 @@ class ProductoCompras extends CActiveRecord
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('total_compra',$this->total_compra,true);
 		$criteria->compare('centro_costo_id',$this->centro_costo_id);
+		$criteria->compare('centro_compra_id',$this->centro_compra_id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('fecha',$this->fecha,true);
 		//$criteria->compare('fecha_sola',$this->fecha_sola,true);

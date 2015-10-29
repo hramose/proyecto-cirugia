@@ -195,7 +195,7 @@ $bandera = 0;
 				'rte_ica_porcentaje',
 				array('name'=>'rte_ica_valor', 'value'=>'$ '.number_format($model->rte_ica_valor,2)),
 				array('name'=>'total_compra', 'value'=>'$ '.number_format($model->total_compra,2)),
-				array('name'=>'centro_costo_id', 'value'=>$model->centroCosto->nombre),
+				array('name'=>'centro_compra_id', 'value'=>$model->centroCompra->nombre),
 				array('name'=>'personal_id', 'value'=>$model->personal->nombreCompleto),
 			),
 		)); ?>
@@ -205,7 +205,7 @@ $bandera = 0;
 			'data'=>$model,
 			'attributes'=>array(
 				'total_compra',
-				array('name'=>'centro_costo_id', 'value'=>$model->centroCosto->nombre),
+				array('name'=>'centro_compra_id', 'value'=>$model->centroCompra->nombre),
 				array('name'=>'personal_id', 'value'=>$model->personal->nombreCompleto),
 			),
 		)); ?>

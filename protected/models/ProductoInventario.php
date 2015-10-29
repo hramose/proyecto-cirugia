@@ -46,7 +46,7 @@ class ProductoInventario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre_producto, producto_referencia, costo_iva, precio_publico, iva, producto_presentacion_id, cantidad, producto_unidad_medida_id, stock_minimo, producto_proveedor_id, tipo_inventario, producto_categoria_id, personal_id, fecha', 'required'),
+			array('nombre_producto, producto_referencia, precio_publico, iva, producto_presentacion_id, producto_unidad_medida_id, stock_minimo, producto_proveedor_id, tipo_inventario, producto_categoria_id, personal_id, fecha', 'required'),
 			array('producto_presentacion_id, cantidad, producto_unidad_medida_id, stock_minimo, producto_proveedor_id, producto_categoria_id, personal_id', 'numerical', 'integerOnly'=>true),
 			array('nombre_producto', 'length', 'max'=>75),
 			array('producto_referencia, tipo_inventario, lote', 'length', 'max'=>25),

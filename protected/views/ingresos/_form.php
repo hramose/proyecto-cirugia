@@ -8,11 +8,15 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'ingresos-form',
+	'htmlOptions'=>array(
+       'onsubmit'=>"return onEnviar();",/* Disable normal form submit */
+       //'onkeypress'=>" if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
+     ),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
+	//'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -198,7 +202,7 @@ $idContrato = 0;
 			<?php echo $form->error($model,'valor'); ?>
 
 			<?php echo $form->labelEx($model,'centro_costo_id'); ?>
-			<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("tipo = 'Ingreso' and id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge'));?>
+			<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("tipo = 'Ingreso' and id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>
 			<?php echo $form->error($model,'centro_costo_id'); ?>
 
 			<div class="row">
@@ -611,19 +615,31 @@ function quitarCampo(iddiv){
   $("#Ingresos_cheques_cantidad").val(nCheques);
 }
 
-function onEnviar(){
-	if($("#Ingresos_forma_pago").val() == "Ninguna") 
-			{ 
-				swal("No ha seleccionado metodo de pago", "Seleccione una opción");  	
-			 	return false
-			    
-			} 
-	}
 
 function antesdeEnviar()
 {
 	
 	swal({   title: "Estamos procesando el ingreso!",   text: "Solo tomara unos segundos.",   timer: 15000,   showConfirmButton: false });
 }
+
+
+
+function onEnviar(){
+
+	if($("#Ingresos_centro_costo_id").val() == "") 
+			{ 
+				swal("No ha seleccionado Centro de Costo", "Seleccione una opción");
+			 	return false
+			    
+			} 
+	
+	if($("#Ingresos_forma_pago").val() == "Ninguna") 
+			{ 
+				swal("No ha seleccionado metodo de pago", "Seleccione una opción");  	
+			 	return false
+			    
+			} 
+
+	}
 
 </script>

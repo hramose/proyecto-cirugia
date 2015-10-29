@@ -12,6 +12,7 @@
 
 	$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'egresos-form',
+	'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -308,7 +309,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'centro_costo_id'); ?>
-		<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("tipo = 'Egreso' and id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge'));?>
+		<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("tipo = 'Egreso' and id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>
 		<?php echo $form->error($model,'centro_costo_id'); ?>
 	</div>
 
@@ -789,6 +790,14 @@ $("#Egresos_retencion_id").change(function(e) {
 	superTotal();
 });
 
+function onEnviar(){
+	if($("#Egresos_centro_costo_id").val() == "") 
+			{ 
+				swal("No ha seleccionado Centro de Costo", "Seleccione una opción");  	
+			 	return false
+			    
+			} 
+	}
 
 function antesdeEnviar()
 {

@@ -8,6 +8,10 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'ventas-form',
+	'htmlOptions'=>array(
+       'onsubmit'=>"return validar();",/* Disable normal form submit */
+       //'onkeypress'=>" if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
+     ),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -16,7 +20,7 @@
 )); ?>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("cantidad > 0 and estado = 'Activo'");
+	$losProductos = ProductoInventario::model()->findAll("cantidad > 0 and estado = 'Activo' and tipo_inventario = 'Productos'");
 ?>
 	<?php echo $form->errorSummary($model); ?>
 	
@@ -269,7 +273,7 @@
 	<div class="row">
 		<div class="span4">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-large'));?>	
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-large'));?>	
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
 		<div class="span8">
@@ -621,6 +625,14 @@ $("#Ventas_forma_pago").change(function (){
     		$("#consignacion").hide();
     	}
 
+    if ($(this).val() == "Ninguna") 
+    	{
+    		$("#credito").hide();	
+    		$("#cheque").hide();
+    		$("#tarjeta").hide();
+    		$("#consignacion").hide();
+    	}
+
     if ($(this).val() == "Crédito") 
     	{
     		$("#credito").toggle("slow");
@@ -777,5 +789,13 @@ function quitarCampoc(iddiv){
  function onEnviar(){
        document.getElementById("variable").value=variableJs;
        //document.getElementById("total").value=variableJs;
+}
+
+function validar() { 
+	if($("#Ventas_forma_pago").val() == "Ninguna") 
+		{ 
+			swal({   title: "No ha seleccionado metodo de pago",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
+		 	return false
+		} 	
 }
 </script>

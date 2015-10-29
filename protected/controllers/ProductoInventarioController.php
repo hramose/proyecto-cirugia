@@ -217,6 +217,7 @@ class ProductoInventarioController extends Controller
             'costo_iva',
             'precio_publico',
             'iva',
+            'fecha_vencimiento',
             'productoPresentacion.presentacion',
             'productoUnidadMedida.medida',
             'cantidad::Existencia',

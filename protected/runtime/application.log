@@ -1963,3 +1963,580 @@ Stack trace:
 #15 {main}
 REQUEST_URI=/smadia/index.php?r=configuraciones/
 ---
+2015/10/29 16:20:26 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Inicio de sesión necesario' in C:\xampp\htdocs\yii\framework\web\auth\CWebUser.php:394
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'Usted no se enc...')
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('centroCompra/cr...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=centroCompra/create
+HTTP_REFERER=http://localhost/smadia/index.php?r=centroCompra/create
+---
+2015/10/29 17:48:40 [error] [php] PDOStatement::execute(): MySQL server has gone away (C:\xampp\htdocs\yii\framework\db\CDbCommand.php:508)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): Paciente->query()
+#2 C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\admin.php(97): Paciente->findAll()
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): SeguimientoComercialController->renderInternal()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(869): SeguimientoComercialController->renderFile()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(782): SeguimientoComercialController->renderPartial()
+#7 C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php(207): SeguimientoComercialController->render()
+#8 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SeguimientoComercialController->actionAdmin()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): SeguimientoComercialController->runAction()
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): SeguimientoComercialController->filterAccessControl()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(265): SeguimientoComercialController->runActionWithFilters()
+#17 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): SeguimientoComercialController->run()
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/admin&filtro=1
+in C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\admin.php (97)
+in C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php (207)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:48:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+' in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(450): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Egresos))
+#7 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(111): CActiveRecord->__construct()
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionCreate()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/create')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/create
+HTTP_REFERER=http://localhost/smadia/index.php?r=ProductoCompras/create
+---
+2015/10/29 17:48:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+' in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(450): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ProductoCompras))
+#7 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php(75): CActiveRecord->__construct()
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ProductoComprasController->actionCreate()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ProductoCompras...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=ProductoCompras/create
+---
+2015/10/29 17:49:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+' in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(450): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1595): CActiveRecord->getCommandBuilder()
+#7 C:\xampp\htdocs\smadia\themes\cms\views\site\index.php(75): CActiveRecord->count()
+#8 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#9 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', NULL, true)
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', NULL, true)
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#12 C:\xampp\htdocs\smadia\protected\controllers\SiteController.php(65): CController->render('index')
+#13 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#23 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#24 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/smadia/index.php
+---
+2015/10/29 17:50:06 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:06 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:06 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:06 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:06 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=6
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=6
+---
+2015/10/29 17:50:48 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:48 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:48 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:48 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:48 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:50:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:51:53 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:51:53 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:51:53 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:51:53 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:52:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:54:29 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:54:29 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:54:29 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:54:29 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:54:29 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:54:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:55:50 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:55:50 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:55:50 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:55:50 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:55:51 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:55:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:57:44 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:57:44 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:57:44 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:57:44 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:57:44 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:57:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:58:39 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:39 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:39 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:39 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:39 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 17:58:45 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:45 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:45 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:58:45 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 17:59:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 18:02:04 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 18:02:04 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 18:02:04 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 18:02:04 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 18:02:05 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22).
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (96)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 18:02:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`ingresos`, CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `ingresos` (`contrato_id`, `valor`, `centro_costo_id`, `cheques_cantidad`, `cheques_total`, `cheques_banco_cuenta_id`, `tarjeta_tipo`, `tarjeta_aprobacion`, `tarjeta_entidad`, `tarjeta_banco_cuenta_id`, `consigna_banco_o`, `consigna_cuenta_o`, `consigna_banco_d_cuenta_id`, `personal_id`, `forma_pago`, `descripcion`, `vendedor_id`, `paciente_id`, `cita_id`, `n_identificacion`, `fecha`, `fecha_sola`, `estado`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(96): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=2704&idContrato=1258
+---
+2015/10/29 19:11:56 [error] [exception.CException] exception 'CException' with message 'La propiedad "ProductoInventario"."fecha_vencimiento" no se encuentra definida.' in C:\xampp\htdocs\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('fecha_vencimien...')
+#1 C:\xampp\htdocs\yii\framework\base\CModel.php(596): CActiveRecord->__get('fecha_vencimien...')
+#2 C:\xampp\htdocs\smadia\protected\extensions\eexcelview\EExcelView.php(233): CModel->offsetGet('fecha_vencimien...')
+#3 C:\xampp\htdocs\smadia\protected\extensions\eexcelview\EExcelView.php(198): EExcelView->dataProcess('fecha_vencimien...', 0)
+#4 C:\xampp\htdocs\smadia\protected\extensions\eexcelview\EExcelView.php(132): EExcelView->renderRow(0)
+#5 C:\xampp\htdocs\smadia\protected\extensions\eexcelview\EExcelView.php(241): EExcelView->renderBody()
+#6 C:\xampp\htdocs\yii\framework\web\CBaseController.php(173): EExcelView->run()
+#7 C:\xampp\htdocs\smadia\protected\extensions\eexcelview\EExcelBehavior.php(136): CBaseController->widget('ext.eexcelview....', Array)
+#8 [internal function]: EExcelBehavior->toExcel(Array, Array)
+#9 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\smadia\protected\controllers\ProductoInventarioController.php(229): CComponent->__call('toExcel', Array)
+#11 C:\xampp\htdocs\smadia\protected\controllers\ProductoInventarioController.php(229): ProductoInventarioController->toExcel(Array, Array)
+#12 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ProductoInventarioController->actionExportar()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('exportar')
+#22 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ProductoInventa...')
+#23 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/smadia/index.php?r=ProductoInventario/exportar&tipo=0
+HTTP_REFERER=http://localhost/smadia/index.php?r=ProductoInventario/admin&tipo=0
+---
+2015/10/29 21:16:36 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`producto_compras`, CONSTRAINT `producto_compras_ibfk_2` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). La sentencia SQL ejecutada fue: INSERT INTO `producto_compras` (`producto_proveedor_id`, `factura_n`, `descuento`, `descuento_valor`, `descuento_total`, `cantidad_productos`, `total_orden`, `total`, `forma_pago`, `iva`, `iva_total`, `aplica_retencion`, `retencion_retener`, `retencion_base`, `retencion_porcentaje`, `rte_iva_valor`, `rte_ica_porcentaje`, `rte_ica_valor`, `centro_compra_id`, `total_compra`, `nit`, `fecha`, `fecha_sola`, `estado`, `personal_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22, :yp23, :yp24).
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (95)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:16:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`smadia`.`producto_compras`, CONSTRAINT `producto_compras_ibfk_2` FOREIGN KEY (`centro_costo_id`) REFERENCES `centro_costo` (`id`)). The SQL statement executed was: INSERT INTO `producto_compras` (`producto_proveedor_id`, `factura_n`, `descuento`, `descuento_valor`, `descuento_total`, `cantidad_productos`, `total_orden`, `total`, `forma_pago`, `iva`, `iva_total`, `aplica_retencion`, `retencion_retener`, `retencion_base`, `retencion_porcentaje`, `rte_iva_valor`, `rte_ica_porcentaje`, `rte_ica_valor`, `centro_compra_id`, `total_compra`, `nit`, `fecha`, `fecha_sola`, `estado`, `personal_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17, :yp18, :yp19, :yp20, :yp21, :yp22, :yp23, :yp24)' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php(95): CActiveRecord->save()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ProductoComprasController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('productoCompras...')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=productoCompras/create
+HTTP_REFERER=http://localhost/smadia/index.php?r=productoCompras/create
+---
+2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "credito_dias" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "credito_fecha" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "banco_cuenta_id" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "banco_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
+in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
+in C:\xampp\htdocs\smadia\index.php (13)

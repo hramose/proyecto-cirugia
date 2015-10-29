@@ -150,6 +150,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Tratamientos de Interes', 'url'=>array('/TratamientoInteres/admin')),
                                 array('label'=>'Fuente de Contacto', 'url'=>array('/FuenteContacto/admin')),
                                 array('label'=>'Centro de Costo', 'url'=>array('/CentroCosto/admin')),
+                                array('label'=>'Centro de Compras', 'url'=>array('/CentroCompra/admin')),
                                 array('label'=>'Bancos', 'url'=>array('/Bancos/admin')),
                                 array('label'=>'Temas de Seguimiento', 'url'=>array('/SeguimientoTema/admin')),
                                 array('label'=>'Productos de Formulación', 'url'=>array('/Formulacion/admin')), 

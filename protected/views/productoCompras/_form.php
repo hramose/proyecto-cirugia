@@ -56,7 +56,7 @@
 <?php 
 	echo "<h3 class='text-center'>Datos de Productos</h3>";
 ?>
-<a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Producto </a>
+
 <div class="form-actions">
 	<div class="row">
 		<div class="span12">
@@ -81,7 +81,7 @@
 	   </div>
 	   </div>
 	</div>
-
+<a href='JavaScript:agregarCampo();' class="btn btn-primary"> Agregar Producto </a>
 	<div class="row">
 		<div class="span6"></div>
 		<input id='variable' name='variable' type='hidden' />
@@ -137,7 +137,7 @@
 	<div class = "row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal'));?>
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo','Crédito'=>'Crédito', 'Consignación'=>'Consignación'), array('class'=>'input-normal'));?>
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
 
@@ -266,9 +266,9 @@
 
 	<div class="row">
 		<div class="span6">
-			<?php echo $form->labelEx($model,'centro_costo_id'); ?>
-			<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge'));?>
-			<?php echo $form->error($model,'centro_costo_id'); ?>
+			<?php echo $form->labelEx($model,'centro_compra_id'); ?>
+			<?php echo $form->dropDownList($model, 'centro_compra_id',CHtml::listData(CentroCompra::model()->findAll("id > 0 and estado = 'Activo' order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>
+			<?php echo $form->error($model,'centro_compra_id'); ?>
 		</div>
 
 		<div class="span6">
@@ -277,17 +277,25 @@
 	</div>
 
 	<div class="row">
-		<div class="row">
+		<div class="span6">
 			<?php echo $form->labelEx($model,'total_compra'); ?>
 			<?php echo $form->textField($model,'total_compra',array('size'=>10,'maxlength'=>10, 'readonly'=>'readonly')); ?>
 			<?php echo $form->error($model,'total_compra'); ?>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="span6">
+		<div class="row buttons">
+			<br>
+			<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary btn-small'/*, 'onclick'=>'return validar();'*/)); ?>
+		</div>		
+		</div>
+	</div>
+	
 </div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary btn-small'/*, 'onclick'=>'return validar();'*/)); ?>
-	</div>
+	
 
 <?php $this->endWidget(); ?>
 
@@ -792,6 +800,12 @@ function tipoPago()
 	    		$("#consignacion").hide();
 	    	}
 
+	    if ($(this).val() == "Ninguna") 
+	    	{
+	    		$("#credito").hide();
+	    		$("#consignacion").hide();
+	    	}
+
 	    if ($(this).val() == "Crédito") 
 	    	{
 	    		$("#credito").toggle();
@@ -821,7 +835,24 @@ function quitarCampo(iddiv){
        //document.getElementById("total").value=variableJs;
 }
 
+
+
  function validar() { 
+
+		if($("#ProductoCompras_centro_compra_id").val() == "") 
+			{ 
+				swal({   title: "No ha seleccionado Centro de Compras",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
+			 	return false
+			    
+			} 
+
+		if($("#ProductoCompras_forma_pago").val() == "Ninguna") 
+			{ 
+				swal({   title: "No ha seleccionado metodo de pago",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
+			 	return false
+			    
+			} 
+	
 		if($("#ProductoCompras_factura_n").val() == "") 
 			{ 
 				//alert('Debes poner el nombre'); 

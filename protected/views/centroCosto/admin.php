@@ -46,6 +46,7 @@ $('.search-form form').submit(function(){
 		'estado',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}{update}',
 		),
 	),
 )); ?>
@@ -153,7 +154,7 @@ $('.search-form form').submit(function(){
                 keys = $('#centro-costo-grid > div.keys > span'),
                 rowId = keys.eq(rowNum).text();
 
-            location.href = '<?php echo Yii::app()->createUrl('tratamientoInteres/view'); ?>&id=' + rowId;
+            location.href = '<?php echo Yii::app()->createUrl('CentroCosto/view'); ?>&id=' + rowId;
         });
     });
 </script>
