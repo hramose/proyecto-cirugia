@@ -34,7 +34,7 @@
 </div>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo' and tipo_inventario = 'Productos'");
+	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo'");
 ?>
 
 
