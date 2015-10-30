@@ -181,9 +181,9 @@
 
 	<div class="row">
 		<div class="span6">
-			<?php echo $form->labelEx($model,'iva'); ?>
-			<?php echo $form->textField($model,'iva',array('size'=>10,'maxlength'=>10)); ?>
-			<?php echo $form->error($model,'iva'); ?>
+			<!-- <?php //echo $form->labelEx($model,'iva'); ?>
+			<?php //echo $form->textField($model,'iva',array('size'=>10,'maxlength'=>10)); ?>
+			<?php //echo $form->error($model,'iva'); ?> -->
 		</div>
 
 		<div class="span6">
@@ -383,7 +383,30 @@ $("#cantidad_"+ campos + "").keyup(function (){
     	else
     	{
     		//Calcular el total de cada producto
-    		var eltotal = eval($("#valor_"+ posicion + "").val()) * eval($(this).val());
+    		var eltotal = (eval($("#valor_"+ posicion + "").val()) * (($("#iva_"+posicion+"").val() / 100) + 1)) * eval($(this).val());
+    		var miTotalDecimal = eltotal.toFixed(2);
+    		$("#total_"+ posicion + "").val(miTotalDecimal);		
+    	}
+    
+    	superTotal();
+
+});
+
+$("#iva_"+ campos + "").keyup(function (){
+	var posicion = this.name.replace(/[^\d]/g, '');
+	//alert("Hola");
+    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
+    //superTotal();
+    //si la cantidad es cero no hacer nada
+     if ($(this).val() == "" || $(this).val() == "0") 
+    	{
+    		$("#total_"+ posicion + "").val(0);		
+    		
+    	}
+    	else
+    	{
+    		//Calcular el total de cada producto
+    		var eltotal = (eval($("#valor_"+ posicion + "").val()) * (($(this).val() / 100) + 1)) * eval($("#cantidad_"+ posicion + "").val());
     		var miTotalDecimal = eltotal.toFixed(2);
     		$("#total_"+ posicion + "").val(miTotalDecimal);		
     	}
@@ -406,7 +429,7 @@ $("#valor_"+ campos + "").keyup(function (){
     	else
     	{
     		//Calcular el total de cada producto
-    		var eltotal = eval($(this).val()) * eval($("#cantidad_"+ posicion + "").val());
+    		var eltotal = (eval($(this).val()) * (($("#iva_"+posicion+"").val() / 100) + 1)) * eval($("#cantidad_"+ posicion + "").val());
     		var miTotalDecimal = eltotal.toFixed(2);
     		$("#total_"+ posicion + "").val(miTotalDecimal);		
     	}
@@ -631,25 +654,27 @@ function superTotal()
 	var total_orden = 0;
 	var total_compra = 0;
 	var total_cantidad = 0;
+	var total_siniva = 0;
 	var iva = 0;
 	var retencion_ica = 0;
 	var descuento = 0;
-	for (var i = 0; i < 20; i++) {
+	for (var i = 0; i < 300; i++) {
 		if (typeof $("#total_"+ i + "").val() != 'undefined') {
 			total_principal		= total_principal + eval($("#total_"+ i + "").val());
 			total_cantidad 		= total_cantidad + eval($("#cantidad_"+ i + "").val());
 			total_orden 		= total_orden + eval($("#total_"+ i + "").val());
 			total_compra 		= total_compra + eval($("#total_"+ i + "").val());
+			total_siniva		= total_siniva + eval($("#cantidad_"+ i + "").val()) * eval($("#valor_"+ i + "").val());
 		}
 	};
 
 	//Si hay iva
 	if ($("#ProductoCompras_iva").val() >0 || $("#ProductoCompras_iva").val() != "")
 		{
-			iva = total_principal * ($("#ProductoCompras_iva").val()/100);
-			$("#ProductoCompras_iva_total").val(iva);
-			total_orden = total_principal + iva;
-			total_compra = total_principal + iva;
+			// iva = total_principal * ($("#ProductoCompras_iva").val()/100);
+			// $("#ProductoCompras_iva_total").val(iva);
+			// total_orden = total_principal + iva;
+			// total_compra = total_principal + iva;
 		}
 	else
 		{
@@ -709,6 +734,8 @@ function superTotal()
 	$("#ProductoCompras_total_orden").val(total_principal);
 	$("#ProductoCompras_total_compra").val(total_compra);
 	$("#ProductoCompras_cantidad_productos").val(total_cantidad);
+
+	$("#ProductoCompras_iva_total").val(total_orden - total_siniva);
 }
 
 
