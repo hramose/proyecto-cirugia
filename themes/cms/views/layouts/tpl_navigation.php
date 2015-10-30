@@ -157,6 +157,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Laboratorios', 'url'=>array('/Laboratorio/admin')), 
                                 array('label'=>'Medicamentos Biológicos', 'url'=>array('/MedicamentosBiologicos/admin')), 
                                 array('label'=>'Diagnosticos', 'url'=>array('/Diagnosticos/admin')),
+                                array('label'=>'Configuración - Super Usuario', 'visible'=>Yii::app()->user->perfil == 5, 'url'=>array('/Configuraciones/index')),
                                 array('label'=>'Correos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Confirmación de Cita', 'url'=>array("/Correos/update&id=1")),

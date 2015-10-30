@@ -2540,3 +2540,29 @@ in C:\xampp\htdocs\smadia\index.php (13)
 2015/10/29 21:18:43 [warning] [application] Error al establecer unsafe al atributo "cuenta_destino" de "ProductoCompras".
 in C:\xampp\htdocs\smadia\protected\controllers\ProductoComprasController.php (85)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/10/30 15:59:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "Configuracion/index"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Configuracion/i...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=Configuracion/index
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/index
+---
+2015/10/30 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "configuracion/index"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('configuracion/i...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=configuracion/index
+---
+2015/10/30 15:59:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "Configuracion/index"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Configuracion/i...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=Configuracion/index
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/index
+---
