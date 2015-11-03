@@ -656,18 +656,37 @@ class CitasController extends Controller
 					/*$this->render('calendario',array(
 						'dataProvider'=>$dataProvider,
 					));*/
-				$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+				if (isset($_GET['irCita'])) {
+					$this->redirect(array('view','id'=>$lacita->id));
+				}
+				else
+				{
+					$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+				}
 			}
 			else
 			{
 				Yii::app()->user->setFlash('error',"No se ha podido cancelar la cita.");	
-				$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+				if (isset($_GET['irCita'])) {
+					$this->redirect(array('view','id'=>$lacita->id));
+				}
+				else
+				{
+					$this->redirect(array('calendario','idpersonal'=>$lacita->personal->id_perfil, 'fecha'=>$lacita->fecha_cita));
+				}
 			}
 		}
 		else
 		{
-			Yii::app()->user->setFlash('error',"No se ha podido cancelar la cita.");	
-			$this->redirect(array('citas'));
+			Yii::app()->user->setFlash('error',"No se ha podido cancelar la cita.");
+			if (isset($_GET['irCita'])) {
+				$this->redirect(array('view','id'=>$lacita->id));
+			}
+			else
+			{
+			$this->redirect(array('citas'));	
+			}	
+			
 	}
 	}
 
@@ -879,7 +898,7 @@ class CitasController extends Controller
 
 							$los_contratos->saldo_favor = $saldo_favorTodos;
 							$los_contratos->update();
-							Yii::app()->user->setFlash('warning',"Saldo a Favor Actualizado.");	
+							//Yii::app()->user->setFlash('warning',"Saldo a Favor Actualizado.");	
 					//Fin de actualizar saldo a favor
 					}
 
@@ -1124,17 +1143,29 @@ class CitasController extends Controller
 				}
 				
 				//Redireccionar
-				$this->render('calendario',array(
-					'dataProvider'=>$dataProvider,
-				));
-			
+				if (isset($_GET['irCita'])) {
+					$this->redirect(array('view','id'=>$lacita->id));
+				}
+				else
+				{
+					$this->render('calendario',array(
+						'dataProvider'=>$dataProvider,
+					));
+				}
 
 		}
 		else
 		{
-			$this->render('calendario',array(
-				'dataProvider'=>$dataProvider,
-			));	
+			//Redireccionar
+			if (isset($_GET['irCita'])) {
+				$this->redirect(array('view','id'=>$lacita->id));
+			}
+			else
+			{
+				$this->render('calendario',array(
+					'dataProvider'=>$dataProvider,
+				));
+			}
 		}		
 	}
 

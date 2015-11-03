@@ -15,6 +15,52 @@ $edadpaciente = date("Y") - $anio_nacimiento;
 
 ?>
 
+<script>
+    var nCita = 0; //
+
+    function miCita(nCitas, estados)
+	{
+		nCita = nCitas;
+		estado = estados;
+		$("#SeguimientoComercial_cita_id").val(nCita);
+		$("#Citas_id").val(nCita);
+		$("#Citas_contrato_id").val(nCita);
+
+
+		$("#SeguimientoComercial_tipo").val(estado);
+		
+		if (estado=="Completada") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Completada";
+				document.getElementById('omitir').style.display = 'block';
+			};
+
+		if (estado=="Vencida") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Vencida";
+				document.getElementById('omitir').style.display = 'block';
+			};
+
+		if (estado=="Cancelada") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Cancelada";
+				document.getElementById('omitir').style.display = 'block';
+			};
+		if (estado=="Fallida") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Fallida";
+				document.getElementById('omitir').style.display = 'none';
+
+			};
+		if (estado=="Confirmada") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Programada";
+				document.getElementById('omitir').style.display = 'block';
+			};
+	}
+
+</script>
+
 <h1>Cita #<?php echo $model->id; ?></h1>
 
 <div class="row">
@@ -267,11 +313,6 @@ if ($elEquipo)
 		<?php
 	}
 ?>
-
-
-<div class="row">
-	<div class="span12"></div>
-</div>
 
 
 <div class="row">
@@ -583,18 +624,25 @@ if ($elEquipo)
 		</table>
 	</div>
 	<div class="span5 text-center">
+		<?php if($model->estado == "Programada"){ ?>
+		<b class="text-center">Opciones de la Cita</b>
 		<br>
-		<a href="index.php?r=paciente/view&id=<?php echo $model->paciente->id ?>" role="button" class="btn btn-mini btn-primary" data-toggle="modal"><i class="icon-file icon-white"></i> Ver Ficha de Paciente</a>
-		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$fecha_cita ?>" role="button" class="btn btn-mini btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
-		<a href="#cita" role="button" class="btn btn-mini btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
+		<br>
 		<?php
 			if ($model->confirmacion == null) {
 				?>
-				<a href="#confirmar" role="button" class="btn btn-mini btn-info" data-toggle="modal"><i class="icon-thumbs-up icon-white"></i> Confirmar Cita</a>
+				<a href="#confirmar" role="button" class="btn btn-mini btn-warning" data-toggle="modal"><i class="icon-thumbs-up icon-white"></i> Confirmar</a>
 			<?php
 			}
 		?>
-
+		<small><button onclick="miCita(<?php echo $model->id; ?>, 'Fallida')" type="button" data-toggle="modal" data-target="#completar" class="btn btn-mini btn-inverse" title="Cita Fallida"><i class="icon-thumbs-down icon-white"></i> Fallida</button></small>
+		<small><button onclick="miCita(<?php echo $model->id; ?>, 'Completada')" type="button" data-toggle="modal" data-target="#completar" class="btn btn-mini btn-success" title="Cita Completada"><i class="icon-ok icon-white"></i> Completada</button></small>
+		<a href="#cancelar" role="button" class="btn btn-mini btn-danger" data-toggle="modal"><i class="icon-ban-circle icon-white"></i> Cancelada</a>
+		<?php } ?>
+		<br><br>
+		<a href="index.php?r=paciente/view&id=<?php echo $model->paciente->id ?>" role="button" class="btn btn-mini btn-primary" data-toggle="modal"><i class="icon-file icon-white"></i> Ver Ficha de Paciente</a>
+		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$fecha_cita ?>" role="button" class="btn btn-mini btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
+		<a href="#cita" role="button" class="btn btn-mini btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
 		<br><br>
 	
 	
@@ -2381,6 +2429,162 @@ if ($elEquipo)
   </div>
 </div>
 <?php //endif ?>
+
+
+<!-- Cancelar Cita -->
+<?php //if ($losmedicos): ?>
+<div id="cancelar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Cita Cancelada</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>Complete el siguiente formulario</p>
+ 	
+	 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'cancelar-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/cancelar&irCita=1&idpersonal='.$model->personal_id,
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>true,
+		)); ?>
+	 	<?php 
+	 		
+	 		$tabla_citas = new Citas;
+	 				
+	 		
+	 	?>
+				<div class = 'span10'>
+					<?php echo $form->labelEx($tabla_citas,'motivo_cancelacion'); ?>
+					<?php echo $form->textArea($tabla_citas,'motivo_cancelacion',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($tabla_citas,'motivo_cancelacion'); ?>
+				</div>
+
+				<div class="span10" style="display:none;">
+					<?php echo $form->textField($tabla_citas,'id', array('value'=>$model->id)); ?>
+					<?php echo $form->textField($tabla_citas,'estado', array('value'=>$model->estado)); ?>
+				</div>
+	
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($tabla_citas->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 	echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+<?php //endif ?>
+
+
+<?php //Completar Cita ?>
+<div id="completar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><div id="eltitulo"></div></h3>
+  </div>
+  <div class="modal-body">
+ 	<p>Complete el siguiente formulario</p>
+ 	
+	 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'seguimiento-comercial-form',
+		'action'=>'/smadia/index.php?r=citas/calendario&irCita=1',
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		//'onsubmit'=>"return onEnviar()",
+		'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
+		'enableAjaxValidation'=>false,
+		)); ?>
+	 	<?php 
+	 		echo isset($_GET['i']);
+	 		$lasfecha = date("dd-mm-yy");
+	 		$tabla_seguimiento = new SeguimientoComercial;
+	 		echo $form->errorSummary($tabla_seguimiento); 
+	 	?>
+				<div class = 'span5'>
+					<?php echo $form->labelEx($tabla_seguimiento,'fecha_accion'); ?>
+					<div class="input-prepend">
+					<span class="add-on"><i class="icon-calendar"></i></span>
+					<?php 			
+								//$lafecha = '';
+						$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+							'name'=>'fecha_accion',
+							'language'=>'es',
+							'model' => $tabla_seguimiento,
+							'attribute' => 'fecha_accion',
+							'value'=> $lasfecha,
+							// additional javascript options for the date picker plugin
+							'options'=>array(
+								'showAnim'=>'fold',
+								'language' => 'es',
+								'dateFormat' => 'dd-mm-yy',
+							),
+							'htmlOptions'=>array(
+								'style'=>'height:20px;width:80px;'
+							),
+						));
+					?>
+					</div>
+					<?php echo $form->error($tabla_seguimiento,'fecha_accion'); ?>
+				</div>
+
+				<div class="span5" id="omitir">
+					<label for="">Omitir Seguimiento Comercial</label>
+					<select class="input-mini" id="aplica" name ="aplica">
+					  <option value="No">No</option>
+					  <option value="Si">Si</option>
+					</select>
+				</div>
+
+				<div class='span7'>
+					<?php echo $form->labelEx($tabla_seguimiento,'tema_id'); ?>
+					<?php echo $form->dropDownList($tabla_seguimiento, 'tema_id',CHtml::listData(SeguimientoTema::model()->findAll("estado = 'Activo' order by 'nombre'"),'id','nombre'), array('class'=>'input-xlarge'));?>
+					<?php echo $form->error($tabla_seguimiento,'tema_id'); ?>
+				</div>
+
+				<div class='span7'>
+					<?php echo $form->labelEx($tabla_seguimiento,'responsable_id'); ?>
+					<?php echo $form->dropDownList($tabla_seguimiento, 'responsable_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'"),'id','nombreCompleto'), array('class'=>'input-xxlarge',  'options' => array(Yii::app()->user->usuarioId=>array('selected'=>true)),));?>
+					<?php echo $form->error($tabla_seguimiento,'responsable_id'); ?>
+				</div>	
+								
+				<div class = 'span10'>
+					<?php echo $form->labelEx($tabla_seguimiento,'observaciones'); ?>
+					<?php echo $form->textArea($tabla_seguimiento,'observaciones',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($tabla_seguimiento,'observaciones'); ?>
+				</div>
+
+				<div class="span10" style="display:none;">
+					<?php echo $form->textField($tabla_seguimiento,'cita_id'); ?>
+					<?php echo $form->textField($tabla_seguimiento,'tipo'); ?>
+				</div>
+	
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($tabla_seguimiento->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+
 
 
 <script>

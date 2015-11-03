@@ -509,7 +509,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 	 	<?php 
 	 	$form=$this->beginWidget('CActiveForm', array(
 		'id'=>'seguimiento-comercial-form',
-		//'action'=>'/smadia/index.php?r=citas/calendario&idpersonal='.$los_medicos->id_perfil.'&fecha=24-01-2015',
+		//'action'=>'/smadia/index.php?r=citas/calendario',
 		// Please note: When you enable ajax validation, make sure the corresponding
 		// controller action is handling ajax validation correctly.
 		// There is a call to performAjaxValidation() commented in generated controller code.

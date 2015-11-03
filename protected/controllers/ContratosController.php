@@ -192,17 +192,23 @@ class ContratosController extends Controller
 		$datosContratoDetalle = ContratoDetalle::model()->findAll("contrato_id = $idContrato");
 		foreach ($datosContratoDetalle as $datos_Contrato_Detalle) 
 		{
-				$total_tratamiento = $total_tratamiento + $datos_Contrato_Detalle->cantidad;
-				$total_tratamientos_realizados = $total_tratamientos_realizados + $datos_Contrato_Detalle->realizadas;
-				$total_vu = $total_vu + $datos_Contrato_Detalle->vu;
-				$total_vu_descuento = $total_vu_descuento + $datos_Contrato_Detalle->vu_desc;
-				$total_vu_suma = $total_vu_suma + ($datos_Contrato_Detalle->vu * $datos_Contrato_Detalle->realizadas);
-				$total_vu_descuento_suma = $total_vu_descuento_suma + ($datos_Contrato_Detalle->vu_desc * $datos_Contrato_Detalle->realizadas);
+			$total_tratamiento = $total_tratamiento + $datos_Contrato_Detalle->cantidad;
+			$total_tratamientos_realizados = $total_tratamientos_realizados + $datos_Contrato_Detalle->realizadas;
+			$total_vu = $total_vu + $datos_Contrato_Detalle->vu;
+			$total_vu_descuento = $total_vu_descuento + $datos_Contrato_Detalle->vu_desc;
+			$total_vu_suma = $total_vu_suma + ($datos_Contrato_Detalle->vu * $datos_Contrato_Detalle->realizadas);
+			$total_vu_descuento_suma = $total_vu_descuento_suma + ($datos_Contrato_Detalle->vu_desc * $datos_Contrato_Detalle->realizadas);
 
 		}
 
 		//se esta liquidando un contrato inclumplido = Valores sin descuento
-		if ($total_tratamientos_realizados <= $total_tratamiento) 
+
+		if ($datosContrato->saldo == 0) 
+		{
+			$saldo_favor = $sumaIngresos - $total_vu_descuento;
+		}
+
+		if ($total_tratamientos_realizados <= $total_tratamiento and $datosContrato->saldo != 0) 
 		{
 			$saldo_favor = $sumaIngresos - $total_vu_suma;
 		}
@@ -235,7 +241,15 @@ class ContratosController extends Controller
 		{
 			if ($datosContrato->saldo == 0) //Ya pago valor de contrato, tratamientos van con descuento
 			{
-				
+				$datosContrato->estado = "Liquidado";
+				$datosContrato->update();
+
+				foreach ($datosContratoDetalle as $datos_contrato_detalle) 
+				{
+						$datos_contrato_detalle->estado = "Liquidado";
+						$datos_contrato_detalle->update();
+				}
+				$this->redirect(array('view','id'=>$datosContrato->id));
 			}
 
 			if ($datosContrato->saldo > 0) //No ha pagado contrato, los tratamientos van sin descuento
