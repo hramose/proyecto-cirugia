@@ -34,14 +34,14 @@
 </div>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo'");
+	$losProductos = ProductoInventario::model()->findAll("estado = 'Activo' ORDER BY `nombre_producto` ASC");
 ?>
 
 
 <div class="row">
 	<div class="span6">
 		<?php echo $form->labelEx($model,'producto_proveedor_id'); ?>
-		<?php echo $form->dropDownList($model, 'producto_proveedor_id',CHtml::listData(ProductoProveedor::model()->findAll("id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge'));?>
+		<?php echo $form->dropDownList($model, 'producto_proveedor_id',CHtml::listData(ProductoProveedor::model()->findAll("id > 0 order by nombre ASC"),'id','nombre'), array('class'=>'input-xxlarge'));?>
 		<?php echo $form->error($model,'producto_proveedor_id'); ?>
 	</div>
 

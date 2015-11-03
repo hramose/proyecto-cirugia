@@ -23,9 +23,16 @@ $this->menu=array(
 				array('name'=>'Dirección', 'value'=>$model->paciente->direccion,''),
 				array('name'=>'Ciudad', 'value'=>$model->paciente->ciudad,''),
 				array('name'=>'Teléfono', 'value'=>$model->paciente->telefono1,''),
+				array('name'=>'Estado', 'value'=>$model->estado,''),
 			),
-		)); ?>
+		)); 
 
+		if ($model->estado = "Anulada") 
+		{
+			echo "<p class='text-center'><b>Motivo de anulación</b></p>";
+			echo "<p class='text-center'>".$model->comentario_anulada."</p>";
+		}
+		?>
 		<br>
 		<table class="table">
 			<tr>
@@ -63,6 +70,7 @@ $this->menu=array(
 				//Boton de anulación de venta
 				
 			?>
+			<a href="#anular" class="btn btn-small btn-danger btn-mini" data-toggle="modal"><i class="icon-download icon-white"></i> Anular Venta</a>
 		</div>
 	</div>
 
@@ -237,3 +245,43 @@ $this->menu=array(
 // 		'estado',
 // 	),
 // )); ?>
+
+<!-- Cancelar Contrato -->
+<div id="anular" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel2">Anular Venta</h3>
+    <p>Se dispone a anular esta venta.</p>
+  </div>
+	<div class="modal-body text-center">
+    	 	<h4>Para esta acción es necesario la clave de autorización</h4>
+    	 	<?php 
+			 	$form=$this->beginWidget('CActiveForm', array(
+				'id'=>'seguimiento-comercial-form',
+				'action'=>'index.php?r=ventas/anular&id='.$model->id.'&liquidar=1',
+				// Please note: When you enable ajax validation, make sure the corresponding			
+				// controller action is handling ajax validation correctly.								
+				// There is a call to performAjaxValidation() commented in generated controller code.	
+				// See class documentation of CActiveForm for details on this.							
+				'enableAjaxValidation'=>true,
+			)); ?>
+	    	 	<div class="input-prepend">
+	    	 	<span class="controls">
+					<label><b>Observación de Anulación</b></label>
+	    	 		<textarea name="observacion_anular" id="observacion_anular" cols="60" rows="5"></textarea>
+	    	 		<br><br>
+
+	    	 		<span class="add-on"><i class="icon-lock"></i></span>
+	    	 		<input type="password" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
+					<br><br>
+	    	 	</span>
+	    	 		<button class="btn btn-primary" type="submit">Proceder</button>
+	    	 	</div>
+    	 	<?php $this->endWidget(); ?>
+    </div>
+ 	
+  	
+   <div class="modal-footer">
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>

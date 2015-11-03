@@ -93,7 +93,7 @@ class ProductoComprasController extends Controller
 			}
 			$model->personal_id = Yii::app()->user->usuarioId;
 			if($model->save())
-
+			{
 				//Los detalles de la Compra
 				for ($i=0; $i <= $_POST['variable']; $i++) {
 
@@ -127,6 +127,7 @@ class ProductoComprasController extends Controller
 
 
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 		$this->layout='main';
 		$this->render('create',array(

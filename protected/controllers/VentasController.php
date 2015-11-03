@@ -43,7 +43,7 @@ class VentasController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'imprimirVentas', 'exportar'),
+				'actions'=>array('create','update', 'imprimirVentas', 'anular', 'exportar'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -108,6 +108,52 @@ class VentasController extends Controller
         ));
 	}
 
+	public function actionAnular($id)
+	{
+		$lasConfiguraciones = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $lasConfiguraciones->super_usuario) //Es super usuario
+		{
+			if ($_POST['observacion_anular'] == "") 
+			{
+				Yii::app()->user->setFlash('error',"Falta observación, no se realizo la anulación.");
+				$this->redirect(array('view','id'=>$id));
+			}
+			$datosVenta = Ventas::model()->findByPk($id);
+			$datosVenta->estado = "Anulada";
+			$datosVenta->total_venta = $datosVenta->total_venta;
+			$datosVenta->fecha_anulada = date("Y-m-d H:i:s");
+			$datosVenta->comentario_anulada = $_POST['observacion_anular'];
+
+			if ($datosVenta->update()) 
+			{
+				//Verificar tipo de pago
+				if ($datosVenta->forma_pago == "Efectivo") 
+				{
+					$laCaja=CajaEfectivo::model()->findByPk($datosVenta->personal);
+					$laCaja->total = $laCaja->total - $datosVenta->total_venta;
+					$laCaja->save();
+				}
+
+				//Regresar productos al inventario
+				$productosVenta = VentasDetalle::model()->findAll("venta_id = $datosVenta->id");
+				foreach ($productosVenta as $producto_venta) 
+				{
+					$elProducto = ProductoInventario::model()->findByPk($producto_venta->producto_id);
+		 			$elProducto->cantidad = $elProducto->cantidad + $producto_venta->cantidad;
+		 			$elProducto->save();
+				}
+
+				Yii::app()->user->setFlash('success',"Se completo la anulación.");
+				$this->redirect(array('view','id'=>$datosVenta->id));
+			}
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error',"Clave incorrecta, no se realizo la anulación.");
+			$this->redirect(array('view','id'=>$id));
+		}
+		
+	}
 
 
 	public function actionCreate()

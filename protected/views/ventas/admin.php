@@ -16,6 +16,7 @@ $this->menu=array(
 )); ?>
 </div><!-- search-form -->
 
+<DIV style='width:125%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ventas-grid',
 	'dataProvider'=>$model->search(),
@@ -133,6 +134,12 @@ $this->menu=array(
 			'htmlOptions'=>array('width'=>'80'),
 		),
 		array(
+			'name'=>'estado',
+			'filter' => array('Activo'=>'Activo','Anulada'=>'Anulada'),
+			'value'=>'$data->estado',
+			'htmlOptions'=>array('width'=>'150'),
+		),
+		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
 		),
@@ -149,6 +156,8 @@ function reinstallDatePickerVentas(id, data) {
 ");
 
 ?>
+
+</div>
 
 
 <div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

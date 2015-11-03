@@ -45,7 +45,7 @@ class ContratosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'contratos', 'vincular', 'cxc', 'notaCredito', 'liquidar', 'actualizarContratoLiquidar', 'anular', 'exportar', 'vincularNota'),
+				'actions'=>array('admin','delete', 'contratos', 'vincular', 'cxc', 'completar', 'notaCredito', 'liquidar', 'actualizarContratoLiquidar', 'anular', 'exportar', 'vincularNota'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -158,6 +158,18 @@ class ContratosController extends Controller
             'usuario.nombreCompleto::Elaborado Por',
             'vendedor.nombreCompleto::Vendido Por',
         ));
+	}
+
+	public function actionCompletar()
+	{
+		$idContrato = $_GET['idContrato'];
+		$elContrato = Contratos::model()->findByPk($idContrato);
+		$elContrato->estado = "Completado";
+		if($elContrato->update())
+		{
+			Yii::app()->user->setFlash('success',"Se ha completado el contrato.");
+			$this->redirect(array('view','id'=>$elContrato->id));
+		}
 	}
 
 	public function actionLiquidar()

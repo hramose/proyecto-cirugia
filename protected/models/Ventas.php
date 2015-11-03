@@ -69,7 +69,7 @@ class Ventas extends CActiveRecord
 			array('forma_pago, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, consignacion_banco, consignacion_cuenta', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, descripcion, sub_total, total_iva, vendedor_id, n_identificacion, descuento, descuento_tipo, descuento_valor, descuento_total, cant_productos, total_orden, forma_pago, dinero_recibido, dinero_cambio, total_venta, credito_dias, credito_fecha, cheques_cantidad, cheques_cuenta_banco, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_cuenta_banco, consignacion_cuenta_banco, consignacion_banco, consignacion_cuenta, personal, fecha_hora, fecha, estado', 'safe', 'on'=>'search'),
+			array('id, paciente_id, descripcion, sub_total, total_iva, vendedor_id, n_identificacion, descuento, descuento_tipo, descuento_valor, descuento_total, cant_productos, total_orden, forma_pago, dinero_recibido, dinero_cambio, total_venta, credito_dias, credito_fecha, cheques_cantidad, cheques_cuenta_banco, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_cuenta_banco, consignacion_cuenta_banco, consignacion_banco, consignacion_cuenta, personal, fecha_hora, fecha, estado, fecha_anulada, comentario_anulada', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -130,6 +130,8 @@ class Ventas extends CActiveRecord
 			'estado' => 'Estado',
 			'n_identificacion' => 'Cedula',
 			'vendedor_id' => 'Vendedor',
+			'fecha_anulada' => 'Fecha de Anulada',
+			'comentario_anulada' => 'Comentario de Anulación',
 		);
 	}
 
@@ -253,10 +255,10 @@ class Ventas extends CActiveRecord
                 $total=0;
                 foreach($provider->data as $data)
                 {
-                        //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
-                        //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                	if ($data->estado = "Activo") {
                 		$t = $data->total_venta;
                         $total += $t;
+                	}	
                 }
                 return $total;
         }
@@ -268,8 +270,10 @@ class Ventas extends CActiveRecord
                 {
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                	if ($data->estado = "Activo") {
                 		$t = $data->descuento_total;
                         $total += $t;
+                    }
                 }
                 return $total;
         }
@@ -281,8 +285,10 @@ class Ventas extends CActiveRecord
                 {
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		if ($data->estado = "Activo") {
                 		$t = $data->descuento_valor;
                         $total += $t;
+                    	}
                 }
                 return $total;
         }
@@ -294,8 +300,10 @@ class Ventas extends CActiveRecord
                 {
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		if ($data->estado = "Activo") {
                 		$t = $data->total_iva;
                         $total += $t;
+                    }
                 }
                 return $total;
         }
@@ -307,8 +315,10 @@ class Ventas extends CActiveRecord
                 {
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		if ($data->estado = "Activo") {
                 		$t = $data->sub_total;
                         $total += $t;
+                    }
                 }
                 return $total;
         }

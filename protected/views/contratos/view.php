@@ -69,6 +69,8 @@ $texto_liquidar = "";
 $detalleContrato = ContratoDetalle::model()->findAll("contrato_id = $model->id");
 $losRealizados = 0;
 $valor_sindescuento = 0;
+$tratamiento_programado = 0;
+$tratamiento_realizado = 0;
 if (count($detalleContrato)>0) {
 		?>
 		
@@ -95,6 +97,8 @@ if (count($detalleContrato)>0) {
 						//Suma de valor total sin descuento
 						$valor_sindescuento = $valor_sindescuento + $detalle_contrato->vt_sin_desc;
 						$losRealizados = $losRealizados + $detalle_contrato->realizadas;
+						$tratamiento_programado = $tratamiento_programado + $detalle_contrato->cantidad;
+						$tratamiento_realizado = $tratamiento_realizado + $detalle_contrato->realizadas;
 
 				?>
 					<tr>
@@ -203,8 +207,26 @@ if (count($detalleContrato)>0) {
 	if ($model->estado == "Activo") 
 	{
 		?>
-		<a href="#cancelar" role="button" class="btn btn-danger btn-small" data-toggle="modal"><i class="icon-ok-sign icon-white"></i> Liquidar Contrato</a>
-		<a href="#cita" role="button" class="btn btn-small btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
+		<?php 
+			if(($valorRealizados == $model->total) and ($model->saldo == 0) and ($tratamiento_programado == $tratamiento_realizado)) 
+			{
+			?>
+				<a href="index.php?r=contratos/completar&idContrato=<?php echo $model->id; ?>" class="btn btn-small btn-inverse"><i class="icon-ok-circle icon-white"></i> Completar Contrato</a>
+			<?php	
+			}
+			else
+			{
+				?>
+				<a href="#cancelar" role="button" class="btn btn-danger btn-small" data-toggle="modal"><i class="icon-ok-sign icon-white"></i> Liquidar Contrato</a>
+				<?php
+			}
+		?>
+			
+		<?php if($tratamiento_programado != $tratamiento_realizado)
+		{
+		?>
+			<a href="#cita" role="button" class="btn btn-small btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
+		<?php } ?>
 		<?php
 	}
 	?>
@@ -437,6 +459,7 @@ if (count($detalleContrato)>0) {
 			}
 	
 	if ($saldo_liquidar < 0) {
+		$mostrarBoton = 1;
 		//$saldo_liquidar = ($saldo_liquidar * -1);
 		$texto_liquidar = "El cliente pasara a Cuentas por Cobrar con un saldo de <b>$". number_format($saldo_liquidar,2)."</b>";
 	}
