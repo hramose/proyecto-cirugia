@@ -153,8 +153,16 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal->nombreCompleto',
+			'htmlOptions'=>array('width'=>'150'),
+		),
+
+		array(
+			'header'=>'Seguimiento:',
+			'name'=>'personal_seguimiento',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data->personalSeguimiento->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
 		/*

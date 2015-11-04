@@ -49,7 +49,7 @@ class Contratos extends CActiveRecord
 			array('total, saldo, descuento_liquidacion, porcentaje_descuento_liquidacion', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, presupuesto_id, paciente_id, estado, fecha_sola, descuento, saldo_favor, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, fecha, fechahora, n_identificacion, total, usuario_id, observaciones, observaciones_liquidacion', 'safe', 'on'=>'search'),
+			array('id, presupuesto_id, paciente_id, estado, fecha_sola, descuento, saldo_favor, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, fecha, fechahora, n_identificacion, total, usuario_id, observaciones, observaciones_liquidacion, usuario_completo, fecha_completo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +65,7 @@ class Contratos extends CActiveRecord
 			'presupuesto' => array(self::BELONGS_TO, 'Presupuesto', 'presupuesto_id'),
 			'paciente' => array(self::BELONGS_TO, 'Paciente', 'paciente_id'),
 			'usuario' => array(self::BELONGS_TO, 'Personal', 'usuario_id'),
+			'usuarioCompleto' => array(self::BELONGS_TO, 'Personal', 'usuario_completo'),
 			'vendedor' => array(self::BELONGS_TO, 'Personal', 'vendedor_id'),
 		);
 	}
@@ -93,6 +94,8 @@ class Contratos extends CActiveRecord
 			'descuento_liquidacion' => 'Desc. por Liquidación ($)',
 			'porcentaje_descuento_liquidacion' => 'Desc. por Liquidación (%)',
 			'observaciones_liquidacion' => 'Observaciones de Liquidación',
+			'usuario_completo' => 'Usuario que Completo Contrato',
+			'fecha_completo' => 'Fecha en la que se Completo',
 		);
 	}
 

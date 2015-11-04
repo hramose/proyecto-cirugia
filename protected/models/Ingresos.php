@@ -61,7 +61,7 @@ class Ingresos extends CActiveRecord
 			array('tarjeta_aprobacion, tarjeta_entidad, consigna_banco_o, consigna_cuenta_o', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, nombre_paciente, apellido_paciente, n_identificacion, contrato_id, cita_id, vendedor_id, fecha_sola, valor, descripcion, centro_costo_id, forma_pago, fecha, cheques_cantidad, cheques_banco_cuenta_id, cheques_total, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_banco_cuenta_id, consigna_banco_o, consigna_cuenta_o, consigna_banco_d_cuenta_id, personal_id, estado', 'safe', 'on'=>'search'),
+			array('id, paciente_id, nombre_paciente, personal_seguimiento, apellido_paciente, n_identificacion, contrato_id, cita_id, vendedor_id, fecha_sola, valor, descripcion, centro_costo_id, forma_pago, fecha, cheques_cantidad, cheques_banco_cuenta_id, cheques_total, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_banco_cuenta_id, consigna_banco_o, consigna_cuenta_o, consigna_banco_d_cuenta_id, personal_id, estado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +82,7 @@ class Ingresos extends CActiveRecord
 			'consignaBancoDCuenta' => array(self::BELONGS_TO, 'Bancos', 'consigna_banco_d_cuenta_id'),
 			'personal' => array(self::BELONGS_TO, 'Personal', 'personal_id'),
 			'vendedor' => array(self::BELONGS_TO, 'Personal', 'vendedor_id'),
+			'personalSeguimiento' => array(self::BELONGS_TO, 'Personal', 'personal_seguimiento'),
 		);
 	}
 
@@ -115,6 +116,7 @@ class Ingresos extends CActiveRecord
 			'n_identificacion' => 'Cedula',
 			'fecha_sola' => 'Fecha',
 			'vendedor_id' => 'Vendedor',
+			'personal_seguimiento' => 'Responsable de Seguimiento',
 		);
 	}
 
@@ -161,6 +163,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('consigna_banco_d_cuenta_id',$this->consigna_banco_d_cuenta_id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
+		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
@@ -211,6 +214,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('consigna_banco_d_cuenta_id',$this->consigna_banco_d_cuenta_id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
+		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );

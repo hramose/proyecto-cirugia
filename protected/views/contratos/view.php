@@ -22,6 +22,17 @@ $texto_liquidar = "";
 	<div class="span3 text-center">
 		<img  src="images/manos.png"/>
 		<a class="btn btn-warning" href='index.php?r=paciente/view&id=<?php echo $model->paciente_id;?>'><i class="icon-search icon-white"></i> Ficha de Paciente</a>
+		<br>
+		<?php 
+			if ($model->estado == "Completado") {
+				echo "<br><div class='text-center'>";
+				echo "<p><b>Completo el Contrato</b></p>";
+				echo $model->usuarioCompleto->nombreCompleto;
+				echo "<br><br><p><b>Fecha en que se Completo</b></p>";
+				echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$model->fecha_completo);
+				echo "</div>";
+			}
+		?>
 	</div>
 
 	<div class="span7">
@@ -47,8 +58,7 @@ $texto_liquidar = "";
 				array('name'=>'Vendido por:', 'value'=>$model->vendedor->nombreCompleto,''),
 				'observaciones',
 			),
-		)); 
-
+		));
 		if ($model->estado == "Anulado") 
 		{
 			echo "<h4>Observaciones de Anulado</h4>";

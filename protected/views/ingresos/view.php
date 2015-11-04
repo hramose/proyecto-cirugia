@@ -17,6 +17,15 @@ else
 {
 	$nombreVendedor = $model->vendedor->nombreCompleto;
 }
+
+if ($model->personal_seguimiento == NULL) 
+{
+	$nombreSeguimiento = NULL;
+}
+else
+{
+	$nombreSeguimiento = $model->personalSeguimiento->nombreCompleto;
+}
 ?>
 
 <h1>Ingreso #<?php echo $model->id; ?></h1>
@@ -34,6 +43,7 @@ else
 				array('name'=>'Celular', 'value'=>$model->paciente->celular, ''),
 				'contrato_id',
 				array('name'=>'valor', 'value'=>'$ '.number_format($model->valor,2),''),
+				array('name'=>'personal_seguimiento', 'value'=>$nombreSeguimiento, ''),
 			),
 		)); ?>
 	</div>

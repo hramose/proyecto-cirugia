@@ -154,7 +154,7 @@ class Personal extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('cc',$this->cc,true);
 		$criteria->compare('expedicion',$this->expedicion,true);
 		$criteria->compare('titulo',$this->titulo,true);

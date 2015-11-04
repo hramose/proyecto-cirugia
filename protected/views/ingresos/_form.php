@@ -236,6 +236,10 @@ $idContrato = 0;
 				}
 			?>
 			<?php echo $form->error($model,'descripcion'); ?>
+
+			<?php echo $form->labelEx($model,'personal_seguimiento'); ?>
+				<?php //if ($losValores){ ?>
+					<?php echo $form->dropDownList($model, 'personal_seguimiento',CHtml::listData(Personal::model()->findAll("activo = 'SI' and id > 0 order by 'nombre'"),'id','nombreCompleto'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>	
 		</div>
 	</div>
 

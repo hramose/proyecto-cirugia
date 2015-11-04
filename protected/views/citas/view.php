@@ -2,12 +2,22 @@
 /* @var $this CitasController */
 /* @var $model Citas */
 
+if ($model->estado == "Vencida" or $model->estado == "Programada") {
+	$this->menu=array(
+		array('label'=>'Listar Citas', 'url'=>array('index')),
+		array('label'=>'Actualizar Cita', 'url'=>array('update', 'id'=>$model->id, 'idpaciente'=>$model->paciente_id)),
+		array('label'=>'Buscar Cita', 'url'=>array('admin')),
+	);
+}
+else
+{
+	$this->menu=array(
+		array('label'=>'Listar Citas', 'url'=>array('index')),
+		array('label'=>'Buscar Cita', 'url'=>array('admin')),
+	);
+}
 
-$this->menu=array(
-	array('label'=>'Listar Citas', 'url'=>array('index')),
-	array('label'=>'Actualizar Cita', 'url'=>array('update', 'id'=>$model->id, 'idpaciente'=>$model->paciente_id)),
-	array('label'=>'Buscar Cita', 'url'=>array('admin')),
-);
+
 
 //Calculo de Edad
 $anio_nacimiento = Yii::app()->dateformatter->format("yyyy",$model->paciente->fecha_nacimiento);

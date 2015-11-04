@@ -165,6 +165,8 @@ class ContratosController extends Controller
 		$idContrato = $_GET['idContrato'];
 		$elContrato = Contratos::model()->findByPk($idContrato);
 		$elContrato->estado = "Completado";
+		$elContrato->usuario_completo = Yii::app()->user->usuarioId;
+		$elContrato->fecha_completo = date("Y-m-d H:i:s");
 		if($elContrato->update())
 		{
 			Yii::app()->user->setFlash('success',"Se ha completado el contrato.");

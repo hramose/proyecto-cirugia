@@ -92,10 +92,19 @@ class IngresosController extends Controller
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->fecha_sola = date("Y-m-d");
 			$model->estado = "Activo";
+			if ($_POST['Ingresos']['personal_seguimiento'] == "") {
+				$model->personal_seguimiento = 26;
+			}
+			else
+			{
+				$model->personal_seguimiento = $_POST['Ingresos']['personal_seguimiento'];	
+			}
 			$model->personal_id = Yii::app()->user->usuarioId;
 			if($model->save())
 			{
 				
+				if ($model->contrato_id != NULL) 
+				{
 				//Actualizar Saldo a favor de contrato
 					$los_contratos = Contratos::model()->findByPk($model->contrato_id);
 					$tratamiento_condescuentoTodos = 0;
@@ -151,7 +160,7 @@ class IngresosController extends Controller
 
 						$los_contratos->saldo_favor = $saldo_favorTodos;
 						$los_contratos->update();
-				
+				}
 
 				//Fin de actualizar saldo a favor
 
@@ -606,7 +615,7 @@ class IngresosController extends Controller
         				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo
-        $message->setTo(array('josterricardi@gmail.com')); // a quien se le envia
+        $message->setTo(array('gerencia@smadiaclinic.com')); // a quien se le envia
         //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
         Yii::app()->mail->send($message);
 
