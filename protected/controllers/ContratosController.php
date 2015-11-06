@@ -219,10 +219,11 @@ class ContratosController extends Controller
 
 		if ($datosContrato->saldo == 0) 
 		{
-			$saldo_favor = $sumaIngresos - $total_vu_descuento;
+			//$saldo_favor = $sumaIngresos - $total_vu_descuento;
+			$saldo_favor = $sumaIngresos - $total_vu_suma;
 		}
 
-		if ($total_tratamientos_realizados <= $total_tratamiento and $datosContrato->saldo != 0) 
+		if ($total_tratamientos_realizados <= $total_tratamiento) 
 		{
 			$saldo_favor = $sumaIngresos - $total_vu_suma;
 		}
@@ -255,19 +256,99 @@ class ContratosController extends Controller
 		{
 			if ($datosContrato->saldo == 0) //Ya pago valor de contrato, tratamientos van con descuento
 			{
-				$datosContrato->estado = "Liquidado";
-				$datosContrato->update();
+				// $datosContrato->estado = "Liquidado";
+				// $datosContrato->update();
 
-				foreach ($datosContratoDetalle as $datos_contrato_detalle) 
-				{
-						$datos_contrato_detalle->estado = "Liquidado";
-						$datos_contrato_detalle->update();
-				}
-				$this->redirect(array('view','id'=>$datosContrato->id));
+				// foreach ($datosContratoDetalle as $datos_contrato_detalle) 
+				// {
+				// 		$datos_contrato_detalle->estado = "Liquidado";
+				// 		$datos_contrato_detalle->update();
+				// }
+				// $this->redirect(array('view','id'=>$datosContrato->id));
 			}
 
-			if ($datosContrato->saldo > 0) //No ha pagado contrato, los tratamientos van sin descuento
+			//Comentado
+			// if ($datosContrato->saldo > 0) //No ha pagado contrato, los tratamientos van sin descuento
+			// {
+			// 	$datosContrato->estado = "Liquidado";
+			// 	$datosContrato->update();
+
+			// 	foreach ($datosContratoDetalle as $datos_contrato_detalle) 
+			// 	{
+			// 			$datos_contrato_detalle->estado = "Liquidado";
+			// 			$datos_contrato_detalle->update();
+			// 	}
+			// 	$this->redirect(array('view','id'=>$datosContrato->id));				
+			// }
+
+			//Buscar si hay cuenta por cobrar madre
+			$laCuenta = CuentasXc::model()->find("paciente_id = $datosContrato->paciente_id");
+			if ($laCuenta) 
 			{
+
+				$laCuentaExiste = CuentasXcDetalle::model()->find("contrato_id = $datosContrato->id");
+				if ($laCuentaExiste) 
+				{
+					$laCuentaExiste->saldo = ($saldo_favor * -1);
+					$laCuentaExiste->update();
+
+					$sumadetalles = CuentasXcDetalle::model()->findAll("paciente_id = $datosContrato->paciente_id");
+						$total_detalles = 0;
+						foreach ($sumadetalles as $suma_detalles) 
+						{
+							$total_detalles = $total_detalles + $suma_detalles->saldo;
+						}
+
+					$cuentaPrincipal = CuentasXc::model()->find("paciente_id = $datosContrato->paciente_id");
+					$cuentaPrincipal->saldo = $total_detalles;
+					$cuentaPrincipal->update();
+
+				}
+				else
+				{
+					$detallesCuenta = new CuentasXcDetalle;
+					$detallesCuenta->cuentas_xc_id = $laCuenta->id;
+					$detallesCuenta->paciente_id = $datosContrato->paciente_id;
+					$detallesCuenta->n_identificacion = $datosContrato->n_identificacion;
+					$detallesCuenta->contrato_id = $datosContrato->id;
+					$detallesCuenta->saldo = ($saldo_favor * -1);
+					$detallesCuenta->save();
+
+					$sumadetalles = CuentasXcDetalle::model()->findAll("paciente_id = $model->paciente_id");
+						$total_detalles = 0;
+						foreach ($sumadetalles as $suma_detalles) 
+						{
+							$total_detalles = $total_detalles + $suma_detalles->saldo;
+						}
+
+					$laCuenta->saldo = $total_detalles;
+					$laCuenta->update();
+				}
+				
+			}
+			else
+			{
+				$nuevaCuenta = new CuentasXc;
+				$nuevaCuenta->paciente_id = $datosContrato->paciente_id;
+				$nuevaCuenta->n_identificacion = $datosContrato->n_identificacion;
+				$nuevaCuenta->saldo = ($saldo_favor * -1);
+				$nuevaCuenta->save();
+				
+				
+					$detallesCuenta = new CuentasXcDetalle;
+					$detallesCuenta->cuentas_xc_id = $nuevaCuenta->id;
+					$detallesCuenta->paciente_id = $nuevaCuenta->paciente_id;
+					$detallesCuenta->n_identificacion = $nuevaCuenta->n_identificacion;
+					$detallesCuenta->contrato_id = $datosContrato->id;
+					$detallesCuenta->saldo = $nuevaCuenta->saldo;
+					$detallesCuenta->save();
+				
+				
+			}
+
+
+			//if ($datosContrato->saldo > 0) //No ha pagado contrato, los tratamientos van sin descuento
+			//{
 				$datosContrato->estado = "Liquidado";
 				$datosContrato->update();
 
@@ -277,7 +358,9 @@ class ContratosController extends Controller
 						$datos_contrato_detalle->update();
 				}
 				$this->redirect(array('view','id'=>$datosContrato->id));				
-			}
+			//}
+
+
 		}
 
 		if ($saldo_favor == 0) //No se

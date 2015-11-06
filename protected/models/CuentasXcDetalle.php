@@ -36,7 +36,7 @@ class CuentasXcDetalle extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cuentas_xc_id, paciente_id, n_identificacion, cita_id, saldo', 'required'),
+			array('cuentas_xc_id, paciente_id, n_identificacion, saldo', 'required'),
 			array('cuentas_xc_id, paciente_id, cita_id, contrato_id', 'numerical', 'integerOnly'=>true),
 			array('n_identificacion', 'length', 'max'=>30),
 			array('saldo', 'length', 'max'=>20),

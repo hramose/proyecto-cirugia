@@ -102,6 +102,9 @@ class IngresosController extends Controller
 			$model->personal_id = Yii::app()->user->usuarioId;
 			if($model->save())
 			{
+
+				//Ingresos sin Contrato (Cajas de Pacientes)
+				
 				
 				if ($model->contrato_id != NULL) 
 				{

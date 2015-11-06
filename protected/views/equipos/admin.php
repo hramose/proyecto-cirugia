@@ -44,14 +44,14 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Nombre',
 			'name'=>'nombre',
-			'filter'=>CHtml::listData(Equipos::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Equipos::model()->findAll(array('order'=>'nombre ASC')), 'nombre','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'nombre\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),
 		array(
 			'header'=>'Linea de Servicio',
 			'name'=>'linea_servicio_id',
-			'filter'=>CHtml::listData(LineaServicio::model()->findAll(), 'id','nombre'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(LineaServicio::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'lineaServicio\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),

@@ -49,15 +49,29 @@ $this->menu=array(
 	$archivoExamenes 			= PacienteResultadosLab::model()->count("paciente_id = $model->id");
 
 	//Suma de Saldos
-	//$suma_saldo = Contratos::model()->findBySql("select sum('saldo') as 'total' from contratos where estado = 'Activo' and paciente_id = ".$model->id, array());
+	$suma_saldo = Contratos::model()->findBySql("select sum('saldo') as 'total' from contratos where estado = 'Activo' and paciente_id = ".$model->id, array());
+	$las_cxc    = CuentasXc::model()->find("paciente_id = $model->id");
+
+	if ($las_cxc) 
+	{
+		$total_cxc = $las_cxc->saldo;
+	}
+	else
+	{
+		$total_cxc = "0.00";
+	}
 ?>				
 				
 <h1>Paciente #<?php echo $model->id; ?></h1>
 <div class="row">
 	<div class="span2">
 		  	<img class="img-polaroid" src="images/user.png"/>
+
 		  	<h4 class="text-center">Saldo en Caja</h4>
 		  	<h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3>
+
+		  	<h4 class="text-center">Deuda</h4>
+		  	<h3 class="text-center text-error">$ <?php echo $total_cxc; ?></h3>
 
 
 	</div>
