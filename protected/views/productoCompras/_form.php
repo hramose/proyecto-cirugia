@@ -734,8 +734,11 @@ function superTotal()
 	$("#ProductoCompras_total_orden").val(total_principal);
 	$("#ProductoCompras_total_compra").val(total_compra);
 	$("#ProductoCompras_cantidad_productos").val(total_cantidad);
+	var eltotalIva = total_orden - total_siniva;
+	eltotalIva = eltotalIva.toFixed(2);
 
-	$("#ProductoCompras_iva_total").val(total_orden - total_siniva);
+	$("#ProductoCompras_iva_total").val(eltotalIva);
+
 }
 
 

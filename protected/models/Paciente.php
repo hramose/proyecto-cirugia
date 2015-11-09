@@ -180,6 +180,52 @@ class Paciente extends CActiveRecord
 		));
 	}
 
+	public function searchCajas()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('apellido',$this->apellido,true);
+		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('genero',$this->genero);
+		$criteria->compare('DATE_FORMAT(fecha_nacimiento, \'%d-%m-%Y\')',$this->fecha_nacimiento,true);
+		//$criteria->compare('fecha_nacimiento',$this->fecha_nacimiento,true);
+		$criteria->compare('fecha_registro',$this->fecha_registro,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('email2',$this->email2,true);
+		$criteria->compare('telefono1',$this->telefono1,true);
+		$criteria->compare('telefono2',$this->telefono2,true);
+		$criteria->compare('celular',$this->celular,true);
+		$criteria->compare('direccion',$this->direccion,true);
+		$criteria->compare('ciudad',$this->ciudad,true);
+		$criteria->compare('pais',$this->pais,true);
+		$criteria->compare('referer_contact',$this->referer_contact,true);
+		$criteria->compare('estado_civil',$this->estado_civil,true);
+		$criteria->compare('ocupacion',$this->ocupacion,true);
+		$criteria->compare('tipo_vinculacion',$this->tipo_vinculacion,true);
+		$criteria->compare('Aseguradora',$this->Aseguradora,true);
+		$criteria->compare('nombre_acompanante',$this->nombre_acompanante,true);
+		$criteria->compare('acompanante_telefono',$this->acompanante_telefono,true);
+		$criteria->compare('nombre_responsable',$this->nombre_responsable,true);
+		$criteria->compare('relacion_responsable',$this->relacion_responsable,true);
+		$criteria->compare('telefono_responsable',$this->telefono_responsable,true);
+		$criteria->compare('saldo',$this->saldo,true);
+		$criteria->compare('responsable',$this->responsable,true);
+		$criteria->compare('historia_id',$this->historia_id,true);
+		$criteria->compare('tratamiento_interes_id',$this->tratamiento_interes_id);
+		$criteria->compare('fuente_contacto_id',$this->fuente_contacto_id);
+		
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'criteria'=>array('condition'=>'saldo > 0'),
+			'pagination'=>array('pageSize'=>20),
+		));
+	}
+
 
 	public function suggest($keyword,$limit=20)
 	{
