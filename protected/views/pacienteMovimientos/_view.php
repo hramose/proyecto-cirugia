@@ -29,19 +29,11 @@
 	<?php echo CHtml::encode($data->descripcion); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('ingreso_id')); ?>:</b>
-	<?php echo CHtml::encode($data->ingreso_id); ?>
-	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('contrato_id')); ?>:</b>
-	<?php echo CHtml::encode($data->contrato_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('usuario_id')); ?>:</b>
 	<?php echo CHtml::encode($data->usuario_id); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha')); ?>:</b>
 	<?php echo CHtml::encode($data->fecha); ?>
 	<br />

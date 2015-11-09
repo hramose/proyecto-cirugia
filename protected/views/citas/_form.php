@@ -104,9 +104,9 @@ else
 		</div>
 
 		<div class="span4">
-			<?php //echo $form->labelEx($model,'estado'); ?>
-			<?php //echo $form->dropDownList($model, 'estado',array('Programada'=>'Programada','Atendida'=>'Atendida', 'Cancelada'=>'Cancelada', 'Fallida'=>'Fallida'), array('readonly'));?>	
-			<?php //echo $form->error($model,'estado'); ?>
+			<?php echo $form->labelEx($model,'estado'); ?>
+			<?php echo $form->dropDownList($model, 'estado',array('Programada'=>'Programada','Atendida'=>'Atendida', 'Cancelada'=>'Cancelada', 'Fallida'=>'Fallida'));?>	
+			<?php echo $form->error($model,'estado'); ?>
 		</div>
 	</div>
 

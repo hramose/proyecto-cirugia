@@ -41,7 +41,7 @@ class PacienteController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'upload', 'cajas'),
+				'actions'=>array('create','update', 'upload'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -240,18 +240,6 @@ class PacienteController extends Controller
 			$model->attributes=$_GET['Paciente'];
 
 		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
-
-	public function actionCajas()
-	{
-		$model=new Paciente('searchCaja');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Paciente']))
-			$model->attributes=$_GET['Paciente'];
-
-		$this->render('cajas',array(
 			'model'=>$model,
 		));
 	}

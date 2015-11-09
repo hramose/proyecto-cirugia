@@ -52,8 +52,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'sub_tipo',
 		'descripcion',
 		/*
-		'ingreso_id',
-		'contrato_id',
 		'usuario_id',
 		'fecha',
 		*/

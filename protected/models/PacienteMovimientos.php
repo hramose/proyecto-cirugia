@@ -10,8 +10,6 @@
  * @property string $tipo
  * @property string $sub_tipo
  * @property string $descripcion
- * @property integer $ingreso_id
- * @property integer $contrato_id
  * @property integer $usuario_id
  * @property string $fecha
  *
@@ -37,14 +35,14 @@ class PacienteMovimientos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('paciente_id, valor, tipo, sub_tipo, descripcion, contrato_id, usuario_id, fecha', 'required'),
-			array('paciente_id, ingreso_id, contrato_id, usuario_id', 'numerical', 'integerOnly'=>true),
+			array('paciente_id, valor, tipo, sub_tipo, descripcion, usuario_id, fecha', 'required'),
+			array('paciente_id, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('valor', 'length', 'max'=>10),
 			array('tipo', 'length', 'max'=>15),
 			array('sub_tipo', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, valor, tipo, sub_tipo, descripcion, ingreso_id, contrato_id, usuario_id, fecha', 'safe', 'on'=>'search'),
+			array('id, paciente_id, valor, tipo, sub_tipo, descripcion, usuario_id, fecha', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,8 +71,6 @@ class PacienteMovimientos extends CActiveRecord
 			'tipo' => 'Tipo',
 			'sub_tipo' => 'Sub Tipo',
 			'descripcion' => 'Descripcion',
-			'ingreso_id' => 'Ingreso',
-			'contrato_id' => 'Contrato',
 			'usuario_id' => 'Usuario',
 			'fecha' => 'Fecha',
 		);
@@ -104,8 +100,6 @@ class PacienteMovimientos extends CActiveRecord
 		$criteria->compare('tipo',$this->tipo,true);
 		$criteria->compare('sub_tipo',$this->sub_tipo,true);
 		$criteria->compare('descripcion',$this->descripcion,true);
-		$criteria->compare('ingreso_id',$this->ingreso_id);
-		$criteria->compare('contrato_id',$this->contrato_id);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('fecha',$this->fecha,true);
 

@@ -36,8 +36,8 @@ class PacienteMovimientosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'viewCaja'),
-				'users'=>array('@'),
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -52,13 +52,6 @@ class PacienteMovimientosController extends Controller
 	public function actionView($id)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-
-	public function actionViewCaja($id)
-	{
-		$this->render('viewCaja',array(
 			'model'=>$this->loadModel($id),
 		));
 	}

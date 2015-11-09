@@ -42,16 +42,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ingreso_id'); ?>
-		<?php echo $form->textField($model,'ingreso_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'contrato_id'); ?>
-		<?php echo $form->textField($model,'contrato_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'usuario_id'); ?>
 		<?php echo $form->textField($model,'usuario_id'); ?>
 	</div>
