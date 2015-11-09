@@ -193,6 +193,7 @@ class CitasController extends Controller
 			$model->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
 			$model->contrato_id = $_POST['elContrato'];
 			$model->usuario_id = Yii::app()->user->usuarioId;
+			$model->estado = "Programada";
 			//$model->equipo_adicional = $_POST['Citas']['equipo_adicional'];
 			$model->fecha_creacion = date("Y-m-d");
 			$model->fecha_hora_creacion = date("Y-m-d H:i:s");
@@ -801,9 +802,12 @@ class CitasController extends Controller
 			{
 				//Buscar Detalle
 				$detalleContrato = ContratoDetalle::model()->find("contrato_id = $lacita->contrato_id and linea_servicio_id = $lacita->linea_servicio_id and (estado = 'Programada' or estado = 'Activo')");
+				$elSaldoContrato = Contratos::model()->findByPk($lacita->contrato_id);
 				//Saldo de Contrato
-				$saldoContrato = $detalleContrato->contrato->saldo;
 				
+					$saldoContrato = $elSaldoContrato->saldo;
+				
+								
 				//$paraActualizar = ContratoDetalle::model()->findByPk($detalle_contrato->id);
 				if ($detalleContrato->cantidad > $detalleContrato->realizadas) {
 					if ($detalleContrato->cantidad > ($detalleContrato->realizadas + 1)) {
