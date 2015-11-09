@@ -82,7 +82,11 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                 array('label'=>'Cuentas por Cobrar', 'url'=>array('/cuentasXc/admin')),
                                 array('label'=>'Cuentas por Pagar', 'url'=>array('/ProductoCompras/cxp')),
                                 array('label'=>'Cuentas por Pagar Pagadas', 'url'=>array('/ProductoCompras/cxpp')),
-                                array('label'=>'Notas de Crédito', 'url'=>array('/NotaCredito/admin')),
+                                array('label'=>'Caja de Paciente', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Listado de Cajas', 'url'=>array("/paciente/admin")),
+                                    array('label'=>'Movimientos', 'url'=>array("/pacienteMovimientos/update&id=1")),
+                                    )),
                                 array('label'=>'Relación Hoja de Gastos', 'url'=>array('/RelacionHojaGastos/admin')),
                                 array('label'=>'Ingresos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                              'items' => array(

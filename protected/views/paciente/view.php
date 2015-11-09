@@ -68,8 +68,8 @@ $this->menu=array(
 		  	<img class="img-polaroid" src="images/user.png"/>
 
 		  	<h4 class="text-center">Saldo en Caja</h4>
-		  	<h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3>
-
+		  	<a href=# tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3></a>
+		  	<hr>
 		  	<h4 class="text-center">Deuda</h4>
 		  	<h3 class="text-center text-error">$ <?php echo $total_cxc; ?></h3>
 

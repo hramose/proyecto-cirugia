@@ -104,7 +104,18 @@ class IngresosController extends Controller
 			{
 
 				//Ingresos sin Contrato (Cajas de Pacientes)
-				
+				$elPaciente->saldo = $elPaciente->saldo + $model->valor;
+				$elPaciente->update();
+				//Movimientos
+				$movimientosCaja = new pacienteMovimientos;
+				$movimientosCaja->paciente_id = $model->paciente_id;
+				$movimientosCaja->valor = $model->valor;
+				$movimientosCaja->tipo = "Ingreso";
+				$movimientosCaja->sub_tipo = "Ingreso sin Contrato";
+				$movimientosCaja->descripcion = "Ingreso a caja de paciente directamente en su perfil";
+				$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;
+				$movimientosCaja->fecha = date("Y-m-d H:i:s");
+				$movimientosCaja->save();
 				
 				if ($model->contrato_id != NULL) 
 				{
