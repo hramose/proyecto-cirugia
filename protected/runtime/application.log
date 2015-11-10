@@ -4228,3 +4228,9 @@ REQUEST_URI=/smadia/index.php?r=ingresos/admin
 in C:\xampp\htdocs\smadia\protected\views\ingresos\admin.php (184)
 in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (591)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/09 23:51:18 [warning] [application] Error al establecer unsafe al atributo "observaciones" de "Paciente".
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (164)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/10 17:07:28 [warning] [application] Error al establecer unsafe al atributo "observaciones" de "Paciente".
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (164)
+in C:\xampp\htdocs\smadia\index.php (13)

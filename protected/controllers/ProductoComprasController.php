@@ -137,8 +137,9 @@ class ProductoComprasController extends Controller
 
 	public function actionAnular()
 	{
+		$laclave = Configuraciones::model()->findByPk(1);
 		$id = $_GET['idCompra'];
-		if ($_POST['clave'] == "super") //Es super usuario
+		if ($_POST['clave'] == $laclave->super_usuario) //Es super usuario
 			{
 				$laCompra = ProductoCompras::model()->findByPk($id);
 				$laCompra->comentario_anulado = $_POST['observaciones'];

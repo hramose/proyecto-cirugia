@@ -32,6 +32,7 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 				array('name'=>'Celular', 'value'=>$model->paciente->celular, ''),
 			),
 		)); ?>
+		<a href="index.php?r=paciente/view&id=<?php echo $model->id;?>" class="btn btn-mini btn-success"><i class="icon-user icon-white"></i> Ver Paciente</a>
 	</div>
 </div>
 

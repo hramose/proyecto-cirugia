@@ -75,7 +75,7 @@ margin-bottom: 200px;
 $pacientes = Paciente::model()->count();
 $citas = Citas::model()->count("fecha_cita = '".date('Y-m-d')."' and estado = 'Programada'");
 $seguimientos = SeguimientoComercial::model()->count("fecha_accion = '".date('Y-m-d')."'");
-$vencidas = Citas::model()->count("estado = 'Programada' and fecha_cita <'".date('Y-m-d')."'");
+$vencidas = Citas::model()->count("estado = 'Vencida'");
 
 ?>
 
