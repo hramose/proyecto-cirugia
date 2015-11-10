@@ -107,7 +107,7 @@ class IngresosController extends Controller
 				$elPaciente->saldo = $elPaciente->saldo + $model->valor;
 				$elPaciente->update();
 				//Movimientos
-				$movimientosCaja = new pacienteMovimientos;
+				$movimientosCaja = new PacienteMovimientos;
 				$movimientosCaja->paciente_id = $model->paciente_id;
 				$movimientosCaja->valor = $model->valor;
 				$movimientosCaja->tipo = "Ingreso";
