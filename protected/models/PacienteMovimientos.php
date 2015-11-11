@@ -57,7 +57,7 @@ class PacienteMovimientos extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'paciente' => array(self::BELONGS_TO, 'Paciente', 'paciente_id'),
-			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'usuario_id'),
+			'personal' => array(self::BELONGS_TO, 'Personal', 'usuario_id'),
 		);
 	}
 
@@ -92,6 +92,7 @@ class PacienteMovimientos extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
+
 	public function search()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.

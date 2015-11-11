@@ -111,6 +111,7 @@ class IngresosController extends Controller
 				$movimientosCaja->paciente_id = $model->paciente_id;
 				$movimientosCaja->valor = $model->valor;
 				$movimientosCaja->tipo = "Ingreso";
+				$movimientosCaja->ingreso_id = $model->id;
 				$movimientosCaja->sub_tipo = "Ingreso sin Contrato";
 				$movimientosCaja->descripcion = "Ingreso a caja de paciente directamente en su perfil";
 				$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;

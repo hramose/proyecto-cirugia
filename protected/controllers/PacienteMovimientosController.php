@@ -59,7 +59,7 @@ class PacienteMovimientosController extends Controller
 	public function actionViewCaja($id)
 	{
 		$this->render('viewCaja',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$ingreso = Paciente::model()->findByPk($id),
 		));
 	}
 

@@ -32,6 +32,19 @@ $texto_liquidar = "";
 				echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$model->fecha_completo);
 				echo "</div>";
 			}
+			else
+			{
+				if ($model->paciente->saldo > 0) 
+				{
+					?>
+					<h4>Saldo de caja:</h4>
+					<?php
+					echo "<h4 class='text-success'>$ ".$model->paciente->saldo."</h4>";
+					?>
+					<a href="index.php?r=Contratos/vincularNota&idNota=<?php echo $detalle_notaCredito->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Ingreso a Contrato</a>
+					<?php
+				}
+			}
 		?>
 	</div>
 
@@ -367,6 +380,7 @@ if (count($detalleContrato)>0) {
 ?>					
 </table>
 <?php endif ?>
+
 <hr>
 
 <div class="row">
