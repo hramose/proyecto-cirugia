@@ -729,7 +729,10 @@ function superTotal()
 			$("#ProductoCompras_rte_ica_valor").val("");
 		}
 
-
+	total_orden = total_orden.toFixed(2);
+	total_compra = total_compra.toFixed(2);
+	total_principal = total_principal.toFixed(2);
+	
 	$("#ProductoCompras_total").val(total_orden);
 	$("#ProductoCompras_total_orden").val(total_principal);
 	$("#ProductoCompras_total_compra").val(total_compra);

@@ -4800,3 +4800,529 @@ REQUEST_URI=/smadia/index.php?r=contratos/view&id=1671
 in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (44)
 in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/12 16:06:34 [error] [php] Undefined variable: detalle_notaCredito (C:\xampp\htdocs\smadia\protected\views\contratos\view.php:44)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): ContratosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): ContratosController->renderPartial()
+#2 C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php(65): ContratosController->render()
+#3 unknown(0): ContratosController->actionView()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): ContratosController->runAction()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): ContratosController->filterAccessControl()
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(265): ContratosController->runActionWithFilters()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): ContratosController->run()
+#15 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=contratos/view&id=1671
+in C:\xampp\htdocs\smadia\protected\views\contratos\view.php (44)
+in C:\xampp\htdocs\smadia\protected\controllers\ContratosController.php (65)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/12 17:28:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=Contratos/deposito&idPaciente=3991&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:28:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=Contratos/deposito&idPaciente=3991&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:28:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/deposito&idPaciente=3991&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:32:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/deposito&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:33:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/deposito&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:33:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/deposito&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:33:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/deposito&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:34:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoContrato" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoContrat...')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoContrat...')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/depositoContrato&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:34:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoContrato" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoContrat...')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoContrat...')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contratos/depos...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=contratos/depositoContrato&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:37:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoContrato" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoContrat...')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoContrat...')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoContrato&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:38:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:40:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:40:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja
+---
+2015/11/12 17:40:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:40:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:42:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:42:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:42:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:43:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:44:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+---
+2015/11/12 17:45:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:48:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:49:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "contrato/depositoCaja"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('contrato/deposi...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=contrato/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:52:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:52:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:52:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:53:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:55:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:55:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "deposito" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('deposito')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('deposito')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/deposito&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:55:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:57:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "depositoCaja" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(270): CController->missingAction('depositoCaja')
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 17:58:04 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 18:00:21 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 18:01:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 18:07:23 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja
+---
+2015/11/12 18:07:25 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 18:07:46 [error] [php] Undefined variable: id (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:64)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (64)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/12 18:07:58 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('depositoCaja')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/deposi...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1671
+---
+2015/11/12 18:08:55 [error] [php] Undefined variable: id (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:64)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (64)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/12 21:31:38 [error] [php] Undefined variable: elPaciente (C:\xampp\htdocs\smadia\protected\views\paciente\depositoCaja.php:19)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): PacienteController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): PacienteController->renderPartial()
+#2 C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php(67): PacienteController->render()
+#3 unknown(0): PacienteController->actionDepositoCaja()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#15 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/depositoCaja&idContrato=1671
+in C:\xampp\htdocs\smadia\protected\views\paciente\depositoCaja.php (19)
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (67)
+in C:\xampp\htdocs\smadia\index.php (13)

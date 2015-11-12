@@ -41,7 +41,8 @@ $texto_liquidar = "";
 					<?php
 					echo "<h4 class='text-success'>$ ".$model->paciente->saldo."</h4>";
 					?>
-					<a href="index.php?r=Contratos/vincularNota&idNota=<?php echo $detalle_notaCredito->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Ingreso a Contrato</a>
+					<a href="index.php?r=paciente/depositoCaja&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-primary"><i class="icon-download-alt icon-white"></i> Ingreso a Contrato</a> <br><br>
+					<a href="index.php?r=paciente/deposito&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-info"><i class="icon-retweet icon-white"></i> Transferencia a Paciente</a>
 					<?php
 				}
 			}

@@ -62,7 +62,7 @@ class ProductoCompras extends CActiveRecord
 			array('factura_n', 'length', 'max'=>25),
 			array('forma_pago', 'length', 'max'=>15),
 			array('descuento, aplica_retencion, rte_iva, rte_ica', 'length', 'max'=>2),
-			array('descuento_valor, descuento_total, iva, iva_total, retencion_retener, retencion_base, retencion_porcentaje, rte_iva_valor, rte_ica_porcentaje, rte_ica_valor, total_orden, total, total_compra, saldo', 'length', 'max'=>10),
+			array('descuento_valor, descuento_total, iva, iva_total, retencion_retener, retencion_base, retencion_porcentaje, rte_iva_valor, rte_ica_porcentaje, rte_ica_valor, total_orden, total, total_compra, saldo', 'length', 'max'=>12),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, producto_proveedor_id, nit, factura_n, fecha_sola, forma_pago, descuento, descuento_tipo, descuento_valor, descuento_total, iva, iva_total, aplica_retencion, retencion_id, retencion_retener, retencion_base, retencion_porcentaje, rte_iva, rte_iva_valor, rte_ica, rte_ica_porcentaje, rte_ica_valor, cantidad_productos, total_orden, total, total_compra, centro_costo_id, personal_id, fecha, credito_dias, credito_fecha, banco_cuenta_id, banco_destino, cuenta_destino, saldo, estado', 'safe', 'on'=>'search'),

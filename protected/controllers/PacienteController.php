@@ -37,7 +37,7 @@ class PacienteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'depositoCaja'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -58,6 +58,15 @@ class PacienteController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
+
+	public function actionDepositoCaja($idContrato)
+	{
+		$todoContrato = Contratos::model()->findByPk($idContrato);
+		$this->render('depositoCaja',array(
+			'model'=>$todoContrato,
+		));
+	}
+
 	public function actionView($id)
 	{
 		if (isset($_POST['SeguimientoComercial'])) 

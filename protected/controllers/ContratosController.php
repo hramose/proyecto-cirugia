@@ -65,6 +65,8 @@ class ContratosController extends Controller
 		));
 	}
 
+	
+
 	public function actionAnular($id)
 	{
 		if ($_POST['clave'] == "super") //Es super usuario
@@ -103,6 +105,7 @@ class ContratosController extends Controller
 		));
 	}
 
+	
 	public function actionCxc()
 	{
 		$model=new Contratos('search');
