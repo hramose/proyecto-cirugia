@@ -63,7 +63,7 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 						<td><?php echo $detalle_movimientos->tipo; ?></td>
 						<td><?php echo $detalle_movimientos->sub_tipo; ?></td>
 						<td><?php echo $detalle_movimientos->descripcion; ?></td>
-						<td><?php echo $detalle_movimientos->fecha; ?></td>
+						<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$detalle_movimientos->fecha); ?></td>
 						<td><?php echo $detalle_movimientos->personal->nombreCompleto; ?></td>
 						<td><a href="index.php?r=pacienteMovimientos/view&id=<?php echo $detalle_movimientos->id;?>">[Ver]</a></td>
 					</tr>
@@ -77,7 +77,8 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 						<td><?php echo $detalle_movimientos->tipo; ?></td>
 						<td><?php echo $detalle_movimientos->sub_tipo; ?></td>
 						<td><?php echo $detalle_movimientos->descripcion; ?></td>
-						<td><?php echo $detalle_movimientos->fecha; ?></td>
+						<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$detalle_movimientos->fecha); ?></td>
+						<td><?php echo $detalle_movimientos->personal->nombreCompleto; ?></td>
 						<td><a href="index.php?r=pacienteMovimientos/view&id=<?php echo $detalle_movimientos->id;?>">[Ver]</a></td>
 					</tr>
 					<?php

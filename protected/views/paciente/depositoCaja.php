@@ -17,7 +17,7 @@ $this->menu=array(
 	<div class="span12"></div>
 </div>
 
-<form name="depositoContrato" action="index.php?r=ingresos/ingresoContrato&idContrato=<?php echo $model->id;?>" method = "post" >
+<form name="depositoContrato" action="index.php?r=contratos/ingresoContrato&idContrato=<?php echo $model->id;?>" method = "post" >
 	<div class="row">
 		<div class="span2"></div>	
 		<div class="span3 text-center hero-unit">

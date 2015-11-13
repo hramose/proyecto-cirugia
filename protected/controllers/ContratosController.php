@@ -41,11 +41,11 @@ class ContratosController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'guardarContratos', 'aprobarContratos', 'precio','guardarPresupueston', 'actualizarContrato'),
+				'actions'=>array('create','update', 'guardarContratos', 'aprobarContratos', 'precio','guardarPresupueston', 'actualizarContrato', 'imprimirIngresos'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'contratos', 'vincular', 'cxc', 'completar', 'notaCredito', 'liquidar', 'actualizarContratoLiquidar', 'anular', 'exportar', 'vincularNota'),
+				'actions'=>array('admin','delete', 'contratos', 'vincular', 'cxc', 'completar', 'notaCredito', 'liquidar', 'actualizarContratoLiquidar', 'anular', 'exportar', 'vincularNota', 'ingresoContrato'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -63,6 +63,35 @@ class ContratosController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionIngresoContrato($idContrato)
+	{
+		$elContrato = Contratos::model()->findByPk($idContrato);
+		$elContrato->saldo = $elContrato->saldo - $_POST['valor'];
+		if ($elContrato->update()) 
+		{
+			$elPaciente = Paciente::model()->findByPk($elContrato->paciente_id);
+			$elPaciente->saldo = $elPaciente->saldo - $_POST['valor'];
+			$elPaciente->update();
+			
+			$losMovimientos = new PacienteMovimientos;
+			$losMovimientos->paciente_id = $elContrato->paciente_id;
+			$losMovimientos->valor = $_POST['valor'];
+			$losMovimientos->tipo = "Egreso";
+			$losMovimientos->sub_tipo = "Ingreso a Contrato";
+			$losMovimientos->descripcion = "Ingreso a Contrato usando Caja Personal";
+			$losMovimientos->contrato_id = $elContrato->id;
+			$losMovimientos->usuario_id = Yii::app()->user->usuarioId;
+			$losMovimientos->fecha = date("Y-m-d H:i:s");
+			$losMovimientos->save();
+
+			Yii::app()->user->setFlash('success',"Se ha realizado con éxito el ingreso");
+			$this->redirect(array('view','id'=>$elContrato->id));
+
+		}
+		//Ingreso a contrato de caja de paciente
+
 	}
 
 	

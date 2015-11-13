@@ -68,7 +68,10 @@ $this->menu=array(
 		  	<img class="img-polaroid" src="images/user.png"/>
 
 		  	<h4 class="text-center">Saldo en Caja</h4>
-		  	<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->id;?> tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3></a>
+		  	<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->id;?>" tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3></a>
+		  	<a href="index.php?r=paciente/deposito&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-info"><i class="icon-retweet icon-white"></i> Transferencia a Paciente</a>
+		  	
+
 		  	<hr>
 		  	<h4 class="text-center">Deuda</h4>
 		  	<h3 class="text-center text-error">$ <?php echo $total_cxc; ?></h3>

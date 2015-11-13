@@ -81,7 +81,6 @@ class IngresosController extends Controller
 		{
 			$elPaciente = Paciente::model()->findByPk($_GET['idPaciente']);
 
-
 			$model->attributes=$_POST['Ingresos'];
 			$model->forma_pago = $_POST['Ingresos']['forma_pago'];
 			$model->descripcion = $_POST['Ingresos']['descripcion'];
@@ -507,19 +506,7 @@ class IngresosController extends Controller
 		));
 	}
 
-	public function actionIngresoContrato($idContrato)
-	{
-		$elContrato = Contratos::model()->findByPk($idContrato);
-		$elContrato->saldo = $elContrato->saldo - $_POST['valor'];
-		if ($elContrato->update()) 
-		{
-			
-		}
-		//Ingreso a contrato de caja de paciente
-
-	}
-
-
+	
 	public function actionAnular()
 	{
 		$id = $_GET['id'];
