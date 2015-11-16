@@ -37,11 +37,11 @@ class PacienteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'depositoCaja'),
+				'actions'=>array('index','view', 'depositoCaja', 'depositoPaciente'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'upload', 'cajas'),
+				'actions'=>array('create','update', 'upload', 'cajas', 'ingresoCajaPaciente'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -64,6 +64,45 @@ class PacienteController extends Controller
 		$todoContrato = Contratos::model()->findByPk($idContrato);
 		$this->render('depositoCaja',array(
 			'model'=>$todoContrato,
+		));
+	}
+
+	public function actionIngresoCajaPaciente($idOrigen)
+	{
+		//Buscar Paciente Origen
+		$pacienteOrigen = Paciente::model()->findByPk($idOrigen);
+
+		//Ingreso a Caja de Paciente
+		$pacienteDestino = Paciente::model()->findByPk($_POST['paciente']);
+		$pacienteDestino->saldo = $pacienteDestino->saldo + $_POST['valor'];
+		if($pacienteDestino->update())
+		{
+			//Registro en caja
+			$movimientoDeposito = new PacienteMovimientos;
+			$movimientoDeposito->paciente_id	= $pacienteDestino->id;
+			$movimientoDeposito->valor 			= $_POST['valor'];
+			$movimientoDeposito->tipo			= "Ingreso";
+			$movimientoDeposito->subTipo 		= "Ingreso por Tranferencia de Paciente";
+			$movimientoDeposito->descripcion	= "El Paciente No. ".$pacienteOrigen->." Nombre: ".$pacienteOrigen->nombreCompleto.". Realizo un traslado de su caja a este paciente";
+			$movimientoDeposito->usuario_id		= Yii::app()->user->usuarioId;
+			$movimientoDeposito->save();
+
+			//Retiro a Caja de Paciente
+			$pacienteOrigen->saldo = $pacienteOrigen->saldo - $_POST['valor'];
+			$pacienteOrigen->update();
+		}
+
+		$todoContrato = Contratos::model()->findByPk($idContrato);
+		$this->render('depositoCaja',array(
+			'model'=>$todoContrato,
+		));
+	}
+
+	public function actionDepositoPaciente($idPaciente)
+	{
+		$todoPaciente = Paciente::model()->findByPk($idPaciente);
+		$this->render('depositoPaciente',array(
+			'model'=>$todoPaciente,
 		));
 	}
 

@@ -17,6 +17,8 @@ $this->menu=array(
 	<div class="span5 text-center">
 		<br>
 		<img class="img" src="images/movimientos.png"/>
+		<br>
+		<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->paciente_id;?>" class="btn btn-mini btn-success"><i class="icon-user icon-white"></i> Ver Caja de Paciente</a>
 	</div>
 	<div class="span6">
 		<?php $this->widget('zii.widgets.CDetailView', array(
@@ -30,7 +32,7 @@ $this->menu=array(
 			'ingreso_id',
 			'contrato_id',
 			'usuario_id',
-			'fecha',
+			array('name'=>'fecha', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$model->fecha),''),
 		),
 	)); ?>	
 	</div>

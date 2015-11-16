@@ -21,7 +21,8 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 <div class="row">
 	<div class="span5 text-center">
 		<img class="img" src="images/MoneyTransfer.png"/>
-		<h2 class = "text-center"><div class="text-info">Saldo $ <?php echo $model->saldo; ?></div></h2>
+		<h2 class = "text-center"><div class="text-info">Saldo $ <?php echo number_format($model->saldo,2); ?></div></h2>
+		<a href="index.php?r=paciente/depositoPaciente&idPaciente=<?php echo $model->id;?>" class="btn btn-small btn-warning"><i class="icon-random icon-white"></i> Transferir Saldo a Paciente</a>
 	</div>
 	<div class="span6">
 		<?php $this->widget('zii.widgets.CDetailView', array(
@@ -34,6 +35,35 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 			),
 		)); ?>
 		<a href="index.php?r=paciente/view&id=<?php echo $model->id;?>" class="btn btn-mini btn-success"><i class="icon-user icon-white"></i> Ver Paciente</a>
+		<!-- Contratos -->
+		<?php 
+			$losContratos = Contratos::model()->findAll("paciente_id = $model->id and saldo > 0");
+			if ($losContratos) 
+			{
+				echo "<h5 class='text-center'>Contratos con Saldo Pendiente</h5>";
+				?>
+				<table class="table">
+					<tr>
+						<th>No.</th>
+						<th>Saldo.</th>
+						<th></th>
+					</tr>
+					<?php 
+						foreach ($losContratos as $los_contratos) 
+						{
+							?>
+							<tr>
+								<td><?php echo $los_contratos->id; ?></td>
+								<td><?php echo "$ ".number_format($los_contratos->saldo,2); ?></td>
+								<td><a href="index.php?r=contratos/view&id=<?php echo $los_contratos->id; ?>">[Ver]</a></td>
+							</tr>
+							<?php
+						}
+					?>
+				</table>
+				<?php
+			}
+		?>
 	</div>
 </div>
 
@@ -59,7 +89,7 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 					if ($detalle_movimientos->tipo == "Ingreso") {
 						?>
 					<tr class="success">
-						<td><?php echo "$ ".$detalle_movimientos->valor; ?></td>
+						<td><?php echo "$ ".number_format($detalle_movimientos->valor,2); ?></td>
 						<td><?php echo $detalle_movimientos->tipo; ?></td>
 						<td><?php echo $detalle_movimientos->sub_tipo; ?></td>
 						<td><?php echo $detalle_movimientos->descripcion; ?></td>
@@ -73,7 +103,7 @@ $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $mode
 					if ($detalle_movimientos->tipo == "Egreso") {
 						?>
 					<tr class="error">
-						<td><?php echo "$ ".$detalle_movimientos->valor; ?></td>
+						<td><?php echo "$ ".number_format($detalle_movimientos->valor,2); ?></td>
 						<td><?php echo $detalle_movimientos->tipo; ?></td>
 						<td><?php echo $detalle_movimientos->sub_tipo; ?></td>
 						<td><?php echo $detalle_movimientos->descripcion; ?></td>
