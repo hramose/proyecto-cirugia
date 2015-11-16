@@ -252,12 +252,28 @@ class CitasController extends Controller
 
 		if(isset($_POST['Citas']))
 		{
+
+			//Copiar datos a tabla de actualizaciones
+			$citaAnterior = new CitasActualizacion;
+			$citaAnterior->cita_id 			= $model->id;
+			$citaAnterior->fecha 			= $model->fecha_cita;
+			$citaAnterior->personal 		= $model->personal->nombreCompleto;
+			$citaAnterior->contrato 		= $model->contrato_id;
+			$citaAnterior->servicio 		= $model->lineaServicio->nombre;
+			$citaAnterior->comentario 		= $model->comentario;
+			$citaAnterior->inicio 			= $model->hora_inicio;
+			$citaAnterior->fin 				= $model->hora_fin_mostrar;
+			$citaAnterior->actualizacion 	= $model->actualizacion;
+			$citaAnterior->usuario 			= $model->usuario->nombreCompleto;
+
+
 			$model->attributes=$_POST['Citas'];
 			$model->fecha_cita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
 			$model->hora_fin = $_POST['Citas']['hora_fin'] - 1;
 			$model->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
 			$model->contrato_id = $_POST['elContrato'];
 			$model->usuario_id = Yii::app()->user->usuarioId;
+			$model->actualizacion = $_POST['Citas']['actualizacion'];
 			//$model->equipo_adicional = $_POST['Citas']['equipo_adicional'];
 
 			$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
@@ -382,6 +398,7 @@ class CitasController extends Controller
 			{
 			if($model->update())
 
+				
 				//Actualizar Cita Equipo
 				//$losEquipos = CitasEquipo::model()->findByPk($model->id);
 				//Si encuentra registros
@@ -428,6 +445,9 @@ class CitasController extends Controller
 				if ($model->correo == "Si") {
 					$this->actionEnvioCorreo($model->id);
 				}
+
+				$citaAnterior->save();
+
 
 				$this->redirect(array('view','id'=>$model->id));
 		}

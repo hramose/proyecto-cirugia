@@ -64,13 +64,12 @@ $this->menu=array(
 				
 <h1>Paciente #<?php echo $model->id; ?></h1>
 <div class="row">
-	<div class="span2">
+	<div class="span2 text-center">
 		  	<img class="img-polaroid" src="images/user.png"/>
 
 		  	<h4 class="text-center">Saldo en Caja</h4>
 		  	<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->id;?>" tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3></a>
-		  	<a href="index.php?r=paciente/deposito&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-info"><i class="icon-retweet icon-white"></i> Transferencia a Paciente</a>
-		  	
+		  	<a href="index.php?r=paciente/depositoPaciente&idPaciente=<?php echo $model->id; ?>" class="btn btn-mini btn-info"><i class="icon-retweet icon-white"></i> Transferencia a Paciente</a>
 
 		  	<hr>
 		  	<h4 class="text-center">Deuda</h4>

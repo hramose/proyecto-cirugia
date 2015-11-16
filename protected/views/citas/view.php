@@ -116,6 +116,7 @@ $edadpaciente = date("Y") - $anio_nacimiento;
 				array('name'=>'Hora de Fin', 'value'=>$lahora->hora ,''),
 				'correo',
 				'comentario',
+				'actualizacion',
 			),
 		));
 
@@ -769,6 +770,55 @@ if ($elEquipo)
 				</table>
 			</div>
 		</div>
+
+		<?php
+			//Buscar Historial de actualizaciones
+			$historialActualizacion = CitasActualizacion::model()->findAll("cita_id = $model->id");
+			if ($historialActualizacion) 
+			{
+				?>
+				<div class="row">
+				<div class="span12">
+					<h3 class="text-center">Historial de Actualizaciones</h3>
+					<table class="table table-striped">
+						<tr>
+							<th>Fecha</th>
+							<th>Profesional</th>
+							<th>Contrato</th>
+							<th>Servicio</th>
+							<th>Comentario</th>
+							<th>Inicio</th>
+							<th>Fin</th>
+							<th>Comentario Actualizacion</th>
+							<th>Personal Actualizo</th>
+						</tr>
+						<?php 
+							foreach ($historialActualizacion as $historial_actualizacion) 
+							{
+						?>
+							<tr>
+								<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$historial_actualizacion->fecha); ?></td>
+								<td><?php echo $historial_actualizacion->personal; ?></td>
+								<td><?php echo $historial_actualizacion->contrato; ?></td>
+								<td><?php echo $historial_actualizacion->servicio; ?></td>
+								<td><?php echo $historial_actualizacion->comentario; ?></td>
+								<td><?php echo $historial_actualizacion->inicio0->hora; ?></td>
+								<td><?php echo $historial_actualizacion->fin0->hora; ?></td>
+								<td><?php echo $historial_actualizacion->actualizacion; ?></td>
+								<td><?php echo $historial_actualizacion->usuario; ?></td>
+							</tr>
+						<?php
+							}
+						?>					
+						</table>
+					</div>
+				</div>
+		
+				<?php
+
+
+			}
+		?>
 
 
 		<!-- Resumenes de Historial Clinico -->

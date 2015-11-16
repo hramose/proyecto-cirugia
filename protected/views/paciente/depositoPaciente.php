@@ -11,10 +11,23 @@ $this->menu=array(
 <h1>Traslado de Fondos a Paciente</h1>
 
 <h5>Se dispone a realizar un fondos a otro paciente. Seleccione el destinatario</h5>
-
 <div class="row">
-	<div class="span12"></div>
+	<div class="span2"></div>
+	<div class="span8">
+	<p><b>Cuenta de Origen:</b></p>
+	<?php
+	$this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model,
+			'attributes'=>array(			
+				'nombre',
+				'apellido',
+				'n_identificacion',
+			),
+		));
+	?>
+	</div>
 </div>
+<br>
 
 <form name="depositoContrato" action="index.php?r=paciente/ingresoCajaPaciente&idOrigen=<?php echo $model->id;?>" method = "post" >
 	<div class="row">
@@ -44,7 +57,7 @@ $this->menu=array(
 		</div>	
 		<div class="span4 text-center hero-unit">
 			<img class="img" src="images/MoneyTransfer.png"/>
-			<h4>Monto del ingreso:</h4>
+			<h4>Monto del transferencia:</h4>
 			<div class="input-prepend input-append control-group info">
 				<span class="add-on">$</span>
 				<input type="text" class="input-small" name="valor" id="valor" value="">

@@ -82,9 +82,10 @@ class PacienteController extends Controller
 			$movimientoDeposito->paciente_id	= $pacienteDestino->id;
 			$movimientoDeposito->valor 			= $_POST['valor'];
 			$movimientoDeposito->tipo			= "Ingreso";
-			$movimientoDeposito->subTipo 		= "Ingreso por Tranferencia de Paciente";
-			$movimientoDeposito->descripcion	= "El Paciente No. ".$pacienteOrigen->." Nombre: ".$pacienteOrigen->nombreCompleto.". Realizo un traslado de su caja a este paciente";
+			$movimientoDeposito->sub_tipo 		= "Tranferencia de Paciente";
+			$movimientoDeposito->descripcion	= "El Paciente No. ".$pacienteOrigen->id." Nombre: ".$pacienteOrigen->nombreCompleto.". Realizo un traslado de su caja a este paciente";
 			$movimientoDeposito->usuario_id		= Yii::app()->user->usuarioId;
+			$movimientoDeposito->fecha 			= date("Y-m-d H:i:s");
 			$movimientoDeposito->save();
 
 			//Retiro a Caja de Paciente
@@ -92,9 +93,8 @@ class PacienteController extends Controller
 			$pacienteOrigen->update();
 		}
 
-		$todoContrato = Contratos::model()->findByPk($idContrato);
-		$this->render('depositoCaja',array(
-			'model'=>$todoContrato,
+		$this->render('view',array(
+			'model'=>$pacienteDestino,
 		));
 	}
 

@@ -53,7 +53,7 @@ class Citas extends CActiveRecord
 			array('correo', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, cedula_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento', 'safe', 'on'=>'search'),
+			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, cedula_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento, actualizacion', 'safe', 'on'=>'search'),
 			array('hora_inicio','validarHora'),
 			array('hora_fin','validarHoraMenor'),
 			array('hora_fin','validarHoraFin'),
@@ -117,6 +117,7 @@ class Citas extends CActiveRecord
 			'omitir_seguimiento' => 'Omitir Seguimiento',
 			'fecha_creacion' => 'Fecha Creación',
 			'fecha_hora_creacion' => 'Fecha y Hora de Creación',
+			'actualizacion' => 'Comentario de Actualización',
 
 		);
 	}

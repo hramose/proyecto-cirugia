@@ -220,6 +220,26 @@ else
 		</div>
 	</div>
 
+<?php if ($model->id) 
+{
+?>
+
+
+	<div class="row">
+		<div class="span6">
+			<?php echo $form->labelEx($model,'actualizacion'); ?>
+			<?php echo $form->textArea($model,'actualizacion',array('rows'=>6, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+			<?php echo $form->error($model,'actualizacion'); ?>
+		</div>
+
+		<div class="span6">
+
+		</div>
+	</div>
+
+<?php
+	# code...
+} ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-info', 'id'=>'guardar', 'name'=>'guardar', 'onclick'=>'js:antesdeEnviar();')); ?>
@@ -230,7 +250,15 @@ else
 </div><!-- form -->
 
 <script>
-	 function validar() { 
+	 function validar() 
+	 {
+
+		if($("#Citas_actualizacion").val() == "")
+		{
+			swal("Debe de agregar un comentario a la actualización.");
+			return false;
+		}	 	
+
 		if($("#elContrato").val() == "") 
 			{ 
 				if (confirm('¿Desea crear esta cita sin vincular un contrato?')){ 
