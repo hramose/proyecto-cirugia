@@ -53,6 +53,17 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                     //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
 
                                     )), 
+                                array('label'=>'Modulo Gerencial', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Seguimientos Vencidos', 'url'=>array("/Citas/activas")),
+                                    array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
+                                    array('label'=>'Citas no Confirmadas', 'url'=>array("/Promociones/create")),
+                                    array('label'=>'Asignar Tareas', 'url'=>array("/Promociones/admin")),
+                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/Promociones/admin")),
+                                    array('label'=>'Tareas Vencidas', 'url'=>array("/Promociones/admin")),
+                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
+
+                                    )), 
                         )),
 
                         array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6,'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
