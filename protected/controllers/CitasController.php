@@ -75,11 +75,9 @@ class CitasController extends Controller
 
 	public function actionVencidas()
 	{
-		$elPersonal = Citas::model()->count("estado = 'Vencida' group by personal_id");
+		//$elPersonal = Citas::model()->count("estado = 'Vencida' group by personal_id");
 		//$elPersonal = Personal::model()->findAll("agenda = 'SI'");
-		$this->render('vencidas',array(
-			'model'=>$elPersonal,
-		));
+		$this->render('vencidas');
 	}
 
 	public function actionVer($id)

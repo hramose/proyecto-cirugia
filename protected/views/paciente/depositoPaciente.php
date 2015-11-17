@@ -57,7 +57,7 @@ $this->menu=array(
 		</div>	
 		<div class="span4 text-center hero-unit">
 			<img class="img" src="images/MoneyTransfer.png"/>
-			<h4>Monto del transferencia:</h4>
+			<h4>Monto de transferencia:</h4>
 			<div class="input-prepend input-append control-group info">
 				<span class="add-on">$</span>
 				<input type="text" class="input-small" name="valor" id="valor" value="">
