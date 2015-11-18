@@ -6493,3 +6493,548 @@ REQUEST_URI=/smadia/index.php?r=citas/vencidas
 in C:\xampp\htdocs\smadia\protected\views\citas\vencidas.php (22)
 in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (80)
 in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 16:04:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "vencidasDetalle"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('vencidasDetalle')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=vencidasDetalle&idPersonal=21
+HTTP_REFERER=http://localhost/smadia/index.php?r=citas/vencidas
+---
+2015/11/18 16:34:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "vencidasDetalle"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('vencidasDetalle')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=vencidasDetalle&idPersonal=21
+HTTP_REFERER=http://localhost/smadia/index.php?r=citas/vencidas
+---
+2015/11/18 16:35:21 [error] [exception.CException] exception 'CException' with message 'CitasController no ha podido encontrar la vista "vencidasDetalle" solicitada.' in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('vencidasDetalle', Array, true)
+#1 C:\xampp\htdocs\smadia\protected\controllers\CitasController.php(642): CController->render('vencidasDetalle', Array)
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): CitasController->actionVencidasDetalle()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('vencidasDetalle')
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('citas/vencidasD...')
+#13 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/smadia/index.php?r=citas/vencidasDetalle&idPersonal=21
+HTTP_REFERER=http://localhost/smadia/index.php?r=citas/vencidas
+---
+2015/11/18 17:42:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "seguimientosComerciales/vencidos"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientosCom...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientosComerciales/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/index
+---
+2015/11/18 17:43:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "seguimientosComerciales/vencidos"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientosCom...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientosComerciales/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/index
+---
+2015/11/18 17:43:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "seguimientosComerciales/vencidos"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientosCom...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientosComerciales/vencidos
+---
+2015/11/18 17:43:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "seguimientosComerciales/vencidos"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientosCom...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientosComerciales/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/index
+---
+2015/11/18 17:47:49 [error] [system.db.CDbCommand] CDbCommand::() falló: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'field list'. La sentencia SQL ejecutada fue: SELECT personal_id, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.personal_id = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC.
+in C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php (8)
+in C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php (57)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 17:47:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'field list'. The SQL statement executed was: SELECT personal_id, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.personal_id = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(377): CDbCommand->queryInternal('', 0, Array)
+#1 C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php(8): CDbCommand->query()
+#2 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', NULL, true)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('vencidos', NULL, true)
+#6 C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php(57): CController->render('vencidos')
+#7 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SeguimientoComercialController->actionVencidos()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('vencidos')
+#17 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientoCome...')
+#18 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=seguimientoComercial/admin&filtro=3
+---
+2015/11/18 17:48:17 [error] [system.db.CDbCommand] CDbCommand::() falló: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'group statement'. La sentencia SQL ejecutada fue: SELECT id_personal, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.id_personal = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC.
+in C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php (8)
+in C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php (57)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 17:48:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'group statement'. The SQL statement executed was: SELECT id_personal, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.id_personal = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(377): CDbCommand->queryInternal('', 0, Array)
+#1 C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php(8): CDbCommand->query()
+#2 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', NULL, true)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('vencidos', NULL, true)
+#6 C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php(57): CController->render('vencidos')
+#7 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SeguimientoComercialController->actionVencidos()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('vencidos')
+#17 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientoCome...')
+#18 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=seguimientoComercial/admin&filtro=3
+---
+2015/11/18 17:48:29 [error] [system.db.CDbCommand] CDbCommand::() falló: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'group statement'. La sentencia SQL ejecutada fue: SELECT id_personal, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.id_personal = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC.
+in C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php (8)
+in C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php (57)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 17:48:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'personal_id' in 'group statement'. The SQL statement executed was: SELECT id_personal, personal.nombres, personal.apellidos, count(*) as conteo FROM seguimiento_comercial  left join personal  on seguimiento_comercial.id_personal = personal.id WHERE estado = 'Vencido' GROUP by personal_id order by Conteo DESC' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(377): CDbCommand->queryInternal('', 0, Array)
+#1 C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\vencidos.php(8): CDbCommand->query()
+#2 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', NULL, true)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('vencidos', NULL, true)
+#6 C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php(57): CController->render('vencidos')
+#7 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SeguimientoComercialController->actionVencidos()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('vencidos')
+#17 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientoCome...')
+#18 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/vencidos
+HTTP_REFERER=http://localhost/smadia/index.php?r=seguimientoComercial/admin&filtro=3
+---
+2015/11/18 18:02:59 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'Usted no se enc...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('vencidosDetalle')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('seguimientoCome...')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/vencidosDetalle&idPersonal=10
+HTTP_REFERER=http://localhost/smadia/index.php?r=seguimientoComercial/vencidos
+---
+2015/11/18 18:03:16 [error] [php] Undefined variable: titulo (C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\admin.php:39)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): SeguimientoComercialController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): SeguimientoComercialController->renderPartial()
+#2 C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php(242): SeguimientoComercialController->render()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SeguimientoComercialController->actionVencidosDetalle()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): SeguimientoComercialController->runAction()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): SeguimientoComercialController->filterAccessControl()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): SeguimientoComercialController->runActionWithFilters()
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): SeguimientoComercialController->run()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=seguimientoComercial/vencidosDetalle&idPersonal=10
+in C:\xampp\htdocs\smadia\protected\views\seguimientoComercial\admin.php (39)
+in C:\xampp\htdocs\smadia\protected\controllers\SeguimientoComercialController.php (242)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 18:30:01 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (651)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 18:34:13 [warning] [application] Error al establecer unsafe al atributo "comentario_cierre" de "Citas".
+in C:\xampp\htdocs\smadia\protected\controllers\CitasController.php (623)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:08:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:08:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 19:08:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:08:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 19:08:16 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:08:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 19:10:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:10:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 19:12:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:12:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 19:18:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = .
+in C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php (5)
+in C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php (278)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 19:18:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT * FROM `producto_compras` `t` WHERE producto_proveedor_id = ' in C:\xampp\htdocs\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\smadia\protected\views\egresos\consultaFacturas.php(5): CActiveRecord->findAll('producto_provee...')
+#4 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('consultaFactura...', Array, true)
+#8 C:\xampp\htdocs\smadia\protected\controllers\EgresosController.php(278): CController->render('consultaFactura...', Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EgresosController->actionConsultaFacturas()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('consultaFactura...')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('egresos/consult...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=egresos/consultaFacturas&pr=
+HTTP_REFERER=http://localhost/smadia/index.php?r=egresos/create
+---
+2015/11/18 20:47:31 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:48:01 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:52:33 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:52:53 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:53:23 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:54:58 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:56:00 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/18 20:56:17 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php:77)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PacienteController->runAction()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PacienteController->filterAccessControl()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(265): PacienteController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PacienteController->run()
+#10 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=paciente/ingresoCajaPaciente&idOrigen=1642
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php (77)
+in C:\xampp\htdocs\smadia\index.php (13)

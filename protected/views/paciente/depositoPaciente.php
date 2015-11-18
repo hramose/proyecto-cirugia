@@ -29,20 +29,42 @@ $this->menu=array(
 </div>
 <br>
 
-<form name="depositoContrato" action="index.php?r=paciente/ingresoCajaPaciente&idOrigen=<?php echo $model->id;?>" method = "post" >
+<form name="depositoContrato" action="index.php?r=paciente/ingresoCajaPaciente&idOrigen=<?php echo $model->id;?>" method = "post" onsubmit = "return onEnviar()">
 	<div class="row">
 		<div class="span1"></div>	
 		<div class="span10">
 			<label>Pacientes Disponibles</label>
-			<select name="paciente" id="paciente" class="input-xxlarge">
-				<?php 
-					$losPacientes = Paciente::model()->findAll(array('order'=>'nombre'));
-					foreach ($losPacientes as $los_pacientes) 
-					{
-						echo "<option value=$los_pacientes->id>$los_pacientes->nombreCompleto - $los_pacientes->n_identificacion</option>";
-					}
-				?>
-			</select>
+			<?php 
+				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+					    //'model'=>$model,
+					    //'attribute'=>'name',
+					    'id'=>'buscar_paciente',
+					    //'id'=>'country-chain',
+					    'name'=>'buscar_paciente',
+					    //'name'=>'country_chain',
+					    'source'=>$this->createUrl('pacienteBuscar/buscarPaciente'),
+					    'options'=>array(
+					        'delay'=>300,
+					        'minLength'=>2,
+					        'showAnim'=>'fold',
+					        'select'=>"js:function(event, ui) {
+					            $('#nombre_paciente').val(ui.item.nombre);
+					            $('#paciente').val(ui.item.id)
+					            
+					        }"
+					    ),
+					    'htmlOptions'=>array(
+					        'size'=>'100',
+					        'class'=>'input-small',
+					    ),
+					));
+			?>
+			- 
+			<input type="text" class="input-xxlarge" readonly="true" id="nombre_paciente" name="nombre_paciente">
+			<div style="display: none">
+				<input type="text" class="input-small" id="paciente" name="paciente">	
+			</div>
+			
 		</div>
 	</div>
 	<div class="row">
@@ -68,7 +90,7 @@ $this->menu=array(
 	<hr>
 	<div class="row">
 		<div class="span10 text-center">
-			<input type="submit" value="Aplicar" name="Aplicar" class="btn btn-warning">
+			<input type="submit" value="Aplicar" name="Aplicar" class="btn btn-warning" onclick="js:antesdeEnviar()">
 		</div>
 	</div>
 </form>
@@ -111,5 +133,23 @@ $this->menu=array(
 	    	}
 
     });
+
+function onEnviar()
+{
+	if($('#valor').val() == 0 || $('#valor').val() == "")
+	{
+		swal("Establezca el valor del traslado.");
+		return false;
+	}
+
+	if($('#paciente').val() == "")
+	{
+		swal("Seleccione paciente para realizar traslado.");
+		return false;
+	}
+
+	
+
+}
 
 </script>

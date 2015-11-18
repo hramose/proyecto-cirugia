@@ -36,7 +36,7 @@ class SeguimientoComercialController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'vencidos', 'vencidosDetalle'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -49,6 +49,23 @@ class SeguimientoComercialController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
+
+	public function actionVencidos()
+	{
+		//$elPersonal = Citas::model()->count("estado = 'Vencida' group by personal_id");
+		//$elPersonal = Personal::model()->findAll("agenda = 'SI'");
+
+		//Verificar Seguimientos Vencidos
+		$vencidos = SeguimientoComercial::model()->findAll("fecha_accion < '".date('Y-m-d')."' and estado ='Abierto'");
+		foreach ($vencidos as $los_vencidos) 
+		{
+			$los_vencidos->estado = "Vencido";
+			$los_vencidos->save();
+		}
+
+		$this->render('vencidos');
+	}
+
 	public function actionView($id)
 	{
 		$model=new SeguimientoComercialDetalle;
@@ -202,6 +219,24 @@ class SeguimientoComercialController extends Controller
 			}
 		$this->layout='main';
 		$this->render('admin',array(
+			
+			'model'=>$model,
+		));
+	}
+
+	public function actionVencidosDetalle()
+	{
+
+		
+
+		$model=new SeguimientoComercial('search');
+		
+
+		$model->unsetAttributes();  // clear any default values
+		$model->responsable_id = $_GET['idPersonal'];
+		$model->estado = "Vencido";
+		$this->layout='main';
+		$this->render('vencidosDetalle',array(
 			
 			'model'=>$model,
 		));

@@ -49,7 +49,7 @@ class CitasController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('descuento', 'exportar', 'exportarAgenda'),
+				'actions'=>array('descuento', 'exportar', 'exportarAgenda', 'vencidasDetalle', 'sinConfirmar'),
 				'users'=>array('@'),
 			),			
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -616,12 +616,6 @@ class CitasController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		// $lasCitas = Citas::model()->findAll();
-		// foreach ($lasCitas as $las_citas) 
-		// {
-		// 	$las_citas->hora_fin_mostrar = $las_citas->hora_fin + 1;
-		// 	$las_citas->update();
-		// }
 
 		$model=new Citas('search');
 		$model->unsetAttributes();  // clear any default values
@@ -629,6 +623,36 @@ class CitasController extends Controller
 			$model->attributes=$_GET['Citas'];
 		$this->layout='main';
 		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionVencidasDetalle()
+	{
+
+		$model=new Citas('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Citas']))
+			$model->attributes=$_GET['Citas'];
+		$model->personal_id = $_GET['idPersonal'];
+		$model->estado = 'Vencida';
+		$this->layout='main';
+		$this->render('vencidasDetalle',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionSinConfirmar()
+	{
+
+		$model=new Citas('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Citas']))
+			$model->attributes=$_GET['Citas'];
+		$model->fecha_cita = date("d-m-Y");
+		$model->confirmacion_personal_id = "";
+		$this->layout='main';
+		$this->render('sinConfirmar',array(
 			'model'=>$model,
 		));
 	}

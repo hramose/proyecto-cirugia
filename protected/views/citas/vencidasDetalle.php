@@ -1,37 +1,15 @@
-<?php
-/* @var $this ContratosController */
-/* @var $model Contratos */
-
-$this->menu=array(
-	//array('label'=>'Listar Contratos', 'url'=>array('index')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#contratos-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
-
-<h1>Buscar Contratos - <a href="#exportar" class="btn btn-warning" role="button" data-toggle="modal"><i class="icon-share-alt icon-white"></i> Exportar</a></h1>
-
+<h2>Control de Citas Vencidas por Personal de Servicio</h2>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
 
+<DIV style='width:175%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'contratos-grid',
+	'id'=>'citas-grid',
 	'dataProvider'=>$model->search(),
-	'afterAjaxUpdate' => 'reinstallDatePickerVentas', // (#1)
+	'afterAjaxUpdate' => 'reinstallDatePicker', // (#1)
 	'filter'=>$model,
 	'columns'=>array(
 		array(
@@ -47,7 +25,6 @@ $('.search-form form').submit(function(){
 		// 	'value'=>'$data[\'paciente\'][\'nombreCompleto\']',
 		// 	'htmlOptions'=>array('width'=>'250'),
 		// ),
-
 		array(
 		   'name'=>'nombre_paciente',
 		   'value'=>'$data->paciente->nombre',
@@ -61,25 +38,53 @@ $('.search-form form').submit(function(){
 		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
 		array(
-			'header'=>'Cedula',
-		   'name'=>'n_identificacion',
+		   'name'=>'cedula_paciente',
 		   'value'=>'$data->paciente->n_identificacion',
-		   'htmlOptions'=>array('width'=>'50'),
+		   //'htmlOptions'=>array('width'=>'100'),
 		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		),
+		// array(
+		// 	'name'=>'n_identificacion',
+		// 	'value'=>'$data[\'n_identificacion\']',
+		// 	'htmlOptions'=>array('width'=>'100'),
+		// ),
+		array(
+			'header'=>'Celular',
+			'value'=>'$data[\'paciente\'][\'celular\']',
+			'htmlOptions'=>array('width'=>'100'),
+		),
+		array(
+			'header'=>'Personal',
+			'name'=>'personal_id',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'personal\'][\'nombreCompleto\']',
+			'htmlOptions'=>array('width'=>'220'),
+		),
+		array(
+			'name'=>'linea_servicio_id',
+			'htmlOptions'=>array('width'=>'180'),
+			'filter'=>CHtml::listData(LineaServicio::model()->findAll(array('order'=>'nombre ASC', 'condition' =>"estado = 'activo'")), 'id','nombre'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'lineaServicio\'][\'nombre\']',
+
+		),
+		array(
+			'header'=>'Contrato',
+			'name'=>'contrato_id',
+			'value'=>'$data->contrato_id',
+			'htmlOptions'=>array('width'=>'30'),
 		),
 		array(
 			'name'=>'estado',
-			'filter' => array('Activo'=>'Activo','Anulado'=>'Anulado','Completado'=>'Completado','Liquidado'=>'Liquidado','Sin Confirmar'=>'Sin Confirmar'),
+			'filter' => array('Cancelada'=>'Cancelada', 'Completada'=>'Completada', 'Fallida'=>'Fallida', 'Programada'=>'Programada', 'Vencida'=>'Vencida'),
 			'value'=>'$data->estado',
-			'htmlOptions'=>array('width'=>'150'),
 		),
 		array(
 			'header'=>'Fecha',
-			'name'=>'fecha',
+			'name'=>'fecha_cita',
 			'filter'=>$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 					'language'=>'es',
 					'model' => $model,
-					'attribute' => 'fecha',
+					'attribute' => 'fecha_cita',
 					// additional javascript options for the date picker plugin
 					'options'=>array(
 						'showAnim'=>'fold',
@@ -90,7 +95,7 @@ $('.search-form form').submit(function(){
         				'yearRange'=>'2014:2025',
 					),
 					'htmlOptions'=>array(
-						'id' => 'datepicker_for_fecha',
+						'id' => 'datepicker_for_fecha_cita',
 						'style'=>'height:20px;width:80px;'
 					),
 					 'defaultOptions' => array(  // (#3)
@@ -102,65 +107,104 @@ $('.search-form form').submit(function(){
                     'showButtonPanel' => true,
                 )
 				),true),
-			'value'=>'Yii::app()->dateformatter->format("dd-MM-yyyy",$data[\'fecha\']);',
+			'value'=>'Yii::app()->dateformatter->format("dd-MM-yyyy",$data[\'fecha_cita\']);',
 			'htmlOptions'=>array('width'=>'80'),
 		),
 		array(
-			'header'=>'Total ($)',
-			'name'=>'total',
-			'value'=>'number_format($data->total,2)',
-			
+			'name'=>'hora_inicio',
+			'filter'=>CHtml::listData(HorasServicio::model()->findAll(), 'id','hora'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'horaInicio\'][\'hora\']',
+			'htmlOptions'=>array('width'=>'85'),
 		),
 		array(
-			'header'=>'Saldo ($)',
-			'name'=>'saldo',
-			'value'=>'number_format($data->saldo,2)',
+			'name'=>'hora_fin_mostrar',
+			'filter'=>CHtml::listData(HorasServicio::model()->findAll(), 'id','hora'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'horaFinMostrar\'][\'hora\']',
+			'htmlOptions'=>array('width'=>'85'),
 		),
-		// array(
-		// 	'header'=>'Saldo a Favor ($)',
-		// 	'name'=>'saldo_favor',
-		// 	'value'=>'number_format($data->saldo_favor,2)',
-		// ),
 		array(
-			'header'=>'Elaborado Por:',
+			'header'=>'Registrada por:',
 			'name'=>'usuario_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
+			'htmlOptions'=>array('width'=>'220'),
 		),
 		array(
-			'header'=>'Vendido por:',
-			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
-			'value'=>'$data->vendedor->nombreCompleto',
-			'htmlOptions'=>array('width'=>'150'),
+			'name'=>'fecha_creacion',
+			'filter'=>$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+					'language'=>'es',
+					'model' => $model,
+					'attribute' => 'fecha_creacion',
+					// additional javascript options for the date picker plugin
+					'options'=>array(
+						'showAnim'=>'fold',
+						'language' => 'es',
+						'dateFormat' => 'dd-mm-yy',
+						'changeMonth'=>true,
+        				'changeYear'=>true,
+        				'yearRange'=>'2014:2025',
+					),
+					'htmlOptions'=>array(
+						'id' => 'datepicker_for_fecha_creacion',
+						'style'=>'height:20px;width:80px;'
+					),
+					 'defaultOptions' => array(  // (#3)
+                    'showOn' => 'focus', 
+                    'showOtherMonths' => true,
+                    'selectOtherMonths' => true,
+                    'changeMonth' => true,
+                    'changeYear' => true,
+                    'showButtonPanel' => true,
+                )
+				),true),
+			'value'=>'Yii::app()->dateformatter->format("dd-MM-yyyy",$data[\'fecha_creacion\']);',
+			'htmlOptions'=>array('width'=>'80'),
 		),
-		
+		array(
+			'header'=>'Confirmación',
+			'name'=>'confirmacion',
+			'value'=>'$data[\'confirmacion\']',
+		),
+		array(
+			'header'=>'Comentario de Seguimiento',
+			'name'=>'comentario_cierre',
+			'value'=>'$data[\'comentario_cierre\']',
+			'htmlOptions'=>array('width'=>'500'),
+		),
+		array(
+			'header'=>'Comentario',
+			'name'=>'comentario',
+			'value'=>'$data[\'comentario\']',
+			'htmlOptions'=>array('width'=>'500'),
+		),
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
 		),
 	),
-)); 
+));
 
 Yii::app()->clientScript->registerScript('re-install-date-picker', "
-function reinstallDatePickerVentas(id, data) {
+function reinstallDatePicker(id, data) {
         //use the same parameters that you had set in your widget else the datepicker will be refreshed by default
-    $('#datepicker_for_fecha').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
-    //$('#datepicker_for_fecha').datepicker($.datepicker.regional[ 'es' ]);
-  //$('#datepicker_for_fecha').datepicker({dateFormat: 'dd-mm-yy'});
+    $('#datepicker_for_fecha_cita').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
+    $('#datepicker_for_fecha_creacion').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
+    //$('#datepicker_for_fecha_cita').datepicker($.datepicker.regional[ 'es' ]);
+  //$('#datepicker_for_fecha_cita').datepicker({dateFormat: 'dd-mm-yy'});
 }
 ");
 
-?>
+ ?>
+</div>
 
-<div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Exportar a un archivo de Excel </h3>
   </div>
   <div class="modal-body">
   	<p>Seleccione las opciones de Exportar</p>
- 	<form id="frmExportar" name="frmExportar" action="index.php?r=contratos/exportar&tipo=<?php $elTipo;?>" method = "post">
+ 	<form id="frmExportar" name="frmExportar" action="index.php?r=Citas/exportar&tipo=<?php $elTipo;?>" method = "post">
   		<div class="span5">
 			<label>Filtro:</label>
 			<select name="filtro" id="filtro" class="input-normal">
@@ -245,19 +289,17 @@ function reinstallDatePickerVentas(id, data) {
 	});
 	});
 </script>
-
-
 <script>
     $(document).ready(function()
     {
-        $('body').on('dblclick', '#contratos-grid tbody tr', function(event)
+        $('body').on('dblclick', '#citas-grid tbody tr', function(event)
         {
             var
                 rowNum = $(this).index(),
-                keys = $('#contratos-grid > div.keys > span'),
+                keys = $('#citas-grid > div.keys > span'),
                 rowId = keys.eq(rowNum).text();
 
-            location.href = '<?php echo Yii::app()->createUrl('contratos/view'); ?>&id=' + rowId;
+            location.href = '<?php echo Yii::app()->createUrl('citas/view'); ?>&id=' + rowId;
         });
     });
 </script>
