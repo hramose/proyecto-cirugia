@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'personal_id'); ?>
-		<?php echo $form->dropDownList($model, 'personal_id',CHtml::listData(Personal::model()->findAll("activo = 'SI' and NOT EXISTS(select personal_id from inventario_personal where inventario_personal.personal_id = id) "),'id','nombreCompleto'), array('class'=>'input-xxlarge'));?>
+		<?php echo $form->dropDownList($model, 'personal_id',CHtml::listData(Personal::model()->findAll("activo = 'SI' and NOT EXISTS(select personal_id from inventario_personal where inventario_personal.personal_id = id) ORDER BY nombres ASC"),'id','nombreCompleto'), array('class'=>'input-xxlarge'));?>
 		<?php echo $form->error($model,'personal_id'); ?>
 	</div>
 	<input id='variable' name='variable' type='hidden' />
