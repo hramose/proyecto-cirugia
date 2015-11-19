@@ -90,29 +90,67 @@ class CuentasXcController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			// $laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			// $laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				// $laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				// $laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			// $attribs = array('estado'=>'Activo');
-			// $criteria = new CDbCriteria(array('order'=>'id DESC'));
-			// $criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			// $rows = Egresos::model()->findAllByAttributes($attribs, $criteria);
-		}
+				// $attribs = array('estado'=>'Activo');
+				// $criteria = new CDbCriteria(array('order'=>'id DESC'));
+				// $criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				// $rows = Egresos::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = CuentasXc::model()->findAll("saldo > 0");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto',
+	            'n_identificacion',
+	            'saldo',
+	        ));
+	           }
 		else
 		{
-			$rows = CuentasXc::model()->findAll("saldo > 0");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new CuentasXc('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['CuentasXc']))
+			{
+				$model->attributes=$_GET['CuentasXc'];
+				$model->saldo > 0;
+			}
+
+			$lasCuentas = CuentasXc::model()->count();
+			
+		
+			$criteria = new CDbCriteria;
+			$criteria->select='SUM(saldo) as lasuma';
+			//$criteria->condition='id > 0';
+			$sumaSaldo = CuentasXc::model()->find($criteria);
+
+			$lasuma = Yii::app()->db->createCommand("SELECT SUM(`saldo`) as `sum` FROM `cuentas_xc` WHERE 1")->queryScalar();
+
+			//$lasumas = $lasuma * -1;
+			if ($lasCuentas == 0 or $lasuma == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('admin',array(
+				'model'=>$model,
+				));	
+			}
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombreCompleto',
-            'n_identificacion',
-            'saldo',
-        ));
 	}
 
 	/**

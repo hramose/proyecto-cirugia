@@ -90,32 +90,50 @@ class PresupuestoController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
-			$rows = Presupuesto::model()->findAllByAttributes($attribs, $criteria);
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$rows = Presupuesto::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = Presupuesto::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto',
+	            'paciente.n_identificacion::Cedula',
+	            'estado',
+	            'fecha',
+	            'total',            
+	            'vendedor.nombreCompleto::Vendido Por',
+	        ));
 		}
 		else
 		{
-			$rows = Presupuesto::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new Presupuesto('search');
+			$model->unsetAttributes();  // clear any default values
+			$this->layout='main';
+			if(isset($_GET['Presupuesto']))
+				$model->attributes=$_GET['Presupuesto'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombreCompleto',
-            'paciente.n_identificacion::Cedula',
-            'estado',
-            'fecha',
-            'total',            
-            'vendedor.nombreCompleto::Vendido Por',
-        ));
+
 	}
 
 	public function actionGuardarPresupuesto()

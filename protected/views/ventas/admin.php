@@ -97,7 +97,7 @@ $this->menu=array(
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(array()), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal0->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),

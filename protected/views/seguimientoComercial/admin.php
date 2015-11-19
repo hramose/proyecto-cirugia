@@ -126,7 +126,7 @@ $this->renderPartial('_search',array(
 				array(
 					'header'=>'Registrado por:',
 					'name'=>'id_personal',
-					'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 					'value'=>'$data[\'idPersonal\'][\'nombreCompleto\']',
 					'htmlOptions'=>array('width'=>'220'),
 				),

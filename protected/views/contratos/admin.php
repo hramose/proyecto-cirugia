@@ -217,6 +217,13 @@ function reinstallDatePickerVentas(id, data) {
 				?>	
   			</div>
   		</div>
+  		 <div class="span5">
+  			<label>Clave:</label>
+  			<div class="input-prepend">
+  			<span class="add-on"><i class="icon-lock"></i></span>
+	    	 	<input type="password" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
+  			</div>
+  		</div>
   		<br>
   		<div class="span5">
 	  		<input type="submit" value="Exportar" name="exportar" id="exportar" class="btn btn-warning">

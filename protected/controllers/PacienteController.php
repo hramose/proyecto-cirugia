@@ -237,33 +237,50 @@ class PacienteController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+		
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_registro', $laFechaDesde, $laFechaHasta);
-			$rows = Paciente::model()->findAllByAttributes($attribs, $criteria);
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_registro', $laFechaDesde, $laFechaHasta);
+				$rows = Paciente::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = paciente::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'nombreCompleto',
+	            'n_identificacion::Cedula',
+	            'email',
+	            'telefono1',
+	            'celular',
+	            'ciudad',
+	            'fecha_nacimiento',
+	        ));
 		}
 		else
 		{
-			$rows = paciente::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+				$model=new Paciente('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Paciente']))
+			$model->attributes=$_GET['Paciente'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'nombreCompleto',
-            'n_identificacion::Cedula',
-            'email',
-            'telefono1',
-            'celular',
-            'ciudad',
-            'fecha_nacimiento',
-        ));
 	}
 
 	/**

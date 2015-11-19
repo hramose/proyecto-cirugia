@@ -246,33 +246,49 @@ class ProductoComprasController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = ProductoCompras::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = ProductoCompras::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = ProductoCompras::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'productoProveedor.nombre::Proveedor',
+	            'nit',
+	            'factura_n',
+	            'forma_pago',
+	            'total_compra',
+	            'fecha',
+	            'personal.nombreCompleto',
+	        ));
+           }
 		else
 		{
-			$rows = ProductoCompras::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new ProductoCompras('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['ProductoCompras']))
+				$model->attributes=$_GET['ProductoCompras'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'productoProveedor.nombre::Proveedor',
-            'nit',
-            'factura_n',
-            'forma_pago',
-            'total_compra',
-            'fecha',
-            'personal.nombreCompleto',
-        ));
 	}
 
 	public function actionProducto()
@@ -418,6 +434,9 @@ class ProductoComprasController extends Controller
 
 	public function actionExportarCxp()
 	{
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{
 		if ($_POST['filtro'] == 1) 
 		{
 			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd H:i:s",$_POST['fecha_desde']);
@@ -447,6 +466,36 @@ class ProductoComprasController extends Controller
             //array( 'name' => 'fecha', 'type' => 'datetime' ),
             'estado',
         ));
+           }
+		else
+		{
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new ProductoCompras('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['ProductoCompras']))
+			{
+				$model->attributes=$_GET['ProductoCompras'];
+				$model->estado = "Activo";
+			}
+
+			$this->layout = 'main';
+
+			$lasCompras = ProductoCompras::model()->count();
+
+			if ($lasCompras == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('cxp',array(
+				'model'=>$model,
+				));	
+			}
+		}
+
+
 	}
 
 }

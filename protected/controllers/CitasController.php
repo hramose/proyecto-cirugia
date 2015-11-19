@@ -572,43 +572,60 @@ class CitasController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			//$attribs = array('estado'=>'Activo');
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_cita', $laFechaDesde, $laFechaHasta);
-			$rows = Citas::model()->findAllByAttributes($attribs, $criteria);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+
+				//$attribs = array('estado'=>'Activo');
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_cita', $laFechaDesde, $laFechaHasta);
+				$rows = Citas::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = Citas::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombre',
+	            'paciente.apellido',
+	            'paciente.celular',
+	            'n_identificacion::Cedula',
+	            'personal.nombreCompleto::Ingresado Por',
+				'usuario.nombreCompleto::Registrado por',
+				'lineaServicio.nombre::Linea de Servicio',
+				'contrato_id::Contrato Asociado',
+				'estado::Estado',
+				'fecha_cita::Fecha de Cita',
+				'horaInicio.hora::Hora de Inicio',
+				'horaFinMostrar.hora::Hora de Fin',
+				'comentario::Comentario',
+				'motivo_cancelacion::Motivo de Cancelación',
+				'usuarioEstado.nombreCompleto::Establecio Estado',
+				'fecha_creacion::Fecha Creación',
+	        ));
 		}
 		else
 		{
-			$rows = Citas::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new Citas('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Citas']))
+				$model->attributes=$_GET['Citas'];
+			$this->layout='main';
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombre',
-            'paciente.apellido',
-            'paciente.celular',
-            'n_identificacion::Cedula',
-            'personal.nombreCompleto::Ingresado Por',
-			'usuario.nombreCompleto::Registrado por',
-			'lineaServicio.nombre::Linea de Servicio',
-			'contrato_id::Contrato Asociado',
-			'estado::Estado',
-			'fecha_cita::Fecha de Cita',
-			'horaInicio.hora::Hora de Inicio',
-			'horaFinMostrar.hora::Hora de Fin',
-			'comentario::Comentario',
-			'motivo_cancelacion::Motivo de Cancelación',
-			'usuarioEstado.nombreCompleto::Establecio Estado',
-			'fecha_creacion::Fecha Creación',
-        ));
 	}
 
 	/**

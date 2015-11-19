@@ -150,7 +150,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Registrada por:',
 			'name'=>'usuario_id',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
@@ -237,6 +237,7 @@ function reinstallDatePicker(id, data) {
 				<option value="1">Rango de fecha</option>
 			</select>
   		</div>
+
   		<div class="span5" id="elFiltro" style="display: none">
   			<div class="span2">
   				<label>Desde:</label>
@@ -262,6 +263,7 @@ function reinstallDatePicker(id, data) {
 				?>	
   			</div>
 
+
   			<div class="span2">
   				<label>Hasta:</label>
 				<?php 
@@ -284,6 +286,14 @@ function reinstallDatePicker(id, data) {
 						),
 					));
 				?>	
+  			</div>
+  		</div>
+
+  		<div class="span5">
+  			<label>Clave:</label>
+  			<div class="input-prepend">
+  			<span class="add-on"><i class="icon-lock"></i></span>
+	    	 	<input type="password" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
   			</div>
   		</div>
   		<br>

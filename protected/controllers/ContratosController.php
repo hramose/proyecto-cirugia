@@ -163,33 +163,50 @@ class ContratosController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
-			$rows = Contratos::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$rows = Contratos::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = Contratos::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto',
+	            'n_identificacion::Cedula',
+	            'estado',
+	            'fecha_sola',
+	            'total',
+	            'usuario.nombreCompleto::Elaborado Por',
+	            'vendedor.nombreCompleto::Vendido Por',
+	        ));
+	    }
 		else
 		{
-			$rows = Contratos::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new Contratos('search');
+			$this->layout='main';
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Contratos']))
+				$model->attributes=$_GET['Contratos'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombreCompleto',
-            'n_identificacion::Cedula',
-            'estado',
-            'fecha_sola',
-            'total',
-            'usuario.nombreCompleto::Elaborado Por',
-            'vendedor.nombreCompleto::Vendido Por',
-        ));
 	}
 
 	public function actionCompletar()

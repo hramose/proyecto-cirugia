@@ -96,41 +96,69 @@ class PagoCosmetologasController extends Controller
 		// 	$actualizar_pago->fecha_sola = Yii::app()->dateformatter->format("yyyy-MM-dd",$actualizar_pago->fecha);
 		// 	$actualizar_pago->update();
 		// }
-
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array('estado'=>'Activo');
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
-			$rows = PagoCosmetologas::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array('estado'=>'Activo');
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$rows = PagoCosmetologas::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = PagoCosmetologas::model()->findAll("estado = 'Activo'");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto',
+	            'n_identificacion::Cedula',
+	            'lineaServicio.nombre',
+	            'personal.nombreCompleto::Asistencial',
+	            'contrato_id::Contrato',
+	            'sesion::Sesion',
+	            'fecha_sola',
+	            'valor_tratamiento::Valor de Tratamiento',
+	            'valor_tratamiento_desc::Tratamiento con Descuento',
+	            'valor_comision::Valor Comisión',
+	            'vendedor.nombreCompleto::Vendedor',
+	            'aprobo.nombreCompleto::Establecio estado',
+	            'total_pago::Total de Pago',
+	            'saldo::Saldo a Favor',
+	        ));
+	       }
 		else
 		{
-			$rows = PagoCosmetologas::model()->findAll("estado = 'Activo'");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new PagoCosmetologas('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['PagoCosmetologas']))
+			{
+				$model->attributes=$_GET['PagoCosmetologas'];
+			}
+			$this->layout='main';
+
+			$loPagos = PagoCosmetologas::model()->count();
+			
+			if ($loPagos == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('admin',array(
+				'model'=>$model,
+				));	
+			}
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombreCompleto',
-            'n_identificacion::Cedula',
-            'lineaServicio.nombre',
-            'personal.nombreCompleto::Asistencial',
-            'contrato_id::Contrato',
-            'sesion::Sesion',
-            'fecha_sola',
-            'valor_tratamiento::Valor de Tratamiento',
-            'valor_tratamiento_desc::Tratamiento con Descuento',
-            'valor_comision::Valor Comisión',
-            'vendedor.nombreCompleto::Vendedor',
-            'aprobo.nombreCompleto::Establecio estado',
-            'total_pago::Total de Pago',
-            'saldo::Saldo a Favor',
-        ));
 	}
 
 	/**

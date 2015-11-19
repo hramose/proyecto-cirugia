@@ -151,15 +151,22 @@ function reinstallDatePickerNacimiento(id, data) {
   <div class="modal-body">
   	<p>Seleccione las opciones de Exportar</p>
  	<form id="frmExportar" name="frmExportar" action="index.php?r=paciente/exportar&tipo=<?php $elTipo;?>" method = "post">
-  		<div class="span5">
+  		<div class="span6">
 			<label>Filtro:</label>
 			<select name="filtro" id="filtro" class="input-normal">
 				<option value="0">(Todos)</option>
 				<option value="1">Rango de fecha ingreso</option>
 			</select>
   		</div>
-  		<div class="span5" id="elFiltro" style="display: none">
-  			<div class="span2">
+  		<div class="span6">
+  			<label>Clave:</label>
+  			<div class="input-prepend">
+  			<span class="add-on"><i class="icon-lock"></i></span>
+	    	 	<input type="password" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
+  			</div>
+  		</div>
+  		<div class="span12" id="elFiltro" style="display: none">
+  			<div class="span5">
   				<label>Desde:</label>
   				<?php 
 					$this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -183,7 +190,7 @@ function reinstallDatePickerNacimiento(id, data) {
 				?>	
   			</div>
 
-  			<div class="span2">
+  			<div class="span5">
   				<label>Hasta:</label>
 				<?php 
 					$this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -208,7 +215,9 @@ function reinstallDatePickerNacimiento(id, data) {
   			</div>
   		</div>
   		<br>
-  		<div class="span5">
+  		
+  		<br>
+  		<div class="span12">
 	  		<input type="submit" value="Exportar" name="exportar" id="exportar" class="btn btn-warning">
   		</div>
   	</form>	 	
