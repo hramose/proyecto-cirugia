@@ -135,7 +135,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'personal_id','personal.nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),
@@ -196,14 +196,15 @@ function reinstallDatePickerEgreso(id, data) {
   <div class="modal-body">
   	<p>Seleccione las opciones de Exportar</p>
  	<form id="frmExportar" name="frmExportar" action="index.php?r=Egresos/exportar&tipo=<?php $elTipo;?>" method = "post">
-  		<div class="span12">
+  		<div class="span4">
 			<label>Filtro:</label>
 			<select name="filtro" id="filtro" class="input-normal">
 				<option value="0">(Todos)</option>
 				<option value="1">Rango de fecha</option>
 			</select>
   		</div>
-  		<div class="span12" id="elFiltro" style="display: none">
+  		
+  		<div class="span8" id="elFiltro" style="display: none">
   			<div class="span4">
   				<label>Desde:</label>
   				<?php 
@@ -252,8 +253,15 @@ function reinstallDatePickerEgreso(id, data) {
 				?>	
   			</div>
   		</div>
+  		<div class="span4">
+  			<label>Clave:</label>
+  			<div class="input-prepend">
+  			<span class="add-on"><i class="icon-lock"></i></span>
+	    	 	<input type="password" class="input-normal" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
+  			</div>
+  		</div>
   		<br>
-  		<div class="span12">
+  		<div class="span8">
 	  		<input type="submit" value="Exportar" name="exportar" id="exportar" class="btn btn-warning">
   		</div>
   	</form>	 	

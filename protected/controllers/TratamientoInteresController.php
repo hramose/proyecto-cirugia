@@ -90,29 +90,45 @@ class TratamientoInteresController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = TratamientoInteres::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = TratamientoInteres::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = TratamientoInteres::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'name::Nombre Tratamiento',
+	            'estado',
+	            'mostrar',
+	        ));
+	     }
 		else
 		{
-			$rows = TratamientoInteres::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new TratamientoInteres('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['TratamientoInteres']))
+				$model->attributes=$_GET['TratamientoInteres'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'name::Nombre Tratamiento',
-            'estado',
-            'mostrar',
-        ));
 	}
 
 	/**

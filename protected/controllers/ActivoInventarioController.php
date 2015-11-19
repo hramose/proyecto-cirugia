@@ -80,34 +80,50 @@ class ActivoInventarioController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
-		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{	
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array('estado'=>'Activo');
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = ActivoInventario::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array('estado'=>'Activo');
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = ActivoInventario::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = ActivoInventario::model()->findAll("id > 0");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'activoTipo.tipo',
+	            'nombre',
+	            'marca',
+	            'modelo',
+	            'serial',
+	            'caracteristicas',
+	            'ubicacion',
+	            'estado',
+	        ));
+	        }
 		else
 		{
-			$rows = ActivoInventario::model()->findAll("id > 0");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new ActivoInventario('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['ActivoInventario']))
+				$model->attributes=$_GET['ActivoInventario'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'activoTipo.tipo',
-            'nombre',
-            'marca',
-            'modelo',
-            'serial',
-            'caracteristicas',
-            'ubicacion',
-            'estado',
-        ));
 	}
 
 	

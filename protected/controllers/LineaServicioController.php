@@ -90,32 +90,48 @@ class LineaServicioController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
-		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{	
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array();
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = LineaServicio::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = LineaServicio::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = LineaServicio::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'nombre',
+	            'tipo.nombre',
+	            'precio',
+	            'precio_pago',
+	            'insumo',
+	            'porcentaje',
+	        ));
+        }
 		else
 		{
-			$rows = LineaServicio::model()->findAll();
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new LineaServicio('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['LineaServicio']))
+				$model->attributes=$_GET['LineaServicio'];
+
+			$this->render('admin',array(
+				'model'=>$model,
+			));
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'nombre',
-            'tipo.nombre',
-            'precio',
-            'precio_pago',
-            'insumo',
-            'porcentaje',
-        ));
 	}
 
 	/**

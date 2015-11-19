@@ -90,7 +90,19 @@ class PacienteController extends Controller
 
 			//Retiro a Caja de Paciente
 			$pacienteOrigen->saldo = $pacienteOrigen->saldo - $_POST['valor'];
-			$pacienteOrigen->update();
+			if ($pacienteOrigen->update()) {
+				//Registro en caja
+				$movimientoDepositoOrigen = new PacienteMovimientos;
+				$movimientoDepositoOrigen->paciente_id		= $pacienteOrigen->id;
+				$movimientoDepositoOrigen->valor 			= $_POST['valor'];
+				$movimientoDepositoOrigen->tipo				= "Egreso";
+				$movimientoDepositoOrigen->sub_tipo 		= "Tranferencia a Paciente";
+				$movimientoDepositoOrigen->descripcion		= "Transferencia a paciente No. ".$pacienteDestino->id." Nombre: ".$pacienteDestino->nombreCompleto.".";
+				$movimientoDepositoOrigen->usuario_id		= Yii::app()->user->usuarioId;
+				$movimientoDepositoOrigen->fecha 			= date("Y-m-d H:i:s");
+				$movimientoDepositoOrigen->save();
+			}
+			
 		}
 
 		$this->render('view',array(
@@ -185,6 +197,7 @@ class PacienteController extends Controller
 				$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);	
 			}
 			$model->observaciones = $_POST['Paciente']['observaciones'];
+			$model->nombre = trim($_POST['Paciente']['nombre']);
 			$model->fecha_registro = date("Y-m-d");
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -211,6 +224,7 @@ class PacienteController extends Controller
 		{
 			$model->attributes=$_POST['Paciente'];
 			$model->observaciones = $_POST['Paciente']['observaciones'];
+			$model->nombre = trim($_POST['Paciente']['nombre']);
 			$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -253,7 +267,7 @@ class PacienteController extends Controller
 			}
 			else
 			{
-				$rows = paciente::model()->findAll();
+				$rows = Paciente::model()->findAll();
 			}
 		    
 		    // Export it

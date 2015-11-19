@@ -74,35 +74,63 @@ class EgresosController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
-		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{	
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array('estado'=>'Activo');
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = Egresos::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array('estado'=>'Activo');
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = Egresos::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = Egresos::model()->findAll("estado = 'Activo'");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'proveedor.nombre',
+	            'factura.factura_n',
+	            'forma_pago',
+	            'valor_egreso',
+	            'iva_valor',
+	            'total_egreso',
+	            'centroCosto.nombre',
+	            'personal.nombreCompleto',
+	            'fecha_sola::Fecha',
+	        ));
+	     }
 		else
 		{
-			$rows = Egresos::model()->findAll("estado = 'Activo'");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new Egresos('search');
+			$model->unsetAttributes();  // clear any default values
+			$this->layout='main';
+			if(isset($_GET['Egresos']))
+			{
+				$model->attributes=$_GET['Egresos'];
+			}
+
+			$losEgresos = Egresos::model()->count();
+			if ($losEgresos == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('admin',array(
+				'model'=>$model,
+				));	
+			}
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'proveedor.nombre',
-            'factura.factura_n',
-            'forma_pago',
-            'valor_egreso',
-            'iva_valor',
-            'total_egreso',
-            'centroCosto.nombre',
-            'personal.nombreCompleto',
-            'fecha_sola::Fecha',
-        ));
 	}
 
 

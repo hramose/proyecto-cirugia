@@ -87,12 +87,19 @@ array(
   <div class="modal-body">
   	<p>Seleccione las opciones de Exportar</p>
  	<form id="frmExportar" name="frmExportar" action="index.php?r=ActivoInventario/exportar&tipo=<?php $elTipo;?>" method = "post">
-  		<div class="span12">
+  		<div class="span5">
 			<label>Filtro:</label>
 			<select name="filtro" id="filtro" class="input-normal">
 				<option value="0">(Todos)</option>
 				<!-- <option value="1">Rango de fecha</option> -->
 			</select>
+  		</div>
+  		<div class="span5">
+  			<label>Clave:</label>
+  			<div class="input-prepend">
+  			<span class="add-on"><i class="icon-lock"></i></span>
+	    	 	<input type="password" id="clave" name="clave" placeholder="Clave SuperUsuario" autocomplete="off">
+  			</div>
   		</div>
   		<div class="span12" id="elFiltro" style="display: none">
   			<div class="span4">

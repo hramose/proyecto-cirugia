@@ -29,9 +29,8 @@ $this->menu=array(
 			'tipo',
 			'sub_tipo',
 			'descripcion',
-			'ingreso_id',
 			'contrato_id',
-			'usuario_id',
+			array('name'=>'usuario_id', 'value'=>$model->personal->nombreCompleto),
 			array('name'=>'fecha', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$model->fecha),''),
 		),
 	)); ?>	

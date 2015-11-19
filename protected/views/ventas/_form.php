@@ -20,7 +20,7 @@
 )); ?>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("cantidad > 0 and estado = 'Activo' and tipo_inventario = 'Productos'");
+	$losProductos = ProductoInventario::model()->findAll("cantidad > 0 and estado = 'Activo' and tipo_inventario = 'Productos' ORDER BY nombre_producto ASC");
 ?>
 	<?php echo $form->errorSummary($model); ?>
 	

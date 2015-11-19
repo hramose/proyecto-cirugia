@@ -462,38 +462,65 @@ class IngresosController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array('estado'=>'Activo');
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
-			$rows = Ingresos::model()->findAllByAttributes($attribs, $criteria);
-		}
+				$attribs = array('estado'=>'Activo');
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
+				$rows = Ingresos::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = Ingresos::model()->findAll("estado = 'Activo'");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto',
+	            'n_identificacion::Cedula',
+	            'valor::Valor del Ingreso',
+	            'descripcion',
+	            'centroCosto.nombre',
+	            'forma_pago',
+	            'tarjeta_aprobacion',
+	            'personal.nombreCompleto::Ingresado Por',
+	            'contrato_id',
+	            'fecha_sola::Fecha',
+	            'vendedor.nombreCompleto::Vendedor',
+	            'estado',
+	        ));
+	     }
 		else
 		{
-			$rows = Ingresos::model()->findAll("estado = 'Activo'");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new Ingresos('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Ingresos']))
+			{
+				$model->attributes=$_GET['Ingresos'];
+			}
+
+			$losIngresos = Ingresos::model()->count();
+			if ($losIngresos == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('admin',array(
+				'model'=>$model,
+				));	
+			}
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'paciente.nombreCompleto',
-            'n_identificacion::Cedula',
-            'valor::Valor del Ingreso',
-            'descripcion',
-            'centroCosto.nombre',
-            'forma_pago',
-            'tarjeta_aprobacion',
-            'personal.nombreCompleto::Ingresado Por',
-            'contrato_id',
-            'fecha_sola::Fecha',
-            'vendedor.nombreCompleto::Vendedor',
-            'estado',
-        ));
 	}
 
 

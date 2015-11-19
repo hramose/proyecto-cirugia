@@ -128,34 +128,63 @@ class VentasDetalleController extends Controller
 
 	public function actionExportar()
 	{
-		if ($_POST['filtro'] == 1) 
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
 		{
-			$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-			$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-			$attribs = array('estado'=>'Activo');
-			$criteria = new CDbCriteria(array('order'=>'id DESC'));
-			$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
-			$rows = VentasDetalle::model()->findAllByAttributes($attribs, $criteria);
+				$attribs = array('estado'=>'Activo');
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$rows = VentasDetalle::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = VentasDetalle::model()->findAll("id > 0");
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'venta_id',
+	            'paciente.nombreCompleto::Nombre de Paciente',
+	            'producto.nombre_producto',
+	            'cantidad',
+	            'valor',
+	            'iva',
+	            'total',
+	            'fecha::Fecha de Venta',
+	        ));
 		}
-		else
+	    else
 		{
-			$rows = VentasDetalle::model()->findAll("id > 0");
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$model=new VentasDetalle('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['VentasDetalle']))
+			{
+				$model->attributes=$_GET['VentasDetalle'];
+			}
+			$this->layout='main';
+
+			$lasVentas = VentasDetalle::model()->count();
+
+			if ($lasVentas == 0) {
+				$this->render('vacio',array(
+				'model'=>$model,
+				));
+			}
+			else
+			{
+				$this->render('admin',array(
+				'model'=>$model,
+				));	
+			}
 		}
-	    
-	    // Export it
-	    $this->toExcel($rows,
-	    	array(
-            'id::ID',
-            'venta_id',
-            'paciente.nombreCompleto::Nombre de Paciente',
-            'producto.nombre_producto',
-            'cantidad',
-            'valor',
-            'iva',
-            'total',
-            'fecha::Fecha de Venta',
-        ));
 	}
 
 	/**
