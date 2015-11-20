@@ -14,7 +14,7 @@ return array(
 	//'defaultController' => 'site/login',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	//'preload'=>array('log'),
 
 	// autoloading model and component classes
 	'import'=>array(

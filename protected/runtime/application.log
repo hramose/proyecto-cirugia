@@ -7167,3 +7167,352 @@ Stack trace:
 #26 {main}
 REQUEST_URI=/smadia/index.php?r=ventas/create
 ---
+2015/11/20 15:47:07 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [warning] [application] Error al establecer unsafe al atributo "personal_seguimiento" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'smadia.paciente_movimientos' doesn't exist. La sentencia SQL ejecutada fue: SHOW FULL COLUMNS FROM `paciente_movimientos`.
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (109)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:47:07 [error] [exception.CDbException] exception 'CDbException' with message 'La tabla "paciente_movimientos" definida en la clase active record "PacienteMovimientos" no se ha podido encontrar en la base de datos.' in C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(PacienteMovimientos))
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php(109): CActiveRecord->__construct()
+#3 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): IngresosController->actionCreate()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Ingresos/create')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/smadia/index.php?r=Ingresos/create&idPaciente=865&idContrato=1809
+HTTP_REFERER=http://localhost/smadia/index.php?r=Ingresos/create&idPaciente=865&idContrato=1809
+---
+2015/11/20 15:49:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'smadia.paciente_movimientos' doesn't exist. La sentencia SQL ejecutada fue: SHOW FULL COLUMNS FROM `paciente_movimientos`.
+in C:\xampp\htdocs\smadia\protected\views\pacienteMovimientos\viewCaja.php (15)
+in C:\xampp\htdocs\smadia\protected\controllers\PacienteMovimientosController.php (63)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 15:49:17 [error] [exception.CDbException] exception 'CDbException' with message 'La tabla "paciente_movimientos" definida en la clase active record "PacienteMovimientos" no se ha podido encontrar en la base de datos.' in C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(PacienteMovimientos))
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 C:\xampp\htdocs\smadia\protected\views\pacienteMovimientos\viewCaja.php(15): CActiveRecord->findAll('paciente_id = 8...')
+#5 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('viewCaja', Array, true)
+#9 C:\xampp\htdocs\smadia\protected\controllers\PacienteMovimientosController.php(63): CController->render('viewCaja', Array)
+#10 [internal function]: PacienteMovimientosController->actionViewCaja('865')
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(PacienteMovimientosController), Array)
+#12 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PacienteMovimientosController), Object(ReflectionMethod), Array)
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('viewCaja')
+#22 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacienteMovimie...')
+#23 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/smadia/index.php?r=pacienteMovimientos/viewCaja&id=865
+HTTP_REFERER=http://localhost/smadia/index.php?r=paciente/view&id=865
+---
+2015/11/20 15:52:29 [error] [exception.CDbException] exception 'CDbException' with message 'El nombre de la columna debe ser una cadena o un array.' in C:\xampp\htdocs\yii\framework\db\schema\CDbCommandBuilder.php:828
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\schema\CDbCommandBuilder.php(621): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), NULL, Array, '`t`.')
+#1 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1485): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), '865', '', Array, '`t`.')
+#2 C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php(347): CActiveRecord->findByPk('865')
+#3 C:\xampp\htdocs\smadia\protected\controllers\PacienteController.php(168): PacienteController->loadModel('865')
+#4 [internal function]: PacienteController->actionView('865')
+#5 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#6 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#16 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('paciente/view')
+#17 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/smadia/index.php?r=paciente/view&id=865
+HTTP_REFERER=http://localhost/smadia/index.php?r=contratos/view&id=1809
+---
+2015/11/20 17:18:52 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 17:18:52 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 17:18:52 [warning] [application] Error al establecer unsafe al atributo "personal_seguimiento" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 17:18:52 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 17:18:52 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 18:52:49 [warning] [application] Error al establecer unsafe al atributo "vendedor_id" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 18:52:49 [warning] [application] Error al establecer unsafe al atributo "descripcion" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 18:52:49 [warning] [application] Error al establecer unsafe al atributo "personal_seguimiento" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 18:52:49 [warning] [application] Error al establecer unsafe al atributo "forma_pago" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 18:52:49 [warning] [application] Error al establecer unsafe al atributo "fecha" de "Ingresos".
+in C:\xampp\htdocs\smadia\protected\controllers\IngresosController.php (84)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 21:04:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "pacienteTareas"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacienteTareas')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=pacienteTareas
+---
+2015/11/20 21:04:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "pacienteTareas"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacienteTareas')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=pacienteTareas
+HTTP_REFERER=http://localhost/smadia/index.php?r=site/login
+---
+2015/11/20 21:05:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "pacienteTarea"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacienteTarea')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=pacienteTarea
+---
+2015/11/20 21:05:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "pacientesTareas"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacientesTareas')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=pacientesTareas
+---
+2015/11/20 21:05:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "pacientesTarea"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('pacientesTarea')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=pacientesTarea
+---
+2015/11/20 21:05:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "personalTarea"' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('personalTarea')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/smadia/index.php?r=personalTarea
+---
+2015/11/20 21:35:44 [error] [php] Undefined variable: elmedico (C:\xampp\htdocs\smadia\protected\views\personalTareas\_form.php:25)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): PersonalTareasController->renderFile()
+#1 C:\xampp\htdocs\smadia\protected\views\personalTareas\create.php(12): PersonalTareasController->renderPartial()
+#2 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): PersonalTareasController->renderInternal()
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(869): PersonalTareasController->renderFile()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(782): PersonalTareasController->renderPartial()
+#6 C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php(79): PersonalTareasController->render()
+#7 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): PersonalTareasController->actionCreate()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#13 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#16 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#17 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\views\personalTareas\_form.php (25)
+in C:\xampp\htdocs\smadia\protected\views\personalTareas\create.php (12)
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (79)
+2015/11/20 21:55:14 [error] [php] Uninitialized string offset: 0 (C:\xampp\htdocs\yii\framework\i18n\CDateFormatter.php:93)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 21:55:38 [error] [php] Uninitialized string offset: 0 (C:\xampp\htdocs\yii\framework\i18n\CDateFormatter.php:93)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 21:56:06 [error] [php] Uninitialized string offset: 0 (C:\xampp\htdocs\yii\framework\i18n\CDateFormatter.php:93)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 21:56:19 [error] [php] Creating default object from empty value (C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php:74)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 21:57:02 [error] [php] Creating default object from empty value (C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php:74)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 22:01:21 [error] [php] Creating default object from empty value (C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php:74)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 22:04:56 [error] [php] Uninitialized string offset: 0 (C:\xampp\htdocs\yii\framework\i18n\CDateFormatter.php:93)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): PersonalTareasController->runAction()
+#2 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): PersonalTareasController->filterAccessControl()
+#5 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): PersonalTareasController->runActionWithFilters()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): PersonalTareasController->run()
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\smadia\index.php(13): CWebApplication->run()
+REQUEST_URI=/smadia/index.php?r=personalTareas/create
+in C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php (74)
+in C:\xampp\htdocs\smadia\index.php (13)
+2015/11/20 22:07:38 [error] [exception.CException] exception 'CException' with message 'La propiedad "PersonalTareas"."persobal" no se encuentra definida.' in C:\xampp\htdocs\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('persobal')
+#1 C:\xampp\htdocs\smadia\protected\views\personalTareas\view.php(18): CActiveRecord->__get('persobal')
+#2 C:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\xampp\htdocs\smadia\protected\controllers\PersonalTareasController.php(56): CController->render('view', Array)
+#7 [internal function]: PersonalTareasController->actionView('1')
+#8 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(PersonalTareasController), Array)
+#9 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(PersonalTareasController), Object(ReflectionMethod), Array)
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('personalTareas/...')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\smadia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/smadia/index.php?r=personalTareas/view&id=1
+HTTP_REFERER=http://localhost/smadia/index.php?r=personalTareas/create
+---

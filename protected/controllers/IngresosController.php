@@ -101,21 +101,23 @@ class IngresosController extends Controller
 			$model->personal_id = Yii::app()->user->usuarioId;
 			if($model->save())
 			{
-
-				//Ingresos sin Contrato (Cajas de Pacientes)
-				$elPaciente->saldo = $elPaciente->saldo + $model->valor;
-				$elPaciente->update();
-				//Movimientos
-				$movimientosCaja = new PacienteMovimientos;
-				$movimientosCaja->paciente_id = $model->paciente_id;
-				$movimientosCaja->valor = $model->valor;
-				$movimientosCaja->tipo = "Ingreso";
-				$movimientosCaja->ingreso_id = $model->id;
-				$movimientosCaja->sub_tipo = "Ingreso sin Contrato";
-				$movimientosCaja->descripcion = "Ingreso a caja de paciente directamente en su perfil";
-				$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;
-				$movimientosCaja->fecha = date("Y-m-d H:i:s");
-				$movimientosCaja->save();
+				if ($model->contrato_id == NULL) 
+				{
+					//Ingresos sin Contrato (Cajas de Pacientes)
+					$elPaciente->saldo = $elPaciente->saldo + $model->valor;
+					$elPaciente->update();
+					//Movimientos
+					$movimientosCaja = new PacienteMovimientos;
+					$movimientosCaja->paciente_id = $model->paciente_id;
+					$movimientosCaja->valor = $model->valor;
+					$movimientosCaja->tipo = "Ingreso";
+					$movimientosCaja->ingreso_id = $model->id;
+					$movimientosCaja->sub_tipo = "Ingreso sin Contrato";
+					$movimientosCaja->descripcion = "Ingreso a caja de paciente directamente en su perfil";
+					$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;
+					$movimientosCaja->fecha = date("Y-m-d H:i:s");
+					$movimientosCaja->save();
+				}
 				
 				if ($model->contrato_id != NULL) 
 				{
@@ -395,6 +397,21 @@ class IngresosController extends Controller
 						$nuevaCajaDetalle->fecha = date("Y-m-d H:i:s");
 						$nuevaCajaDetalle->save();
 					}
+				}
+
+				if ($model->forma_pago == "Caja Personal")
+				{
+					// $movimientoDeposito 				= new PacienteMovimientos;
+					// $movimientoDeposito->paciente_id	= $pacienteOrigen->id;
+					// $movimientoDeposito->valor 			= $model->valor;
+					// $movimientoDeposito->tipo			= "Egreso";
+					// $movimientoDeposito->sub_tipo 		= "Ingreso a Contrato";
+					// $movimientoDeposito->descripcion	= "Se realizo ingreso a contrato No. ".$model->contrato_id.".";
+					// $movimientoDeposito->ingreso_id 	= $model->id;
+					// $movimientoDeposito->contrato_id	= $model->contrato_id;
+					// $movimientoDeposito->usuario_id		= Yii::app()->user->usuarioId;
+					// $movimientoDeposito->fecha 			= date("Y-m-d H:i:s");
+					// $movimientoDeposito->save();
 				}
 
 					//Para envio de correos

@@ -174,6 +174,14 @@ $idContrato = 0;
 				?>
 			</div>
 
+			<div class="span5">
+				<label>Saldo en Caja Personal</label>
+				<div class="input-prepend">
+					<span class="add-on">$</span>
+					<input type="text" id="saldoCaja" readOnly="readOnly" class="input-normal" value="<?php echo $paciente->saldo ?>">
+				</div>
+			</div>
+
 		</div>
 	</div>
 <?php } ?>
@@ -635,7 +643,25 @@ function onEnviar(){
 				swal("No ha seleccionado Centro de Costo", "Seleccione una opción");
 			 	return false
 			    
-			} 
+			} 	
+
+	if($("#Ingresos_forma_pago").val() == "Caja Personal") 
+			{
+
+			if($("#Ingresos_contrato_id").val() == "") 
+			{
+				swal("No puede hacer un ingreso de caja personal a usted mismo.", "Atención");
+			 	return false	
+			}
+
+
+			if($("#Ingresos_valor").val() > $("#saldoCaja").val()) 
+					{ 
+						swal("Valor de ingreso supera saldo de caja personal.", "Atención");
+					 	return false
+					    
+					} 
+		} 
 	
 	if($("#Ingresos_forma_pago").val() == "Ninguna") 
 			{ 
