@@ -69,9 +69,20 @@ class PersonalTareasController extends Controller
 
 		if(isset($_POST['PersonalTareas']))
 		{
+			//$fechaCumplir = Yii::app()->dateformatter->format("yyyy-MM-dd", $_POST['PersonalTareas']['fecha_cumplir']);
 			$model->attributes=$_POST['PersonalTareas'];
+			if ($_POST['PersonalTareas']['fecha_cumplir'] == "") 
+			{
+				$model->fecha_cumplir = NULL;
+			}
+			else
+			{
+				$model->fecha_cumplir = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['PersonalTareas']['fecha_cumplir']);	
+			}
+
+			
 			$model->fecha = date("Y-m-d H:i:s");
-			$model->fecha_cumplir = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['PersonalTareas']['fecha_cumplir']);
+			//$model->fecha_cumplir = $fechaCumplir;
 			$model->usuario_id = Yii::app()->user->usuarioId;
 			$model->estado = "Activa";
 			if($model->save())

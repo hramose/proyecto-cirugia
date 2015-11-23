@@ -13,7 +13,18 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>true,
-)); ?>
+)); 
+
+	if ($model->fecha_cumplir == '') {
+		$fecha_cumplir = '';
+	}
+	else
+	{
+		$fecha_cumplir = $model->fecha_cumplir=date('d-m-Y',strtotime($model->fecha_cumplir));	
+	}
+
+
+?>
 
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
@@ -47,7 +58,7 @@
 					'language'=>'es',
 					'model' => $model,
 					'attribute' => 'fecha_cumplir',
-					'value'=> $model->fecha_cumplir,
+					'value'=> $fecha_cumplir,
 					// additional javascript options for the date picker plugin
 					'options'=>array(
 						'showAnim'=>'fold',

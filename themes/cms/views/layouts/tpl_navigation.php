@@ -67,8 +67,8 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                     array('label'=>'Seguimientos Vencidos', 'url'=>array("/seguimientoComercial/vencidos")),
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
                                     array('label'=>'Citas no Confirmadas', 'url'=>array("/citas/sinConfirmar")),
-                                    array('label'=>'Asignar Tareas', 'url'=>array("/Promociones/admin")),
-                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/Promociones/admin")),
+                                    array('label'=>'Asignar Tareas', 'url'=>array("/personalTareas/create")),
+                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin")),
                                     array('label'=>'Tareas Vencidas', 'url'=>array("/Promociones/admin")),
                                     //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
 

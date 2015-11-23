@@ -159,7 +159,12 @@ class VentasController extends Controller
 				{
 					$laCaja=CajaEfectivo::model()->findByPk($datosVenta->personal);
 					$laCaja->total = $laCaja->total - $datosVenta->total_venta;
-					$laCaja->save();
+					$laCaja->update();
+
+					$datoCajaDetalle = CajaEfectivoDetalle::model()->find("venta_id = $datosVenta->id");
+					$datoCajaDetalle->tipo = "Venta Anulada";
+					$datoCajaDetalle->monto = ($datoCajaDetalle->monto * -1);
+					$datoCajaDetalle->update();
 				}
 
 				//Regresar productos al inventario
@@ -168,7 +173,7 @@ class VentasController extends Controller
 				{
 					$elProducto = ProductoInventario::model()->findByPk($producto_venta->producto_id);
 		 			$elProducto->cantidad = $elProducto->cantidad + $producto_venta->cantidad;
-		 			$elProducto->save();
+		 			$elProducto->update();
 				}
 
 				Yii::app()->user->setFlash('success',"Se completo la anulación.");
