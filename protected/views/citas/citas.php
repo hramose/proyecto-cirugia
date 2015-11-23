@@ -40,7 +40,8 @@ $laurl = "index.php?r=imprimir/Huespedes&pdf=T";
 
 						}	 
 					?>
-					<p></p>
+					<br><br>
+					<a href="index.php?r=citas/bloquear" class="btn btn-danger"><i class="icon-remove-circle icon-white"></i> Bloquear Agenda</a>
 				</div>
 
 			</div>

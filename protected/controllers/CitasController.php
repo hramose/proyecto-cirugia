@@ -49,7 +49,7 @@ class CitasController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('descuento', 'exportar', 'exportarAgenda', 'vencidasDetalle', 'sinConfirmar'),
+				'actions'=>array('descuento', 'exportar', 'exportarAgenda', 'vencidasDetalle', 'sinConfirmar', 'bloquear'),
 				'users'=>array('@'),
 			),			
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -78,6 +78,13 @@ class CitasController extends Controller
 		//$elPersonal = Citas::model()->count("estado = 'Vencida' group by personal_id");
 		//$elPersonal = Personal::model()->findAll("agenda = 'SI'");
 		$this->render('vencidas');
+	}
+
+	public function actionBloquear()
+	{
+		//$elPersonal = Citas::model()->count("estado = 'Vencida' group by personal_id");
+		//$elPersonal = Personal::model()->findAll("agenda = 'SI'");
+		$this->render('bloquear');
 	}
 
 	public function actionVer($id)
