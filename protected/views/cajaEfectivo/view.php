@@ -39,7 +39,7 @@ $this->menu=array(
 				<th>Contrato</th>
 				<th>Fecha</th>
 			</tr>
-		<?php $losMovimientos = CajaEfectivoDetalle::model()->findAll("caja_efectivo_id = $model->personal_id and (ingreso_id is not Null or tipo = 'Venta')") ?>
+		<?php $losMovimientos = CajaEfectivoDetalle::model()->findAll("caja_efectivo_id = $model->personal_id and (ingreso_id is not Null or (tipo = 'Venta' or tipo = 'Venta Anulada'))") ?>
 		<?php 
 			foreach ($losMovimientos as $los_movimientos)
 			{

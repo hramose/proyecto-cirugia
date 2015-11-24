@@ -77,6 +77,13 @@ $citas = Citas::model()->count("fecha_cita = '".date('Y-m-d')."' and estado = 'P
 $seguimientos = SeguimientoComercial::model()->count("fecha_accion = '".date('Y-m-d')."'");
 $vencidas = Citas::model()->count("estado = 'Vencida'");
 
+$tareas = 0;
+if (!Yii::app()->user->isGuest) 
+{
+	$tareas = PersonalTareas::model()->count("estado = 'Activa' and personal_id = ".Yii::app()->user->usuarioId);
+}
+
+
 ?>
 
 
@@ -91,33 +98,40 @@ $vencidas = Citas::model()->count("estado = 'Vencida'");
 		<div class="row">
 		    <div class="span2">
 		    	<h3>Total:</h3>
-		    </div>
-		    
-		    <div class="span1">
-		    	<img src="images/user.png"/>
-		    </div>
-
-		    <div class="span2">
 		    	<h1><?php echo $pacientes; ?></h1>
 		    </div>
-	    </div>
-	    <hr>
-	    <!-- <div class="row">
-		    <div class="span2">
-		    	<h3>Esta semana:</h3>
-		    </div>
 		    
 		    <div class="span1">
 		    	<img src="images/user.png"/>
 		    </div>
-
-		    <div class="span2">
-		    	<h1><?php echo "100"; ?></h1>
-		    </div>
-	    </div> -->
+	    </div>
 	    
 	    
 	    <?php $this->endWidget();?>
+	
+
+	    <?php
+	    if ($tareas > 0) 
+	    {
+			$this->beginWidget('zii.widgets.CPortlet', array(
+				'title'=>"<b>Tareas Asignadas</b>",
+			));
+			
+		?>
+		<div class="row">
+		    <div class="span2">
+		    	<h3>Total:</h3>
+		    	<h1><?php echo $tareas; ?></h1>
+		    </div>
+		    
+		    <div class="span1">
+		    	<img src="images/todo.png"/>
+		    	<a href="index.php?r=personalTareas/admin&personalId=<?php echo Yii::app()->user->usuarioId; ?>" class="btn btn-mini btn-primary">Ver Tareas</a>
+		    </div>
+	    </div>
+	    <?php $this->endWidget();
+		}
+	    ?>
 	</div>
 	
 	<div class = "span3">

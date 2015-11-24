@@ -4,7 +4,17 @@
 
 //$pendientes = Reservacion::model()->count("cambio_tarifa = 'Pendiente'"); //Reservadas
 $perfiles = Perfil::model()->find("estado='Activo'");
+$tareas = 0;
+if (!Yii::app()->user->isGuest) 
+{
+    $tareas = PersonalTareas::model()->count("estado = 'Activa' and personal_id = ".Yii::app()->user->usuarioId);
+}
 
+
+if ($tareas == 0) 
+{
+    $tareas = "";
+}
 
 ?>
 
@@ -22,6 +32,9 @@ $perfiles = Perfil::model()->find("estado='Activo'");
           
           <div class="nav-collapse">
 			<?php 
+            //Conteo de Tareas
+
+
             if (!Yii::app()->user->isGuest) 
             {
             $this->widget('zii.widgets.CMenu',array(
@@ -30,7 +43,7 @@ $perfiles = Perfil::model()->find("estado='Activo'");
 					'itemCssClass'=>'item-test',
                     'encodeLabel'=>false,
                     'items'=>array(
-                        array('label'=>'<i class="icon-home icon-white"></i>', 'url'=>array('/site/index')),
+                        array('label'=>'<i class="icon-home icon-white"></i><span class="badge badge-important">'.$tareas.'</span>', 'url'=>array('/site/index')),
                         //array('label'=>'Formularios', 'url'=>array('/site/page', 'view'=>'forms')),
                         //array('label'=>'Tablas', 'url'=>array('/site/page', 'view'=>'tables')),
                         //array('label'=>'Solicitudes', 'url'=>array('/correspondencia', 'view'=>'tables')
@@ -68,8 +81,8 @@ $perfiles = Perfil::model()->find("estado='Activo'");
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
                                     array('label'=>'Citas no Confirmadas', 'url'=>array("/citas/sinConfirmar")),
                                     array('label'=>'Asignar Tareas', 'url'=>array("/personalTareas/create")),
-                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin")),
-                                    array('label'=>'Tareas Vencidas', 'url'=>array("/Promociones/admin")),
+                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin&filtro=1")),
+                                    array('label'=>'Tareas Vencidas', 'url'=>array("/personalTareas/admin&filtro=2")),
                                     //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
 
                                     )), 

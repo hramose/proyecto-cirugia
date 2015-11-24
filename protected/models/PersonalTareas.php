@@ -93,7 +93,7 @@ class PersonalTareas extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('tarea',$this->tarea,true);
-		$criteria->compare('fecha_cumplir',$this->fecha_cumplir,true);
+		$criteria->compare('DATE_FORMAT(fecha_cumplir, \'%d-%m-%Y\')',$this->fecha_cumplir,true);
 		$criteria->compare('estado',$this->estado,true);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('usuario_id',$this->usuario_id);

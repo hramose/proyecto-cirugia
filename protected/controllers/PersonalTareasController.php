@@ -37,7 +37,7 @@ class PersonalTareasController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -150,6 +150,20 @@ class PersonalTareasController extends Controller
 	{
 		$model=new PersonalTareas('search');
 		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['filtro']))
+		{
+			if ($_GET['filtro'] == 1) {
+				$model->estado = "Activa";
+			}
+
+			if ($_GET['filtro'] == 2) {
+				$model->estado = "Vencida";
+			}
+		}
+		if(isset($_GET['personalId']))
+		{
+			$model->personal_id = $_GET['personalId'];
+		}
 		if(isset($_GET['PersonalTareas']))
 			$model->attributes=$_GET['PersonalTareas'];
 
