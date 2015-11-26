@@ -75,16 +75,17 @@ if ($tareas == 0)
                                     array('label'=>'Listado de Citas', 'url'=>array('/citas/admin')),
                                     array('label'=>'<li class="divider"></li>'),
                                     array('label'=>'Agenda de Equipos', 'url'=>array('/citasEquipo/admin')),
+                                    array('label'=>'Tareas', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Asignar Tareas', 'url'=>array("/personalTareas/create")),
+                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin&filtro=1")),
+                                    array('label'=>'Tareas Vencidas', 'url'=>array("/personalTareas/admin&filtro=2")),
+                                    )), 
                                     array('label'=>'Modulo Gerencial', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Seguimientos Vencidos', 'url'=>array("/seguimientoComercial/vencidos")),
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
                                     array('label'=>'Citas no Confirmadas', 'url'=>array("/citas/sinConfirmar")),
-                                    array('label'=>'Asignar Tareas', 'url'=>array("/personalTareas/create")),
-                                    array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin&filtro=1")),
-                                    array('label'=>'Tareas Vencidas', 'url'=>array("/personalTareas/admin&filtro=2")),
-                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
-
                                     )), 
 
                         )),

@@ -39,7 +39,7 @@ class PersonalTareas extends CActiveRecord
 			array('estado', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, personal_id, tarea, fecha_cumplir, estado, fecha, usuario_id', 'safe', 'on'=>'search'),
+			array('id, personal_id, tarea, fecha_cumplir, estado, fecha, comentarios_responsable, comentario_cierre, fecha_cierre, usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +69,9 @@ class PersonalTareas extends CActiveRecord
 			'estado' => 'Estado',
 			'fecha' => 'Fecha',
 			'usuario_id' => 'Usuario que Registro',
+			'comentarios_responsable' => 'Comentarios de Responsable',
+			'comentario_cierre' => 'Comentario de Cierre',
+			'fecha_cierre' => 'Fecha de Cierre',
 		);
 	}
 
@@ -97,6 +100,8 @@ class PersonalTareas extends CActiveRecord
 		$criteria->compare('estado',$this->estado,true);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
+		$criteria->compare('comentario_cierre',$this->usuario_id);
+		$criteria->compare('fecha_cierre',$this->usuario_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
