@@ -22,12 +22,23 @@ $this->menu=array(
 				array('name'=>'fecha', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss", $model->fecha)),
 				array('name'=>'usuario_id', 'value'=>$model->usuario->nombreCompleto),
 			),
-		)); ?>
+		)); 
+		if ($model->comentarios_responsable) {
+			echo "<br><h4 class='text-center'>Comentarios de Responsable</h4>";
+			echo $model->comentarios_responsable;	
+		}
+		
+		?>
 	</div>
 	<div class="span6 text-center">
 		<h3 class="text-center">Opciones</h3>
-		<a href="#comentario" role="button" class="btn btn-small btn-primary" data-toggle="modal"><i class="icon-comment icon-white"></i> Agregar Comentario</a>
-		<a href="#" class="btn btn-small btn-warning"><i class="icon-thumbs-up icon-white"></i> Completar Tarea</a>
+		<?php if ($model->personal_id == Yii::app()->user->usuarioId and $model->estado == "Activa"){?>
+			<a href="#comentario" role="button" class="btn btn-small btn-primary" data-toggle="modal"><i class="icon-comment icon-white"></i> Agregar Comentario</a>
+			<a href="#" class="btn btn-small btn-warning"><i class="icon-thumbs-up icon-white"></i> Completar Tarea</a>	
+		<?php }else{ ?>
+			<p class="text-center"><i>Usted no puede modificar esta tarea</i></p>
+		<?php } ?>
+		
 	</div>
 </div>
 
@@ -35,7 +46,7 @@ $this->menu=array(
 <div id="comentario" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Cita Cancelada</h3>
+    <h3>Agregar comentarios a tarea</h3>
   </div>
   <div class="modal-body">
  	<p>Complete el siguiente formulario</p>
@@ -54,9 +65,9 @@ $this->menu=array(
 	 		$elcomentario = new PersonalTareas;
 	 	?>
 				<div class = 'span10'>
-					<?php echo $form->labelEx($elcomentario,'comentario_cierre'); ?>
-					<?php echo $form->textArea($elcomentario,'comentario_cierre',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
-					<?php echo $form->error($elcomentario,'comentario_cierre'); ?>
+					<?php echo $form->labelEx($elcomentario,'comentarios_responsable'); ?>
+					<?php echo $form->textArea($elcomentario,'comentarios_responsable',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($elcomentario,'comentarios_responsable'); ?>
 				</div>
 	
 				<div class = 'span6' >

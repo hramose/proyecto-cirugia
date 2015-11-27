@@ -36,7 +36,7 @@ class PersonalTareasController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'comentario'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -54,6 +54,21 @@ class PersonalTareasController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionComentario($id)
+	{
+		//Agregar Comentario
+
+		$elComentario = date("d-m-Y H:m:s")."<br>-------------------------<br>".$_POST['PersonalTareas']['comentarios_responsable']."<br><br>";
+
+		$laTarea = PersonalTareas::model()->findByPk($id);
+		$laTarea->comentarios_responsable = $elComentario.$laTarea->comentarios_responsable;
+		$laTarea->update();
+		if ($laTarea->update()) 
+		{
+			$this->redirect(array('view','id'=>$laTarea->id));
+		}
 	}
 
 	/**
