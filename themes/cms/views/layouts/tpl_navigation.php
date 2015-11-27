@@ -80,8 +80,9 @@ if ($tareas == 0)
                                     array('label'=>'Asignar Tareas', 'url'=>array("/personalTareas/create")),
                                     array('label'=>'Tareas Asignadas en Curso', 'url'=>array("/personalTareas/admin&filtro=1")),
                                     array('label'=>'Tareas Vencidas', 'url'=>array("/personalTareas/admin&filtro=2")),
+                                    array('label'=>'Todas las Tareas', 'url'=>array("/personalTareas/admin")),
                                     )), 
-                                    array('label'=>'Modulo Gerencial', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                    array('label'=>'Modulo Gerencial', 'visible'=>Yii::app()->user->perfil == 5, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Seguimientos Vencidos', 'url'=>array("/seguimientoComercial/vencidos")),
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
@@ -108,12 +109,12 @@ if ($tareas == 0)
                                 array('label'=>'Cuentas por Cobrar', 'url'=>array('/cuentasXc/admin')),
                                 array('label'=>'Cuentas por Pagar', 'url'=>array('/ProductoCompras/cxp')),
                                 array('label'=>'Cuentas por Pagar Pagadas', 'url'=>array('/ProductoCompras/cxpp')),
-                                array('label'=>'Caja de Paciente', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
-                                'items' => array(
-                                    array('label'=>'Listado de Cajas', 'url'=>array("/paciente/cajas")),
-                                    array('label'=>'Ingresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
-                                    array('label'=>'Egresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
-                                    )),
+                                // array('label'=>'Caja de Paciente', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                // 'items' => array(
+                                //     array('label'=>'Listado de Cajas', 'url'=>array("/paciente/cajas")),
+                                //     array('label'=>'Ingresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
+                                //     array('label'=>'Egresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
+                                //     )),
                                 array('label'=>'Relación Hoja de Gastos', 'url'=>array('/RelacionHojaGastos/admin')),
                                 array('label'=>'Ingresos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                              'items' => array(

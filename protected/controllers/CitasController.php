@@ -353,12 +353,27 @@ class CitasController extends Controller
 									$lallave = 2; //Guardo
 									//$reservaEquipos = new CitasEquipo;
 									$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-									$reservaEquipos->fecha = $fechaCita;
-									$reservaEquipos->hora_inicio = $model->hora_inicio;
-									$reservaEquipos->hora_fin = $model->hora_fin;
-									$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-									$reservaEquipos->equipo_id = $equipos_disponibles->id;
-									$reservaEquipos->linea_servicio_id = $laLineaServicio;
+									if ($reservaEquipos) 
+									{
+										$reservaEquipos->fecha = $fechaCita;
+										$reservaEquipos->hora_inicio = $model->hora_inicio;
+										$reservaEquipos->hora_fin = $model->hora_fin;
+										$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+										$reservaEquipos->equipo_id = $equipos_disponibles->id;
+										$reservaEquipos->linea_servicio_id = $laLineaServicio;
+									}
+									else
+									{
+										$reservaEquiposNuevo = new CitasEquipo;
+										$reservaEquiposNuevo->fecha = $fechaCita;
+										$reservaEquiposNuevo->hora_inicio = $model->hora_inicio;
+										$reservaEquiposNuevo->hora_fin = $model->hora_fin;
+										$reservaEquiposNuevo->hora_fin_mostrar = $model->hora_fin + 1;
+										$reservaEquiposNuevo->equipo_id = $equipos_disponibles->id;
+										$reservaEquiposNuevo->linea_servicio_id = $laLineaServicio;
+										$reservaEquiposNuevo->save();
+									}
+									
 								}
 							//}
 

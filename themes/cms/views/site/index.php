@@ -108,8 +108,13 @@ if (!Yii::app()->user->isGuest)
 	    
 	    
 	    <?php $this->endWidget();?>
-	
 
+		<div class="row">
+		    <div class="span4 text-center">
+		    	<a href="index.php?r=personal/pendientes" class="btn btn-primary"><i class="icon-list-alt icon-white"></i> Consulta tus pendientes</a>
+		    </div>
+	    </div>
+	    <br>
 	    <?php
 	    if ($tareas > 0) 
 	    {

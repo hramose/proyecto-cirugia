@@ -36,7 +36,7 @@ class PersonalTareasController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'comentario'),
+				'actions'=>array('admin','delete', 'comentario', 'cierre'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -64,6 +64,20 @@ class PersonalTareasController extends Controller
 
 		$laTarea = PersonalTareas::model()->findByPk($id);
 		$laTarea->comentarios_responsable = $elComentario.$laTarea->comentarios_responsable;
+		$laTarea->update();
+		if ($laTarea->update()) 
+		{
+			$this->redirect(array('view','id'=>$laTarea->id));
+		}
+	}
+
+	public function actionCierre($id)
+	{
+		//Agregar Comentario
+		$laTarea = PersonalTareas::model()->findByPk($id);
+		$laTarea->comentario_cierre = $_POST['PersonalTareas']['comentario_cierre'];
+		$laTarea->estado = "Completada";
+		$laTarea->fecha_cierre = date("Y-m-d H:i:s");
 		$laTarea->update();
 		if ($laTarea->update()) 
 		{

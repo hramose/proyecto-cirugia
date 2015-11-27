@@ -32,12 +32,26 @@ $this->menu=array(
 	</div>
 	<div class="span6 text-center">
 		<h3 class="text-center">Opciones</h3>
-		<?php if ($model->personal_id == Yii::app()->user->usuarioId and $model->estado == "Activa"){?>
+		<?php if ($model->personal_id == Yii::app()->user->usuarioId and $model->estado != "Completada"){?>
 			<a href="#comentario" role="button" class="btn btn-small btn-primary" data-toggle="modal"><i class="icon-comment icon-white"></i> Agregar Comentario</a>
-			<a href="#" class="btn btn-small btn-warning"><i class="icon-thumbs-up icon-white"></i> Completar Tarea</a>	
-		<?php }else{ ?>
+			<a href="#cierre" data-toggle="modal" class="btn btn-small btn-warning"><i class="icon-thumbs-up icon-white"></i> Completar Tarea</a>	
+		<?php }else{ 
+			if ($model->estado == "Completada") 
+			{
+				?>
+				<p class="text-center"><i>Usted no puede modificar esta tarea. Ya esta completada</i></p>
+			<?php
+			$this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model,
+			'attributes'=>array(
+				'comentario_cierre',
+				array('name'=>'fecha_cierre', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss", $model->fecha_cierre)),
+			),
+		)); 
+			}else{
+			?>
 			<p class="text-center"><i>Usted no puede modificar esta tarea</i></p>
-		<?php } ?>
+		<?php }} ?>
 		
 	</div>
 </div>
@@ -84,4 +98,46 @@ $this->menu=array(
     <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
   </div>
 </div>
-<?php //endif ?>
+
+
+<div id="cierre" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Completar Tarea</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>Complete el siguiente formulario</p>
+ 	
+	 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'cancelar-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=personalTareas/cierre&id='.$model->id,
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>false,
+		)); ?>
+	 	<?php 
+	 		$elcomentario = new PersonalTareas;
+	 	?>
+				<div class = 'span10'>
+					<?php echo $form->labelEx($elcomentario,'comentario_cierre'); ?>
+					<?php echo $form->textArea($elcomentario,'comentario_cierre',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($elcomentario,'comentario_cierre'); ?>
+				</div>
+	
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($elcomentario->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 	echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
