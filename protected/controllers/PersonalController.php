@@ -68,6 +68,10 @@ class PersonalController extends Controller
 
 	public function actionPendientes()
 	{
+		//Aca cargaremos todos los modelos
+		$citasHoy = Citas::model()->count("fecha_cita = '".date('Y-m-d')."' and estado = 'Programada' and personal_id = ".Yii::app()->user->usuarioId);
+
+		$this->layout='main';
 		$this->render('pendientes');
 	}
 
