@@ -217,6 +217,19 @@ class SeguimientoComercialController extends Controller
 					$model->estado = "Vencido";
 				}
 			}
+
+			if (isset($_GET['usuario'])) 
+			{
+				$model->fecha_atencion = date("Y-m-d");
+				$model->estado = "Abierto";
+				$model->responsable_id = Yii::app()->user->usuarioId;
+			}
+
+			if (isset($_GET['vencidos'])) 
+			{
+				$model->responsable_id = Yii::app()->user->usuarioId;
+			}
+
 		$this->layout='main';
 		$this->render('admin',array(
 			

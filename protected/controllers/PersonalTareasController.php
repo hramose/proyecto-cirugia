@@ -189,6 +189,12 @@ class PersonalTareasController extends Controller
 				$model->estado = "Vencida";
 			}
 		}
+
+		if(isset($_GET['usuario']))
+		{
+			$model->personal_id = Yii::app()->user->usuarioId;
+		}
+
 		if(isset($_GET['personalId']))
 		{
 			$model->personal_id = $_GET['personalId'];

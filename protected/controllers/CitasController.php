@@ -660,6 +660,18 @@ class CitasController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Citas']))
 			$model->attributes=$_GET['Citas'];
+		if (isset($_GET['programadas'])) 
+		{
+			$model->fecha_cita = date("Y-m-d");
+			$model->estado = 'Programada';
+			$model->personal_id = Yii::app()->user->usuarioId;
+		}
+
+		if (isset($_GET['vencidas'])) 
+		{
+			$model->estado = 'Vencida';
+			$model->personal_id = Yii::app()->user->usuarioId;
+		}
 		$this->layout='main';
 		$this->render('admin',array(
 			'model'=>$model,

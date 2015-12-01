@@ -70,9 +70,20 @@ class PersonalController extends Controller
 	{
 		//Aca cargaremos todos los modelos
 		$citasHoy = Citas::model()->count("fecha_cita = '".date('Y-m-d')."' and estado = 'Programada' and personal_id = ".Yii::app()->user->usuarioId);
+		$seguimientosHoy = SeguimientoComercial::model()->count("fecha_atencion = '".date('Y-m-d')."' and estado = 'Abierto' and responsable_id = ".Yii::app()->user->usuarioId);
+		$citasVencidas = Citas::model()->count("estado = 'Vencida' and personal_id = ".Yii::app()->user->usuarioId);
+		$seguimientosVencidos = SeguimientoComercial::model()->count("estado = 'Vencido' and responsable_id = ".Yii::app()->user->usuarioId);
+		$tareas = PersonalTareas::model()->count("estado = 'Activa' and personal_id = ".Yii::app()->user->usuarioId);
+		$tareasVencidas = PersonalTareas::model()->count("estado = 'Vencida' and personal_id = ".Yii::app()->user->usuarioId);
 
 		$this->layout='main';
-		$this->render('pendientes');
+		$this->render('pendientes', array('citasHoy'=>$citasHoy, 
+		'seguimientosHoy'=>$seguimientosHoy,
+		'citasVencidas'=>$citasVencidas,
+		'seguimientosVencidos'=>$seguimientosVencidos,
+		'tareas'=>$tareas,
+		'tareasVencidas'=>$tareasVencidas,
+		));
 	}
 
 	/**
