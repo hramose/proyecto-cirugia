@@ -71,6 +71,7 @@ class ConfiguracionesController extends Controller
 		if(isset($_POST['Configuraciones']))
 		{
 			$model->attributes=$_POST['Configuraciones'];
+			$model->clave_exportar = $_POST['Configuraciones']['clave_exportar'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -95,6 +96,7 @@ class ConfiguracionesController extends Controller
 		if(isset($_POST['Configuraciones']))
 		{
 			$model->attributes=$_POST['Configuraciones'];
+			$model->clave_exportar = $_POST['Configuraciones']['clave_exportar'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

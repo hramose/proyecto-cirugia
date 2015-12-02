@@ -13,5 +13,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'super_usuario',
+		'clave_exportar',
 	),
 )); ?>

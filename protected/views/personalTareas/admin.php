@@ -111,9 +111,15 @@ else
 			'filter' => array('Activa' => 'Activa', 'Completada' => 'Completada', 'Vencida' => 'Vencida'),
 			'value'=>'$data->estado',
 		),
+		array(
+			'header'=>'Personal que Asigno:',
+			'name'=>'usuario_id',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
+		),
 		//'fecha',
 		/*
-		'usuario_id',
+		
 		*/
 		array(
 			'class'=>'CButtonColumn',

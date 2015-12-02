@@ -25,6 +25,12 @@
 		<?php echo $form->error($model,'super_usuario'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'clave_exportar'); ?>
+		<?php echo $form->textField($model,'clave_exportar',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'clave_exportar'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', array('class'=>'btn btn-primary')); ?>
 	</div>

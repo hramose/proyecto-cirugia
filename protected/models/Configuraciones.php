@@ -25,11 +25,11 @@ class Configuraciones extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('super_usuario', 'required'),
-			array('super_usuario', 'length', 'max'=>15),
+			array('super_usuario, clave_exportar', 'required'),
+			array('super_usuario, clave_exportar', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, super_usuario', 'safe', 'on'=>'search'),
+			array('id, super_usuario, clave_exportar', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +52,7 @@ class Configuraciones extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'super_usuario' => 'Super Usuario',
+			'clave_exportar' => 'Clave para Exportar',
 		);
 	}
 
@@ -75,6 +76,7 @@ class Configuraciones extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('super_usuario',$this->super_usuario,true);
+		$criteria->compare('clave_exportar',$this->clave_exportar,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
