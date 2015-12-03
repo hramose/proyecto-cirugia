@@ -702,6 +702,7 @@ class CitasController extends Controller
 			$model->attributes=$_GET['Citas'];
 		$model->fecha_cita = date("d-m-Y");
 		$model->confirmacion_personal_id = "";
+		$model->estado = "Programada";
 		$this->layout='main';
 		$this->render('sinConfirmar',array(
 			'model'=>$model,

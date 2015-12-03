@@ -118,6 +118,31 @@ class RelacionHojaGastos extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination'=>array('pageSize'=>20),
+		));
+	}
+
+	public function searchSuma()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('paciente_id',$this->paciente_id);
+		$criteria->compare('hoja',$this->hoja,true);
+		$criteria->compare('asistencial_id',$this->asistencial_id);
+		$criteria->compare('cita_id',$this->cita_id);
+		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
+		$criteria->compare('fecha',$this->fecha,true);
+		$criteria->compare('fecha_hora',$this->fecha_hora,true);
+		$criteria->compare('costo',$this->costo,true);
+		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('personal_id',$this->personal_id);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination'=>array('pageSize'=>9999999999999999),
 		));
 	}
 
@@ -133,6 +158,8 @@ public static function getTotal($provider)
                 }
                 return $total;
         }
+
+
 
 	/**
 	 * Returns the static model of the specified AR class.

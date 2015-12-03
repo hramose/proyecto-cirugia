@@ -43,7 +43,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Paciente',
 			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll("order by nombre"), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'paciente\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'220'),
 		),
@@ -56,7 +56,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Asistencial:',
 			'name'=>'asistencial_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll("order by nombres"), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->asistencial->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),
@@ -104,7 +104,7 @@ $('.search-form form').submit(function(){
 		array(
 			'name'=>'costo',
 			'value'=>'number_format($data->costo,2)',
-			'footer'=>"<h5>$ ".number_format($model->search()->itemCount===0 ? '' : $model->getTotal($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
 		),		
 		array(
 			'header'=>'Registrada por:',

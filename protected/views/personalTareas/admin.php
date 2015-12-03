@@ -38,16 +38,10 @@ else
 
 <h1>Buscar Tareas <?php echo $titulo; ?></h1>
 
-
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
-)); 
-
-
-
-
-
+));
 ?>
 </div><!-- search-form -->
 
