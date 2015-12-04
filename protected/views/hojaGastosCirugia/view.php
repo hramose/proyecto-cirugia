@@ -40,6 +40,51 @@ $this->menu=array(
 	array('label'=>"<i class='icon-plus-sign'> </i> Fotografías", 'url'=>'index.php?r=PacienteFotografias/create'.$urlComplemento),
 	array('label'=>"<i class='icon-plus-sign'> </i> Resultados de Laboratorio", 'url'=>'index.php?r=PacienteResultadosLab/create'.$urlComplemento),
 );
+
+if ($model->cirujano_id) 
+{
+	$nombreCirujano = $model->cirujano->nombreCompleto;
+}
+else
+{
+	$nombreCirujano = null;
+}
+
+if ($model->ayudante_id) 
+{
+	$nombreAyudante = $model->ayudante->nombreCompleto;
+}
+else
+{
+	$nombreAyudante = null;
+}
+
+if ($model->anestesiologo_id) 
+{
+	$nombreAnestesia = $model->anestesiologo->nombreCompleto;
+}
+else
+{
+	$nombreAnestesia = null;
+}
+
+if ($model->rotadora_id) {
+	$nombreRotadora = $model->rotadora->nombreCompleto;
+}
+else
+{
+	$nombreRotadora = null;
+}
+
+if ($model->instrumentadora_id) 
+{
+	$nombreInstrumento = $model->instrumentadora->nombreCompleto;
+}
+else
+{
+	$nombreInstrumento = null;
+}
+
 ?>
 
 <h1>Hoja de Gastos de Cirugía #<?php echo $model->id; ?></h1>
@@ -69,11 +114,11 @@ $this->menu=array(
 				'hora_ingreso',
 				'hora_inicio_cirugia',
 				'hora_final_cirugia',
-				array('name'=>'Cirujano', 'value'=>$model->cirujano->nombreCompleto, ''),
-				array('name'=>'Ayudante', 'value'=>$model->ayudante->nombreCompleto, ''),
-				array('name'=>'Anestesiologo', 'value'=>$model->anestesiologo->nombreCompleto, ''),
-				array('name'=>'Rotadora', 'value'=>$model->rotadora->nombreCompleto, ''),
-				array('name'=>'Instrumentadora', 'value'=>$model->instrumentadora->nombreCompleto, ''),
+				array('name'=>'Cirujano', 'value'=>$nombreCirujano, ''),
+				array('name'=>'Ayudante', 'value'=>$nombreAyudante, ''),
+				array('name'=>'Anestesiologo', 'value'=>$nombreAnestesia, ''),
+				array('name'=>'Rotadora', 'value'=>$nombreRotadora, ''),
+				array('name'=>'Instrumentadora', 'value'=>$nombreInstrumento, ''),
 				//'cantidad_productos',
 				array('name'=>'Fecha de Ingreso', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$model->fecha), ''),
 				array('name'=>'Ingresado por', 'value'=>$model->personal->nombreCompleto, ''),

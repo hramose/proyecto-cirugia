@@ -9,6 +9,17 @@ $this->menu=array(
 	//array('label'=>'Borrar Ventas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Buscar Ventas', 'url'=>array('admin')),
 );
+
+if ($model->tarjeta_cuenta_banco) 
+{
+	$nombreEntidad = $model->tarjetaCuentaBanco->idBanco->nombre;
+	$numeroTarjeta = $model->tarjetaCuentaBanco->numero;
+}
+else
+{
+	$nombreEntidad = null;
+	$numeroTarjeta = null;
+}
 ?>
 
 <h1>Venta #<?php echo $model->id; ?></h1>
@@ -167,8 +178,8 @@ $this->menu=array(
 						<td><?php echo $model->tarjeta_tipo; ?></td>
 						<td><?php echo $model->tarjeta_aprobacion; ?></td>
 						<td><?php echo $model->tarjeta_entidad; ?></td>
-						<td><?php echo $model->tarjetaCuentaBanco->idBanco->nombre; ?></td>
-						<td><?php echo $model->tarjetaCuentaBanco->numero; ?></td>
+						<td><?php echo $nombreEntidad; ?></td>
+						<td><?php echo $numeroTarjeta; ?></td>
 					</tr>
 				</table>
 			<?php

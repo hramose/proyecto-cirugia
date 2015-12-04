@@ -182,19 +182,19 @@
 	<div class="row">
 		<div class="span4">
 			<?php echo $form->labelEx($model,'cirujano_id'); ?>
-			<?php echo $form->dropDownList($model, 'cirujano_id',CHtml::listData(Personal::model()->findAll("activo = 'SI' ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Seleccione)"));?>
+			<?php echo $form->dropDownList($model, 'cirujano_id',CHtml::listData(Personal::model()->findAll("activo = 'SI' ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Ninguno)"));?>
 			<?php echo $form->error($model,'cirujano_id'); ?>
 		</div>
 
 		<div class="span4">
 			<?php echo $form->labelEx($model,'ayudante_id'); ?>
-			<?php echo $form->dropDownList($model, 'ayudante_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Seleccione)"));?>
+			<?php echo $form->dropDownList($model, 'ayudante_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Ninguno)"));?>
 			<?php echo $form->error($model,'ayudante_id'); ?>
 		</div>
 
 		<div class="span4">
 			<?php echo $form->labelEx($model,'anestesiologo_id'); ?>
-			<?php echo $form->dropDownList($model, 'anestesiologo_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Seleccione)"));?>
+			<?php echo $form->dropDownList($model, 'anestesiologo_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Ninguno)"));?>
 			<?php echo $form->error($model,'anestesiologo_id'); ?>
 		</div>
 	</div>
@@ -202,7 +202,7 @@
 	<div class="row">
 		<div class="span4">
 			<?php echo $form->labelEx($model,'rotadora_id'); ?>
-			<?php echo $form->dropDownList($model, 'rotadora_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Seleccione)"));?>
+			<?php echo $form->dropDownList($model, 'rotadora_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'  ORDER BY nombres"),'id','nombreCompleto'), array('class'=>'input-xlarge', 'empty'=>"(Ninguno)"));?>
 			<?php echo $form->error($model,'rotadora_id'); ?>
 		</div>
 
