@@ -30,7 +30,9 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 <DIV style='width:150%; overflow:scroll;'>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+	
+	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'pago-cosmetologas-grid',
 	'dataProvider'=>$model->search(),
 	'afterAjaxUpdate' => 'reinstallDatePickerPagoCosmetologa', // (#1)
@@ -116,20 +118,21 @@ $('.search-form form').submit(function(){
 			'name'=>'valor_tratamiento',
 			'value'=>'number_format($data->valor_tratamiento,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'header'=>'<small>Tratamiento con Descuento</small>',
 			'name'=>'valor_tratamiento_desc',
 			'value'=>'number_format($data->valor_tratamiento_desc,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->searchSuma()),2).'</h5>',
+			//'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->searchSuma()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal5($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'valor_comision',
 			'value'=>'number_format($data->valor_comision,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal2($model->searchSuma()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal2($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'header'=>'Vendedor',
@@ -150,7 +153,7 @@ $('.search-form form').submit(function(){
 			'name'=>'total_pago',
 			'value'=>'number_format($data->total_pago,2)',
 			'htmlOptions'=>array('width'=>'120'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal4($model->searchSuma()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal4($model->searchSuma()),2).'</h6>',
 		),
 
 		array(

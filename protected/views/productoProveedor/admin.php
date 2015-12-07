@@ -34,7 +34,12 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		array(
+			'header'=>'ID.',
+			'name'=>'id',
+			'value'=>'$data->id',
+			'htmlOptions'=>array('width'=>'20'),
+		),
 		'doc_nit',
 		'nombre',
 		'direccion',
@@ -46,8 +51,23 @@ $('.search-form form').submit(function(){
 		'telefono_contacto',
 		'celular_contacto',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+		// array(
+		// 	'class'=>'CButtonColumn',
+		// ),
 	),
 )); ?>
+
+<script>
+    $(document).ready(function()
+    {
+        $('body').on('dblclick', '#producto-proveedor-grid tbody tr', function(event)
+        {
+            var
+                rowNum = $(this).index(),
+                keys = $('#producto-proveedor-grid > div.keys > span'),
+                rowId = keys.eq(rowNum).text();
+
+            location.href = '<?php echo Yii::app()->createUrl('ProductoProveedor/view'); ?>&id=' + rowId;
+        });
+    });
+</script>

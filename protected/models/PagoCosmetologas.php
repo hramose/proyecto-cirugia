@@ -179,9 +179,9 @@ class PagoCosmetologas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.id',$this->id);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('paciente_id',$this->paciente_id);
-		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('cita_id',$this->cita_id);
 		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
 		$criteria->compare('contrato_id',$this->contrato_id);
@@ -202,9 +202,6 @@ class PagoCosmetologas extends CActiveRecord
 		$criteria->compare('saldo',$this->saldo,true);
 		$criteria->compare('fecha_pago',$this->fecha_pago,true);
 		$criteria->compare('fecha_sola',$this->fecha_sola,true);
-		$criteria->with = array('paciente');
-		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
-		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -220,7 +217,7 @@ class PagoCosmetologas extends CActiveRecord
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                     //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
             		$t = $data->valor_tratamiento;
-                    $total += $t;
+                    $total = $total + $t;
             }
             return $total;
     }
@@ -233,7 +230,7 @@ class PagoCosmetologas extends CActiveRecord
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                     //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
             		$t = $data->valor_comision;
-                    $total += $t;
+                    $total = $total + $t;
             }
             return $total;
     }
@@ -246,7 +243,7 @@ class PagoCosmetologas extends CActiveRecord
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                     //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
             		$t = $data->contrato->saldo;
-                    $total += $t;
+                    $total = $total + $t;
             }
             return $total;
     }
@@ -259,7 +256,7 @@ class PagoCosmetologas extends CActiveRecord
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                     //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
             		$t = $data->total_pago;
-                    $total += $t;
+                    $total = $total + $t;
             }
             return $total;
     }
@@ -272,7 +269,7 @@ class PagoCosmetologas extends CActiveRecord
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                     //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
             		$t = $data->valor_tratamiento_desc;
-                    $total += $t;
+                    $total = $total + $t;
             }
             return $total;
     }

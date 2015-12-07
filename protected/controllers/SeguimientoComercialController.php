@@ -220,8 +220,8 @@ class SeguimientoComercialController extends Controller
 
 			if (isset($_GET['usuario'])) 
 			{
-				$model->fecha_atencion = date("Y-m-d");
-				$model->estado = "Abierto";
+				$model->fecha_accion = date("d-m-Y");
+				//$model->estado = "Abierto";
 				$model->responsable_id = Yii::app()->user->usuarioId;
 			}
 
