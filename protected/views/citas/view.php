@@ -578,27 +578,28 @@ if ($elEquipo)
 			<?php
 				}
 			?>
+
 			<?php
 				if ($hojaCirugia >0) {
 			?>
 				<tr>
 					<td><i class="icon-book"></i>  Hoja de Gastos de Cirugía</td>
 					<td><a href="#verHojaCirugia" role="button" class="btn btn-mini btn-warning" data-toggle="modal">Ver</a>
-						<a href="index.php?r=hojaGastos/update&id=<?php echo $idHojaGastos->id; ?>&idPaciente=<?php echo $model->paciente_id;?>&idCita=<?php echo $model->id;?>" role="button" class="btn btn-mini btn-success" data-toggle="modal">Editar</a>
+						<a href="index.php?r=hojaGastos/update&id=<?php echo $idHojaCirugia->id; ?>&idPaciente=<?php echo $model->paciente_id;?>&idCita=<?php echo $model->id;?>" role="button" class="btn btn-mini btn-success" data-toggle="modal">Editar</a>
 					<?php 
-						$this->widget('ext.popup.JPopupWindow', array( 
-						'tagName'=>'button',
-						'content'=> ' Imprimir ', 
-						'url'=>array('hojaGastos/hoja', 'id'=>$model->id),
-						/*'url'=>array('/site/contact'), */
-						'htmlOptions'=>array('class'=>'btn btn-mini btn-primary'),
-						'options'=>array( 
-						'height'=>700, 
-						'width'=>800, 
-						'top'=>50, 
-						'left'=>50, 
-						), 
-						)); 
+						// $this->widget('ext.popup.JPopupWindow', array( 
+						// 'tagName'=>'button',
+						// 'content'=> ' Imprimir ', 
+						// 'url'=>array('hojaGastos/hoja', 'id'=>$model->id),
+						// 'url'=>array('/site/contact'), 
+						// 'htmlOptions'=>array('class'=>'btn btn-mini btn-primary'),
+						// 'options'=>array( 
+						// 'height'=>700, 
+						// 'width'=>800, 
+						// 'top'=>50, 
+						// 'left'=>50, 
+						// ), 
+						// )); 
 					?>
 					</td>
 				</tr>
@@ -635,7 +636,7 @@ if ($elEquipo)
 		</table>
 	</div>
 	<div class="span5 text-center">
-		<?php if($model->estado == "Programada"){ ?>
+		<?php if($model->estado == "Programada" or $model->estado == "Vencida"){ ?>
 		<b class="text-center">Opciones de la Cita</b>
 		<br>
 		<br>
@@ -1563,17 +1564,62 @@ if ($elEquipo)
 		)); ?>
 	</div>
 	<div>
-		<?php $this->widget('zii.widgets.CDetailView', array(
+		<?php 
+			if ($idHojaCirugia->cirujano_id) 
+			{
+				$nombreCirujano = $idHojaCirugia->cirujano->nombreCompleto;
+			}
+			else
+			{
+				$nombreCirujano = null;
+			}
+
+			if ($idHojaCirugia->ayudante_id) 
+			{
+				$nombreAyudante = $idHojaCirugia->ayudante->nombreCompleto;
+			}
+			else
+			{
+				$nombreAyudante = null;
+			}
+
+			if ($idHojaCirugia->anestesiologo_id) 
+			{
+				$nombreAnestesia = $idHojaCirugia->anestesiologo->nombreCompleto;
+			}
+			else
+			{
+				$nombreAnestesia = null;
+			}
+
+			if ($idHojaCirugia->rotadora_id) {
+				$nombreRotadora = $idHojaCirugia->rotadora->nombreCompleto;
+			}
+			else
+			{
+				$nombreRotadora = null;
+			}
+
+			if ($idHojaCirugia->instrumentadora_id) 
+			{
+				$nombreInstrumento = $idHojaCirugia->instrumentadora->nombreCompleto;
+			}
+			else
+			{
+				$nombreInstrumento = null;
+			}
+
+		$this->widget('zii.widgets.CDetailView', array(
 			'data'=>$idHojaCirugia,
 			'attributes'=>array(
 				'hora_ingreso',
 				'hora_inicio_cirugia',
 				'hora_final_cirugia',
-				array('name'=>'Cirujano', 'value'=>$idHojaCirugia->cirujano->nombreCompleto, ''),
-				array('name'=>'Ayudante', 'value'=>$idHojaCirugia->ayudante->nombreCompleto, ''),
-				array('name'=>'Anestesiologo', 'value'=>$idHojaCirugia->anestesiologo->nombreCompleto, ''),
-				array('name'=>'Rotadora', 'value'=>$idHojaCirugia->rotadora->nombreCompleto, ''),
-				array('name'=>'Instrumentadora', 'value'=>$idHojaCirugia->instrumentadora->nombreCompleto, ''),
+				array('name'=>'Cirujano', 'value'=>$nombreCirujano, ''),
+				array('name'=>'Ayudante', 'value'=>$nombreAyudante, ''),
+				array('name'=>'Anestesiologo', 'value'=>$nombreAnestesia, ''),
+				array('name'=>'Rotadora', 'value'=>$nombreRotadora, ''),
+				array('name'=>'Instrumentadora', 'value'=>$nombreInstrumento, ''),
 				//'cantidad_productos',
 				array('name'=>'Fecha de Ingreso', 'value'=>Yii::app()->dateformatter->format("dd-MM-yyyy HH:mm:ss",$idHojaCirugia->fecha), ''),
 				array('name'=>'Ingresado por', 'value'=>$idHojaCirugia->personal->nombreCompleto, ''),

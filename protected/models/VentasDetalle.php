@@ -29,6 +29,8 @@ class VentasDetalle extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
+
+	public $vendedor_id;
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -39,7 +41,7 @@ class VentasDetalle extends CActiveRecord
 			array('valor, iva, total', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, venta_id, producto_id, cantidad, paciente_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
+			array('id, venta_id, producto_id, cantidad, paciente_id, vendedor_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -101,7 +103,9 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('valor',$this->valor,true);
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
-		$criteria->compare('fecha',$this->fecha,true);
+		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
+		$criteria->with = array('venta');
+		$criteria->compare('venta.vendedor_id', $this->vendedor_id, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

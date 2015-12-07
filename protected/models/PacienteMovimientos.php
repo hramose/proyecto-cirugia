@@ -44,7 +44,7 @@ class PacienteMovimientos extends CActiveRecord
 			array('sub_tipo', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, valor, tipo, sub_tipo, descripcion, ingreso_id, contrato_id, usuario_id, fecha', 'safe', 'on'=>'search'),
+			array('id, paciente_id, valor, tipo, sub_tipo, descripcion, comentario, ingreso_id, contrato_id, usuario_id, fecha', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,6 +76,7 @@ class PacienteMovimientos extends CActiveRecord
 			'ingreso_id' => 'Ingreso',
 			'contrato_id' => 'Contrato',
 			'usuario_id' => 'Usuario',
+			'comentario' => 'Comentario',
 			'fecha' => 'Fecha',
 		);
 	}

@@ -18,9 +18,10 @@ $texto_liquidar = "";
 <h1>Ver Contrato #<?php echo $model->id; ?></h1>
 
 <div class="row">
-	<div class="span2"></div>
-	<div class="span3 text-center">
+	<div class="span1"></div>
+	<div class="span4 text-center">
 		<img  src="images/manos.png"/>
+		<br>
 		<a class="btn btn-warning" href='index.php?r=paciente/view&id=<?php echo $model->paciente_id;?>'><i class="icon-search icon-white"></i> Ficha de Paciente</a>
 		<br>
 		<?php 
@@ -34,6 +35,13 @@ $texto_liquidar = "";
 			}
 			else
 			{
+				if ($model->estado == "Liquidado") 
+				{
+					echo "<br><div class='text-center'>";
+					echo "<p><b>Comentario de Liquidación</b></p>";
+					echo $model->comentario_liquidado;
+					echo "</div>";
+				}
 				if ($model->paciente->saldo > 0) 
 				{
 					?>
@@ -327,7 +335,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_notaCredito->fecha_hora); ?></td>
 		<td>
 			<?php if ($model->saldo > $detalle_notaCredito->valor){ ?>
-				<!-- <a href="index.php?r=Contratos/vincularNota&idNota=<?php //echo $detalle_notaCredito->id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	-->
+				<a href="index.php?r=Contratos/vincularNota&idNota=<?php echo $detalle_notaCredito->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
 				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
 			<?php }else{?>
 				<small>Supera saldo de contrato</small>
@@ -367,7 +375,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_ingreso->fecha); ?></td>
 		<td>
 			<?php if ($model->saldo >= $detalle_ingreso->valor){ ?>
-				<!-- <a href="index.php?r=Contratos/vincular&idIngreso=<?php //echo $detalle_ingreso->id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	-->
+				<a href="index.php?r=Contratos/vincular&idIngreso=<?php echo $detalle_ingreso->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
 				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
 			<?php }else{?>
 				<small>Supera saldo de contrato</small>
@@ -556,9 +564,6 @@ if (count($detalleContrato)>0) {
  	<!-- Evaluar politicas de cancelación -->
  	<!-- <p>Desea cancelar Contrato de Servicio y activarlo?</p> -->
 
-
-
-
 		<?php 
 	 	$form=$this->beginWidget('CActiveForm', array(
 		'id'=>'liquidacion-form',
@@ -678,9 +683,34 @@ if (count($detalleContrato)>0) {
  	<p>Se dispone a liquidar el contrato.<?php echo $texto_liquidar; ?></p>
  	<p><strong>¿Desea liquidar el monto total o realizar descuento?</strong></p>
  	<h4 class="text-center">Saldo a favor:  <span class="text-info">$<?php echo number_format($saldo_liquidar,2); ?></h4>
+ 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'cancelar-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=contratos/liquidar&id='.$model->id,
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>false,
+		)); ?>
+	 	<?php 
+	 		$elcomentario = new Contratos;
+	 	?>
+				<div class = 'span10'>
+					<?php echo $form->labelEx($elcomentario,'comentario_liquidado'); ?>
+					<?php echo $form->textArea($elcomentario,'comentario_liquidado',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+					<?php echo $form->error($elcomentario,'comentario_liquidado'); ?>
+				</div>
+	
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($elcomentario->isNewRecord ? 'Liquidar' : 'Guardar', array('class'=>'btn btn-large', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+					<?php echo CHtml::submitButton('Descuento', array('submit'=>array('contratos/update&id='.$model->id.'&liquidar=1'), 'class'=>'btn btn-large btn-primary')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
  	<center>
-	 	<?php echo CHtml::submitButton('Descuento', array('submit'=>array('contratos/update&id='.$model->id.'&liquidar=1'), 'class'=>'btn btn-large btn-primary')); ?>
-	 	<?php echo CHtml::submitButton('Liquidar', array('submit'=>array('contratos/liquidar&id='.$model->id), 'class'=>'btn btn-large')); ?>
+	 	
+	 	<?php //echo CHtml::submitButton('Liquidar', array('submit'=>array('contratos/liquidar&id='.$model->id), 'class'=>'btn btn-large')); ?>
 	</center>
  	
  	

@@ -83,6 +83,7 @@ class PacienteController extends Controller
 			$movimientoDeposito->valor 			= $_POST['valor'];
 			$movimientoDeposito->tipo			= "Ingreso";
 			$movimientoDeposito->sub_tipo 		= "Tranferencia de Paciente";
+			$movimientoDeposito->comentario		= $_POST['comentario'];
 			$movimientoDeposito->descripcion	= "El Paciente No. ".$pacienteOrigen->id." Nombre: ".$pacienteOrigen->nombreCompleto.". Realizo un traslado de su caja a este paciente";
 			$movimientoDeposito->usuario_id		= Yii::app()->user->usuarioId;
 			$movimientoDeposito->fecha 			= date("Y-m-d H:i:s");
@@ -97,6 +98,7 @@ class PacienteController extends Controller
 				$movimientoDepositoOrigen->valor 			= $_POST['valor'];
 				$movimientoDepositoOrigen->tipo				= "Egreso";
 				$movimientoDepositoOrigen->sub_tipo 		= "Tranferencia a Paciente";
+				$movimientoDepositoOrigen->comentario		= $_POST['comentario'];
 				$movimientoDepositoOrigen->descripcion		= "Transferencia a paciente No. ".$pacienteDestino->id." Nombre: ".$pacienteDestino->nombreCompleto.".";
 				$movimientoDepositoOrigen->usuario_id		= Yii::app()->user->usuarioId;
 				$movimientoDepositoOrigen->fecha 			= date("Y-m-d H:i:s");

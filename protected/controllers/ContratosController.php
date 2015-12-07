@@ -227,6 +227,7 @@ class ContratosController extends Controller
 	{
 		$idContrato = $_GET['id'];
 		$datosContrato = Contratos::model()->findByPk($idContrato);
+		$datosContrato->comentario_liquidado = $_POST['Contratos']['comentario_liquidado'];
 
 		//Detalle de contrato
 		$total_tratamiento = 0;

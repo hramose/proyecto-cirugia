@@ -87,6 +87,15 @@ $this->menu=array(
 		</div>	
 		<div class="span3"></div>	
 	</div>
+
+	<div class="row">
+		<div class="span2"></div>
+		<div class="span9">
+			<label for="">Comentario:</label>
+			<textarea name="comentario" id="comentario" cols="30" rows="3" class="input-xxlarge"></textarea>
+		</div>	
+	</div>
+	
 	<hr>
 	<div class="row">
 		<div class="span10 text-center">

@@ -22,8 +22,16 @@
  * @property LineaServicio $lineaServicio
  * @property Personal $personal
  */
+
+
+
 class RelacionHojaGastos extends CActiveRecord
 {
+
+	public $nombre_paciente;
+	public $apellido_paciente;
+	public $n_identificacion;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -46,7 +54,7 @@ class RelacionHojaGastos extends CActiveRecord
 			array('costo', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, hoja, asistencial_id, n_identificacion, cita_id, linea_servicio_id, fecha, fecha_hora, costo, personal_id', 'safe', 'on'=>'search'),
+			array('id, paciente_id, hoja, asistencial_id, nombre_paciente, apellido_paciente, n_identificacion, cita_id, linea_servicio_id, fecha, fecha_hora, costo, personal_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -104,21 +112,31 @@ class RelacionHojaGastos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('paciente_id',$this->paciente_id);
 		$criteria->compare('hoja',$this->hoja,true);
 		$criteria->compare('asistencial_id',$this->asistencial_id);
 		$criteria->compare('cita_id',$this->cita_id);
 		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
-		$criteria->compare('fecha',$this->fecha,true);
+		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
 		$criteria->compare('fecha_hora',$this->fecha_hora,true);
 		$criteria->compare('costo',$this->costo,true);
-		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('personal_id',$this->personal_id);
+		$criteria->with = array('paciente');
+		$criteria->compare('paciente.n_identificacion', $this->n_identificacion, true );
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination'=>array('pageSize'=>20),
+			'sort'=>array(
+			    'defaultOrder'=>'t.id DESC',
+			    'attributes'=>array(
+			    	'desc'=>'t.id desc',
+			),
+			),
 		));
 	}
 
@@ -128,7 +146,7 @@ class RelacionHojaGastos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('paciente_id',$this->paciente_id);
 		$criteria->compare('hoja',$this->hoja,true);
 		$criteria->compare('asistencial_id',$this->asistencial_id);
@@ -137,8 +155,12 @@ class RelacionHojaGastos extends CActiveRecord
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('fecha_hora',$this->fecha_hora,true);
 		$criteria->compare('costo',$this->costo,true);
-		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('personal_id',$this->personal_id);
+		$criteria->with = array('paciente');
+		$criteria->compare('paciente.n_identificacion', $this->n_identificacion, true );
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

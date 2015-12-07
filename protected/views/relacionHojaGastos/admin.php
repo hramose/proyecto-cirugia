@@ -32,6 +32,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'relacion-hoja-gastos-grid',
 	'dataProvider'=>$model->search(),
+	'afterAjaxUpdate' => 'reinstallDatePickerVentas', // (#1)
 	'filter'=>$model,
 	'columns'=>array(
 		array(
@@ -41,13 +42,24 @@ $('.search-form form').submit(function(){
 			'htmlOptions'=>array('width'=>'30'),
 		),
 		array(
-			'header'=>'Paciente',
-			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
-			'value'=>'$data[\'paciente\'][\'nombreCompleto\']',
-			'htmlOptions'=>array('width'=>'220'),
+		   'name'=>'nombre_paciente',
+		   'value'=>'$data->paciente->nombre',
+		   'htmlOptions'=>array('width'=>'100'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
-		'n_identificacion',
+		array(
+		   'name'=>'apellido_paciente',
+		   'value'=>'$data->paciente->apellido',
+		   'htmlOptions'=>array('width'=>'100'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		),
+		array(
+			'header'=>'Cedula',
+		   'name'=>'n_identificacion',
+		   'value'=>'$data->paciente->n_identificacion',
+		   'htmlOptions'=>array('width'=>'50'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		),
 		array(
 			'name'=>'hoja',
 			'filter' => array('Hoja de Gatos'=>'Hoja de Gatos','Hoja de Gatos Cirugia'=>'Hoja de Gatos Cirugia'),
@@ -85,7 +97,7 @@ $('.search-form form').submit(function(){
         				'yearRange'=>'2014:2025',
 					),
 					'htmlOptions'=>array(
-						'id' => 'datepicker_for_fecha_cita',
+						'id' => 'datepicker_for_fecha',
 						'style'=>'height:20px;width:80px;'
 					),
 					 'defaultOptions' => array(  // (#3)
@@ -109,7 +121,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Registrada por:',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Usuarios::model()->findAll(), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'personal\'][\'nombreCompleto\']',
 			'htmlOptions'=>array('width'=>'180'),
 		),
@@ -118,7 +130,18 @@ $('.search-form form').submit(function(){
 			'template'=>'{view}',
 		),
 	),
-)); ?>
+)); 
+
+Yii::app()->clientScript->registerScript('re-install-date-picker', "
+function reinstallDatePickerVentas(id, data) {
+        //use the same parameters that you had set in your widget else the datepicker will be refreshed by default
+    $('#datepicker_for_fecha').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
+    //$('#datepicker_for_fecha').datepicker($.datepicker.regional[ 'es' ]);
+  //$('#datepicker_for_fecha').datepicker({dateFormat: 'dd-mm-yy'});
+}
+");
+
+?>
 
 
 <script>

@@ -41,6 +41,7 @@ $lasVentas = Ventas::model()->findAll();
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ventas-detalle-grid',
 	'dataProvider'=>$model->search(),
+	'afterAjaxUpdate' => 'reinstallDatePickerVentas', // (#1)
 	'filter'=>$model,
 	'columns'=>array(
 		array(
@@ -64,7 +65,20 @@ $lasVentas = Ventas::model()->findAll();
 			'value'=>'$data[\'producto\'][\'nombre_producto\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),
-		'cantidad',
+		array(
+			'header'=>'Vendedor',
+		   'name'=>'vendedor_id',
+		   'value'=>'$data->venta->vendedor->nombreCompleto',
+		   'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+		   'htmlOptions'=>array('width'=>'200'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		),
+
+		array(
+			'name'=>'cantidad',
+			'value'=>'$data->cantidad',
+			'htmlOptions'=>array('width'=>'50'),
+			),
 		array(
 			'name'=>'valor',
 			'value'=>'number_format($data->valor,2)',
@@ -83,7 +97,7 @@ $lasVentas = Ventas::model()->findAll();
 		'footer'=>"<h5>$ ".number_format($model->getTotal3($model->search()),2).'</h5>',
 		),
 		array(
-			'header'=>'Fecha venta',
+			'header'=>'Fecha',
 			'name'=>'fecha',
 			'filter'=>$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 					'language'=>'es',
@@ -119,7 +133,18 @@ $lasVentas = Ventas::model()->findAll();
 			'template'=>'{view}',
 		),
 	),
-)); ?>
+)); 
+
+Yii::app()->clientScript->registerScript('re-install-date-picker', "
+function reinstallDatePickerVentas(id, data) {
+        //use the same parameters that you had set in your widget else the datepicker will be refreshed by default
+    $('#datepicker_for_fecha').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
+    //$('#datepicker_for_fecha').datepicker($.datepicker.regional[ 'es' ]);
+  //$('#datepicker_for_fecha').datepicker({dateFormat: 'dd-mm-yy'});
+}
+");
+
+?>
 
 <div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
