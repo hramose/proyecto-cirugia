@@ -334,7 +334,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo $detalle_notaCredito->personal->nombreCompleto; ?></td>
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_notaCredito->fecha_hora); ?></td>
 		<td>
-			<?php if ($model->saldo > $detalle_notaCredito->valor){ ?>
+			<?php if ($model->saldo > $detalle_notaCredito->valor and $model->estado == "Activo"){ ?>
 				<a href="index.php?r=Contratos/vincularNota&idNota=<?php echo $detalle_notaCredito->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
 				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
 			<?php }else{?>
@@ -374,7 +374,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo $detalle_ingreso->personal->nombreCompleto; ?></td>
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_ingreso->fecha); ?></td>
 		<td>
-			<?php if ($model->saldo >= $detalle_ingreso->valor){ ?>
+			<?php if ($model->saldo >= $detalle_ingreso->valor and $model->estado == "Activo"){ ?>
 				<a href="index.php?r=Contratos/vincular&idIngreso=<?php echo $detalle_ingreso->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
 				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
 			<?php }else{?>
@@ -687,6 +687,10 @@ if (count($detalleContrato)>0) {
 	 	$form=$this->beginWidget('CActiveForm', array(
 		'id'=>'cancelar-form',
 		'action'=>Yii::app()->baseUrl.'/index.php?r=contratos/liquidar&id='.$model->id,
+		'htmlOptions'=>array(
+	       'onsubmit'=>"return onEnviar();",/* Disable normal form submit */
+	       //'onkeypress'=>" if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
+	     ),
 		// Please note: When you enable ajax validation, make sure the corresponding
 		// controller action is handling ajax validation correctly.
 		// There is a call to performAjaxValidation() commented in generated controller code.
@@ -704,7 +708,8 @@ if (count($detalleContrato)>0) {
 	
 				<div class = 'span6' >
 					<?php echo CHtml::submitButton($elcomentario->isNewRecord ? 'Liquidar' : 'Guardar', array('class'=>'btn btn-large', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
-					<?php echo CHtml::submitButton('Descuento', array('submit'=>array('contratos/update&id='.$model->id.'&liquidar=1'), 'class'=>'btn btn-large btn-primary')); ?>
+					<a href="index.php?r=contratos/update&id=<?php echo $model->id; ?>&liquidar=1" class='btn btn-large btn-primary'>Descuento</a>
+					<?php //echo CHtml::submitButton('Descuento', array('submit'=>array('contratos/update&id='.$model->id.'&liquidar=1'), 'class'=>'btn btn-large btn-primary')); ?>
 				</div>
 
 		<?php $this->endWidget(); ?>
@@ -960,5 +965,8 @@ if (count($detalleContrato)>0) {
 	// 		$los_contratos->update();
 
 	// }
+
+
+
 
 ?>

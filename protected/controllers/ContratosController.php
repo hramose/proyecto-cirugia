@@ -229,6 +229,12 @@ class ContratosController extends Controller
 		$datosContrato = Contratos::model()->findByPk($idContrato);
 		$datosContrato->comentario_liquidado = $_POST['Contratos']['comentario_liquidado'];
 
+		if ($datosContrato->comentario_liquidado == "") 
+		{
+			Yii::app()->user->setFlash('error',"No se liquido el contrato. No se coloco comentario de liquidación.");
+			$this->redirect(array('view','id'=>$datosContrato->id));
+		}
+
 		//Detalle de contrato
 		$total_tratamiento = 0;
 		$total_tratamientos_realizados = 0;
@@ -364,7 +370,7 @@ class ContratosController extends Controller
 					$detallesCuenta->saldo = ($saldo_favor * -1);
 					$detallesCuenta->save();
 
-					$sumadetalles = CuentasXcDetalle::model()->findAll("paciente_id = $model->paciente_id");
+					$sumadetalles = CuentasXcDetalle::model()->findAll("paciente_id = $datosContrato->paciente_id");
 						$total_detalles = 0;
 						foreach ($sumadetalles as $suma_detalles) 
 						{

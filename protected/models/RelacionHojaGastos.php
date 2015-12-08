@@ -58,6 +58,9 @@ class RelacionHojaGastos extends CActiveRecord
 		);
 	}
 
+	
+
+
 	/**
 	 * @return array relational rules.
 	 */

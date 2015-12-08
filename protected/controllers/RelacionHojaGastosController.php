@@ -19,6 +19,15 @@ class RelacionHojaGastosController extends Controller
 		);
 	}
 
+		public function behaviors()
+    {
+        return array(
+            'eexcelview'=>array(
+                'class'=>'ext.eexcelview.EExcelBehavior',
+            ),
+        );
+    }
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -36,7 +45,7 @@ class RelacionHojaGastosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'exportar'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -126,6 +135,55 @@ class RelacionHojaGastosController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	public function actionExportar()
+	{
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{
+		
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+
+				$attribs = array();
+				$criteria = new CDbCriteria(array('order'=>'id DESC'));
+				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$rows = RelacionHojaGastos::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$rows = RelacionHojaGastos::model()->findAll();
+			}
+		    
+		    // Export it
+		    $this->toExcel($rows,
+		    	array(
+	            'id::ID',
+	            'paciente.nombreCompleto::Paciente',
+	            'n_identificacion::Cedula',
+	            'hoja',
+	            'asistencial.nombreCompleto::Asistencial',
+	            'lineaServicio.nombre::Linea de Servicio',
+	            'fecha',
+	            'costo',
+	            'personal.nombreCompleto::Registrado por',
+	        ));
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+				$model=new Paciente('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Paciente']))
+			$model->attributes=$_GET['Paciente'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
+		}
 	}
 
 	/**
