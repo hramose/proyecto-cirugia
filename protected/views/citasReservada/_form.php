@@ -29,7 +29,7 @@ else
 	<div class="row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'personal_id'); ?>
-			<?php echo $form->textField($model,'personal_id'); ?>
+			<?php echo $form->dropDownList($model, 'personal_id',CHtml::listData(Personal::model()->findAll("activo = 'SI'"),'id','NombreCompleto'), array('options' => array('selected'=>true),'class'=>'input-xlarge'));?>
 			<?php echo $form->error($model,'personal_id'); ?>
 		</div>
 	</div>
@@ -146,3 +146,22 @@ else
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+
+<script>
+	$("#opciones").change(function (){
+	//var posicion = this.name.replace(/[^\d]/g, '');
+
+     if ($(this).val() == "Horas") 
+    	{
+    		$("#dias").hide();
+    		$("#horas").show();
+    	}
+
+      if ($(this).val() == "Dias") 
+    	{
+    		$("#dias").show();
+    		$("#horas").hide();
+    	}
+});
+</script>

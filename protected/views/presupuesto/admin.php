@@ -102,7 +102,7 @@ $this->menu=array(
 		array(
 			'header'=>'Elaborado Por:',
 			'name'=>'usuario_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'elusuario\'][\'nombreCompleto\']',
 		),
 		array(

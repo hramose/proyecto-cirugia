@@ -105,7 +105,7 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
 		$criteria->with = array('venta');
-		$criteria->compare('venta.vendedor_id', $this->vendedor_id, true );
+		$criteria->compare('venta.vendedor_id', $this->vendedor_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

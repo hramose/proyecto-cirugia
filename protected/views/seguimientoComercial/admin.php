@@ -119,14 +119,14 @@ $this->renderPartial('_search',array(
 				array(
 					'header'=>'Responsable de Seguimiento',
 					'name'=>'responsable_id',
-					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 					'value'=>'$data[\'responsable\'][\'nombreCompleto\']',
 					//'htmlOptions'=>array('width'=>'220'),
 				),
 				array(
 					'header'=>'Registrado por:',
 					'name'=>'id_personal',
-					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+					'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 					'value'=>'$data[\'idPersonal\'][\'nombreCompleto\']',
 					'htmlOptions'=>array('width'=>'220'),
 				),

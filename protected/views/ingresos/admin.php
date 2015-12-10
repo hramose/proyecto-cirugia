@@ -115,7 +115,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Vendido por:',
 			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
@@ -153,7 +153,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),
@@ -161,7 +161,7 @@ $('.search-form form').submit(function(){
 		array(
 			'header'=>'Seguimiento:',
 			'name'=>'personal_seguimiento',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personalSeguimiento->nombreCompleto',
 			'htmlOptions'=>array('width'=>'150'),
 		),

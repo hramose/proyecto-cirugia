@@ -90,14 +90,14 @@ $this->menu=array(
 		array(
 			'header'=>'Vendido por:',
 			'name'=>'vendedor_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->vendedor->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),
 		array(
 			'header'=>'Realizado por:',
 			'name'=>'personal',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data->personal0->nombreCompleto',
 			'htmlOptions'=>array('width'=>'180'),
 		),

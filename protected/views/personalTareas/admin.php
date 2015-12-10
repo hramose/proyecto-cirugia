@@ -60,7 +60,7 @@ else
 		array(
 			'header'=>'Personal Asignado:',
 			'name'=>'personal_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'personal\'][\'nombreCompleto\']',
 		),
 		array(
@@ -108,7 +108,7 @@ else
 		array(
 			'header'=>'Personal que Asigno:',
 			'name'=>'usuario_id',
-			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
 			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
 		),
 		//'fecha',

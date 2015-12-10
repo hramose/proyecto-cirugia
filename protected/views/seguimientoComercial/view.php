@@ -273,12 +273,13 @@ if (count($elSeguimiento)>0) {
 			<div class="form"> 
 			<?php $form=$this->beginWidget('CActiveForm', array(
 				'id'=>'seguimiento-comercial-detalle-form',
-				'enableAjaxValidation'=>true,
+				'enableAjaxValidation'=>false,
 			)); ?>
 
 				<?php 
 					$tabla_seguimiento = new SeguimientoComercialDetalle;
-					echo $form->errorSummary($tabla_seguimiento); 
+					echo $form->errorSummary($tabla_seguimiento);
+					$lafecha = date("d-m-Y");
 				?>
 				
 				<div>
@@ -286,7 +287,7 @@ if (count($elSeguimiento)>0) {
 					<div class="input-prepend">
 					<span class="add-on"><i class="icon-calendar"></i></span>
 					<?php 			
-								$lafecha = '';
+								//$lafecha = '';
 						$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 							'name'=>'fecha_seguimiento',
 							'language'=>'es',
