@@ -662,7 +662,7 @@ class CitasController extends Controller
 			$model->attributes=$_GET['Citas'];
 		if (isset($_GET['programadas'])) 
 		{
-			$model->fecha_cita = date("Y-m-d");
+			$model->fecha_cita = date("d-m-Y");
 			$model->estado = 'Programada';
 			$model->personal_id = Yii::app()->user->usuarioId;
 		}

@@ -179,9 +179,9 @@ class PagoCosmetologas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('paciente_id',$this->paciente_id);
-		$criteria->compare('n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('cita_id',$this->cita_id);
 		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
 		$criteria->compare('contrato_id',$this->contrato_id);
@@ -193,7 +193,7 @@ class PagoCosmetologas extends CActiveRecord
 		$criteria->compare('estado',$this->estado,true);
 		$criteria->compare('descarga',$this->descarga,true);
 		//$criteria->compare('fecha',$this->fecha,true);
-		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
+		//$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('aprobo_id',$this->aprobo_id);
@@ -202,10 +202,13 @@ class PagoCosmetologas extends CActiveRecord
 		$criteria->compare('saldo',$this->saldo,true);
 		$criteria->compare('fecha_pago',$this->fecha_pago,true);
 		$criteria->compare('fecha_sola',$this->fecha_sola,true);
+		$criteria->with = array('paciente');
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination'=>array('pageSize'=>9000000),
+			//'pagination'=>array('pageSize'=>99999),
 		));
 	}
 
@@ -235,18 +238,6 @@ class PagoCosmetologas extends CActiveRecord
             return $total;
     }
 
-    public static function getTotal3($provider)
-    {
-            $total=0;
-            foreach($provider->data as $data)
-            {
-                    //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
-                    //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
-            		$t = $data->contrato->saldo;
-                    $total = $total + $t;
-            }
-            return $total;
-    }
 
     public static function getTotal4($provider)
     {
