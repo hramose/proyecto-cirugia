@@ -44,21 +44,7 @@ else
 		</div>
 	</div>
 
-	<div class="row" id="horas">
-		<div class="span3">
-			<?php echo $form->labelEx($model,'hora_inicio'); ?>
-			<?php echo $form->dropDownList($model, 'hora_inicio',CHtml::listData(HorasServicio::model()->findAll(),'id','hora'), array('options' => array($lahora=>array('selected'=>true)), 'class'=>'input-medium'));?>
-			<?php echo $form->error($model,'hora_inicio'); ?>
-		</div>
 
-		<div class="span3">
-			<?php echo $form->labelEx($model,'hora_fin'); ?>
-			<?php echo $form->dropDownList($model, 'hora_fin',CHtml::listData(HorasServicio::model()->findAll(),'id','hora'), array('options' => array($lahora=>array('selected'=>true)), 'class'=>'input-medium'));?>
-			<?php echo $form->error($model,'hora_fin'); ?>
-		</div>
-	</div>
-
-	<div id="dias" style="display: none">
 	<div class="row">
 		<div class="span3">
 			<?php echo $form->labelEx($model,'fecha_inicio'); ?>
@@ -92,7 +78,7 @@ else
 			<?php echo $form->error($model,'fecha_inicio'); ?>
 		</div>
 		
-
+		<div id="dias" style="display: none">
 		<div class="span3">
 			<?php echo $form->labelEx($model,'fecha_fin'); ?>
 			<div class="input-prepend">
@@ -126,6 +112,22 @@ else
 		</div>
 	</div>
 	</div>
+
+	<div class="row" id="horas">
+		<div class="span3">
+			<?php echo $form->labelEx($model,'hora_inicio'); ?>
+			<?php echo $form->dropDownList($model, 'hora_inicio',CHtml::listData(HorasServicio::model()->findAll(),'id','hora'), array('options' => array($lahora=>array('selected'=>true)), 'class'=>'input-medium'));?>
+			<?php echo $form->error($model,'hora_inicio'); ?>
+		</div>
+
+		<div class="span3">
+			<?php echo $form->labelEx($model,'hora_fin'); ?>
+			<?php echo $form->dropDownList($model, 'hora_fin',CHtml::listData(HorasServicio::model()->findAll(),'id','hora'), array('options' => array($lahora=>array('selected'=>true)), 'class'=>'input-medium'));?>
+			<?php echo $form->error($model,'hora_fin'); ?>
+		</div>
+	</div>
+
+	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'motivo'); ?>

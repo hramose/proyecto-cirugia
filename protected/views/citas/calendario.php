@@ -543,7 +543,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								'dateFormat' => 'dd-mm-yy',
 							),
 							'htmlOptions'=>array(
-								'style'=>'height:20px;width:80px;'
+								'style'=>'height:20px;width:80px;z-index:1151 !important;'
 							),
 						));
 					?>

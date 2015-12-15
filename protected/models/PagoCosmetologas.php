@@ -164,7 +164,7 @@ class PagoCosmetologas extends CActiveRecord
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria'=>$criteria,			
 			'pagination'=>array('pageSize'=>20),
 			'sort'=>array(
 						    'defaultOrder'=>'fecha DESC',
@@ -209,12 +209,16 @@ class PagoCosmetologas extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			//'pagination'=>array('pageSize'=>99999),
+			 //'pagination'=>false,
 		));
 	}
 
 	public static function getTotal($provider)
     {
             $total=0;
+            //$provider = PagoCosmetologas::model()->findAll($criteria);
+            
+            //foreach($provider->data as $data)
             foreach($provider->data as $data)
             {
                     //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+

@@ -41,7 +41,7 @@ class CitasReservada extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacon, usuario_id, fecha_creado', 'required'),
+			array('personal_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacon', 'required'),
 			array('personal_id, cita_id, hora_inicio, hora_fin, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('fecha_fin', 'safe'),
 			// The following rule is used by search().
