@@ -70,8 +70,20 @@ class CitasReservadaController extends Controller
 		if(isset($_POST['CitasReservada']))
 		{
 			$model->attributes=$_POST['CitasReservada'];
+			//Proceder a crear y guardar cita
+			//Solo 1 dia
+			if($_POST['opciones'] == "Dias")
+			{
+				$lacita = new Citas;
+				$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
+				$lacita->hora_fin 		= $_POST['Citas']['hora_fin'];
+				$lacita->hora_inicio 	= $_POST['Citas']['hora_inicio'];	
+			}
+
+			
+
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			 	$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
