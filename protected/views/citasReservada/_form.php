@@ -136,9 +136,9 @@ else
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'observacon'); ?>
-		<?php echo $form->textArea($model,'observacon',array('rows'=>6, 'cols'=>50, 'class'=>"input-xxlarge")); ?>
-		<?php echo $form->error($model,'observacon'); ?>
+		<?php echo $form->labelEx($model,'observacion'); ?>
+		<?php echo $form->textArea($model,'observacion',array('rows'=>6, 'cols'=>50, 'class'=>"input-xxlarge")); ?>
+		<?php echo $form->error($model,'observacion'); ?>
 	</div>
 
 	<div class="row buttons">

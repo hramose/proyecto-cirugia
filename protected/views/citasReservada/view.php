@@ -2,35 +2,55 @@
 /* @var $this CitasReservadaController */
 /* @var $model CitasReservada */
 
-$this->breadcrumbs=array(
-	'Citas Reservadas'=>array('index'),
-	$model->id,
-);
-
 $this->menu=array(
-	array('label'=>'List CitasReservada', 'url'=>array('index')),
-	array('label'=>'Create CitasReservada', 'url'=>array('create')),
-	array('label'=>'Update CitasReservada', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete CitasReservada', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage CitasReservada', 'url'=>array('admin')),
+	array('label'=>'Crear Citas Reservada', 'url'=>array('create')),
+	array('label'=>'Actualizar Citas Reservada', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Buscar Citas Reservada', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View CitasReservada #<?php echo $model->id; ?></h1>
+<h1>Cita Reservada #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'personal_id',
-		'cita_id',
-		'hora_inicio',
-		'hora_fin',
-		'fecha_inicio',
-		'fecha_fin',
-		'motivo',
-		'observacon',
-		'usuario_id',
-		'fecha_creado',
-	),
-)); ?>
+<?php 
+
+if ($model->fecha_fin == "0000-00-00") 
+{
+	$this->widget('zii.widgets.CDetailView', array(
+		'data'=>$model,
+		'attributes'=>array(
+			array('name'=>'Personal', 'value'=>$model->personal->nombreCompleto, ''),
+			array('name'=>'Fecha', 'value'=>date('d-m-Y',strtotime($model->fecha_inicio)),''),
+			array('name'=>'Hora de Inicio', 'value'=>$model->horaInicio->hora,''),
+			array('name'=>'Hora de Fin', 'value'=>$model->horaFin->hora ,''),
+			'motivo',
+			'observacion',
+			array('name'=>'Creado por', 'value'=>$model->usuario->nombreCompleto, ''),
+			array('name'=>'Fecha de Registro', 'value'=>date('d-m-Y h:m:s',strtotime($model->fecha_creado)),''),
+		),
+	)); 	
+}
+
+if ($model->fecha_fin != "0000-00-00") 
+{
+	$this->widget('zii.widgets.CDetailView', array(
+		'data'=>$model,
+		'attributes'=>array(
+			array('name'=>'Personal', 'value'=>$model->personal->nombreCompleto, ''),
+			array('name'=>'Fecha de Inicio', 'value'=>date('d-m-Y',strtotime($model->fecha_inicio)),''),
+			array('name'=>'Fecha de Fin', 'value'=>date('d-m-Y',strtotime($model->fecha_fin)),''),
+			array('name'=>'Hora de Inicio', 'value'=>$model->horaInicio->hora,''),
+			array('name'=>'Hora de Fin', 'value'=>$model->horaFin->hora ,''),
+			'motivo',
+			'observacion',
+			array('name'=>'Creado por', 'value'=>$model->usuario->nombreCompleto, ''),
+			array('name'=>'Fecha de Registro', 'value'=>date('d-m-Y h:m:s',strtotime($model->fecha_creado)),''),
+		),
+	));	
+}
+
+//echo date('Y-m-d') ;
+
+$lafecha = strtotime ('+2 day', strtotime(date('Y-m-j')));
+echo date ('Y-m-d', $lafecha); 
+
+?>

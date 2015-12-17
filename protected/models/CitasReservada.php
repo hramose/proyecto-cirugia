@@ -41,12 +41,12 @@ class CitasReservada extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('personal_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacon', 'required'),
+			array('personal_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacion', 'required'),
 			array('personal_id, cita_id, hora_inicio, hora_fin, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('fecha_fin', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, fecha_fin, motivo, observacon, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
+			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +59,7 @@ class CitasReservada extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'personal' => array(self::BELONGS_TO, 'Personal', 'personal_id'),
+			'usuario' => array(self::BELONGS_TO, 'Personal', 'usuario_id'),
 			'cita' => array(self::BELONGS_TO, 'Citas', 'cita_id'),
 			'horaInicio' => array(self::BELONGS_TO, 'HorasServicio', 'hora_inicio'),
 			'horaFin' => array(self::BELONGS_TO, 'HorasServicio', 'hora_fin'),
@@ -80,7 +81,7 @@ class CitasReservada extends CActiveRecord
 			'fecha_inicio' => 'Fecha Inicio',
 			'fecha_fin' => 'Fecha Fin',
 			'motivo' => 'Motivo',
-			'observacon' => 'Observacon',
+			'observacion' => 'Observación',
 			'usuario_id' => 'Usuario',
 			'fecha_creado' => 'Fecha Creado',
 		);
@@ -112,7 +113,7 @@ class CitasReservada extends CActiveRecord
 		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
 		$criteria->compare('fecha_fin',$this->fecha_fin,true);
 		$criteria->compare('motivo',$this->motivo,true);
-		$criteria->compare('observacon',$this->observacon,true);
+		$criteria->compare('observacion',$this->observacon,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('fecha_creado',$this->fecha_creado,true);
 

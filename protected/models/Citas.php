@@ -47,7 +47,7 @@ class Citas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('paciente_id, personal_id, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario', 'required'),
+			array('personal_id, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario', 'required'),
 			array('paciente_id, personal_id, paciente_orden_id, linea_servicio_id, hora_inicio, hora_fin_mostrar, hora_fin', 'numerical', 'integerOnly'=>true),
 			array('estado', 'length', 'max'=>10),
 			array('correo', 'length', 'max'=>2),

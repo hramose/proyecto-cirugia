@@ -72,18 +72,52 @@ class CitasReservadaController extends Controller
 			$model->attributes=$_POST['CitasReservada'];
 			//Proceder a crear y guardar cita
 			//Solo 1 dia
-			if($_POST['opciones'] == "Dias")
+			if($_POST['opciones'] == "Horas")
 			{
+
 				$lacita = new Citas;
-				$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
-				$lacita->hora_fin 		= $_POST['Citas']['hora_fin'];
-				$lacita->hora_inicio 	= $_POST['Citas']['hora_inicio'];	
+				$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+				$lacita->hora_fin 		= $_POST['CitasReservada']['hora_fin']-1;
+				$lacita->hora_fin_mostrar = $_POST['CitasReservada']['hora_fin'];
+				$lacita->hora_inicio 	= $_POST['CitasReservada']['hora_inicio'];
+				$lacita->linea_servicio_id = 26;
+				$lacita->estado = "Reservado";
+				$lacita->correo = "No";
+				$lacita->comentario = "Bloqueo de agenda";
+				$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
+				$lacita->fecha_creacion = date("Y-m-d");
+				$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
+				$lacita->usuario_id = Yii::app()->user->usuarioId;
+				if ($lacita->save()) 
+				{
+					$model->personal_id = $lacita->personal_id;
+					$model->cita_id = $lacita->id;
+					$model->hora_inicio = $lacita->hora_inicio;
+					$model->hora_fin = $lacita->hora_fin_mostrar;
+					$model->fecha_inicio = $lacita->fecha_cita;
+					$model->motivo = $_POST['CitasReservada']['motivo'];
+					$model->observacion = $_POST['CitasReservada']['observacion'];
+					$model->usuario_id = Yii::app()->user->usuarioId;
+					$model->fecha_creado = date("Y-m-d H:i:s");
+					
+					if ($model->save()) 
+					{
+						$this->redirect(array('view','id'=>$model->id));
+					}
+				}
+				else
+				{
+					Yii::app()->user->setFlash('error',"Noooooooooo lo hizo");
+					$this->render('create',array(
+						'model'=>$model,
+					));		
+				}
 			}
 
 			
 
-			if($model->save())
-			 	$this->redirect(array('view','id'=>$model->id));
+			// if($model->save())
+			//  	$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(

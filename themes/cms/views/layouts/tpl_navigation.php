@@ -73,6 +73,7 @@ if ($tareas == 0)
                         'items'=>array(
                                     array('label'=>'Agenda de Citas', 'url'=>array('/citas/citas')),
                                     array('label'=>'Listado de Citas', 'url'=>array('/citas/admin')),
+                                    array('label'=>'Bloqueo de Agenda', 'url'=>array('/citasReservada/admin')),
                                     array('label'=>'<li class="divider"></li>'),
                                     array('label'=>'Agenda de Equipos', 'url'=>array('/citasEquipo/admin')),
                                     array('label'=>'Tareas', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
