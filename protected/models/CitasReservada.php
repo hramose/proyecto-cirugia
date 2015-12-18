@@ -46,7 +46,7 @@ class CitasReservada extends CActiveRecord
 			array('fecha_fin', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
+			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, estado, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,6 +84,7 @@ class CitasReservada extends CActiveRecord
 			'observacion' => 'Observación',
 			'usuario_id' => 'Usuario',
 			'fecha_creado' => 'Fecha Creado',
+			'estado' => 'Estado',
 		);
 	}
 
@@ -116,6 +117,7 @@ class CitasReservada extends CActiveRecord
 		$criteria->compare('observacion',$this->observacion,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('fecha_creado',$this->fecha_creado,true);
+		$criteria->compare('estado',$this->estado,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

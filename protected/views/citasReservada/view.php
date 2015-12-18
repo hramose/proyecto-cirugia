@@ -26,6 +26,7 @@ if ($model->fecha_fin == "0000-00-00")
 			'observacion',
 			array('name'=>'Creado por', 'value'=>$model->usuario->nombreCompleto, ''),
 			array('name'=>'Fecha de Registro', 'value'=>date('d-m-Y h:m:s',strtotime($model->fecha_creado)),''),
+			'estado',
 		),
 	)); 	
 }
@@ -44,6 +45,7 @@ if ($model->fecha_fin != "0000-00-00")
 			'observacion',
 			array('name'=>'Creado por', 'value'=>$model->usuario->nombreCompleto, ''),
 			array('name'=>'Fecha de Registro', 'value'=>date('d-m-Y h:m:s',strtotime($model->fecha_creado)),''),
+			'estado',
 		),
 	));	
 }

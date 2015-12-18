@@ -2,38 +2,14 @@
 /* @var $this CitasReservadaController */
 /* @var $model CitasReservada */
 
-$this->breadcrumbs=array(
-	'Citas Reservadas'=>array('index'),
-	'Manage',
-);
-
 $this->menu=array(
-	array('label'=>'List CitasReservada', 'url'=>array('index')),
-	array('label'=>'Create CitasReservada', 'url'=>array('create')),
+	array('label'=>'Crear Reserva de Agenda', 'url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#citas-reservada-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Citas Reservadas</h1>
+<h1>Buscar Reserva de Cita</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -45,21 +21,75 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'personal_id',
-		'cita_id',
-		'hora_inicio',
-		'hora_fin',
-		'fecha_inicio',
-		/*
-		'fecha_fin',
+		array(
+			'header'=>'ID.',
+			'name'=>'id',
+			'value'=>'$data->id',
+			'htmlOptions'=>array('width'=>'30'),
+		),
+		array(
+			'header'=>'Personal',
+			'name'=>'personal_id',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'personal\'][\'nombreCompleto\']',
+			'htmlOptions'=>array('width'=>'220'),
+		),
+		array(
+			'name'=>'hora_inicio',
+			'filter'=>CHtml::listData(HorasServicio::model()->findAll(), 'id','hora'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'horaInicio\'][\'hora\']',
+			'htmlOptions'=>array('width'=>'85'),
+		),
+		array(
+			'name'=>'hora_fin',
+			'filter'=>CHtml::listData(HorasServicio::model()->findAll(), 'id','hora'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'horaFin\'][\'hora\']',
+			'htmlOptions'=>array('width'=>'85'),
+		),
+		array(
+			'header'=>'Fecha de Inicio',
+			'name'=>'fecha_inicio',
+			'filter'=>$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+					'language'=>'es',
+					'model' => $model,
+					'attribute' => 'fecha_inicio',
+					// additional javascript options for the date picker plugin
+					'options'=>array(
+						'showAnim'=>'fold',
+						'language' => 'es',
+						'dateFormat' => 'dd-mm-yy',
+						'changeMonth'=>true,
+        				'changeYear'=>true,
+        				'yearRange'=>'2014:2025',
+					),
+					'htmlOptions'=>array(
+						'id' => 'datepicker_for_fecha_cita',
+						'style'=>'height:20px;width:80px;'
+					),
+					 'defaultOptions' => array(  // (#3)
+                    'showOn' => 'focus', 
+                    'showOtherMonths' => true,
+                    'selectOtherMonths' => true,
+                    'changeMonth' => true,
+                    'changeYear' => true,
+                    'showButtonPanel' => true,
+                )
+				),true),
+			'value'=>'Yii::app()->dateformatter->format("dd-MM-yyyy",$data[\'fecha_inicio\']);',
+			'htmlOptions'=>array('width'=>'80'),
+		),
 		'motivo',
 		'observacion',
+		'estado',
+		/*
+		'fecha_fin',
+		
 		'usuario_id',
 		'fecha_creado',
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}',
 		),
 	),
 )); ?>

@@ -74,6 +74,7 @@ class CitasReservadaController extends Controller
 			//Solo 1 dia
 			if($_POST['opciones'] == "Horas")
 			{
+				//Verificar si hay cita entre el periodo
 
 				$lacita = new Citas;
 				$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
@@ -99,6 +100,7 @@ class CitasReservadaController extends Controller
 					$model->observacion = $_POST['CitasReservada']['observacion'];
 					$model->usuario_id = Yii::app()->user->usuarioId;
 					$model->fecha_creado = date("Y-m-d H:i:s");
+					$model->estado = "Activa";
 					
 					if ($model->save()) 
 					{

@@ -268,8 +268,13 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 						if(count($citasProgramadas) > 0)
 							{
 							foreach ($citasProgramadas as $citas_programadas)
+							{ //Aca comienza a contar las citas
+							if ($citas_programadas->paciente_id == NULL) 
 							{
-						
+								# code...
+							}
+							else
+							{
 								$elidpaciente = $citas_programadas->paciente_id;
 								$lacita = $citas_programadas->id;
 								if($elidpaciente != $elidpaciente_interno )
@@ -312,8 +317,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								?>
 							</td>
 							<td width=80%>
-								<small><b>Paciente: </b><?php echo $citas_programadas->paciente->nombreCompleto;  
-								?></small><br>
+								<small><b>Paciente: </b><?php echo $citas_programadas->paciente->nombreCompleto; ?></small><br>
 								<small><b>Atiende:</b> <?php echo $citas_programadas->personal->nombreCompleto; ?></small>
 								<?php 
 									$lahorafin = HorasServicio::model()->findByPK($citas_programadas->hora_fin + 1);
@@ -449,6 +453,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 						<?php
 							}
 							}
+						}//If de los sin pacientes
 							else //Los que no tienen Citas
 							{
 								$color = 0;
