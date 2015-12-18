@@ -52,8 +52,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'observacon'); ?>
-		<?php echo $form->textArea($model,'observacon',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'observacion'); ?>
+		<?php echo $form->textArea($model,'observacion',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">

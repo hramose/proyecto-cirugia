@@ -54,7 +54,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		/*
 		'fecha_fin',
 		'motivo',
-		'observacon',
+		'observacion',
 		'usuario_id',
 		'fecha_creado',
 		*/

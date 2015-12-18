@@ -113,7 +113,7 @@ class CitasReservada extends CActiveRecord
 		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
 		$criteria->compare('fecha_fin',$this->fecha_fin,true);
 		$criteria->compare('motivo',$this->motivo,true);
-		$criteria->compare('observacion',$this->observacon,true);
+		$criteria->compare('observacion',$this->observacion,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('fecha_creado',$this->fecha_creado,true);
 
