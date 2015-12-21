@@ -272,6 +272,26 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 							if ($citas_programadas->paciente_id == NULL) 
 							{
 								# code...
+								# Aca iran la reserva de cita
+								?>
+									<tr style="background-color: #c9c9c9;">
+										<td width=10%>
+											<?php
+												echo trim($las_horas->hora)."<br>";
+												?>
+										</td>
+										<td width=80%>
+											Reservada
+											<!-- Preparar enlace para ver la reservaciónd e la cita -->
+										</td>
+										<td width=10%>
+											
+										</td>
+									</tr>
+
+								<?php
+								
+								
 							}
 							else
 							{

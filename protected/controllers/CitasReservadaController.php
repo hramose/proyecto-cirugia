@@ -76,9 +76,10 @@ class CitasReservadaController extends Controller
 			{
 				//Verificar si hay cita entre el periodo
 
-				$lacita = new Citas;
+
+				$lacita = new Citas("otra");
 				$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
-				$lacita->hora_fin 		= $_POST['CitasReservada']['hora_fin']-1;
+				$lacita->hora_fin 		= $_POST['CitasReservada']['hora_fin'];
 				$lacita->hora_fin_mostrar = $_POST['CitasReservada']['hora_fin'];
 				$lacita->hora_inicio 	= $_POST['CitasReservada']['hora_inicio'];
 				$lacita->linea_servicio_id = 26;
@@ -91,6 +92,7 @@ class CitasReservadaController extends Controller
 				$lacita->usuario_id = Yii::app()->user->usuarioId;
 				if ($lacita->save()) 
 				{
+					
 					$model->personal_id = $lacita->personal_id;
 					$model->cita_id = $lacita->id;
 					$model->hora_inicio = $lacita->hora_inicio;
