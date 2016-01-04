@@ -75,7 +75,7 @@ class CitasReservadaController extends Controller
 		$model=new CitasReservada;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['CitasReservada']))
 		{
@@ -105,7 +105,7 @@ class CitasReservadaController extends Controller
 
 				if ($lacita->save()) 
 				{
-					
+					$model->scenario = 'horas';
 					$model->personal_id = $lacita->personal_id;
 					$model->cita_id = $lacita->id;
 					$model->hora_inicio = $lacita->hora_inicio;
@@ -145,6 +145,8 @@ class CitasReservadaController extends Controller
 				$interval = date_diff($datetime1, $datetime2);
 				$ndias = $interval->format('%a')  + 1;
 
+					$model = new CitasReservada("dias");
+					$model->scenario = 'dias';
 					$model->personal_id = $_POST['CitasReservada']['personal_id'];
 					$model->hora_inicio = 1;
 					$model->hora_fin = 169;

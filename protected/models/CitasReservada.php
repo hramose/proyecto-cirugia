@@ -43,7 +43,11 @@ class CitasReservada extends CActiveRecord
 		return array(
 			array('personal_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacion', 'required'),
 			array('personal_id, cita_id, hora_inicio, hora_fin, usuario_id', 'numerical', 'integerOnly'=>true),
-			array('fecha_fin', 'safe'),
+			//array('fecha_fin', 'safe'),
+			array('fecha_inicio','validacionFechaInicio'),
+			array('fecha_fin','validacionFechaFin', 'on'=>'dias'),
+			array('hora_fin','validarHoraMenor', 'on'=>'horas'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, estado, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
@@ -133,5 +137,34 @@ class CitasReservada extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function validacionFechaInicio($attribute,$params)
+	{
+		//$this->addError('fecha_fin', "Si entra");
+		$fechaInicio = Yii::app()->dateformatter->format("yyyy-MM-dd",$this->fecha_inicio);
+		if (strtotime(date("d-m-Y")) > strtotime($fechaInicio)) 
+		{
+			$this->addError('fecha_fin', "La fecha de inicio no puede ser antes de la fecha actual.");
+		}
+	}
+
+	public function validarHoraMenor($attribute,$params)
+	{
+		if ($this->hora_fin <= $this->hora_inicio) 
+		{
+			$this->addError('hora_fin', "No puede ser inferior a hora de inicio");
+		}
+	}
+
+	public function validacionFechaFin($attribute,$params)
+	{
+		//$this->addError('fecha_fin', "Si entra");
+		$fechaInicio = Yii::app()->dateformatter->format("yyyy-MM-dd",$this->fecha_inicio);
+		$fechaFin = Yii::app()->dateformatter->format("yyyy-MM-dd",$this->fecha_fin);
+		if (strtotime($fechaInicio) >= strtotime($fechaFin)) 
+		{
+			$this->addError('fecha_fin', "Revise la fecha de finalización");
+		}
 	}
 }

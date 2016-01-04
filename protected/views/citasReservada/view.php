@@ -56,15 +56,15 @@
 
 	//echo date('Y-m-d') ;
 
-	$lafecha = strtotime ('+2 day', strtotime(date('Y-m-j')));
-	//echo date ('Y-m-d', $lafecha); 
+	// $lafecha = strtotime ('+2 day', strtotime(date('Y-m-j')));
+	// //echo date ('Y-m-d', $lafecha); 
 
-	//Para calcular el numero de dias
-	$datetime1 = date_create('2009-10-11');
-	$datetime2 = date_create('2009-10-13');
-	$interval = date_diff($datetime1, $datetime2);
-	$ndias = $interval->format('%a')  + 1;
-	echo $ndias;
+	// //Para calcular el numero de dias
+	// $datetime1 = date_create('2009-10-11');
+	// $datetime2 = date_create('2009-10-13');
+	// $interval = date_diff($datetime1, $datetime2);
+	// $ndias = $interval->format('%a')  + 1;
+	// echo $ndias;
 
 
 ?>		
