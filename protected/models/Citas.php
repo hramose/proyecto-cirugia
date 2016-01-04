@@ -54,12 +54,12 @@ class Citas extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, cedula_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento, actualizacion', 'safe', 'on'=>'search'),
-			array('hora_inicio','validarHora'),
-			array('hora_fin','validarHoraMenor'),
-			array('hora_fin','validarHoraFin'),
+			array('hora_inicio','validarHora', 'on'=>'nueva'),
+			array('hora_fin','validarHoraMenor', 'on'=>'nueva'),
+			array('hora_fin','validarHoraFin', 'on'=>'nueva'),
 			//array('hora_inicio','validarHoraAm'),
-			array('fecha_cita','validarFecha'),
-			array('fecha_cita','validarHora'),
+			array('fecha_cita','validarFecha', 'on'=>'nueva'),
+			array('fecha_cita','validarHora', 'on'=>'nueva'),
 			
 		);
 	}

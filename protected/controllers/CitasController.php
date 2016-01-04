@@ -101,6 +101,7 @@ class CitasController extends Controller
 	public function actionCreate()
 	{
 		$model=new Citas;
+		$model->scenario = 'nueva';
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -264,6 +265,7 @@ class CitasController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$model->scenario = 'nueva';
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);

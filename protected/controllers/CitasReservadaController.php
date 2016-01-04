@@ -36,7 +36,7 @@ class CitasReservadaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','verReserva'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -53,6 +53,16 @@ class CitasReservadaController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionVerReserva($id)
+	{
+		$laReserva = CitasReservadaDetalle::model()->findByPk($id);
+		$laCitaReservada = CitasReservada::model()->findByPk($laReserva->cita_reservada_id);
+		//$this->redirect(array('view','id'=>$laReserva->cita_reservada_id));
+		$this->render('view',array(
+			'model'=>$laCitaReservada,
 		));
 	}
 
@@ -90,6 +100,9 @@ class CitasReservadaController extends Controller
 				$lacita->fecha_creacion = date("Y-m-d");
 				$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
 				$lacita->usuario_id = Yii::app()->user->usuarioId;
+
+
+
 				if ($lacita->save()) 
 				{
 					
@@ -106,6 +119,12 @@ class CitasReservadaController extends Controller
 					
 					if ($model->save()) 
 					{
+						$lacitadetalle = new CitasReservadaDetalle;
+						$lacitadetalle->cita_reservada_id = $model->id;
+						$lacitadetalle->cita_id = $model->cita_id;
+						$lacitadetalle->estado = 'Activa';
+						$lacitadetalle->save();
+
 						$this->redirect(array('view','id'=>$model->id));
 					}
 				}
@@ -116,6 +135,64 @@ class CitasReservadaController extends Controller
 						'model'=>$model,
 					));		
 				}
+			}
+
+			if($_POST['opciones'] == "Dias")
+			{
+				//Determinar el numero de dias
+				$datetime1 = date_create($_POST['CitasReservada']['fecha_inicio']);
+				$datetime2 = date_create($_POST['CitasReservada']['fecha_fin']);
+				$interval = date_diff($datetime1, $datetime2);
+				$ndias = $interval->format('%a')  + 1;
+
+					$model->personal_id = $_POST['CitasReservada']['personal_id'];
+					$model->hora_inicio = 1;
+					$model->hora_fin = 169;
+					$model->fecha_inicio = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+					$model->fecha_fin = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_fin']);
+					$model->motivo = $_POST['CitasReservada']['motivo'];
+					$model->observacion = $_POST['CitasReservada']['observacion'];
+					$model->usuario_id = Yii::app()->user->usuarioId;
+					$model->fecha_creado = date("Y-m-d H:i:s");
+					$model->estado = "Activa";
+					if ($model->save()) 
+					{
+						$lafecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+						
+						for ($i=0; $i < $ndias; $i++) 
+						{ 
+							$lacita = new Citas("otra");
+							$lacita->fecha_cita 	= $lafecha;
+							$lacita->hora_fin 		= 169;
+							$lacita->hora_fin_mostrar = 169;
+							$lacita->hora_inicio 	= 1;
+							$lacita->linea_servicio_id = 26;
+							$lacita->estado = "Reservado";
+							$lacita->correo = "No";
+							$lacita->comentario = "Bloqueo de agenda";
+							$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
+							$lacita->fecha_creacion = date("Y-m-d");
+							$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
+							$lacita->usuario_id = Yii::app()->user->usuarioId;
+							$lacita->save();
+
+							$lafecha = strtotime ('+1 day', strtotime(date($lafecha)));
+							$lafecha = date('Y-m-d', $lafecha); 
+							
+							//Guarda en Citas Reservada Detalle
+							$lacitadetalle = new CitasReservadaDetalle;
+							$lacitadetalle->cita_reservada_id = $model->id;
+							$lacitadetalle->cita_id = $lacita->id;
+							$lacitadetalle->estado = 'Activa';
+							$lacitadetalle->save();
+						}
+						
+						$this->redirect(array('view','id'=>$model->id));
+					
+					}
+
+				
+
 			}
 
 			

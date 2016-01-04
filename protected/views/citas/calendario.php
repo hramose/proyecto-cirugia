@@ -267,10 +267,13 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 
 						if(count($citasProgramadas) > 0)
 							{
+								$numCitas = count($citasProgramadas);
 							foreach ($citasProgramadas as $citas_programadas)
 							{ //Aca comienza a contar las citas
 							if ($citas_programadas->paciente_id == NULL) 
 							{
+								if ($numCitas == 1) 
+								{
 								# code...
 								# Aca iran la reserva de cita
 								?>
@@ -281,7 +284,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 												?>
 										</td>
 										<td width=80%>
-											Reservada
+											<a href="index.php?r=citasReservada/verReserva&id=<?php echo $citas_programadas->id; ?>">Reservado</a>
 											<!-- Preparar enlace para ver la reservaciónd e la cita -->
 										</td>
 										<td width=10%>
@@ -290,8 +293,8 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 									</tr>
 
 								<?php
-								
-								
+
+								}								
 							}
 							else
 							{

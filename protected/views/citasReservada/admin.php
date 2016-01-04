@@ -93,3 +93,18 @@ $this->menu=array(
 		),
 	),
 )); ?>
+
+<script>
+    $(document).ready(function()
+    {
+        $('body').on('dblclick', '#citas-reservada-grid tbody tr', function(event)
+        {
+            var
+                rowNum = $(this).index(),
+                keys = $('#citas-reservada-grid > div.keys > span'),
+                rowId = keys.eq(rowNum).text();
+
+            location.href = '<?php echo Yii::app()->createUrl('CitasReservada/view'); ?>&id=' + rowId;
+        });
+    });
+</script>

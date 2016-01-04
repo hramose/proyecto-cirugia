@@ -4,7 +4,6 @@
  * This is the model class for table "citas_reservada_detalle".
  *
  * The followings are the available columns in table 'citas_reservada_detalle':
- * @property integer $id
  * @property integer $cita_reservada_id
  * @property integer $cita_id
  * @property string $estado
@@ -33,10 +32,10 @@ class CitasReservadaDetalle extends CActiveRecord
 		return array(
 			array('cita_reservada_id, cita_id, estado', 'required'),
 			array('cita_reservada_id, cita_id', 'numerical', 'integerOnly'=>true),
-			array('estado', 'length', 'max'=>25),
+			array('estado', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, cita_reservada_id, cita_id, estado', 'safe', 'on'=>'search'),
+			array('cita_reservada_id, cita_id, estado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +58,6 @@ class CitasReservadaDetalle extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
 			'cita_reservada_id' => 'Cita Reservada',
 			'cita_id' => 'Cita',
 			'estado' => 'Estado',
@@ -84,7 +82,6 @@ class CitasReservadaDetalle extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('cita_reservada_id',$this->cita_reservada_id);
 		$criteria->compare('cita_id',$this->cita_id);
 		$criteria->compare('estado',$this->estado,true);
