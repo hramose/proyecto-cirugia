@@ -36,7 +36,7 @@ class CitasReservadaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','verReserva'),
+				'actions'=>array('admin','delete','verReserva', 'desbloquear'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -64,6 +64,24 @@ class CitasReservadaController extends Controller
 		$this->render('view',array(
 			'model'=>$laCitaReservada,
 		));
+	}
+	
+	public function actionDesbloquear($idReserva)
+	{
+		$laCitaReservada = CitasReservada::model()->findByPk($idReserva);
+		$laCitaReservada->estado = "Cancelada";
+		
+		//Verificar si es por dias o por horas
+		if ($laCitaReservada->fecha_fin == "0000-00-00") //Es por horas
+		{
+			//Recorrer los detalles de cita
+			$detalleCitas = CitasReservadaDetalle::model()->findAll("cita_id = $idReserva");
+			foreach ($detalleCitas as $detalle_citas) 
+			{
+				//$
+			}	
+		}
+
 	}
 
 	/**

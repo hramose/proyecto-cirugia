@@ -171,6 +171,7 @@ class Citas extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'criteria'=>array('condition'=>"estado != 'Reservado'"),
 			'pagination'=>array('pageSize'=>20),
 			'sort'=>array(
 			    'defaultOrder'=>'fecha_cita DESC, hora_inicio ASC',

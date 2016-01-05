@@ -54,7 +54,7 @@
 		));	
 	}
 
-	//echo date('Y-m-d') ;
+	//echo date('Y-m-d');
 
 	// $lafecha = strtotime ('+2 day', strtotime(date('Y-m-j')));
 	// //echo date ('Y-m-d', $lafecha); 
@@ -71,7 +71,7 @@
 	</div>
 	<div class="span5 text-center">
 		<h2 class="text-center">Opciones</h2>
-		<a href="#" class="btn btn-primary">Desbloquear Agenda</a>
+		<a href="index.php?r=citasReservadas/desbloquear&idReserva=<?php echo $model->id ?>"  class="btn btn-primary">Desbloquear Agenda</a>
 		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$model->fecha_inicio ?>" role="button" class="btn btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
 	</div>
 </div>
