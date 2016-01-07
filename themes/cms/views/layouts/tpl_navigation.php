@@ -149,6 +149,7 @@ if ($tareas == 0)
                                 'items' => array(
                                     array('label'=>'Inventarios', 'url'=>array('/InventarioPersonal/admin')),
                                     array('label'=>'Crear Inventario', 'url'=>array('/InventarioPersonal/create')),
+                                    array('label'=>'Crear Inventario', 'url'=>array('/InventarioPersonal/create')),
 
                                     )),
                                 array('label'=>'Inventario de Productos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),

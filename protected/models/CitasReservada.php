@@ -42,7 +42,7 @@ class CitasReservada extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('personal_id, hora_inicio, hora_fin, fecha_inicio, motivo, observacion', 'required'),
-			array('personal_id, cita_id, hora_inicio, hora_fin, usuario_id', 'numerical', 'integerOnly'=>true),
+			array('personal_id, cita_id, usuario_cancela_id, hora_inicio, hora_fin, usuario_id', 'numerical', 'integerOnly'=>true),
 			//array('fecha_fin', 'safe'),
 			array('fecha_inicio','validacionFechaInicio'),
 			array('fecha_fin','validacionFechaFin', 'on'=>'dias'),
@@ -50,7 +50,7 @@ class CitasReservada extends CActiveRecord
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, personal_id, cita_id, hora_inicio, hora_fin, fecha_inicio, estado, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
+			array('id, personal_id, comentario_cancela, fecha_cancela, cita_id, hora_inicio, hora_fin, fecha_inicio, estado, fecha_fin, motivo, observacion, usuario_id, fecha_creado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +63,7 @@ class CitasReservada extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'personal' => array(self::BELONGS_TO, 'Personal', 'personal_id'),
+			'usuarioDesbloqueo' => array(self::BELONGS_TO, 'Personal', 'usuario_cancela_id'),
 			'usuario' => array(self::BELONGS_TO, 'Personal', 'usuario_id'),
 			'cita' => array(self::BELONGS_TO, 'Citas', 'cita_id'),
 			'horaInicio' => array(self::BELONGS_TO, 'HorasServicio', 'hora_inicio'),
@@ -89,6 +90,9 @@ class CitasReservada extends CActiveRecord
 			'usuario_id' => 'Usuario',
 			'fecha_creado' => 'Fecha Creado',
 			'estado' => 'Estado',
+			'comentario_cancela' => "Comentario de Desbloqueo",
+			'fecha_cancela' => "Fecha de Cancelación de Bloqueo",
+			'usuario_cancela_id' => "Usuario que Desbloqueo",
 		);
 	}
 
