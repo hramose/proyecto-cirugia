@@ -8,6 +8,10 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'citas-reservada-form',
+	'htmlOptions'=>array(
+       'onsubmit'=>"return onEnviar();",/* Disable normal form submit */
+       //'onkeypress'=>" if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
+     ),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -29,7 +33,7 @@ else
 	<div class="row">
 		<div class="span6">
 			<?php echo $form->labelEx($model,'personal_id'); ?>
-			<?php echo $form->dropDownList($model, 'personal_id',CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI' and agenda= 'SI' and id != 1")),'id','NombreCompleto'), array('options' => array('selected'=>true),'class'=>'input-xlarge'));?>
+			<?php echo $form->dropDownList($model, 'personal_id',CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI' and agenda= 'SI' and id != 1")),'id','NombreCompleto'), array('options' => array('selected'=>true),'class'=>'input-xlarge','empty'=>'(Seleccionar)'));?>
 			<?php echo $form->error($model,'personal_id'); ?>
 		</div>
 	</div>
@@ -38,6 +42,7 @@ else
 		<div class="span6">
 			<label for="">Seleccione la opción de bloqueo</label>
 			<select name="opciones" id="opciones">
+				<option value="Seleccione">(Seleccione)</option>
 				<option value="Horas">Horas</option>
 				<option value="Dias">Dias</option>
 			</select>
@@ -46,6 +51,7 @@ else
 
 
 	<div class="row">
+		<div id="fechainicio" style="display: none">
 		<div class="span3">
 			<?php echo $form->labelEx($model,'fecha_inicio'); ?>
 			<div class="input-prepend">
@@ -76,6 +82,7 @@ else
 				?>
 			</div>
 			<?php echo $form->error($model,'fecha_inicio'); ?>
+		</div>
 		</div>
 		
 		<div id="dias" style="display: none">
@@ -113,7 +120,7 @@ else
 	</div>
 	</div>
 
-	<div class="row" id="horas">
+	<div class="row" id="horas" style="display: none">
 		<div class="span3">
 			<?php echo $form->labelEx($model,'hora_inicio'); ?>
 			<?php echo $form->dropDownList($model, 'hora_inicio',CHtml::listData(HorasServicio::model()->findAll(),'id','hora'), array('options' => array($lahora=>array('selected'=>true)), 'class'=>'input-medium'));?>
@@ -142,7 +149,7 @@ else
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array("class"=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array("class"=>'btn btn-primary', 'onclick'=>'js:antesdeEnviar();')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -154,16 +161,51 @@ else
 	$("#opciones").change(function (){
 	//var posicion = this.name.replace(/[^\d]/g, '');
 
-     if ($(this).val() == "Horas") 
+     if ($(this).val() == "Seleccione") 
+    	{
+    		$("#dias").hide();
+    		$("#horas").hide();
+    		$("#fechainicio").hide();
+    	}
+
+    if ($(this).val() == "Horas") 
     	{
     		$("#dias").hide();
     		$("#horas").show();
+    		$("#fechainicio").show();
     	}
 
       if ($(this).val() == "Dias") 
     	{
     		$("#dias").show();
     		$("#horas").hide();
+    		$("#fechainicio").show();
     	}
 });
+
+function onEnviar(){
+
+	if($("#CitasReservada_personal_id").val() == "") 
+	{ 
+				swal("No se ha seleccionado el personal", "Seleccione una opción");
+			 	return false
+			    
+	}
+
+	if($("#fecha_inicio").val() == "") 
+	{ 
+				swal("Seleccione fecha", "Seleccione una opción");
+			 	return false
+			    
+	} 	
+	
+
+	if($("#opciones").val() == "Seleccione") 
+			{ 
+				swal("No se ha seleccionado la forma de reserva", "Seleccione una opción");
+			 	return false
+			    
+			} 	
+	
+}
 </script>

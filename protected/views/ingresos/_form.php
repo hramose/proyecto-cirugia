@@ -656,11 +656,11 @@ function onEnviar(){
 
 
 			if($("#Ingresos_valor").val() > $("#saldoCaja").val()) 
-					{ 
-						swal("Valor de ingreso supera saldo de caja personal.", "Atención");
-					 	return false
-					    
-					} 
+			{ 
+				swal("Valor de ingreso supera saldo de caja personal.", "Atención");
+			 	return false
+			    
+			} 
 		} 
 	
 	if($("#Ingresos_forma_pago").val() == "Ninguna") 

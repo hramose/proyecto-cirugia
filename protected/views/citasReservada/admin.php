@@ -80,7 +80,18 @@ $this->menu=array(
 		),
 		'motivo',
 		'observacion',
-		'estado',
+		array(
+			'header'=>'Registrada por:',
+			'name'=>'usuario_id',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC', 'condition' =>"activo = 'SI'")), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'usuario\'][\'nombreCompleto\']',
+			'htmlOptions'=>array('width'=>'220'),
+		),
+		array(
+			'name'=>'estado',
+			'filter' => array('Activa'=>'Activa','Cancelada'=>'Cancelada'),
+			'value'=>'$data->estado',
+		),
 		/*
 		'fecha_fin',
 		
