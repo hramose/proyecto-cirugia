@@ -658,8 +658,9 @@ class CitasController extends Controller
 	public function actionAdmin()
 	{
 
-		$model=new Citas('search');
+		$model= new Citas('search');
 		$model->unsetAttributes();  // clear any default values
+		//$model->estado != 'Reservado';
 		if(isset($_GET['Citas']))
 			$model->attributes=$_GET['Citas'];
 		if (isset($_GET['programadas'])) 

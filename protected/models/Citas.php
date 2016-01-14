@@ -60,7 +60,6 @@ class Citas extends CActiveRecord
 			//array('hora_inicio','validarHoraAm'),
 			array('fecha_cita','validarFecha', 'on'=>'nueva'),
 			array('fecha_cita','validarHora', 'on'=>'nueva'),
-			
 		);
 	}
 
@@ -118,7 +117,6 @@ class Citas extends CActiveRecord
 			'fecha_creacion' => 'Fecha Creación',
 			'fecha_hora_creacion' => 'Fecha y Hora de Creación',
 			'actualizacion' => 'Comentario de Actualización',
-
 		);
 	}
 
@@ -167,14 +165,15 @@ class Citas extends CActiveRecord
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 		$criteria->compare('paciente.n_identificacion', $this->cedula_paciente, true );
-		//$criteria->addCondition('DATE_FORMAT(fecha_cita, \'%d-%m-%Y\') = ' . $this->fecha_cita);
+		$criteria->addCondition("estado != 'Reservado'");
+
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'criteria'=>array('condition'=>"estado != 'Reservado'"),
+			//'criteria'=>array('condition'=>"estado != 'Reservado'"),
 			'pagination'=>array('pageSize'=>20),
 			'sort'=>array(
-			    'defaultOrder'=>'fecha_cita DESC, hora_inicio ASC',
+			    'defaultOrder'=>'hora_inicio ASC, fecha_cita DESC',
 			    'attributes'=>array(
 			),
 			),
