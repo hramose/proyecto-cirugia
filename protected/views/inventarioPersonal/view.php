@@ -2,13 +2,17 @@
 /* @var $this InventarioPersonalController */
 /* @var $model InventarioPersonal */
 
-$this->menu=array(
-	//array('label'=>'Listar Inventario Personal', 'url'=>array('index')),
-	array('label'=>'Crear Inventario Personal', 'url'=>array('create')),
-	array('label'=>'Actualizar', 'url'=>array('update', 'id'=>$model->personal_id)),
-	//array('label'=>'Borrar Inventario Personal', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->personal_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Buscar Inventario Personal', 'url'=>array('admin')),
-);
+if (Yii::app()->user->perfil != 2) {
+	$this->menu=array(
+		//array('label'=>'Listar Inventario Personal', 'url'=>array('index')),
+		array('label'=>'Crear Inventario Personal', 'url'=>array('create')),
+		array('label'=>'Actualizar', 'url'=>array('update', 'id'=>$model->personal_id)),
+		//array('label'=>'Borrar Inventario Personal', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->personal_id),'confirm'=>'Are you sure you want to delete this item?')),
+		array('label'=>'Buscar Inventario Personal', 'url'=>array('admin')),
+	);
+
+}
+
 ?>
 
 <h1>Inventario Personal #<?php echo $model->personal_id; ?></h1>

@@ -37,7 +37,7 @@ class CitasController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'EstaAqui'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -725,6 +725,36 @@ class CitasController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+
+	public function actionEstaAqui()
+	{
+		if (isset($_GET['id'])) 
+		{
+			$id = $_GET['id'];
+			$tipo = "cita";
+		}
+		
+		if ($_POST['Citas'])
+		{
+			$id = $_POST['Citas']['id'];
+			$tipo = "calendario";
+		}
+
+		$model=Citas::model()->findByPk($id);
+		$model->llego_clinica = date("Y-m-d H:i:s");
+		if($model->update())
+		{
+			if ($tipo == "cita") 
+			{
+				$this->redirect(array('view','id'=>$model->id));
+			}
+			else
+			{
+				$this->redirect(array('calendario','idpersonal'=>$model->personal->id_perfil, 'fecha'=>$model->fecha_cita));		
+			}
+			
+		}		
 	}
 
 

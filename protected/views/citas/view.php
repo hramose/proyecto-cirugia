@@ -329,6 +329,12 @@ if ($elEquipo)
 <div class="row">
 	<div class="span1"></div>
 	<div class="span5">
+		<?php 
+		if ($model->llego_clinica > '2005-01-01') 
+			{
+		?>
+			<h4 class="text-center"><span class="label label-important">Paciente ya esta aqui: <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:m:ss", $model->llego_clinica); ?></span></h4>
+			<?php } ?>
 		<h4 class="text-center">Para Esta Cita</h4>
 		<table class="table table-condensed">
 			<?php
@@ -640,6 +646,14 @@ if ($elEquipo)
 		<b class="text-center">Opciones de la Cita</b>
 		<br>
 		<br>
+		<?php 
+			if ($model->llego_clinica < '2005-01-01') 
+			{
+				?>
+				<a href="#aqui" role="button" class="btn btn-mini btn-info" data-toggle="modal"><i class="icon-hand-down icon-white"></i> Esta aqui</a>
+				<?php
+			}
+		?>
 		<?php
 			if ($model->confirmacion == null) {
 				?>
@@ -2678,6 +2692,43 @@ if ($elEquipo)
 	
 				<div class = 'span6' >
 					<?php echo CHtml::submitButton($tabla_seguimiento->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+
+
+<?php //Completar Cita ?>
+<div id="aqui" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Paciente esta en la clínica</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>¿El paciente ya se hizo presente a la cita?</p>
+ 	
+	 	<?php 
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'seguimiento-comercial-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/estaAqui&id='.$model->id,
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		//'onsubmit'=>"return onEnviar()",
+		'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
+		'enableAjaxValidation'=>false,
+		)); ?>
+				<div class = 'span6' >
+					<?php echo CHtml::submitButton($tabla_seguimiento->isNewRecord ? 'Confirmar' : 'Confirmar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
 				</div>
 
 		<?php $this->endWidget(); ?>

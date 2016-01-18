@@ -76,6 +76,7 @@ $pacientes = Paciente::model()->count();
 $citas = Citas::model()->count("fecha_cita = '".date('Y-m-d')."' and estado = 'Programada'");
 $seguimientos = SeguimientoComercial::model()->count("fecha_accion = '".date('Y-m-d')."'");
 $vencidas = Citas::model()->count("estado = 'Vencida'");
+$inventario = InventarioPersonal::model()->count("personal_id = ".Yii::app()->user->usuarioId);
 
 $tareas = 0;
 if (!Yii::app()->user->isGuest) 
@@ -113,6 +114,13 @@ if (!Yii::app()->user->isGuest)
 		    <div class="span4 text-center">
 		    	<a href="index.php?r=personal/pendientes" class="btn btn-primary"><i class="icon-list-alt icon-white"></i> Consulta tus pendientes</a>
 		    </div>
+		    <br>
+		    <br>
+			<?php if (Yii::app()->user->perfil==2 and $inventario > 0): ?>
+				<div class="span4 text-center">
+			    	<a href="index.php?r=InventarioPersonal/view&id=<?php echo Yii::app()->user->usuarioId; ?>" class="btn btn-warning"><i class="icon-list-alt icon-white"></i> Ver Inventario Personal</a>
+			    </div>
+			<?php endif ?>
 	    </div>
 	    <br>
 	    <?php
