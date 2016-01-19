@@ -195,6 +195,13 @@
 			<?php echo $form->error($model,'pais'); ?>
 		</div>
 	</div>
+	<div class="row">
+		<div class="span5">
+			<?php echo $form->labelEx($model,'estado'); ?>
+			<?php echo $form->dropDownList($model, 'estado',array('1'=>'Activo','0'=>'Inactivo'), array('class'=>'input-medium'));?>	
+			<?php echo $form->error($model,'estado'); ?>
+		</div>
+	</div>
 </div>
 
 

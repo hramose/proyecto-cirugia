@@ -3,11 +3,14 @@
 /* @var $model Citas */
 
 if ($model->estado == "Vencida" or $model->estado == "Programada") {
-	$this->menu=array(
+	if ($model->paciente->estado == 1) {
+		$this->menu=array(
 		array('label'=>'Listar Citas', 'url'=>array('index')),
 		array('label'=>'Actualizar Cita', 'url'=>array('update', 'id'=>$model->id, 'idpaciente'=>$model->paciente_id)),
 		array('label'=>'Buscar Cita', 'url'=>array('admin')),
 	);
+	}
+	
 }
 else
 {
@@ -642,6 +645,9 @@ if ($elEquipo)
 		</table>
 	</div>
 	<div class="span5 text-center">
+		<?php 
+			//Verificar que paciente este activo
+		if ($model->paciente->estado == 1): ?>
 		<?php if($model->estado == "Programada" or $model->estado == "Vencida"){ ?>
 		<b class="text-center">Opciones de la Cita</b>
 		<br>
@@ -670,6 +676,8 @@ if ($elEquipo)
 		<a href="index.php?r=citas/calendario&idpersonal=<?php echo $model->personal->id_perfil.'&fecha='.$fecha_cita ?>" role="button" class="btn btn-mini btn-warning" data-toggle="modal"><i class="icon-zoom-in icon-white"></i> Ver Agenda</a>
 		<a href="#cita" role="button" class="btn btn-mini btn-success" data-toggle="modal"><i class="icon-calendar icon-white"></i> Agendar Cita</a>
 		<br><br>
+
+		<?php endif ?>
 	
 	
 

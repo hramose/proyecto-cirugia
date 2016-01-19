@@ -111,14 +111,16 @@ if (!Yii::app()->user->isGuest)
 	    <?php $this->endWidget();?>
 
 		<div class="row">
-		    <div class="span4 text-center">
-		    	<a href="index.php?r=personal/pendientes" class="btn btn-primary"><i class="icon-list-alt icon-white"></i> Consulta tus pendientes</a>
+			<div class="span4 text-center">
+		    	<a href="#consentimientos" role="button" data-toggle="modal" class="btn btn-success btn-mini"><i class="icon-list-alt icon-white"></i> Consentimientos Informados</a>
+		
+		    	<a href="index.php?r=personal/pendientes" class="btn btn-primary btn-mini"><i class="icon-list-alt icon-white"></i> Consulta tus pendientes</a>
 		    </div>
 		    <br>
 		    <br>
 			<?php if (Yii::app()->user->perfil==2 and $inventario > 0): ?>
 				<div class="span4 text-center">
-			    	<a href="index.php?r=InventarioPersonal/view&id=<?php echo Yii::app()->user->usuarioId; ?>" class="btn btn-warning"><i class="icon-list-alt icon-white"></i> Ver Inventario Personal</a>
+			    	<a href="index.php?r=InventarioPersonal/view&id=<?php echo Yii::app()->user->usuarioId; ?>" class="btn btn-warning btn-mini"><i class="icon-list-alt icon-white"></i> Ver Inventario Personal</a>
 			    </div>
 			<?php endif ?>
 	    </div>
@@ -210,3 +212,23 @@ if (!Yii::app()->user->isGuest)
 
 </body>
 	
+<div id="consentimientos" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Consentimientos Disponibles</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>Seleccione el archivo que desea descargar.</p>
+ 	<ul>
+ 		<li><a href="images/consentimientos/DEPILACION_PERMANENTE_CON_LASEODO.docx">CONSENTIMIENTO INFORMADO LASER DIODO DE DEPILACION</a></li>
+ 		<li><a href="images/consentimientos/LPG.docx">CONSENTIMIENTO INFORMADO LPG</a></li>
+ 		<li><a href="images/consentimientos/MICRODERMOINFUSION_1.docx">CONSENTIMIENTO INFORMADO MICRODERMOINFUSIÓN</a></li>
+ 		<li><a href="images/consentimientos/Tratamielis.docx">CONSENTIMIENTO INFORMADO PARA TRATAMIENTOS EXILIS</a></li>
+ 		<li><a href="images/consentimientos/CON_PROTEGE_IIMA.docx">CONSENTIMIENTO INFORMADO PARA TRATAMIENTOS CON EXILIS PROTEGE INTIMA</a></li>
+ 	</ul>	 	
+  </div>
+  
+   <div class="modal-footer">
+	
+  </div>
+</div>

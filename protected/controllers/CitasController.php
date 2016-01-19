@@ -735,9 +735,9 @@ class CitasController extends Controller
 			$tipo = "cita";
 		}
 		
-		if ($_POST['Citas'])
+		if (isset($_POST['Citas']))
 		{
-			$id = $_POST['Citas']['id'];
+			$id = $_POST['Citas']['estado'];
 			$tipo = "calendario";
 		}
 

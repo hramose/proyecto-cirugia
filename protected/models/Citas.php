@@ -146,7 +146,7 @@ class Citas extends CActiveRecord
 		$criteria->compare('usuario_estado_id',$this->usuario_estado_id);
 		$criteria->compare('paciente_orden_id',$this->paciente_orden_id);
 		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('DATE_FORMAT(fecha_cita, \'%d-%m-%Y\')',$this->fecha_cita,true);
 		$criteria->compare('DATE_FORMAT(fecha_creacion, \'%d-%m-%Y\')',$this->fecha_creacion,true);
@@ -166,7 +166,7 @@ class Citas extends CActiveRecord
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 		$criteria->compare('paciente.n_identificacion', $this->cedula_paciente, true );
-		$criteria->addCondition("estado != 'Reservado'");
+		$criteria->addCondition("t.estado != 'Reservado'");
 
 
 		return new CActiveDataProvider($this, array(

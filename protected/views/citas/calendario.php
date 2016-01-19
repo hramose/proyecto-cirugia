@@ -21,15 +21,17 @@ $this->menu=array(
 </script>
 
 <!-- Numero de Cita para botones -->
-<script>
+<script type="text/javascript">
     var nCita = 0; //
 
     function miCita(nCitas, estados)
 	{
+
 		nCita = nCitas;
 		estado = estados;
 		$("#SeguimientoComercial_cita_id").val(nCita);
 		$("#Citas_id").val(nCita);
+		$("#Citas_estado").val(nCita);
 		$("#Citas_contrato_id").val(nCita);
 		$("#Aqui_id").val(nCita);
 
@@ -37,6 +39,12 @@ $this->menu=array(
 		$("#SeguimientoComercial_tipo").val(estado);
 		
 		if (estado=="Completada") 
+			{
+				document.getElementById('eltitulo').innerHTML = "Cita Completada";
+				document.getElementById('omitir').style.display = 'block';
+			};
+
+		if (estado=="Aqui") 
 			{
 				document.getElementById('eltitulo').innerHTML = "Cita Completada";
 				document.getElementById('omitir').style.display = 'block';
@@ -64,6 +72,7 @@ $this->menu=array(
 				document.getElementById('eltitulo').innerHTML = "Cita Programada";
 				document.getElementById('omitir').style.display = 'block';
 			};
+
 	}
 
 	function onEnviar(){
@@ -372,6 +381,11 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 												{
 													echo "<i class='icon-warning-sign'></i>";
 												} 
+
+												if ($citas_programadas->llego_clinica > '2005-01-01')
+												{
+													echo "<div class='text-center'><br><br><small class='text-error'>Paciente en Clinica</small></div>";
+												}
 											?>
 										</td>
 										<?php 
@@ -435,7 +449,10 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								</small>
 								<br>
 								<small><button onclick="miCita(<?php echo $citas_programadas->id; ?>, 'Fallida')" type="button" data-toggle="modal" data-target="#completar" class="btn btn-mini btn-inverse" title="Cita Fallida"><i class="icon-thumbs-down icon-white"></i></button></small>
-								<small><button onclick="miCita(<?php echo $citas_programadas->id; ?>, 'Confirmada')" type="button" data-toggle="modal" data-target="#aqui" class="btn btn-mini" title="Paciente esta en la clínica"><i class="icon-hand-down"></i></button>
+								<small>
+									<?php if ($citas_programadas->llego_clinica < '2005-01-01'): ?>
+										<button onclick="miCita(<?php echo $citas_programadas->id; ?>, 'Aqui')" type="button" data-toggle="modal" data-target="#aqui" class="btn btn-mini" title="Paciente esta en la clínica"><i class="icon-hand-down"></i></button>	
+									<?php endif ?>
 								</small>
 								<br>
 								<br>
@@ -529,6 +546,51 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 
 <!-- VENTANAS MODALES -->
 <!-- Modal Completar Cita -->
+
+
+
+<div id="aqui" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Paciente esta en la clínica</h3>
+  </div>
+  <div class="modal-body">
+ 	<p>¿El paciente ya se hizo presente a la cita?</p>
+	 	<?php 
+	 	
+	 	$form=$this->beginWidget('CActiveForm', array(
+		'id'=>'aqui-form',
+		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/estaAqui',
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation'=>true,
+		)); ?>
+		<?php 
+			$tabla_citas = new Citas;
+		?>
+				<div class="span10" style="display:none;">
+					<?php echo $form->textField($tabla_citas,'estado'); ?>
+				</div>
+	
+				<div class = 'span6'>
+					<?php echo CHtml::submitButton($tabla_citas->isNewRecord ? 'Confirmar' : 'Confirmar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
+				</div>
+		<?php $this->endWidget(); ?>
+  </div>
+  
+   <div class="modal-footer">
+	<?php 
+   		 	echo "<b>Registrado por:</b> ".Yii::app()->user->name;
+   	?>
+    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
+  </div>
+</div>
+
+
+
+
 <div id="completar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -693,6 +755,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
  	<p>Complete el siguiente formulario</p>
  	
 	 	<?php 
+	 	$tabla_citas = new Citas;
 	 	$form=$this->beginWidget('CActiveForm', array(
 		'id'=>'cancelar-form',
 		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/cancelar&idpersonal='.$los_medicos->id_perfil,
@@ -702,19 +765,13 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 		// See class documentation of CActiveForm for details on this.
 		'enableAjaxValidation'=>true,
 		)); ?>
-	 	<?php 
-	 		
-	 		$tabla_citas = new Citas;
-	 				
-	 		
-	 	?>
 				<div class = 'span10'>
 					<?php echo $form->labelEx($tabla_citas,'motivo_cancelacion'); ?>
 					<?php echo $form->textArea($tabla_citas,'motivo_cancelacion',array('rows'=>4, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
 					<?php echo $form->error($tabla_citas,'motivo_cancelacion'); ?>
 				</div>
 
-				<div class="span10" style="display:none;">
+				<div class="span10"  style="display:none;">
 					<?php echo $form->textField($tabla_citas,'id'); ?>
 					<?php echo $form->textField($tabla_citas,'estado'); ?>
 				</div>
@@ -735,49 +792,6 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 </div>
 <?php endif ?>
 
-<div id="aqui" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Paciente esta en la clínica</h3>
-  </div>
-  <div class="modal-body">
- 	<p>¿El paciente ya se hizo presente a la cita?</p>
- 	
-	 	<?php 
-	 	$form=$this->beginWidget('CActiveForm', array(
-		'id'=>'aqui-form',
-		'action'=>Yii::app()->baseUrl.'/index.php?r=citas/estaAqui',
-		// Please note: When you enable ajax validation, make sure the corresponding
-		// controller action is handling ajax validation correctly.
-		// There is a call to performAjaxValidation() commented in generated controller code.
-		// See class documentation of CActiveForm for details on this.
-		//'onsubmit'=>"return onEnviar()",
-		//'htmlOptions' => array('onsubmit'=>"return onEnviar()"),
-		'enableAjaxValidation'=>false,
-		)); 
 
-	 	$Aqui = new Citas;
-		?>
-
-			<div class="span10" style="display:none;">
-					<?php echo $form->textField($Aqui,'id'); ?>
-					<?php echo $form->textField($Aqui,'estado'); ?>
-				</div>
-				<div class = 'span6' >
-					<?php echo CHtml::submitButton($Aqui->isNewRecord ? 'Confirmar' : 'Confirmar', array('class'=>'btn btn-primary', 'onclick'=>'enviarCita()', 'id'=>'btn_enviar')); ?>
-				</div>
-
-
-
-		<?php $this->endWidget(); ?>
-  </div>
-  
-   <div class="modal-footer">
-	<?php 
-   		 echo "<b>Registrado por:</b> ".Yii::app()->user->name;
-   	?>
-    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button> -->
-  </div>
-</div>
 
 
