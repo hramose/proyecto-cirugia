@@ -198,9 +198,19 @@ class PacienteController extends Controller
 			{
 				$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);	
 			}
+			if ($_POST['Paciente']['estado'] == 0) 
+			{
+				$elestado = "Inactivo";
+			}
+			else
+			{
+				$elestado = "Activo";
+			}
+
 			$model->observaciones = $_POST['Paciente']['observaciones'];
 			$model->nombre = trim($_POST['Paciente']['nombre']);
 			$model->estado = $_POST['Paciente']['estado'];
+			$model->estado_texto = $elestado;
 			$model->fecha_registro = date("Y-m-d");
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -225,10 +235,20 @@ class PacienteController extends Controller
 
 		if(isset($_POST['Paciente']))
 		{
+			if ($_POST['Paciente']['estado'] == 0) 
+			{
+				$elestado = "Inactivo";
+			}
+			else
+			{
+				$elestado = "Activo";
+			}
+
 			$model->attributes=$_POST['Paciente'];
 			$model->observaciones = $_POST['Paciente']['observaciones'];
 			$model->nombre = trim($_POST['Paciente']['nombre']);
 			$model->estado = $_POST['Paciente']['estado'];
+			$model->estado_texto = $elestado;
 			$model->fecha_nacimiento = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Paciente']['fecha_nacimiento']);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

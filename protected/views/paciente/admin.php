@@ -104,6 +104,12 @@ $this->menu=array(
 			'value'=>'Yii::app()->dateformatter->format("dd-MM-yyyy",$data[\'fecha_nacimiento\']);',
 			'htmlOptions'=>array('width'=>'80'),
 		),
+		array(
+			'header'=>'Estado',
+			'name'=>'estado',
+			'value'=>'$data->estado_texto',
+			'filter' => array('0'=>'Inactivo', '1'=>'Activo'),
+			),
 		/*
 		'fecha_registro',
 		'email2',

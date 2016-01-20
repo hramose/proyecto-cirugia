@@ -66,7 +66,7 @@ class Paciente extends CActiveRecord
 			array('nombre, apellido, n_identificacion, celular, estado, email, tratamiento_interes_id', 'required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nombre, saldo, apellido, n_identificacion, observaciones, genero, fecha_nacimiento, fecha_registro, email, email2, telefono1, telefono2, celular, direccion, ciudad, pais, referer_contact, estado_civil, ocupacion, tipo_vinculacion, Aseguradora, nombre_acompanante, acompanante_telefono, nombre_responsable, relacion_responsable, telefono_responsable, responsable, historia_id, tratamiento_interes_id, fuente_contacto_id', 'safe', 'on'=>'search'),
+			array('id, nombre, saldo, apellido, n_identificacion, estado_texto, observaciones, genero, fecha_nacimiento, fecha_registro, email, email2, telefono1, telefono2, celular, direccion, ciudad, pais, referer_contact, estado_civil, ocupacion, tipo_vinculacion, Aseguradora, nombre_acompanante, acompanante_telefono, nombre_responsable, relacion_responsable, telefono_responsable, responsable, historia_id, tratamiento_interes_id, fuente_contacto_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -121,6 +121,7 @@ class Paciente extends CActiveRecord
 			'observaciones' => 'Observaciones',
 			'saldo' => 'Saldo en Caja',
 			'estado' => 'Estado',
+			'estado_texto' => 'Estado',
 		);
 	}
 
@@ -172,6 +173,7 @@ class Paciente extends CActiveRecord
 		$criteria->compare('responsable',$this->responsable,true);
 		$criteria->compare('historia_id',$this->historia_id,true);
 		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('estado_texto',$this->estado_texto,true);
 		$criteria->compare('tratamiento_interes_id',$this->tratamiento_interes_id);
 		$criteria->compare('fuente_contacto_id',$this->fuente_contacto_id);
 		

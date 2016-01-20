@@ -98,6 +98,10 @@ $this->menu=array(
 	{ $elgenero = "Femenino"; } 
 	if($model->genero == 3) 
 	{ $elgenero = "Masculino";}
+	if($model->estado == 1) 
+	{$estado = "Activo";}
+	else
+	{$estado = "Inactivo";}
 
 	$this->widget('zii.widgets.CDetailView', array(
 		'data'=>$model,
@@ -140,6 +144,7 @@ $this->menu=array(
 			'telefono_responsable',
 			array('name'=>'Tratamiento de Interes', 'value'=>$trata),
 			'observaciones',
+			array('name'=>'Estado', 'value'=>$estado),
 		),
 	)); ?>
 	</div>
@@ -831,7 +836,7 @@ if (count($elSeguimiento)>0) {
 
 
 
-
+<?php if ($model->estado == 1): ?>
 <div class="row">
 	<div class = "span12">
 		<div class="hero-unit">
@@ -877,7 +882,7 @@ if (count($elSeguimiento)>0) {
 		</div>
 	</div>
 </div>
-
+<?php endif ?>
 
 
 
