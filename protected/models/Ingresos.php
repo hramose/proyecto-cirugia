@@ -156,7 +156,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('tarjeta_tipo',$this->tarjeta_tipo,true);
 		$criteria->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
 		$criteria->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('tarjeta_banco_cuenta_id',$this->tarjeta_banco_cuenta_id);
 		$criteria->compare('consigna_banco_o',$this->consigna_banco_o,true);
 		$criteria->compare('consigna_cuenta_o',$this->consigna_cuenta_o,true);
@@ -207,7 +207,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('tarjeta_tipo',$this->tarjeta_tipo,true);
 		$criteria->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
 		$criteria->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('tarjeta_banco_cuenta_id',$this->tarjeta_banco_cuenta_id);
 		$criteria->compare('consigna_banco_o',$this->consigna_banco_o,true);
 		$criteria->compare('consigna_cuenta_o',$this->consigna_cuenta_o,true);

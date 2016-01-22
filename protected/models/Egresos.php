@@ -181,7 +181,7 @@ class Egresos extends CActiveRecord
 		$criteria->compare('rte_cree_valor',$this->rte_cree_valor,true);
 		$criteria->compare('centro_costo_id',$this->centro_costo_id);
 		$criteria->compare('total_egreso',$this->total_egreso,true);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
 		$criteria->compare('personal_id',$this->personal_id);
@@ -233,7 +233,7 @@ class Egresos extends CActiveRecord
 		$criteria->compare('rte_cree_valor',$this->rte_cree_valor,true);
 		$criteria->compare('centro_costo_id',$this->centro_costo_id);
 		$criteria->compare('total_egreso',$this->total_egreso,true);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
 		$criteria->compare('personal_id',$this->personal_id);

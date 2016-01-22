@@ -397,12 +397,16 @@ class CitasController extends Controller
 					$unEquipo = Equipos::model()->find("linea_servicio_id = $laLineaServicio");
 					//$reservaEquipos = new CitasEquipo;
 					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-					$reservaEquipos->fecha = $fechaCita;
-					$reservaEquipos->hora_inicio = $model->hora_inicio;
-					$reservaEquipos->hora_fin = $model->hora_fin;
-					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-					$reservaEquipos->equipo_id = $unEquipo->id;
-					$reservaEquipos->linea_servicio_id = $laLineaServicio;
+					if ($reservaEquipos) 
+					{
+						$reservaEquipos->fecha = $model->fecha_cita;
+						$reservaEquipos->hora_inicio = $model->hora_inicio;
+						$reservaEquipos->hora_fin = $model->hora_fin;
+						$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+						$reservaEquipos->equipo_id = $unEquipo->id;
+						$reservaEquipos->linea_servicio_id = $laLineaServicio;
+					}
+					
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 				}
 

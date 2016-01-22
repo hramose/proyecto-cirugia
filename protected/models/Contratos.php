@@ -121,7 +121,7 @@ class Contratos extends CActiveRecord
 		$criteria->compare('t.id',$this->id);
 		$criteria->compare('presupuesto_id',$this->presupuesto_id);
 		$criteria->compare('paciente_id',$this->paciente_id);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
 		$criteria->compare('fechahora',$this->fechahora,true);
 		$criteria->compare('descuento',$this->descuento,true);

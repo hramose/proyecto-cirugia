@@ -108,7 +108,7 @@ class Presupuesto extends CActiveRecord
 		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
-		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('t.estado',$this->estado,true);
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.n_identificacion', $this->n_identificacion, true );
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
