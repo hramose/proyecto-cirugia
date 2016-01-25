@@ -5,7 +5,7 @@
 $this->menu=array(
 	//array('label'=>'Listar Contrato', 'url'=>array('index')),
 	//array('label'=>'Actualizar Contrato', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Regresar a Caja de Paciente', 'url'=>array('index.php/pacienteMovimientos/viewCaja&id='.$model->id)),
+	array('label'=>'Regresar a Caja de Paciente', 'url'=>array('pacienteMovimientos/viewCaja&id='.$model->id)),
 );
 ?>
 <h1>Traslado de Fondos a Paciente</h1>
