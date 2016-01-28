@@ -100,8 +100,8 @@ class PersonalTareas extends CActiveRecord
 		$criteria->compare('estado',$this->estado,true);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('usuario_id',$this->usuario_id);
-		$criteria->compare('comentario_cierre',$this->usuario_id);
-		$criteria->compare('fecha_cierre',$this->usuario_id);
+		$criteria->compare('comentario_cierre',$this->comentario_cierre);
+		$criteria->compare('fecha_cierre',$this->fecha_cierre);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
