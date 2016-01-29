@@ -43,6 +43,9 @@ class Egresos extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+
+	public $nombre_proveedor;
+
 	public function tableName()
 	{
 		return 'egresos';
@@ -65,7 +68,7 @@ class Egresos extends CActiveRecord
 			array('desc_pronto_pago_valor, iva_porcentace, valor_egreso, total_descuento, iva_valor, a_retener, rte_base, rte_porcenaje, rte_iva_porcentaje, rte_iva_valor, rte_ica_porcentaje, rte_ica_valor, rte_cree_porcentaje, rte_cree_valor, total_egreso', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, proveedor_id, observaciones, aplica_factura, n_identificacion, factura_id, fecha_sola, forma_pago, desc_pronto_pago, desc_pronto_pago_tipo, desc_pronto_pago_valor, iva_porcentace, valor_egreso, total_descuento, iva_valor, rte_aplica, retencion_id, a_retener, rte_base, rte_porcenaje, rte_iva, rte_iva_valor, rte_ica, rte_ica_porcentaje, rte_ica_valor, rte_cree, rte_cree_porcentaje, rte_cree_valor, centro_costo_id, total_egreso, fecha, estado', 'safe', 'on'=>'search'),
+			array('id, proveedor_id, observaciones, nombre_proveedor, aplica_factura, n_identificacion, factura_id, fecha_sola, forma_pago, desc_pronto_pago, desc_pronto_pago_tipo, desc_pronto_pago_valor, iva_porcentace, valor_egreso, total_descuento, iva_valor, rte_aplica, retencion_id, a_retener, rte_base, rte_porcenaje, rte_iva, rte_iva_valor, rte_ica, rte_ica_porcentaje, rte_ica_valor, rte_cree, rte_cree_porcentaje, rte_cree_valor, centro_costo_id, total_egreso, fecha, estado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -185,12 +188,13 @@ class Egresos extends CActiveRecord
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
 		$criteria->compare('personal_id',$this->personal_id);
-
+		$criteria->with = array('proveedor');
+		$criteria->compare('proveedor.nombre', $this->nombre_proveedor, true );
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination'=>array('pageSize'=>20),
 			'sort'=>array(
-			    'defaultOrder'=>'id DESC',
+			    'defaultOrder'=>'t.id DESC',
 			    'attributes'=>array(
 			),
 			),
@@ -237,6 +241,8 @@ class Egresos extends CActiveRecord
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
 		$criteria->compare('personal_id',$this->personal_id);
+		$criteria->with = array('proveedor');
+		$criteria->compare('proveedor.nombre', $this->nombre_proveedor, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -51,7 +51,7 @@ $('.search-form form').submit(function(){
 
 		array(
 		   'header'=>'Proveedor',
-		   'name'=>'proveedor_id',
+		   'name'=>'nombre_proveedor',
 		   'value'=>'$data->proveedor->nombre',
 		   'htmlOptions'=>array('width'=>'220'),
 		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
