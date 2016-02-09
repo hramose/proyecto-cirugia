@@ -115,7 +115,9 @@ class CitasController extends Controller
 			$laLineaServicio = $_POST['Citas']['linea_servicio_id'];
 			/////Agregar equipo a reserva
 			//Buscar equipo de la linea de servicio seleccionada.
-			$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $laLineaServicio");
+			//$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $laLineaServicio");
+			$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $laLineaServicio");
+
 			if ($equiposDisponibles) 
 			{
 				$sihayDisponible = 0;

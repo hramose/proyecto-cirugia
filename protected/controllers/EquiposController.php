@@ -45,7 +45,7 @@ class EquiposController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'exportar'),
+				'actions'=>array('admin','delete', 'exportar', 'lineaServicio', 'eliminarLinea'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -63,6 +63,15 @@ class EquiposController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionEliminarLinea($idEquipo, $idLinea)
+	{
+		$linea = EquiposLineaServicio::model()->find("equipo_id = ".$idEquipo. " and linea_servicio_id = ".$idLinea);
+		if ($linea->delete()) {
+			$this->redirect(array('view','id'=>$idEquipo));
+		}
+		
 	}
 
 	/**
@@ -87,6 +96,31 @@ class EquiposController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionLineaServicio()
+	{
+		$model=new EquiposLineaServicio;
+		$model->equipo_id = $_GET['idEquipo'];
+		$model->linea_servicio_id = $_POST['EquiposLineaServicio']['linea_servicio_id'];
+		//Buscar si ya hay linea de Servicio Vinculada al equipo
+		$hayLineaServicio = EquiposLineaServicio::model()->findAll("equipo_id=".$model->equipo_id." and linea_servicio_id = ".$model->linea_servicio_id);
+
+		if($hayLineaServicio){
+			Yii::app()->user->setFlash('error',"Esta linea de servicio ya esta vinculada al equipo.");
+			$this->redirect(array('view','id'=>$model->equipo_id));
+		}
+		else
+		{
+			if ($model->save()) 
+			{
+				$this->redirect(array('view','id'=>$model->equipo_id));
+			}	
+		}
+		
+
+		
+
 	}
 
 	public function actionExportar()
