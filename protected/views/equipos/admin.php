@@ -48,13 +48,13 @@ $('.search-form form').submit(function(){
 			'value'=>'$data[\'nombre\']',
 			'htmlOptions'=>array('width'=>'250'),
 		),
-		array(
-			'header'=>'Linea de Servicio',
-			'name'=>'linea_servicio_id',
-			'filter'=>CHtml::listData(LineaServicio::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
-			'value'=>'$data[\'lineaServicio\'][\'nombre\']',
-			'htmlOptions'=>array('width'=>'250'),
-		),
+		// array(
+		// 	'header'=>'Linea de Servicio',
+		// 	'name'=>'linea_servicio_id',
+		// 	'filter'=>CHtml::listData(LineaServicio::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
+		// 	'value'=>'$data[\'lineaServicio\'][\'nombre\']',
+		// 	'htmlOptions'=>array('width'=>'250'),
+		// ),
 		'numero',
 		array(
 			'name'=>'Estado',

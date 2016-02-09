@@ -71,6 +71,8 @@ $this->menu=array(
 	//Verificar si hay observaciones
 	$nObservaciones = EquiposObservaciones::model()->count("equipo_id=".$model->id);
 	$lasObservaciones = EquiposObservaciones::model()->findAll("equipo_id=".$model->id);
+	$nLineaServicio = EquiposLineaServicio::model()->count("equipo_id=".$model->id);
+	$lasLineasServicio = EquiposLineaServicio::model()->findAll("equipo_id=".$model->id);
 ?>
 
 <div class="row">
@@ -109,6 +111,41 @@ $this->menu=array(
 	</div>
 	<div class="span2"></div>
 </div>
+
+
+
+
+<div class="row">
+	<div class="span12">
+		<?php if ($nLineaServicio > 0)
+		{
+		?>
+			<h3 class="text-center">Lienas de Servicio Vinculada al Equipo</h3>		
+	</div>
+</div>
+
+<div class="row">
+	<div class="span4"></div>
+	<div class="span4">
+	<table class="table">
+		<tr>
+			<th>Linea de Servicio</th>
+			<th></th>
+		</tr>
+		<?php 
+			foreach($lasLineasServicio as $las_lineasservicio){ 
+				?>
+			<tr>
+				<td><?php echo $las_lineasservicio->lineaServicio->nombre; ?></td>
+				<td><a href="index.php?r=equipos/eliminarLinea&idEquipo=<?php echo $model->id; ?>&idLinea=<?php echo $las_lineasservicio->linea_servicio_id; ?>" class="btn btn-danger btn-mini">Desvincular</a></td>
+			</tr>
+		<?php } ?>
+	</table>
+	<?php } ?>	
+	</div>
+	<div class="span4"></div>
+</div>
+
 
 
 
@@ -188,26 +225,26 @@ $this->menu=array(
 
 	//Yii::app()->clientScript->registerCoreScript('jquery');
 
-	$equipoObservaciones = new EquiposObservaciones;
+	$equiposlineaservicio = new EquiposLineaServicio;
 
 	$form=$this->beginWidget('CActiveForm', array(
-	'id'=>'responsables-form',
-	'action'=>Yii::app()->createUrl('//equiposObservaciones/create&idActivo='.$model->id),
+	'id'=>'equiposlineaservicio-form',
+	'action'=>Yii::app()->createUrl('//equipos/lineaServicio&idEquipo='.$model->id),
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<?php echo $form->errorSummary($equipoObservaciones); ?>
+	<?php echo $form->errorSummary($equiposlineaservicio); ?>
 	<div class="form"> 
 	<div>
 		<div class="span4">
-			<?php echo $form->labelEx($equipoObservaciones,'observacion'); ?>	
-			<?php echo $form->textArea($equipoObservaciones,'observacion',array('rows'=>6, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
-			<?php echo $form->error($equipoObservaciones,'observacion'); ?>	
+			
+			<?php echo $form->dropDownList($equiposlineaservicio, 'linea_servicio_id',CHtml::listData(LineaServicio::model()->findAll("estado = 'activo'"),'id','nombre', 'tipo.nombre'), array('class'=>'input-xlarge', 'id'=>'id', 'empty'=>''));?>
+			<?php echo $form->error($equiposlineaservicio,'linea_servicio_id'); ?>	
 		</div>
 	</div>
   </div>
   	<div class="span10">
-		<?php echo CHtml::submitButton($equipoObservaciones->isNewRecord ? 'Asignar' : 'Asignar', array('class'=>'btn btn-small btn-danger')); ?>
+		<?php echo CHtml::submitButton($equiposlineaservicio->isNewRecord ? 'Asignar' : 'Asignar', array('class'=>'btn btn-small btn-danger')); ?>
 	</div>
   <?php $this->endWidget(); ?>
   </div>

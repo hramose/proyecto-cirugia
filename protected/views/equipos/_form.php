@@ -27,9 +27,9 @@
 		</div>
 
 		<div class="span4">
-			<?php echo $form->labelEx($model,'linea_servicio_id'); ?>
-			<?php echo $form->dropDownList($model, 'linea_servicio_id',CHtml::listData(LineaServicio::model()->findAll("estado = 'activo'"),'id','nombre', 'tipo.nombre'), array('class'=>'input-xlarge', 'id'=>'id', 'empty'=>''));?>
-			<?php echo $form->error($model,'linea_servicio_id'); ?>
+			<?php //echo $form->labelEx($model,'linea_servicio_id'); ?>
+			<?php //echo $form->dropDownList($model, 'linea_servicio_id',CHtml::listData(LineaServicio::model()->findAll("estado = 'activo'"),'id','nombre', 'tipo.nombre'), array('class'=>'input-xlarge', 'id'=>'id', 'empty'=>''));?>
+			<?php //echo $form->error($model,'linea_servicio_id'); ?>
 		</div>
 	</div>
 
