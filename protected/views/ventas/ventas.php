@@ -62,7 +62,7 @@
 			<br>
 			<p>___*** FIN FACTURA ***___</p>
 			<br><br><br>
-			<p>Apreciable cliente SMADIA CLINIC S.A.S</p>
+			<p>Apreciable cliente SMADIA MEDICAL GROUP S.A.S.</p>
 			<p>no realizara cambio de productos</p>
 			<p>devolución de dinero por compra de los</p>
 			<p>mismos, solo en los casos en que haya lugar</p>

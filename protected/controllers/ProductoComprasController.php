@@ -121,7 +121,19 @@ class ProductoComprasController extends Controller
 			 			$elProducto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
 			 			$elProducto->cantidad = $elProducto->cantidad + $_POST['cantidad_'.$i];
 			 			$elProducto->costo_iva = $_POST['valor_'.$i];
-			 			$elProducto->save();
+			 			if ($elProducto->save()) 
+			 			{
+			 				//Guardar detalle del inventario //Lotes
+			 				$elProductoD = new ProductoInventarioDetalle;
+			 				$elProductoD->producto_inventario_id = $_POST['producto_'.$i];
+			 				$elProductoD->lote = $_POST['lote_'.$i];
+			 				$elProductoD->cantidad_compra = $_POST['cantidad_'.$i];
+			 				$elProductoD->existencia = $_POST['cantidad_'.$i];
+			 				$elProductoD->save();
+			 			}
+			 			
+			 			
+
 			 		}			 		
 			 	}
 

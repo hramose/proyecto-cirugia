@@ -99,6 +99,19 @@ $('.search-form form').submit(function(){
 			'htmlOptions'=>array('width'=>'210'),
 		),
 		array(
+			'name'=>'nombre_paciente',
+			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data->cita->paciente->nombreCompleto',
+			'htmlOptions'=>array('width'=>'210'),
+		),
+		array(
+			'name'=>'nombre_asistente',
+			'filter'=>CHtml::listData(Personal::model()->findAll(array('order'=>'nombres ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+			'value'=>'$data->cita->personal->nombreCompleto',
+			'htmlOptions'=>array('width'=>'210'),
+		),
+		
+		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
 		),

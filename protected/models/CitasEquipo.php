@@ -23,6 +23,10 @@ class CitasEquipo extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+
+	public $nombre_paciente;
+	public $nombre_asistente;
+
 	public function tableName()
 	{
 		return 'citas_equipo';
@@ -40,7 +44,7 @@ class CitasEquipo extends CActiveRecord
 			array('cita_id, hora_inicio, hora_fin, equipo_id, linea_servicio_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('cita_id, fecha, hora_inicio, hora_fin, equipo_id, linea_servicio_id, hora_fin_mostrar', 'safe', 'on'=>'search'),
+			array('cita_id, fecha, hora_inicio, hora_fin, equipo_id, linea_servicio_id, hora_fin_mostrar, nombre_asistente, nombre_paciente', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -102,7 +106,9 @@ class CitasEquipo extends CActiveRecord
 		$criteria->compare('hora_fin_mostrar',$this->hora_fin_mostrar);
 		$criteria->compare('equipo_id',$this->equipo_id);
 		$criteria->compare('linea_servicio_id',$this->linea_servicio_id);
-
+		$criteria->with = array('cita');
+		$criteria->compare('cita.paciente_id', $this->nombre_paciente );
+		$criteria->compare('cita.personal_id', $this->nombre_asistente );
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination'=>array('pageSize'=>20),
