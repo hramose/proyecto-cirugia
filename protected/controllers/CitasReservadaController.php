@@ -145,6 +145,7 @@ class CitasReservadaController extends Controller
 					$lacita->fecha_creacion = date("Y-m-d");
 					$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
 					$lacita->usuario_id = Yii::app()->user->usuarioId;
+					$lacita->paciente_id = 109;
 
 
 
@@ -238,6 +239,7 @@ class CitasReservadaController extends Controller
 								$lacita->fecha_creacion = date("Y-m-d");
 								$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
 								$lacita->usuario_id = Yii::app()->user->usuarioId;
+								$lacita->paciente_id = 109;
 								$lacita->save();
 
 								$lafecha = strtotime ('+1 day', strtotime(date($lafecha)));

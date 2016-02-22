@@ -100,7 +100,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'name'=>'estado',
-			'filter' => array('Cancelada'=>'Cancelada', 'Completada'=>'Completada', 'Fallida'=>'Fallida', 'Programada'=>'Programada', 'Vencida'=>'Vencida'),
+			'filter' => array('Cancelada'=>'Cancelada', 'Completada'=>'Completada', 'Fallida'=>'Fallida', 'Programada'=>'Programada', 'Vencida'=>'Vencida', 'Reservado'=>'Reservado'),
 			'value'=>'$data->estado',
 		),
 		array(

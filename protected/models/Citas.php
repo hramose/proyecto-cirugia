@@ -166,7 +166,7 @@ class Citas extends CActiveRecord
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 		$criteria->compare('paciente.n_identificacion', $this->cedula_paciente, true );
-		$criteria->addCondition("t.estado != 'Reservado'");
+		//$criteria->addCondition("t.estado != 'Reservado'");
 
 
 		return new CActiveDataProvider($this, array(

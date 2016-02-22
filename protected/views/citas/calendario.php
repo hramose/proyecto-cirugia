@@ -280,7 +280,8 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								$numCitas = count($citasProgramadas);
 							foreach ($citasProgramadas as $citas_programadas)
 							{ //Aca comienza a contar las citas
-							if ($citas_programadas->paciente_id == NULL) 
+							//if ($citas_programadas->paciente_id == NULL) 
+							if ($citas_programadas->estado == "Reservado") 
 							{
 								if ($numCitas == 1) 
 								{
