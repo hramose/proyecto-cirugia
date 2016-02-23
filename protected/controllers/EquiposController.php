@@ -103,6 +103,28 @@ class EquiposController extends Controller
 		$model=new EquiposLineaServicio;
 		$model->equipo_id = $_GET['idEquipo'];
 		$model->linea_servicio_id = $_POST['EquiposLineaServicio']['linea_servicio_id'];
+
+		//Nombre de equipo
+		$nombreEquipo = Equipos::model()->findByPk($model->equipo_id);
+
+		//Buscar linea de servicio en otro equipo
+		$conteo = 0;
+		$ListadoEquipos = Equipos::model()->findAll("nombre != '".$nombreEquipo->nombre."'");
+		foreach ($ListadoEquipos as $listado_equipos) 
+		{
+			$temporal = EquiposLineaServicio::model()->findAll("equipo_id=".$listado_equipos->id. " and linea_servicio_id = ".$model->linea_servicio_id);
+			if ($temporal) 
+			{
+				$conteo = $conteo + 1;
+			}
+		}
+
+		if ($conteo > 0) 
+		{
+			Yii::app()->user->setFlash('error',"Esta linea de servicio ya esta vinculada a otro equipo.");
+			$this->redirect(array('view','id'=>$model->equipo_id));
+		}
+
 		//Buscar si ya hay linea de Servicio Vinculada al equipo
 		$hayLineaServicio = EquiposLineaServicio::model()->findAll("equipo_id=".$model->equipo_id." and linea_servicio_id = ".$model->linea_servicio_id);
 

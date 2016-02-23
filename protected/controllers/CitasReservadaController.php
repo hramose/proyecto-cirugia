@@ -140,7 +140,7 @@ class CitasReservadaController extends Controller
 					$lacita->linea_servicio_id = 26;
 					$lacita->estado = "Reservado";
 					$lacita->correo = "No";
-					$lacita->comentario = "Bloqueo de agenda";
+					$lacita->comentario = $_POST['CitasReservada']['motivo'];
 					$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
 					$lacita->fecha_creacion = date("Y-m-d");
 					$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
@@ -234,7 +234,7 @@ class CitasReservadaController extends Controller
 								$lacita->linea_servicio_id = 26;
 								$lacita->estado = "Reservado";
 								$lacita->correo = "No";
-								$lacita->comentario = "Bloqueo de agenda";
+								$lacita->comentario = $_POST['CitasReservada']['motivo'];
 								$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
 								$lacita->fecha_creacion = date("Y-m-d");
 								$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");

@@ -659,7 +659,7 @@ class IngresosController extends Controller
 		Yii::import('ext.yii-mail.YiiMailMessage');
 		$message = new YiiMailMessage;
 		//$message = Yii::app()->Smtpmail;
-        $message->subject = 'Detalle de Ingreso: N° '.$model->id;
+        $message->subject = 'Detalle de Ingreso';
         /*$message->view ='prueba';//nombre de la vista q conformara el mail*/
         $message->setBody('<b>Ingreso número:</b>'.$model->id.'<br>
         				   <b>Fecha Ingreso:</b>'.Yii::app()->dateformatter->format("dd-MM-yyyy H:m:s",$model->fecha).'<br><br>

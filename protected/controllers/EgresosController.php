@@ -369,7 +369,7 @@ class EgresosController extends Controller
 		Yii::import('ext.yii-mail.YiiMailMessage');
 		$message = new YiiMailMessage;
 		//$message = Yii::app()->Smtpmail;
-        $message->subject = 'Detalle de Egreso: N° '.$model->id;
+        $message->subject = 'Detalle de Egreso';
         /*$message->view ='prueba';//nombre de la vista q conformara el mail*/
         $message->setBody('<b>Egreso número:</b>'.$model->id.'<br>
         				   <b>Fecha Egreso:</b>'.Yii::app()->dateformatter->format("dd-MM-yyyy H:m:s",$model->fecha).'<br><br>

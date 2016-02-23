@@ -68,9 +68,18 @@ class CitasController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		$laCita = CitasReservadaDetalle::model()->find("cita_id = ".$id);
+		if ($laCita) 
+		{
+			$this->redirect(array('CitasReservada/view','id'=>$laCita->cita_reservada_id));
+		}
+		else
+		{
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));	
+		}
+		
 	}
 
 	public function actionVencidas()
