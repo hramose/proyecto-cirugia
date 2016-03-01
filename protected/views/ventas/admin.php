@@ -48,6 +48,24 @@ $this->menu=array(
 			'filter' => array('Cheque'=>'Cheque', 'Crédito'=>'Crédito', 'Consignación'=>'Consignación', 'Efectivo'=>'Efectivo', 'Tarjeta'=>'Tarjeta'),
 		),
 		array(
+			'name'=>'tarjeta_tipo',
+			'value'=>'$data->tarjeta_tipo',
+			'filter' => array('Debito Maestro'=>'Debito Maestro','Mastercard'=>'Mastercard','VISA'=>'VISA','American Express'=>'American Express','Diners Club'=>'Diners Club'),
+		),
+		array(
+			'name'=>'tarjeta_aprobacion',
+			'value'=>'$data->tarjeta_aprobacion',
+		),
+
+		array(
+			//'header'=>'Cuenta de Ingreso',
+			'name'=>'tarjeta_cuenta_banco',
+			'filter'=>CHtml::listData(BancosCuentas::model()->findAll(array('order'=>'numero ASC')), 'id','numero'), // Colocamos un combo en el filtro
+			//'value'=>'$data->tarjetaBancoCuenta->numero',
+			'value'=>'$data[\'tarjetaCuentaBanco\'][\'numero\']',
+			'htmlOptions'=>array('width'=>'150'),
+		),
+		array(
 			'name'=>'sub_total',
 			'value'=>'number_format($data->sub_total,2)',
 			'htmlOptions'=>array('width'=>'120'),

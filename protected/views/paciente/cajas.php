@@ -90,10 +90,10 @@ $this->menu=array(
 		'historia_id',
 		'tratamiento_interes_id',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-			'template'=>'{view}{update}',
-		),
+		// array(
+		// 	'class'=>'CButtonColumn',
+		// 	'template'=>'{view}{update}',
+		// ),
 	),
 )); 
 

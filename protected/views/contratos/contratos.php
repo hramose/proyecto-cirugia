@@ -29,7 +29,7 @@
 
 
 <p id="parrafo">Yo <?php echo "  <b>".$elContrato->paciente->nombreCompleto."</b>  "; ?>  Identificado  con  CC   <?php echo "  <b>".$elContrato->paciente->n_identificacion."</b>  "; ?>  quien  en  adelante  seré  EL 
-CONTRATANTE  y  SMADIA  CLINIC  S.A.S.  identificada  con  Nit  900.423.704-7,  quien  en  adelante  y 
+CONTRATANTE  y  SMADIA MEDICAL GROUP S.A.S.  identificada  con  Nit  900.385.003-9,  quien  en  adelante  y 
 para  efectos  del  presente  contrato  será  EL  CONTRATISTA,  suscribimos  el  siguiente  contrato  de 
 Prestación de Servicio bajo las siguientes clausulas.</p>
 

@@ -131,6 +131,7 @@ class CitasController extends Controller
 			{
 				$sihayDisponible = 0;
 				$lasuperllave = 0;
+				$laInsidencia = 0;
 				$lallave = 0;
 				//Consultar en agenda de equipos reservados
 				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
@@ -145,7 +146,7 @@ class CitasController extends Controller
 						foreach ($agendaEquipos as $agenda_equipos) 
 						{
 							
-							if ($equipos_disponibles->id == $agenda_equipos->equipo_id) 
+							if ($equipos_disponibles->equipo_id == $agenda_equipos->equipo_id) 
 							{
 								
 								$lallave = 1; //Si hay uno
@@ -172,7 +173,7 @@ class CitasController extends Controller
 									$lallave = 2; //Guardo
 									$reservaEquipos = new CitasEquipo;
 									$reservaEquipos->fecha = $fechaCita;
-									$reservaEquipos->equipo_id = $equipos_disponibles->id;
+									$reservaEquipos->equipo_id = $equipos_disponibles->equipo_id;
 									$reservaEquipos->linea_servicio_id = $laLineaServicio;
 								}
 							}
@@ -182,7 +183,7 @@ class CitasController extends Controller
 						{
 							if ($sihayDisponible == 0) 
 							{
-								$numerodeEquipo = $equipos_disponibles->id;
+								$numerodeEquipo = $equipos_disponibles->equipo_id;
 								$sihayDisponible = 1;
 							}
 							
@@ -192,10 +193,10 @@ class CitasController extends Controller
 				}
 				else //Preparar ingreso de registro
 				{
-					$unEquipo = Equipos::model()->find("linea_servicio_id = $laLineaServicio");
+					$unEquipo = EquiposLineaServicio::model()->find("linea_servicio_id = $laLineaServicio");
 					$reservaEquipos = new CitasEquipo;
 					$reservaEquipos->fecha = $fechaCita;
-					$reservaEquipos->equipo_id = $unEquipo->id;
+					$reservaEquipos->equipo_id = $unEquipo->equipo_id;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 				}
@@ -228,38 +229,46 @@ class CitasController extends Controller
 			$model->fecha_creacion = date("Y-m-d");
 			$model->fecha_hora_creacion = date("Y-m-d H:i:s");
 
-			if($model->save())
+			if ($laInsidencia == 1) 
 			{
-				//Actualizar estado de Detalle de Contrato
-				if ($model->contrato_id != NULL) 
+				Yii::app()->user->setFlash('error',"No hay equipos disponibles para esta cita");
+				$this->redirect(array('citas/create&hora=1&idpaciente='.$model->paciente_id.'&medico='.$model->personal_id.'&fecha='.$model->fecha_cita));
+			}
+			else
+			{
+				if($model->save())
 				{
-					//Buscar Detalle
-					$detalleContrato = ContratoDetalle::model()->findAll("contrato_id = $model->contrato_id and estado = 'Activo'");
-					foreach ($detalleContrato as $detalle_contrato) 
+					//Actualizar estado de Detalle de Contrato
+					if ($model->contrato_id != NULL) 
 					{
-						if ($model->linea_servicio_id == $detalle_contrato->linea_servicio_id) 
+						//Buscar Detalle
+						$detalleContrato = ContratoDetalle::model()->findAll("contrato_id = $model->contrato_id and estado = 'Activo'");
+						foreach ($detalleContrato as $detalle_contrato) 
 						{
-							$paraActualizar = ContratoDetalle::model()->findByPk($detalle_contrato->id);
-							$paraActualizar->estado = "Programada";
-							$paraActualizar->save();
+							if ($model->linea_servicio_id == $detalle_contrato->linea_servicio_id) 
+							{
+								$paraActualizar = ContratoDetalle::model()->findByPk($detalle_contrato->id);
+								$paraActualizar->estado = "Programada";
+								$paraActualizar->save();
+							}
 						}
 					}
+
+					//Terminar consulta de reserva de equipo
+					$reservaEquipos->hora_inicio = $model->hora_inicio;
+					$reservaEquipos->hora_fin = $model->hora_fin;
+					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+					$reservaEquipos->cita_id = $model->id;
+					$reservaEquipos->save();
+
+					//Envio de Correo
+					if ($model->correo == "Si") {
+						$this->actionEnvioCorreo($model->id);
+					}
+					
+
+					$this->redirect(array('view','id'=>$model->id));
 				}
-
-				//Terminar consulta de reserva de equipo
-				$reservaEquipos->hora_inicio = $model->hora_inicio;
-				$reservaEquipos->hora_fin = $model->hora_fin;
-				$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-				$reservaEquipos->cita_id = $model->id;
-				$reservaEquipos->save();
-
-				//Envio de Correo
-				if ($model->correo == "Si") {
-					$this->actionEnvioCorreo($model->id);
-				}
-				
-
-				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 

@@ -98,8 +98,12 @@ class VentasController extends Controller
 		    	array(
 	            'id::ID',
 	            'paciente.nombreCompleto::Paciente',
+	            'paciente.n_identificacion',
 	            'descripcion',
 	            'forma_pago',
+	            'tarjeta_tipo',
+	            'tarjeta_aprobacion',
+	            'tarjetaCuentaBanco.numero::Tarjeta Cuenta',
 	            'sub_total',
 	            'total_iva',
 	            'descuento',
