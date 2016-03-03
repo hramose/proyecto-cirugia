@@ -66,10 +66,10 @@ class Ventas extends CActiveRecord
 			array('sub_total, total_iva, descuento_valor, descuento_total, total_orden, dinero_recibido, dinero_cambio, total_venta', 'length', 'max'=>20),
 			array('descuento', 'length', 'max'=>2),
 			array('descuento_tipo', 'length', 'max'=>1),
-			array('forma_pago, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, consignacion_banco, consignacion_cuenta', 'length', 'max'=>25),
+			array('forma_pago, forma_pago2, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, consignacion_banco, consignacion_cuenta', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, descripcion, sub_total, total_iva, vendedor_id, n_identificacion, descuento, descuento_tipo, descuento_valor, descuento_total, cant_productos, total_orden, forma_pago, dinero_recibido, dinero_cambio, total_venta, credito_dias, credito_fecha, cheques_cantidad, cheques_cuenta_banco, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_cuenta_banco, consignacion_cuenta_banco, consignacion_banco, consignacion_cuenta, personal, fecha_hora, fecha, estado, fecha_anulada, comentario_anulada', 'safe', 'on'=>'search'),
+			array('id, paciente_id, descripcion, sub_total, total_iva, vendedor_id, n_identificacion, descuento, descuento_tipo, descuento_valor, descuento_total, cant_productos, total_orden, forma_pago, dinero_recibido, dinero_cambio, total1, total2, total_venta, credito_dias, credito_fecha, cheques_cantidad, cheques_cuenta_banco, tarjeta_tipo, tarjeta_aprobacion, tarjeta_entidad, tarjeta_cuenta_banco, tarjeta_tipo2, tarjeta_aprobacion2, tarjeta_entidad2, tarjeta_cuenta_banco2, consignacion_cuenta_banco, consignacion_banco, consignacion_cuenta, consignacion_cuenta_banco2, consignacion_banco2, consignacion_cuenta2, personal, fecha_hora, fecha, estado, fecha_anulada, comentario_anulada', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -85,8 +85,10 @@ class Ventas extends CActiveRecord
 			'vendedor' => array(self::BELONGS_TO, 'Personal', 'vendedor_id'),
 			'chequesCuentaBanco' => array(self::BELONGS_TO, 'BancosCuentas', 'cheques_cuenta_banco'),
 			'tarjetaCuentaBanco' => array(self::BELONGS_TO, 'BancosCuentas', 'tarjeta_cuenta_banco'),
+			'tarjetaCuentaBanco2' => array(self::BELONGS_TO, 'BancosCuentas', 'tarjeta_cuenta_banco2'),
 			'personal0' => array(self::BELONGS_TO, 'Personal', 'personal'),
 			'consignacionCuentaBanco' => array(self::BELONGS_TO, 'BancosCuentas', 'consignacion_cuenta_banco'),
+			'consignacionCuentaBanco2' => array(self::BELONGS_TO, 'BancosCuentas', 'consignacion_cuenta_banco2'),
 			'ventasCheques' => array(self::HAS_MANY, 'VentasCheques', 'ventas_id'),
 		);
 	}
@@ -108,7 +110,8 @@ class Ventas extends CActiveRecord
 			'descuento_total' => 'Descuento Total',
 			'cant_productos' => 'Cant Productos',
 			'total_orden' => 'Total Orden',
-			'forma_pago' => 'Forma Pago',
+			'forma_pago' => 'Forma Pago 1',
+			'forma_pago2' => 'Forma Pago 2',
 			'dinero_recibido' => 'Dinero Recibido',
 			'dinero_cambio' => 'Dinero Cambio',
 			'total_venta' => 'Total Venta',
@@ -124,6 +127,9 @@ class Ventas extends CActiveRecord
 			'consignacion_cuenta_banco' => 'Consignacion Cuenta Banco',
 			'consignacion_banco' => 'Consignacion Banco',
 			'consignacion_cuenta' => 'Consignacion Cuenta',
+			'consignacion_cuenta_banco2' => 'Consignacion Cuenta Banco 2',
+			'consignacion_banco2' => 'Consignacion Banco 2',
+			'consignacion_cuenta2' => 'Consignacion Cuenta 2',
 			'personal' => 'Personal',
 			'fecha_hora' => 'Fecha Hora',
 			'fecha' => 'Fecha',
@@ -132,6 +138,14 @@ class Ventas extends CActiveRecord
 			'vendedor_id' => 'Vendedor',
 			'fecha_anulada' => 'Fecha de Anulada',
 			'comentario_anulada' => 'Comentario de Anulación',
+			'total1' => 'Total 1',
+			'total2' => 'Total 2',
+			'credito_dias2' => 'Crédito Dias 2',
+			'credito_fecha2' => 'Crédito Fecha 2',
+			'tarjeta_tipo2' => 'Tarjeta Tipo 2',
+			'tarjeta_aprobacion2' => 'Tarjeta Aprobacion 2',
+			'tarjeta_entidad2' => 'Tarjeta Entidad 2',
+			'tarjeta_cuenta_banco2' => 'Tarjeta Cuenta Banco 2',
 		);
 	}
 
@@ -167,9 +181,12 @@ class Ventas extends CActiveRecord
 		$criteria->compare('cant_productos',$this->cant_productos);
 		$criteria->compare('total_orden',$this->total_orden,true);
 		$criteria->compare('forma_pago',$this->forma_pago,true);
+		$criteria->compare('forma_pago2',$this->forma_pago2,true);
 		$criteria->compare('dinero_recibido',$this->dinero_recibido,true);
 		$criteria->compare('dinero_cambio',$this->dinero_cambio,true);
 		$criteria->compare('total_venta',$this->total_venta,true);
+		$criteria->compare('total1',$this->total1,true);
+		$criteria->compare('total2',$this->total2,true);
 		$criteria->compare('credito_dias',$this->credito_dias);
 		$criteria->compare('credito_fecha',$this->credito_fecha,true);
 		$criteria->compare('cheques_cantidad',$this->cheques_cantidad);
@@ -179,9 +196,16 @@ class Ventas extends CActiveRecord
 		$criteria->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
 		$criteria->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
 		$criteria->compare('tarjeta_cuenta_banco',$this->tarjeta_cuenta_banco);
+		$criteria->compare('tarjeta_tipo2',$this->tarjeta_tipo2,true);
+		$criteria->compare('tarjeta_aprobacion2',$this->tarjeta_aprobacion2,true);
+		$criteria->compare('tarjeta_entidad2',$this->tarjeta_entidad2,true);
+		$criteria->compare('tarjeta_cuenta_banco2',$this->tarjeta_cuenta_banco2);
 		$criteria->compare('consignacion_cuenta_banco',$this->consignacion_cuenta_banco);
 		$criteria->compare('consignacion_banco',$this->consignacion_banco,true);
 		$criteria->compare('consignacion_cuenta',$this->consignacion_cuenta,true);
+		$criteria->compare('consignacion_cuenta_banco2',$this->consignacion_cuenta_banco2);
+		$criteria->compare('consignacion_banco2',$this->consignacion_banco2,true);
+		$criteria->compare('consignacion_cuenta2',$this->consignacion_cuenta2,true);
 		$criteria->compare('personal',$this->personal);
 		$criteria->compare('fecha_hora',$this->fecha_hora,true);
 		$criteria->compare('DATE_FORMAT(fecha, \'%d-%m-%Y\')',$this->fecha,true);

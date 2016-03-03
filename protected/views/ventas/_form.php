@@ -130,6 +130,7 @@
 
 			<div id="tarjeta" style="display: none">
 				<div class="row">
+				<h4 class="text-center">Tarjeta 1</h4>
 					<?php echo $form->labelEx($model,'tarjeta_tipo'); ?>
 					<?php echo $form->dropDownList($model, 'tarjeta_tipo',array('Debito Maestro'=>'Debito Maestro','Mastercard'=>'Mastercard','VISA'=>'VISA','American Express'=>'American Express','Diners Club'=>'Diners Club'), array('class'=>'input-large','empty'=>'(Seleccionar)'));?>	
 					<?php echo $form->error($model,'tarjeta_tipo'); ?>
@@ -156,23 +157,81 @@
 				</div>
 			</div>
 
+			<div id="tarjeta2" style="display: none">
+				<div class="row">
+				<h4 class="text-center">Tarjeta 2</h4>
+					<?php echo $form->labelEx($model,'tarjeta_tipo2'); ?>
+					<?php echo $form->dropDownList($model, 'tarjeta_tipo2',array('Debito Maestro'=>'Debito Maestro','Mastercard'=>'Mastercard','VISA'=>'VISA','American Express'=>'American Express','Diners Club'=>'Diners Club'), array('class'=>'input-large','empty'=>'(Seleccionar)'));?>	
+					<?php echo $form->error($model,'tarjeta_tipo2'); ?>
+				</div>
+
+				<div class="row">
+					<div class="span6">
+						<?php echo $form->labelEx($model,'tarjeta_aprobacion2'); ?>
+						<?php echo $form->textField($model,'tarjeta_aprobacion2',array('size'=>25,'maxlength'=>25)); ?>
+						<?php echo $form->error($model,'tarjeta_aprobacion2'); ?>
+					</div>
+
+					<div class="span6">
+						<?php echo $form->labelEx($model,'tarjeta_entidad2'); ?>
+						<?php echo $form->textField($model,'tarjeta_entidad2',array('size'=>25,'maxlength'=>25)); ?>
+						<?php echo $form->error($model,'tarjeta_entidad2'); ?>
+					</div>
+				</div>
+
+				<div class="row">
+					<?php echo $form->labelEx($model,'tarjeta_cuenta_banco2'); ?>
+					<?php echo $form->dropDownList($model, 'tarjeta_cuenta_banco2',CHtml::listData(BancosCuentas::model()->findAll("estado = 'Activo'"),'id','numero', 'idBanco.nombre'), array('class'=>'input-normal', 'id'=>'id','empty'=>'(Seleccionar)'));?>
+					<?php echo $form->error($model,'tarjeta_cuenta_banco2'); ?>
+				</div>
+			</div>
+
 			<div id="consignacion" style="display: none">
 				<div class="row">
+					<h4 class="text-center">Consignación 1</h4>
 					<?php echo $form->labelEx($model,'consignacion_cuenta_banco'); ?>
 					<?php echo $form->textField($model,'consignacion_cuenta_banco',array('size'=>25,'maxlength'=>25)); ?>
 					<?php echo $form->error($model,'consignacion_cuenta_banco'); ?>
 				</div>
 				<hr>
 				<div class="row">
-					<?php echo $form->labelEx($model,'consignacion_banco'); ?>
-					<?php echo $form->dropDownList($model, 'consignacion_banco',CHtml::listData(BancosCuentas::model()->findAll("estado = 'Activo'"),'id','numero', 'idBanco.nombre'), array('class'=>'input-normal', 'id'=>'id','empty'=>'(Seleccionar)'));?>
-					<?php echo $form->error($model,'consignacion_banco'); ?>
-				</div>
+					<div class="span6">
+						<?php echo $form->labelEx($model,'consignacion_banco'); ?>
+						<?php echo $form->dropDownList($model, 'consignacion_banco',CHtml::listData(BancosCuentas::model()->findAll("estado = 'Activo'"),'id','numero', 'idBanco.nombre'), array('class'=>'input-normal', 'id'=>'id','empty'=>'(Seleccionar)'));?>
+						<?php echo $form->error($model,'consignacion_banco'); ?>
+					</div>
 
+					<div class="span6">
+						<?php echo $form->labelEx($model,'consignacion_cuenta'); ?>
+						<?php echo $form->textField($model,'consignacion_cuenta',array('size'=>25,'maxlength'=>25)); ?>
+						<?php echo $form->error($model,'consignacion_cuenta'); ?>
+					</div>
+				</div>
+			</div>
+
+
+		
+
+		<div id="consignacion2" style="display: none">
 				<div class="row">
-					<?php echo $form->labelEx($model,'consignacion_cuenta'); ?>
-					<?php echo $form->textField($model,'consignacion_cuenta',array('size'=>25,'maxlength'=>25)); ?>
-					<?php echo $form->error($model,'consignacion_cuenta'); ?>
+					<h4 class="text-center">Consignación 2</h4>
+					<?php echo $form->labelEx($model,'consignacion_cuenta_banco2'); ?>
+					<?php echo $form->textField($model,'consignacion_cuenta_banco2',array('size'=>25,'maxlength'=>25)); ?>
+					<?php echo $form->error($model,'consignacion_cuenta_banco2'); ?>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="span6">
+						<?php echo $form->labelEx($model,'consignacion_banco2'); ?>
+						<?php echo $form->dropDownList($model, 'consignacion_banco2',CHtml::listData(BancosCuentas::model()->findAll("estado = 'Activo'"),'id','numero', 'idBanco.nombre'), array('class'=>'input-normal', 'id'=>'id','empty'=>'(Seleccionar)'));?>
+						<?php echo $form->error($model,'consignacion_banco2'); ?>
+					</div>
+
+					<div class="span6">
+						<?php echo $form->labelEx($model,'consignacion_cuenta2'); ?>
+						<?php echo $form->textField($model,'consignacion_cuenta2',array('size'=>25,'maxlength'=>25)); ?>
+						<?php echo $form->error($model,'consignacion_cuenta2'); ?>
+					</div>
 				</div>
 			</div>
 
@@ -271,17 +330,22 @@
 <hr>
 
 	<div class="row">
-		<div class="span4">
+		<div class="span2">
 			<?php echo $form->labelEx($model,'forma_pago'); ?>
-			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-large'));?>	
+			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-medium'));?>	
 			<?php echo $form->error($model,'forma_pago'); ?>
+		</div>
+		<div class="span2">
+			<?php echo $form->labelEx($model,'total1'); ?>
+			<?php echo $form->textField($model,'total1', array('class'=>'input-medium')); ?>
+			<?php echo $form->error($model,'total1'); ?>
 		</div>
 		<div class="span8">
 			<div id="credito" style="display: none">
 				<div class="row">
 					<div class="span3">
 						<?php echo $form->labelEx($model,'credito_dias'); ?>
-						<?php echo $form->textField($model,'credito_dias', array('size'=>2,'maxlength'=>2, 'class'=>'input-small')); ?>
+						<?php echo $form->textField($model,'credito_dias', array('size'=>2,'maxlength'=>2, 'class'=>'input-mini')); ?>
 						<?php echo $form->error($model,'credito_dias'); ?>
 					</div>
 
@@ -289,6 +353,36 @@
 						<?php echo $form->labelEx($model,'credito_fecha'); ?>
 						<?php echo $form->textField($model,'credito_fecha', array('class'=>'input-normal', 'readOnly'=>'readOnly')); ?>
 						<?php echo $form->error($model,'credito_fecha'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span2">
+			<?php echo $form->labelEx($model,'forma_pago2'); ?>
+			<?php echo $form->dropDownList($model, 'forma_pago2',array('Ninguna'=>'Ninguna', 'Crédito'=>'Crédito', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-medium'));?>	
+			<?php echo $form->error($model,'forma_pago2'); ?>
+		</div>
+		<div class="span2">
+			<?php echo $form->labelEx($model,'total2'); ?>
+			<?php echo $form->textField($model,'total2', array('class'=>'input-medium')); ?>
+			<?php echo $form->error($model,'total2'); ?>
+		</div>
+		<div class="span8">
+			<div id="credito2" style="display: none">
+				<div class="row">
+					<div class="span3">
+						<?php echo $form->labelEx($model,'credito_dias2'); ?>
+						<?php echo $form->textField($model,'credito_dias2', array('size'=>2,'maxlength'=>2, 'class'=>'input-mini')); ?>
+						<?php echo $form->error($model,'credito_dias2'); ?>
+					</div>
+
+					<div class="span3">
+						<?php echo $form->labelEx($model,'credito_fecha2'); ?>
+						<?php echo $form->textField($model,'credito_fecha2', array('class'=>'input-normal', 'readOnly'=>'readOnly')); ?>
+						<?php echo $form->error($model,'credito_fecha2'); ?>
 					</div>
 				</div>
 			</div>
@@ -666,6 +760,35 @@ $("#Ventas_forma_pago").change(function (){
     	}
 });
 
+$("#Ventas_forma_pago2").change(function (){
+    if ($(this).val() == "Ninguna") 
+    	{
+    		$("#credito2").hide();	
+    		$("#tarjeta2").hide();
+    		$("#consignacion2").hide();
+    	}
+
+    if ($(this).val() == "Crédito") 
+    	{
+    		$("#credito2").toggle("slow");
+    		$("#tarjeta2").hide();
+    		$("#consignacion2").hide();
+    	}
+    if ($(this).val() == "Tarjeta") 
+    	{
+    		$("#credito2").hide();
+    		$("#tarjeta2").toggle("slow");
+    		$("#consignacion2").hide();
+    	}
+
+    if ($(this).val() == "Consignación") 
+    	{
+    		$("#credito2").hide();
+    		$("#tarjeta2").hide();
+    		$("#consignacion2").toggle("slow");
+    	}
+});
+
 
 
 
@@ -710,7 +833,44 @@ $("#Ventas_descuento").change(function (){
 		    }
 	});
 
+	$("#Ventas_credito_dias2").keyup(function (){
+	    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
+	    
+	    //Calcular fecha de pago
+	    if ($("#Ventas_credito_dias2").val() !=0 || $("#Ventas_credito_dias2").val() != "")
+	    	{
+	    		var f = new Date();
+	    		var Fecha = f.getDate() + "-" + (f.getMonth() +1) + "-" + f.getFullYear();
+	   
+	    		Fecha + $("#Ventas_credito_dias2").val();
+	    		$("#Ventas_credito_fecha2").val(sumaFecha2($("#Ventas_credito_dias2").val(), Fecha));
+
+	    	}
+	    else
+		    {
+		    	$("#Ventas_credito_fecha2").val("");
+		    }
+	});
+
 sumaFecha = function(d, fecha)
+			{
+			var Fecha = new Date();
+			var sFecha = fecha || (Fecha.getDate() + "-" + (Fecha.getMonth() +1) + "-" + Fecha.getFullYear());
+			var sep = sFecha.indexOf('-') != -1 ? '-' : '-'; 
+			var aFecha = sFecha.split(sep);
+			var fecha = aFecha[2]+'-'+aFecha[1]+'-'+aFecha[0];
+			fecha= new Date(fecha);
+			fecha.setDate(fecha.getDate()+parseInt(d));
+			var anno=fecha.getFullYear();
+			var mes= fecha.getMonth()+1;
+			var dia= fecha.getDate();
+			mes = (mes < 10) ? ("0" + mes) : mes;
+			dia = (dia < 10) ? ("0" + dia) : dia;
+			var fechaFinal = dia+sep+mes+sep+anno;
+			return (fechaFinal);
+			}
+
+sumaFecha2 = function(d, fecha)
 			{
 			var Fecha = new Date();
 			var sFecha = fecha || (Fecha.getDate() + "-" + (Fecha.getMonth() +1) + "-" + Fecha.getFullYear());

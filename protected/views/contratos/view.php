@@ -496,7 +496,7 @@ if (count($detalleContrato)>0) {
 		$texto_liquidar = "El cliente pasara a Cuentas por Cobrar con un saldo de <b>$". number_format($saldo_liquidar,2)."</b>";
 	}
 	if ($saldo_liquidar > 0) {
-		$texto_liquidar = "El cliente posee saldo a favor. Se creara nota de crédito con un saldo de <b>$". number_format($saldo_liquidar,2)."</b>";
+		$texto_liquidar = "El cliente posee saldo a favor. Se realizara un abono a la caja personal con un monto de <b>$". number_format($saldo_liquidar,2)."</b>";
 	}
 
 ?>

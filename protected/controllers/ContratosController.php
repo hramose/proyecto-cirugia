@@ -284,28 +284,67 @@ class ContratosController extends Controller
 			$saldo_favor = $sumaIngresos - $total_vu_suma;
 		}
 
+		//---->>>***** Aca es donde se depositara a la caja personal
 		if ($saldo_favor > 0) //Es nota de crédito
 		{
-			$notadeCredito = new NotaCredito;
-			$notadeCredito->paciente_id = $datosContrato->paciente_id;
-			$notadeCredito->n_identificacion = $datosContrato->n_identificacion;
-			$notadeCredito->contrato_id = $datosContrato->id;
-			$notadeCredito->valor = $saldo_favor;
-			$notadeCredito->fecha = date("Y-m-d");
-			$notadeCredito->fecha_hora = date("Y-m-d H:i:s");
-			$notadeCredito->personal_id = Yii::app()->user->usuarioId;
-			if($notadeCredito->save())
+			//Ingreso a caja Personal
+			$PacienteCaja = Paciente::model()->findByPk($datosContrato->paciente_id);
+			$PacienteCaja->saldo = $PacienteCaja->saldo + $saldo_favor;
+			if ($PacienteCaja->update()) 
 			{
-				$datosContrato->estado = "Liquidado";
-				$datosContrato->update();
+				$movimientosCaja = new PacienteMovimientos;
+				$movimientosCaja->paciente_id = $PacienteCaja->id;
+				$movimientosCaja->valor = $PacienteCaja->saldo;
+				$movimientosCaja->tipo = "Ingreso";
+				$movimientosCaja->sub_tipo = "Nota de Crédito";
+				$movimientosCaja->contrato_id = $datosContrato->id;
+				$movimientosCaja->descripcion = "Ingreso a caja de paciente con nota de crédito por liquidación de contrato N°. ".$datosContrato->id;
+				$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;
+				$movimientosCaja->fecha = date("Y-m-d H:i:s");
+				//$movimientosCaja->save();
 
-				foreach ($datosContratoDetalle as $datos_contrato_detalle) 
+				if($movimientosCaja->save())
 				{
-						$datos_contrato_detalle->estado = "Liquidado";
-						$datos_contrato_detalle->update();
+					$notadeCredito = new NotaCredito;
+					$notadeCredito->paciente_id = $datosContrato->paciente_id;
+					$notadeCredito->n_identificacion = $datosContrato->n_identificacion;
+					$notadeCredito->contrato_id = $datosContrato->id;
+					$notadeCredito->valor = $saldo_favor;
+					$notadeCredito->fecha = date("Y-m-d");
+					$notadeCredito->fecha_hora = date("Y-m-d H:i:s");
+					$notadeCredito->personal_id = Yii::app()->user->usuarioId;
+					$notadeCredito->save();
+
+					$nuevoIngreso = new Ingresos;
+					$nuevoIngreso->paciente_id = $datosContrato->paciente_id;
+					$nuevoIngreso->n_identificacion = $datosContrato->n_identificacion;
+					//$nuevoIngreso->contrato_id = $datosContrato->id;
+					$nuevoIngreso->valor = $saldo_favor;
+					$nuevoIngreso->descripcion = "Ingreso a caja de paciente por Nota de Crédito N° ". $notadeCredito->id;
+					$nuevoIngreso->centro_costo_id = 60;
+					$nuevoIngreso->forma_pago = "Nota de Crédito";
+					$nuevoIngreso->fecha_sola = date("Y-m-d");
+					$nuevoIngreso->fecha = date("Y-m-d H:i:s");
+					$nuevoIngreso->personal_id = Yii::app()->user->usuarioId;
+					$nuevoIngreso->estado = "Activo";
+					$nuevoIngreso->vendedor_id = Yii::app()->user->usuarioId;
+					$nuevoIngreso->personal_seguimiento = Yii::app()->user->usuarioId;
+
+					$nuevoIngreso->save();
+
+					$datosContrato->estado = "Liquidado";
+					$datosContrato->update();
+
+					foreach ($datosContratoDetalle as $datos_contrato_detalle) 
+					{
+							$datos_contrato_detalle->estado = "Liquidado";
+							$datos_contrato_detalle->update();
+					}
+					$this->redirect(array('view','id'=>$datosContrato->id));
 				}
-				$this->redirect(array('view','id'=>$datosContrato->id));
 			}
+
+			
 		}
 
 		if ($saldo_favor < 0) //Es Cuenta por Cobrar

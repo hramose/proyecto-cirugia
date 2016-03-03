@@ -99,7 +99,7 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('venta_id',$this->venta_id);
 		$criteria->compare('producto_id',$this->producto_id);
 		$criteria->compare('cantidad',$this->cantidad);
-		$criteria->compare('paciente_id',$this->paciente_id);
+		$criteria->compare('t.paciente_id',$this->paciente_id);
 		$criteria->compare('valor',$this->valor,true);
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
