@@ -133,9 +133,24 @@ class CitasController extends Controller
 				$lasuperllave = 0;
 				$laInsidencia = 0;
 				$lallave = 0;
-				//Consultar en agenda de equipos reservados
-				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
-				if ($agendaEquipos) 
+				$conteoEquipo = 0;
+
+				//Consultar en agenda de equipos reservados //Buscar equipo que tenga esa linea de servicio
+				//Contar cuantos equipos hay
+
+				// $agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
+				
+					foreach ($equiposDisponibles as $equipos_disponibles)
+					{
+						$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and equipo_id = $equipos_disponibles->id");
+						if ($agendaEquipos) 
+						{
+							$conteoEquipo = 1;
+						}
+					}
+
+
+				if ($conteoEquipo == 1) 
 				{
 					//Verificar equipo en la agenda
 					

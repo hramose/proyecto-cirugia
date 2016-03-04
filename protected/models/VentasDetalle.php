@@ -113,6 +113,30 @@ class VentasDetalle extends CActiveRecord
 		));
 	}
 
+	public function searchSuma()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('venta_id',$this->venta_id);
+		$criteria->compare('producto_id',$this->producto_id);
+		$criteria->compare('cantidad',$this->cantidad);
+		$criteria->compare('t.paciente_id',$this->paciente_id);
+		$criteria->compare('valor',$this->valor,true);
+		$criteria->compare('iva',$this->iva,true);
+		$criteria->compare('total',$this->total,true);
+		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
+		$criteria->with = array('venta');
+		$criteria->compare('venta.vendedor_id', $this->vendedor_id);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination'=>array('pageSize'=>900000),
+		));
+	}
+
  	public static function getTotal($provider)
         {
                 $total=0;
@@ -147,6 +171,19 @@ class VentasDetalle extends CActiveRecord
                         //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
                 		$t = $data->total;
+                        $total += $t;
+                }
+                return $total;
+        }
+
+    public static function getTotal4($provider)
+        {
+                $total=0;
+                foreach($provider->data as $data)
+                {
+                        //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
+                        //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		$t = $data->cantidad;
                         $total += $t;
                 }
                 return $total;

@@ -78,23 +78,24 @@ $lasVentas = Ventas::model()->findAll();
 			'name'=>'cantidad',
 			'value'=>'$data->cantidad',
 			'htmlOptions'=>array('width'=>'50'),
+			'footer'=>"<h5>".number_format($model->getTotal4($model->searchSuma())).'</h5>',
 			),
 		array(
 			'name'=>'valor',
 			'value'=>'number_format($data->valor,2)',
-		'footer'=>"<h5>$ ".number_format($model->getTotal($model->search()),2).'</h5>',
+		'footer'=>"<h5>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h5>',
 		),
 
 		array(
 			'name'=>'iva',
 			'value'=>'number_format($data->iva,2)',
-		'footer'=>"<h5>$ ".number_format($model->getTotal2($model->search()),2).'</h5>',
+		'footer'=>"<h5>$ ".number_format($model->getTotal2($model->searchSuma()),2).'</h5>',
 		),
 
 		array(
 			'name'=>'total',
 			'value'=>'number_format($data->total,2)',
-		'footer'=>"<h5>$ ".number_format($model->getTotal3($model->search()),2).'</h5>',
+		'footer'=>"<h5>$ ".number_format($model->getTotal3($model->searchSuma()),2).'</h5>',
 		),
 		array(
 			'header'=>'Fecha',
