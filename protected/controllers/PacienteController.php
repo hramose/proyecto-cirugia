@@ -103,6 +103,25 @@ class PacienteController extends Controller
 				$movimientoDepositoOrigen->usuario_id		= Yii::app()->user->usuarioId;
 				$movimientoDepositoOrigen->fecha 			= date("Y-m-d H:i:s");
 				$movimientoDepositoOrigen->save();
+
+				//Ingreso
+				$nuevoIngreso = new Ingresos;
+					$nuevoIngreso->paciente_id = $pacienteOrigen->id;
+					$nuevoIngreso->n_identificacion = $pacienteOrigen->n_identificacion;
+					//$nuevoIngreso->contrato_id = $datosContrato->id;
+					$nuevoIngreso->valor = $_POST['valor'];
+					$nuevoIngreso->descripcion = "Transferencia a caja de paciente ". $pacienteDestino->nombreCompleto;
+					$nuevoIngreso->centro_costo_id = 98;
+					$nuevoIngreso->forma_pago = "Transferencia a Paciente";
+					$nuevoIngreso->fecha_sola = date("Y-m-d");
+					$nuevoIngreso->fecha = date("Y-m-d H:i:s");
+					$nuevoIngreso->personal_id = Yii::app()->user->usuarioId;
+					$nuevoIngreso->estado = "Activo";
+					$nuevoIngreso->vendedor_id = Yii::app()->user->usuarioId;
+					$nuevoIngreso->personal_seguimiento = Yii::app()->user->usuarioId;
+
+					$nuevoIngreso->save();
+
 			}
 			
 		}
