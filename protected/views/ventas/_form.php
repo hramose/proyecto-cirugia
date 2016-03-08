@@ -335,7 +335,7 @@
 			<?php echo $form->dropDownList($model, 'forma_pago',array('Ninguna'=>'Ninguna', 'Efectivo'=>'Efectivo', 'Crédito'=>'Crédito', 'Cheque'=>'Cheque', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-medium'));?>	
 			<?php echo $form->error($model,'forma_pago'); ?>
 		</div>
-		<div class="span2">
+		<div class="span2" style="display: none" id="total1">
 			<?php echo $form->labelEx($model,'total1'); ?>
 			<?php echo $form->textField($model,'total1', array('class'=>'input-medium')); ?>
 			<?php echo $form->error($model,'total1'); ?>
@@ -365,7 +365,7 @@
 			<?php echo $form->dropDownList($model, 'forma_pago2',array('Ninguna'=>'Ninguna', 'Crédito'=>'Crédito', 'Tarjeta'=>'Tarjeta', 'Consignación'=>'Consignación'), array('class'=>'input-medium'));?>	
 			<?php echo $form->error($model,'forma_pago2'); ?>
 		</div>
-		<div class="span2">
+		<div class="span2" style="display: none" id="total2">
 			<?php echo $form->labelEx($model,'total2'); ?>
 			<?php echo $form->textField($model,'total2', array('class'=>'input-medium')); ?>
 			<?php echo $form->error($model,'total2'); ?>
@@ -710,6 +710,14 @@ $("#Ventas_dinero_recibido").keyup(function (){
 	    $("#Ventas_dinero_cambio").val($(this).val() - $("#Ventas_total_venta").val());
 });
 
+$("#Ventas_total1").keyup(function (){
+	    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
+});
+
+$("#Ventas_total2").keyup(function (){
+	    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
+});
+
 $("#Ventas_forma_pago").change(function (){
      if ($(this).val() == "Efectivo") 
     	{
@@ -721,10 +729,16 @@ $("#Ventas_forma_pago").change(function (){
 
     if ($(this).val() == "Ninguna") 
     	{
+    		$("#Ventas_forma_pago2").val("Ninguna");
+    		$("#Ventas_total1").val("");
+    		$("#Ventas_total2").val("");
+    		$("#Ventas_forma_pago2").change();
     		$("#credito").hide();	
     		$("#cheque").hide();
     		$("#tarjeta").hide();
     		$("#consignacion").hide();
+    		$("#total1").hide();
+    		$("#total2").hide();
     	}
 
     if ($(this).val() == "Crédito") 
@@ -766,6 +780,8 @@ $("#Ventas_forma_pago2").change(function (){
     		$("#credito2").hide();	
     		$("#tarjeta2").hide();
     		$("#consignacion2").hide();
+    		$("#total1").hide();
+    		$("#total2").hide();
     	}
 
     if ($(this).val() == "Crédito") 
@@ -773,12 +789,16 @@ $("#Ventas_forma_pago2").change(function (){
     		$("#credito2").toggle("slow");
     		$("#tarjeta2").hide();
     		$("#consignacion2").hide();
+    		$("#total1").toggle("slow");
+    		$("#total2").toggle("slow");
     	}
     if ($(this).val() == "Tarjeta") 
     	{
     		$("#credito2").hide();
     		$("#tarjeta2").toggle("slow");
     		$("#consignacion2").hide();
+    		$("#total1").toggle("slow");
+			$("#total2").toggle("slow");
     	}
 
     if ($(this).val() == "Consignación") 
@@ -786,6 +806,8 @@ $("#Ventas_forma_pago2").change(function (){
     		$("#credito2").hide();
     		$("#tarjeta2").hide();
     		$("#consignacion2").toggle("slow");
+			$("#total1").toggle("slow");
+			$("#total2").toggle("slow");
     	}
 });
 
@@ -951,11 +973,34 @@ function quitarCampoc(iddiv){
        //document.getElementById("total").value=variableJs;
 }
 
-function validar() { 
+function validar() {
+	if($("#Ventas_forma_pago2").val() != "Ninguna" && $("#Ventas_forma_pago").val() != "Ninguna") 
+	{
+		if($("#Ventas_total1").val() == '' || $("#Ventas_total1").val() == 0)
+		{
+			swal({   title: "Especifique el total del pago 1",   text: "Ingrese el total",   timer: 2000,   showConfirmButton: false });	
+	 		return false
+		}
+		if($("#Ventas_total2").val() == '' || $("#Ventas_total2").val() == 0)
+		{
+			swal({   title: "Especifique el total del pago 2",   text: "Ingrese el total",   timer: 2000,   showConfirmButton: false });	
+	 		return false
+		}
+
+		var total_totales = (eval($("#Ventas_total1").val()) + eval($("#Ventas_total2").val()));
+		if ( total_totales != $("#Ventas_total_venta").val()) 
+		{
+			swal({   title: "No coincide la suma de los totales por forma de pago",   text: "Revise los totales por forma de pago",   timer: 2000,   showConfirmButton: false });	
+		 		return false
+		}
+	}
+
+
+
 	if($("#Ventas_forma_pago").val() == "Ninguna") 
-		{ 
-			swal({   title: "No ha seleccionado metodo de pago",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
-		 	return false
-		} 	
+	{
+		swal({   title: "No ha seleccionado metodo de pago",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
+	 	return false
+	}
 }
 </script>
