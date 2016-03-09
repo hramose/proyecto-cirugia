@@ -4,7 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Crear Promociones', 'url'=>array('create')),
-	array('label'=>'Buscar Promociones', 'url'=>array('admin')),
+	array('label'=>'Buscar Promociones Activas', 'url'=>array('admin', 'estado'=>'Activa')),
+	array('label'=>'Buscar Promociones Vencidas', 'url'=>array('admin', 'estado'=>'Vencida')),
 );
 ?>
 

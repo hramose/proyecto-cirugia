@@ -214,6 +214,15 @@ class VentasController extends Controller
 				$fechaCredito = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Ventas']['credito_fecha']);
 			}
 
+			if ($_POST['Ventas']['credito_fecha2'] == "") 
+			{
+				$fechaCredito2 = "0000-00-00";
+			}
+			else
+			{
+				$fechaCredito2 = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Ventas']['credito_fecha2']);
+			}
+
 			$model->attributes=$_POST['Ventas'];
 			$model->forma_pago = $_POST['Ventas']['forma_pago'];
 			$model->descripcion = $_POST['Ventas']['descripcion'];
@@ -225,6 +234,19 @@ class VentasController extends Controller
 			$model->estado = "Activo";
 			$model->personal = Yii::app()->user->usuarioId;
 			$model->vendedor_id = $_POST['Ventas']['vendedor_id'];
+
+			//Mas de una forma de pago
+			$model->forma_pago2 = $_POST['Ventas']['forma_pago2'];
+			$model->credito_fecha2 = $fechaCredito2;
+			$model->credito_dias2 = $_POST['Ventas']['credito_dias2'];
+			$model->tarjeta_tipo2 = $_POST['Ventas']['tarjeta_tipo2'];
+			$model->tarjeta_aprobacion2 = $_POST['Ventas']['tarjeta_aprobacion2'];
+			$model->tarjeta_entidad2 = $_POST['Ventas']['tarjeta_entidad2'];
+			$model->tarjeta_cuenta_banco2 = $_POST['Ventas']['tarjeta_cuenta_banco2'];
+			$model->consignacion_cuenta_banco2 = $_POST['Ventas']['consignacion_cuenta_banco2'];
+			$model->consignacion_banco2 = $_POST['Ventas']['consignacion_banco2'];
+			$model->consignacion_cuenta2 = $_POST['Ventas']['consignacion_cuenta2'];
+
 			if($model->save())
 			{
 

@@ -160,8 +160,22 @@ class PromocionesController extends Controller
 		$model=new Promociones('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Promociones']))
+		{
 			$model->attributes=$_GET['Promociones'];
+		}
+		if (isset($_GET['estado'])) 
+		{
+			if ($_GET['estado'] == 'Activa') 
+			{
+				$model->estado = 'Activa';
+			}
 
+			if ($_GET['estado'] == 'Vencida') 
+			{
+				$model->estado = 'Vencida';
+			}
+			
+		}
 		$this->render('admin',array(
 			'model'=>$model,
 		));

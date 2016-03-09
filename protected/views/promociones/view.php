@@ -7,7 +7,8 @@ $this->menu=array(
 	array('label'=>'Crear Promociones', 'url'=>array('create')),
 	array('label'=>'Actualizar Promociones', 'url'=>array('update', 'id'=>$model->id)),
 	//array('label'=>'Delete Promociones', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Buscar Promociones', 'url'=>array('admin')),
+	array('label'=>'Buscar Promociones Activas', 'url'=>array('admin', 'estado'=>'Activa')),
+	array('label'=>'Buscar Promociones Vencidas', 'url'=>array('admin', 'estado'=>'Vencida')),
 );
 ?>
 

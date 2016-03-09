@@ -115,7 +115,7 @@ Prestación de Servicio bajo las siguientes clausulas.</p>
 			</tr>
 			<tr>
 				<td width="500">C.C: <?php echo $elContrato->paciente->n_identificacion; ?></td>
-				<td width="0">NIT: 900.423.704-7</td>
+				<td width="0">NIT: 900.385.003-9</td>
 			</tr>
 		</table>
 </div>

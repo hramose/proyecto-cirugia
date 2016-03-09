@@ -123,7 +123,7 @@ class CitasReservadaController extends Controller
 				$horainicio = $_POST['CitasReservada']['hora_inicio'];
 				$horafin = $_POST['CitasReservada']['hora_fin'];
 
-				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and fecha_inicio = '$fechainicio' and ($horainicio >= hora_inicio and $horafin <= hora_fin)");
+				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and and estado = 'Activa' and fecha_inicio = '$fechainicio' and ($horainicio >= hora_inicio and $horafin <= hora_fin)");
 				if (count($citaVerifica) > 0) 
 				{
 					Yii::app()->user->setFlash('error',"Ya hay un bloqueo a esa hora");

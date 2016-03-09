@@ -54,6 +54,11 @@
 			____________________________________
 			<br>
 			<p>F. DE PAGO: <?php echo $lasVentas->forma_pago; ?></p>
+			<?php if ($lasVentas->forma_pago2 != 'Ninguna') {
+				?>
+			<p>F. DE PAGO 2: <?php echo $lasVentas->forma_pago2; ?></p>	
+				<?php
+			} ?>
 			<br>
 			<p>GRACIAS POR PREFERIRNOS</p>
 			<br>

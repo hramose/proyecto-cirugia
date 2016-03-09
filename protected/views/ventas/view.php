@@ -20,6 +20,17 @@ else
 	$nombreEntidad = null;
 	$numeroTarjeta = null;
 }
+
+if ($model->tarjeta_cuenta_banco2) 
+{
+	$nombreEntidad2 = $model->tarjetaCuentaBanco2->idBanco->nombre;
+	$numeroTarjeta2 = $model->tarjetaCuentaBanco2->numero;
+}
+else
+{
+	$nombreEntidad2 = null;
+	$numeroTarjeta2 = null;
+}
 ?>
 
 <h1>Venta #<?php echo $model->id; ?></h1>
@@ -214,6 +225,54 @@ else
 							<?php
 						}
 					?>
+				</table>
+			<?php
+		} ?>
+		<?php if ($model->forma_pago2 != "Ninguna") {?>
+		<hr>
+			<h4 class="text-center">Forma de Pago 2</h4>
+		<table class="table">
+			<tr>
+				<th>FORMA DE PAGO</th>
+				<th>DIAS</th>
+				<th>FECHA VENCIMIENTO</th>
+			</tr>
+			<tr>
+				<td><?php echo $model->forma_pago2; ?></td>
+				<td><?php echo $model->credito_dias2; ?></td>
+				<?php 
+					if ($model->credito_fecha2 == '0000-00-00') {
+						$fechaCredito2 = "";
+					}
+					else
+					{
+						$fechaCredito2 = Yii::app()->dateformatter->format("dd-MM-yyyy",$model->credito_fecha2);
+					}
+				?>
+				<td><?php echo $fechaCredito2; ?></td>
+			</tr>
+		</table>
+		<?php
+		} ?>
+		<?php if ($model->forma_pago2 != "Efectivo") {?> <h4 class="text-center">Detalles de Transacción</h4> <?php }	?>
+		
+		<?php if ($model->forma_pago2 == "Tarjeta") {
+			?>
+				<table class="table">
+					<tr>
+						<th>Tipo de Tarjeta</th>
+						<th>N. Aprobación</th>
+						<th>Entidad</th>
+						<th>Banco Destino</th>
+						<th>Cuenta Destino</th>
+					</tr>
+					<tr>
+						<td><?php echo $model->tarjeta_tipo2; ?></td>
+						<td><?php echo $model->tarjeta_aprobacion2; ?></td>
+						<td><?php echo $model->tarjeta_entidad2; ?></td>
+						<td><?php echo $nombreEntidad2; ?></td>
+						<td><?php echo $numeroTarjeta2; ?></td>
+					</tr>
 				</table>
 			<?php
 		} ?>

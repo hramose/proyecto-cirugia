@@ -6,6 +6,8 @@
 $this->menu=array(
 	//array('label'=>'List Promociones', 'url'=>array('index')),
 	array('label'=>'Crear Promociones', 'url'=>array('create')),
+	array('label'=>'Buscar Promociones Activas', 'url'=>array('admin', 'estado'=>'Activa')),
+	array('label'=>'Buscar Promociones Vencidas', 'url'=>array('admin', 'estado'=>'Vencida')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
