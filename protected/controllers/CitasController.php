@@ -142,10 +142,15 @@ class CitasController extends Controller
 				
 					foreach ($equiposDisponibles as $equipos_disponibles)
 					{
-						$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and equipo_id = $equipos_disponibles->id");
+						$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and equipo_id = $equipos_disponibles->equipo_id");
 						if ($agendaEquipos) 
 						{
 							$conteoEquipo = 1;
+
+						}
+						else
+						{
+							$numerodeEquipo = $equipos_disponibles->equipo_id;
 						}
 					}
 
@@ -153,6 +158,7 @@ class CitasController extends Controller
 				if ($conteoEquipo == 1) 
 				{
 					//Verificar equipo en la agenda
+					$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita'");
 					
 					foreach ($equiposDisponibles as $equipos_disponibles)
 					{
@@ -176,7 +182,10 @@ class CitasController extends Controller
 								}								
 							}
 
-						
+						}
+						if ($laInsidencia == 0 and $lallave == 1) 
+						{
+							$numerodeEquipo = $equipos_disponibles->equipo_id;
 						}
 
 							//Comienza ingreso de equipo a reserva
@@ -188,7 +197,8 @@ class CitasController extends Controller
 									$lallave = 2; //Guardo
 									$reservaEquipos = new CitasEquipo;
 									$reservaEquipos->fecha = $fechaCita;
-									$reservaEquipos->equipo_id = $equipos_disponibles->equipo_id;
+									//$reservaEquipos->equipo_id = $equipos_disponibles->equipo_id;
+									$reservaEquipos->equipo_id = $numerodeEquipo;
 									$reservaEquipos->linea_servicio_id = $laLineaServicio;
 								}
 							}
@@ -199,19 +209,23 @@ class CitasController extends Controller
 							if ($sihayDisponible == 0) 
 							{
 								$numerodeEquipo = $equipos_disponibles->equipo_id;
-								$sihayDisponible = 1;
+								//$sihayDisponible = 1; EVALUAR
 							}
 							
 						}
+
+						
 					}
 
 				}
-				else //Preparar ingreso de registro
+				else //Preparar ingreso de registro pues no hay equipos agendados todos estan disponibles
 				{
 					$unEquipo = EquiposLineaServicio::model()->find("linea_servicio_id = $laLineaServicio");
+
+					//Es este :D
 					$reservaEquipos = new CitasEquipo;
 					$reservaEquipos->fecha = $fechaCita;
-					$reservaEquipos->equipo_id = $unEquipo->equipo_id;
+					$reservaEquipos->equipo_id = $numerodeEquipo;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 				}

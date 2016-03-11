@@ -16,7 +16,7 @@ $this->menu=array(
 )); ?>
 </div><!-- search-form -->
 
-<DIV style='width:125%; overflow:scroll;'>
+<DIV style='width:150%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ventas-grid',
 	'dataProvider'=>$model->search(),
@@ -46,6 +46,26 @@ $this->menu=array(
 			'name'=>'forma_pago',
 			'value'=>'$data->forma_pago',
 			'filter' => array('Cheque'=>'Cheque', 'Crédito'=>'Crédito', 'Consignación'=>'Consignación', 'Efectivo'=>'Efectivo', 'Tarjeta'=>'Tarjeta'),
+		),
+		array(
+			'name'=>'total1',
+			'value'=>'number_format($data->total1,2)',
+			'htmlOptions'=>array('width'=>'120'),
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal6($model->searchSuma()),2).'</h6>',
+		),
+		array(
+			'name'=>'forma_pago2',
+			'value'=>'$data->forma_pago2',
+			'filter' => array('Crédito'=>'Crédito', 'Consignación'=>'Consignación', 'Tarjeta'=>'Tarjeta'),
+			'htmlOptions'=>array('width'=>'80'),
+		),
+		array(
+			'name'=>'total2',
+			'value'=>'number_format($data->total2,2)',
+			'htmlOptions'=>array('width'=>'120'),
+			//'footer'=>$model->search()->itemCount===0 ? '' : "<h5>$ ".number_format($model->getTotal5($model->search()),2).'</h5>',
+			'footer'=>"<h6>$ ".number_format($model->getTotal7($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'name'=>'tarjeta_tipo',

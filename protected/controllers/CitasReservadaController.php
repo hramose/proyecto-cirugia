@@ -123,63 +123,73 @@ class CitasReservadaController extends Controller
 				$horainicio = $_POST['CitasReservada']['hora_inicio'];
 				$horafin = $_POST['CitasReservada']['hora_fin'];
 
-				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and and estado = 'Activa' and fecha_inicio = '$fechainicio' and ($horainicio >= hora_inicio and $horafin <= hora_fin)");
-				if (count($citaVerifica) > 0) 
+				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and estado = 'Activa' and fecha_inicio = '$fechainicio' and ($horainicio >= hora_inicio and $horafin <= hora_fin)");
+				
+				$citaAgenda = Citas::model()->findAll("personal_id = $personal and estado = 'Programada' and fecha_cita = '$fechainicio' and (hora_inicio >= $horainicio)");
+				
+				if(count($citaAgenda) > 0)
 				{
-					Yii::app()->user->setFlash('error',"Ya hay un bloqueo a esa hora");
-					
+					Yii::app()->user->setFlash('error',"Hay una cita a esa hora. Revise la agenda");
 				}
 				else
 				{
-
-					$lacita = new Citas("otra");
-					$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
-					$lacita->hora_fin 		= $_POST['CitasReservada']['hora_fin'];
-					$lacita->hora_fin_mostrar = $_POST['CitasReservada']['hora_fin'];
-					$lacita->hora_inicio 	= $_POST['CitasReservada']['hora_inicio'];
-					$lacita->linea_servicio_id = 26;
-					$lacita->estado = "Reservado";
-					$lacita->correo = "No";
-					$lacita->comentario = $_POST['CitasReservada']['motivo'];
-					$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
-					$lacita->fecha_creacion = date("Y-m-d");
-					$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
-					$lacita->usuario_id = Yii::app()->user->usuarioId;
-					$lacita->paciente_id = 109;
-
-
-
-					if ($lacita->save()) 
+					if (count($citaVerifica) > 0) 
 					{
-						$model->scenario = 'horas';
-						$model->personal_id = $lacita->personal_id;
-						$model->cita_id = $lacita->id;
-						$model->hora_inicio = $lacita->hora_inicio;
-						$model->hora_fin = $lacita->hora_fin_mostrar;
-						$model->fecha_inicio = $lacita->fecha_cita;
-						$model->motivo = $_POST['CitasReservada']['motivo'];
-						$model->observacion = $_POST['CitasReservada']['observacion'];
-						$model->usuario_id = Yii::app()->user->usuarioId;
-						$model->fecha_creado = date("Y-m-d H:i:s");
-						$model->estado = "Activa";
+						Yii::app()->user->setFlash('error',"Ya hay un bloqueo a esa hora");
 						
-						if ($model->save()) 
-						{
-							$lacitadetalle = new CitasReservadaDetalle;
-							$lacitadetalle->cita_reservada_id = $model->id;
-							$lacitadetalle->cita_id = $model->cita_id;
-							$lacitadetalle->estado = 'Activa';
-							$lacitadetalle->save();
-
-							$this->redirect(array('view','id'=>$model->id));
-						}
 					}
 					else
 					{
-						Yii::app()->user->setFlash('error',"Noooooooooo lo hizo");
-						$this->render('create',array(
-							'model'=>$model,
-						));		
+
+						$lacita = new Citas("otra");
+						$lacita->fecha_cita 	= Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+						$lacita->hora_fin 		= $_POST['CitasReservada']['hora_fin'];
+						$lacita->hora_fin_mostrar = $_POST['CitasReservada']['hora_fin'];
+						$lacita->hora_inicio 	= $_POST['CitasReservada']['hora_inicio'];
+						$lacita->linea_servicio_id = 26;
+						$lacita->estado = "Reservado";
+						$lacita->correo = "No";
+						$lacita->comentario = $_POST['CitasReservada']['motivo'];
+						$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
+						$lacita->fecha_creacion = date("Y-m-d");
+						$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
+						$lacita->usuario_id = Yii::app()->user->usuarioId;
+						$lacita->paciente_id = 109;
+
+
+
+						if ($lacita->save()) 
+						{
+							$model->scenario = 'horas';
+							$model->personal_id = $lacita->personal_id;
+							$model->cita_id = $lacita->id;
+							$model->hora_inicio = $lacita->hora_inicio;
+							$model->hora_fin = $lacita->hora_fin_mostrar;
+							$model->fecha_inicio = $lacita->fecha_cita;
+							$model->motivo = $_POST['CitasReservada']['motivo'];
+							$model->observacion = $_POST['CitasReservada']['observacion'];
+							$model->usuario_id = Yii::app()->user->usuarioId;
+							$model->fecha_creado = date("Y-m-d H:i:s");
+							$model->estado = "Activa";
+							
+							if ($model->save()) 
+							{
+								$lacitadetalle = new CitasReservadaDetalle;
+								$lacitadetalle->cita_reservada_id = $model->id;
+								$lacitadetalle->cita_id = $model->cita_id;
+								$lacitadetalle->estado = 'Activa';
+								$lacitadetalle->save();
+
+								$this->redirect(array('view','id'=>$model->id));
+							}
+						}
+						else
+						{
+							//Yii::app()->user->setFlash('error',"Noooooooooo lo hizo");
+							$this->render('create',array(
+								'model'=>$model,
+							));		
+						}
 					}
 				}
 			}
@@ -193,71 +203,80 @@ class CitasReservadaController extends Controller
 				$horainicio = $_POST['CitasReservada']['hora_inicio'];
 				$horafin = $_POST['CitasReservada']['hora_fin'];
 
-				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and ('$fechainicio' >= fecha_inicio and '$fechainicio' <= fecha_fin) and estado = 'Activa'");
-				if (count($citaVerifica) > 0) 
+				$citaAgenda = Citas::model()->findAll("personal_id = $personal and estado = 'Programada' and fecha_cita = '$fechainicio' and ('$fechainicio' >= fecha_cita)");
+
+				if (count($citaAgenda) > 0) 
 				{
-					Yii::app()->user->setFlash('error',"Ya hay un bloqueo en ese rango de fechas");
-					
+					Yii::app()->user->setFlash('error',"Hay una cita programada entre el rango de fechas");
 				}
 				else
 				{
-
-					//Determinar el numero de dias
-					$datetime1 = date_create($_POST['CitasReservada']['fecha_inicio']);
-					$datetime2 = date_create($_POST['CitasReservada']['fecha_fin']);
-					$interval = date_diff($datetime1, $datetime2);
-					$ndias = $interval->format('%a')  + 1;
-
-						$model = new CitasReservada("dias");
-						$model->scenario = 'dias';
-						$model->personal_id = $_POST['CitasReservada']['personal_id'];
-						$model->hora_inicio = 1;
-						$model->hora_fin = 169;
-						$model->fecha_inicio = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
-						$model->fecha_fin = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_fin']);
-						$model->motivo = $_POST['CitasReservada']['motivo'];
-						$model->observacion = $_POST['CitasReservada']['observacion'];
-						$model->usuario_id = Yii::app()->user->usuarioId;
-						$model->fecha_creado = date("Y-m-d H:i:s");
-						$model->estado = "Activa";
-						if ($model->save()) 
-						{
-							$lafecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
-							
-							for ($i=0; $i < $ndias; $i++) 
-							{ 
-								$lacita = new Citas("otra");
-								$lacita->fecha_cita 	= $lafecha;
-								$lacita->hora_fin 		= 169;
-								$lacita->hora_fin_mostrar = 169;
-								$lacita->hora_inicio 	= 1;
-								$lacita->linea_servicio_id = 26;
-								$lacita->estado = "Reservado";
-								$lacita->correo = "No";
-								$lacita->comentario = $_POST['CitasReservada']['motivo'];
-								$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
-								$lacita->fecha_creacion = date("Y-m-d");
-								$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
-								$lacita->usuario_id = Yii::app()->user->usuarioId;
-								$lacita->paciente_id = 109;
-								$lacita->save();
-
-								$lafecha = strtotime ('+1 day', strtotime(date($lafecha)));
-								$lafecha = date('Y-m-d', $lafecha); 
-								
-								//Guarda en Citas Reservada Detalle
-								$lacitadetalle = new CitasReservadaDetalle;
-								$lacitadetalle->cita_reservada_id = $model->id;
-								$lacitadetalle->cita_id = $lacita->id;
-								$lacitadetalle->estado = 'Activa';
-								$lacitadetalle->save();
-							}
-							
-							$this->redirect(array('view','id'=>$model->id));
+					$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and ('$fechainicio' >= fecha_inicio and '$fechainicio' <= fecha_fin) and estado = 'Activa'");
+					if (count($citaVerifica) > 0) 
+					{
+						Yii::app()->user->setFlash('error',"Ya hay un bloqueo en ese rango de fechas");
 						
-						}
+					}
+					else
+					{
 
-				}				
+						//Determinar el numero de dias
+						$datetime1 = date_create($_POST['CitasReservada']['fecha_inicio']);
+						$datetime2 = date_create($_POST['CitasReservada']['fecha_fin']);
+						$interval = date_diff($datetime1, $datetime2);
+						$ndias = $interval->format('%a')  + 1;
+
+							$model = new CitasReservada("dias");
+							$model->scenario = 'dias';
+							$model->personal_id = $_POST['CitasReservada']['personal_id'];
+							$model->hora_inicio = 1;
+							$model->hora_fin = 169;
+							$model->fecha_inicio = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+							$model->fecha_fin = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_fin']);
+							$model->motivo = $_POST['CitasReservada']['motivo'];
+							$model->observacion = $_POST['CitasReservada']['observacion'];
+							$model->usuario_id = Yii::app()->user->usuarioId;
+							$model->fecha_creado = date("Y-m-d H:i:s");
+							$model->estado = "Activa";
+							if ($model->save()) 
+							{
+								$lafecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['CitasReservada']['fecha_inicio']);
+								
+								for ($i=0; $i < $ndias; $i++) 
+								{ 
+									$lacita = new Citas("otra");
+									$lacita->fecha_cita 	= $lafecha;
+									$lacita->hora_fin 		= 169;
+									$lacita->hora_fin_mostrar = 169;
+									$lacita->hora_inicio 	= 1;
+									$lacita->linea_servicio_id = 26;
+									$lacita->estado = "Reservado";
+									$lacita->correo = "No";
+									$lacita->comentario = $_POST['CitasReservada']['motivo'];
+									$lacita->personal_id = $_POST['CitasReservada']['personal_id'];
+									$lacita->fecha_creacion = date("Y-m-d");
+									$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
+									$lacita->usuario_id = Yii::app()->user->usuarioId;
+									$lacita->paciente_id = 109;
+									$lacita->save();
+
+									$lafecha = strtotime ('+1 day', strtotime(date($lafecha)));
+									$lafecha = date('Y-m-d', $lafecha); 
+									
+									//Guarda en Citas Reservada Detalle
+									$lacitadetalle = new CitasReservadaDetalle;
+									$lacitadetalle->cita_reservada_id = $model->id;
+									$lacitadetalle->cita_id = $lacita->id;
+									$lacitadetalle->estado = 'Activa';
+									$lacitadetalle->save();
+								}
+								
+								$this->redirect(array('view','id'=>$model->id));
+							
+							}
+
+					}
+				}			
 
 			}
 

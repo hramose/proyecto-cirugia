@@ -243,6 +243,9 @@ class Ventas extends CActiveRecord
 		$criteria->compare('cant_productos',$this->cant_productos);
 		$criteria->compare('total_orden',$this->total_orden,true);
 		$criteria->compare('forma_pago',$this->forma_pago,true);
+		$criteria->compare('forma_pago2',$this->forma_pago,true);
+		$criteria->compare('total1',$this->total1,true);
+		$criteria->compare('total2',$this->total2,true);
 		$criteria->compare('dinero_recibido',$this->dinero_recibido,true);
 		$criteria->compare('dinero_cambio',$this->dinero_cambio,true);
 		$criteria->compare('total_venta',$this->total_venta,true);
@@ -341,6 +344,36 @@ class Ventas extends CActiveRecord
                         //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
                 		if ($data->estado = "Activo") {
                 		$t = $data->sub_total;
+                        $total += $t;
+                    }
+                }
+                return $total;
+        }
+
+        public static function getTotal6($provider)
+        {
+                $total=0;
+                foreach($provider->data as $data)
+                {
+                        //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
+                        //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		if ($data->estado = "Activo") {
+                		$t = $data->total1;
+                        $total += $t;
+                    }
+                }
+                return $total;
+        }
+
+        public static function getTotal7($provider)
+        {
+                $total=0;
+                foreach($provider->data as $data)
+                {
+                        //$t = $data->perkakas+$data->alat_tulis+$data->barang_cetakan+
+                        //        $data->honorarium+$data->perjalanan_dinas+$data->konsumsi;
+                		if ($data->estado = "Activo") {
+                		$t = $data->total2;
                         $total += $t;
                     }
                 }

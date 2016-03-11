@@ -238,6 +238,8 @@ class VentasController extends Controller
 			//Mas de una forma de pago
 			$model->forma_pago2 = $_POST['Ventas']['forma_pago2'];
 			$model->credito_fecha2 = $fechaCredito2;
+			$model->total1 = $_POST['Ventas']['total1'];
+			$model->total2 = $_POST['Ventas']['total2'];
 			$model->credito_dias2 = $_POST['Ventas']['credito_dias2'];
 			$model->tarjeta_tipo2 = $_POST['Ventas']['tarjeta_tipo2'];
 			$model->tarjeta_aprobacion2 = $_POST['Ventas']['tarjeta_aprobacion2'];

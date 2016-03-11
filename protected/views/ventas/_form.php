@@ -398,6 +398,7 @@
 	</div>
 
 	<div class="row">
+		<h5 class="text-center">Dinero en Efectivo</h5>
 		<div class="form-actions">
 		<div class="span6 text-center">
 			<?php echo $form->labelEx($model,'dinero_recibido'); ?>
@@ -706,8 +707,17 @@ $("#Ventas_descuento_valor").keyup(function (){
 
 $("#Ventas_dinero_recibido").keyup(function (){
 	    this.value = (this.value + '').replace(/[^0-9+\-Ee.]/g, '');
-	    //Calculo de cambio
-	    $("#Ventas_dinero_cambio").val($(this).val() - $("#Ventas_total_venta").val());
+	    
+	    //Calculo de cambio solo 1 forma de pago
+	    if ($("#Ventas_forma_pago2").val()=="Ninguno") 
+	    {
+			$("#Ventas_dinero_cambio").val($(this).val() - $("#Ventas_total_venta").val());
+	    }
+
+	    if ($("#Ventas_forma_pago2").val() != "Ninguno" && $("#Ventas_forma_pago").val() == "Efectivo")
+	    {
+			$("#Ventas_dinero_cambio").val($(this).val() - $("#Ventas_total1").val());
+	    }
 });
 
 $("#Ventas_total1").keyup(function (){
@@ -783,35 +793,31 @@ $("#Ventas_forma_pago2").change(function (){
     		$("#total1").hide();
     		$("#total2").hide();
     	}
-
     if ($(this).val() == "Crédito") 
     	{
     		$("#credito2").toggle("slow");
     		$("#tarjeta2").hide();
     		$("#consignacion2").hide();
-    		$("#total1").toggle("slow");
-    		$("#total2").toggle("slow");
+    		$("#total1").show("slow");
+    		$("#total2").show("slow");
     	}
     if ($(this).val() == "Tarjeta") 
     	{
     		$("#credito2").hide();
     		$("#tarjeta2").toggle("slow");
     		$("#consignacion2").hide();
-    		$("#total1").toggle("slow");
-			$("#total2").toggle("slow");
+    		$("#total1").show("slow");
+			$("#total2").show("slow");
     	}
-
     if ($(this).val() == "Consignación") 
     	{
     		$("#credito2").hide();
     		$("#tarjeta2").hide();
     		$("#consignacion2").toggle("slow");
-			$("#total1").toggle("slow");
-			$("#total2").toggle("slow");
+			$("#total1").show("slow");
+			$("#total2").show("slow");
     	}
 });
-
-
 
 
 //Habilitar conroles 
@@ -990,7 +996,7 @@ function validar() {
 		var total_totales = (eval($("#Ventas_total1").val()) + eval($("#Ventas_total2").val()));
 		if ( total_totales != $("#Ventas_total_venta").val()) 
 		{
-			swal({   title: "No coincide la suma de los totales por forma de pago",   text: "Revise los totales por forma de pago",   timer: 2000,   showConfirmButton: false });	
+			swal({   title: total_totales,   text: "Revise los totales por forma de pago",   timer: 2000,   showConfirmButton: false });	
 		 		return false
 		}
 	}
