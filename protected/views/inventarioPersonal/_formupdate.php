@@ -22,6 +22,7 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Producto</th>
+				<th>Lote</th>
 				<th>Presentacion</th>
 				<th>Cantidad</th>
 			</tr>
@@ -32,6 +33,7 @@
 					?>
 					<tr>
 						<td><?php echo $los_productos->producto->nombre_producto; ?></td>
+						<td><?php echo $los_productos->lote; ?></td>
 						<td><?php echo $los_productos->producto->productoPresentacion->presentacion; ?></td>
 						<td><?php echo $los_productos->cantidad; ?></td>
 					</tr>
@@ -56,7 +58,9 @@
 )); ?>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("cantidad > 0");
+	//$losProductos = ProductoInventario::model()->findAll("cantidad > 0");
+	$losProductos = ProductoInventarioDetalle::model()->findAll("existencia > 0");
+
 ?>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -75,6 +79,7 @@
 			<tr>
 				<th width="8%"><small>Codigo</small></th>
 				<th width="32%"><small>Producto</small></th>
+				<th width="12%"><small>Lote</small></th>
 				<th width="12%"><small>Presentación</small></th>
 				<th width="9%"><small>Cant.</small></th>
 				<th width="10%"></th>
@@ -121,9 +126,12 @@ function agregarCampo(){
 		"		 <select class='input-xlarge' name='producto_" + campos + "' id='producto_" + campos + "'>" +
 		"			<option value='0'></option>"+
 		"			<?php foreach($losProductos as $los_productos){ ?>"+
-		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->nombre_producto; ?></option>"+
+		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->productoInventario->nombre_producto . ' - ' . $los_productos->lote; ?></option>"+
 		"			<?php } ?>"+
 		"		 </select>"+
+		"     </td>" +
+		"     <td nowrap='nowrap'>" +
+		"        <input type='text' readonly='readonly' class='input-small' placeholder='' name='lote_" + campos + "' id='lote_" + campos + "'>" +
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <input type='text' readonly='readonly' class='input-normal' placeholder='' name='presentacion_" + campos + "' id='presentacion_" + campos + "'>" +
@@ -133,6 +141,9 @@ function agregarCampo(){
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <input type='hidden' class='input-small' placeholder='' name='existencia_" + campos + "' id='existencia_" + campos + "'>" +
+		"     </td>" +
+		"     <td nowrap='nowrap'>" +
+		"        <input type='hidden' class='input-small' placeholder='' name='id_producto_" + campos + "' id='id_producto_" + campos + "'>" +
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <a href='JavaScript:quitarCampo(" + campos +");' class='btn btn-mini btn-danger'> [x] </a>" +
@@ -153,7 +164,8 @@ function agregarCampo(){
 		//Tratar de hacer una consulta
 		 $.ajax({
                     type: "POST",
-                    url: "index.php?r=ventas/producto",
+                    //url: "index.php?r=ventas/producto",
+                    url: "index.php?r=inventarioPersonal/producto",
                     data: "b="+$(this).val(),
                     dataType: "html",
                     
@@ -168,8 +180,10 @@ function agregarCampo(){
                           //alert(variable.presentacion);
                           $("#codigo_" + posicion + "").val(variable.referencia);
                           $("#presentacion_" + posicion + "").val(variable.presentacion);
+                          $("#lote_" + posicion + "").val(variable.lote);
                           $("#cantidad_" + posicion + "").val(1);
                           $("#existencia_" + posicion + "").val(eval(variable.stock));
+                          $("#id_producto_" + posicion + "").val(variable.idProducto);
                           superTotal();
                                                              
                     }

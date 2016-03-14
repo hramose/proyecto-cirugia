@@ -32,6 +32,7 @@ if (Yii::app()->user->perfil != 2) {
 		<table class="table table-striped">
 			<tr>
 				<th>Producto</th>
+				<th>Lote</th>
 				<th>Presentacion</th>
 				<th>Cantidad</th>
 			</tr>
@@ -42,6 +43,7 @@ if (Yii::app()->user->perfil != 2) {
 					?>
 					<tr>
 						<td><?php echo $los_productos->producto->nombre_producto; ?></td>
+						<td><?php echo $los_productos->lote; ?></td>
 						<td><?php echo $los_productos->producto->productoPresentacion->presentacion; ?></td>
 						<td><?php echo $los_productos->cantidad; ?></td>
 					</tr>

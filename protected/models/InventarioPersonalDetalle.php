@@ -35,7 +35,7 @@ class InventarioPersonalDetalle extends CActiveRecord
 			array('inventario_personal_id, producto_id, cantidad', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, inventario_personal_id, producto_id, cantidad', 'safe', 'on'=>'search'),
+			array('id, inventario_personal_id, producto_id, cantidad, lote', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,7 @@ class InventarioPersonalDetalle extends CActiveRecord
 			'inventario_personal_id' => 'Inventario Personal',
 			'producto_id' => 'Producto',
 			'cantidad' => 'Cantidad',
+			'lote' => 'Lote',
 		);
 	}
 
@@ -87,6 +88,7 @@ class InventarioPersonalDetalle extends CActiveRecord
 		$criteria->compare('inventario_personal_id',$this->inventario_personal_id);
 		$criteria->compare('producto_id',$this->producto_id);
 		$criteria->compare('cantidad',$this->cantidad);
+		$criteria->compare('lote',$this->cantidad);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

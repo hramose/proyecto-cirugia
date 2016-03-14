@@ -16,7 +16,9 @@
 )); ?>
 
 <?php 
-	$losProductos = ProductoInventario::model()->findAll("cantidad > 0");
+	//Temporal
+	//$losProductos = ProductoInventario::model()->findAll("cantidad > 0");
+	$losProductos = ProductoInventarioDetalle::model()->findAll("existencia > 0");
 ?>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -93,7 +95,7 @@ function agregarCampo(){
 		"		 <select class='input-xlarge' name='producto_" + campos + "' id='producto_" + campos + "'>" +
 		"			<option value='0'></option>"+
 		"			<?php foreach($losProductos as $los_productos){ ?>"+
-		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->nombre_producto; ?></option>"+
+		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->productoInventario->nombre_producto . ' - ' . $los_productos->lote; ?></option>"+
 		"			<?php } ?>"+
 		"		 </select>"+
 		"     </td>" +
@@ -111,6 +113,9 @@ function agregarCampo(){
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <input type='hidden' class='input-small' placeholder='' name='existencia_" + campos + "' id='existencia_" + campos + "'>" +
+		"     </td>" +
+		"     <td nowrap='nowrap'>" +
+		"        <input type='hidden' class='input-small' placeholder='' name='id_producto_" + campos + "' id='id_producto_" + campos + "'>" +
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <a href='JavaScript:quitarCampo(" + campos +");' class='btn btn-mini btn-danger'> [x] </a>" +
@@ -150,6 +155,7 @@ function agregarCampo(){
                           $("#unidad_" + posicion + "").val(variable.unidad);
                           $("#cantidad_" + posicion + "").val(1);
                           $("#existencia_" + posicion + "").val(eval(variable.stock));
+                          $("#id_producto_" + posicion + "").val(variable.idProducto);
                           superTotal();
                                                              
                     }

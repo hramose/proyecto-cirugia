@@ -41,7 +41,7 @@ class VentasDetalle extends CActiveRecord
 			array('valor, iva, total', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, venta_id, producto_id, cantidad, paciente_id, vendedor_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
+			array('id, venta_id, producto_id, cantidad, lote, paciente_id, vendedor_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,7 @@ class VentasDetalle extends CActiveRecord
 			'iva' => 'Iva',
 			'total' => 'Total',
 			'fecha' => 'Fecha',
+			'lote' => 'Lote',
 			'paciente_id' => 'Compro',
 		);
 	}
@@ -101,6 +102,7 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('cantidad',$this->cantidad);
 		$criteria->compare('t.paciente_id',$this->paciente_id);
 		$criteria->compare('valor',$this->valor,true);
+		$criteria->compare('lote',$this->lote,true);
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
@@ -125,6 +127,7 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('cantidad',$this->cantidad);
 		$criteria->compare('t.paciente_id',$this->paciente_id);
 		$criteria->compare('valor',$this->valor,true);
+		$criteria->compare('lote',$this->lote,true);
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);

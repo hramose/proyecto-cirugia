@@ -123,7 +123,7 @@ class CitasReservadaController extends Controller
 				$horainicio = $_POST['CitasReservada']['hora_inicio'];
 				$horafin = $_POST['CitasReservada']['hora_fin'];
 
-				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and estado = 'Activa' and fecha_inicio = '$fechainicio' and ($horainicio >= hora_inicio and $horafin <= hora_fin)");
+				$citaVerifica = CitasReservada::model()->findAll("personal_id = $personal and estado = 'Activa' and fecha_inicio = '$fechainicio' and $horainicio >= hora_inicio and $horafin <= hora_fin");
 				
 				$citaAgenda = Citas::model()->findAll("personal_id = $personal and estado = 'Programada' and fecha_cita = '$fechainicio' and (hora_inicio >= $horainicio)");
 				
@@ -155,8 +155,6 @@ class CitasReservadaController extends Controller
 						$lacita->fecha_hora_creacion = date("Y-m-d H:i:s");
 						$lacita->usuario_id = Yii::app()->user->usuarioId;
 						$lacita->paciente_id = 109;
-
-
 
 						if ($lacita->save()) 
 						{

@@ -81,11 +81,17 @@ class InventarioPersonalController extends Controller
 			 			$detalleC->inventario_personal_id = $model->personal_id;
 			 			$detalleC->producto_id = $_POST['producto_'.$i];
 			 			$detalleC->cantidad = $_POST['cantidad_'.$i];
+			 			$detalleC->lote = $_POST['lote_'.$i];
 			 			$detalleC->save();
 
-			 			//Aumentar inventario
-			 			$elProducto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
+			 			//Reducir inventario general
+			 			$elProducto = ProductoInventario::model()->findByPk($_POST['id_producto_'.$i]);
 			 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
+			 			$elProducto->save();
+
+			 			//Reducir inventario por lote
+			 			$elProducto = ProductoInventarioDetalle::model()->findByPk($_POST['producto_'.$i]);
+			 			$elProducto->existencia = $elProducto->existencia - $_POST['cantidad_'.$i];
 			 			$elProducto->save();
 			 		}
 			 		}
@@ -123,8 +129,9 @@ class InventarioPersonalController extends Controller
 		for ($i=0; $i <= $_POST['variable']; $i++) {
 	 		if (isset($_POST['producto_'.$i])) 
 	 		{	
-	 			$idProducto = $_POST['producto_'.$i];
-	 			$existencias = InventarioPersonalDetalle::model()->find("inventario_personal_id = $model->personal_id and producto_id = $idProducto");
+	 			$idProducto = $_POST['id_producto_'.$i];
+	 			$loteProducto = $_POST['lote_'.$i];
+	 			$existencias = InventarioPersonalDetalle::model()->find("inventario_personal_id = $model->personal_id and producto_id = $idProducto and lote = $loteProducto");
 	 			if ($existencias) 
 	 			{
 	 				$existencias->cantidad = $existencias->cantidad + $_POST['cantidad_'.$i];
@@ -134,16 +141,22 @@ class InventarioPersonalController extends Controller
 	 			{
 	 				$detalleC = new InventarioPersonalDetalle;
 		 			$detalleC->inventario_personal_id = $model->personal_id;
-		 			$detalleC->producto_id = $_POST['producto_'.$i];
+		 			$detalleC->producto_id = $_POST['id_producto_'.$i];
 		 			$detalleC->cantidad = $_POST['cantidad_'.$i];
+		 			$detalleC->lote = $_POST['lote_'.$i];
 		 			$detalleC->save();	
 	 			}
 
 	 			
-
-	 			//Reducir inventario
-	 			$elProducto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
+	 			//Reducir inventario general
+	 			$elProducto = ProductoInventario::model()->findByPk($_POST['id_producto_'.$i]);
 	 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
+	 			$elProducto->save();
+
+
+	 			//Reducir inventario por lote
+	 			$elProducto = ProductoInventarioDetalle::model()->findByPk($_POST['producto_'.$i]);
+	 			$elProducto->existencia = $elProducto->existencia - $_POST['cantidad_'.$i];
 	 			$elProducto->save();
 	 		}
 	 		}
