@@ -129,6 +129,7 @@ class ProductoComprasController extends Controller
 			 				$elProductoD->lote = $_POST['lote_'.$i];
 			 				$elProductoD->cantidad_compra = $_POST['cantidad_'.$i];
 			 				$elProductoD->existencia = $_POST['cantidad_'.$i];
+			 				$elProductoD->compra_id = $model->id;
 			 				$elProductoD->save();
 			 			}
 			 			

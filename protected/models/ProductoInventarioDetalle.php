@@ -32,7 +32,7 @@ class ProductoInventarioDetalle extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('producto_inventario_id', 'required'),
-			array('producto_inventario_id, cantidad_compra, existencia', 'numerical', 'integerOnly'=>true),
+			array('producto_inventario_id, cantidad_compra, compra_id, existencia', 'numerical', 'integerOnly'=>true),
 			array('lote', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -49,6 +49,7 @@ class ProductoInventarioDetalle extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'productoInventario' => array(self::BELONGS_TO, 'ProductoInventario', 'producto_inventario_id'),
+			'productoCompras' => array(self::BELONGS_TO, 'ProductoCompras', 'compra_id'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class ProductoInventarioDetalle extends CActiveRecord
 			'lote' => 'Lote',
 			'cantidad_compra' => 'Cantidad Compra',
 			'existencia' => 'Existencia',
+			'compra_id' => "Compra",
 		);
 	}
 

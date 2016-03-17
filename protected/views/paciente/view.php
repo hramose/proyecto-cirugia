@@ -72,21 +72,21 @@ $this->menu=array(
 		  	<?php 
 		  		if ($model->saldo > 0) {
 		  			?>
-		  				<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->id;?>" tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3></a>
+		  				<a href="index.php?r=pacienteMovimientos/viewCaja&id=<?php echo $model->id;?>" tooltips="Ver movimientos"><h3 class="text-center text-error">$ <?php echo number_format($model->saldo,2); ?></h3></a>
 		  				<a href="index.php?r=paciente/depositoPaciente&idPaciente=<?php echo $model->id; ?>" class="btn btn-mini btn-info"><i class="icon-retweet icon-white"></i> Transferencia a Paciente</a>
 		  			<?php
 		  		}
 		  		else
 		  		{
 		  			?>
-		  			<h3 class="text-center text-error">$ <?php echo $model->saldo; ?></h3>
+		  			<h3 class="text-center text-error">$ <?php echo number_format($model->saldo,2); ?></h3>
 		  			<?php
 		  		}
 		  	?>
 
 		  	<hr>
 		  	<h4 class="text-center">Deuda</h4>
-		  	<h3 class="text-center text-error">$ <?php echo $total_cxc; ?></h3>
+		  	<h3 class="text-center text-error">$ <?php echo number_format($total_cxc,2); ?></h3>
 
 
 	</div>

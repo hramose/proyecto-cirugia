@@ -654,7 +654,7 @@ class ContratosController extends Controller
 				 			$detalleP->contrato_id = $model->id;
 				 			$detalleP->linea_servicio_id = $_POST['linea_'.$i];
 				 			$detalleP->cantidad = $_POST['cantidad_'.$i];
-				 			$detalleP->realizadas = $_POST['cantidad_'.$i];
+				 			//$detalleP->realizadas = $_POST['cantidad_'.$i];
 				 			$detalleP->vu = $_POST['vu_'.$i];
 				 			$detalleP->desc = $_POST['desc_'.$i];
 				 			$detalleP->vu_desc = $_POST['vu_desc_'.$i];

@@ -210,13 +210,13 @@ $idContrato = 0;
 			<?php echo $form->error($model,'valor'); ?>
 
 			<?php echo $form->labelEx($model,'centro_costo_id'); ?>
-			<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll("tipo = 'Ingreso' and id > 0 order by 'nombre'"),'id','nombre'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>
+			<?php echo $form->dropDownList($model, 'centro_costo_id',CHtml::listData(CentroCosto::model()->findAll(array('condition'=>"tipo = 'Ingreso' and id > 0", 'order' => "nombre ASC")),'id','nombre'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>
 			<?php echo $form->error($model,'centro_costo_id'); ?>
 
 			<div class="row">
 				<?php echo $form->labelEx($model,'vendedor_id'); ?>
 				<?php //if ($losValores){ ?>
-					<?php echo $form->dropDownList($model, 'vendedor_id',CHtml::listData(Personal::model()->findAll("activo = 'SI' and id > 0 order by 'nombre'"),'id','nombreCompleto'), array('class'=>'input-xxlarge', 'options' => array($losValoresVendedor=>array('selected'=>true))));?>	
+					<?php echo $form->dropDownList($model, 'vendedor_id',CHtml::listData(Personal::model()->findAll(array('condition'=>"activo = 'SI' and id > 0", 'order'=>'nombres ASC')),'id','nombreCompleto'), array('class'=>'input-xxlarge', 'options' => array($losValoresVendedor=>array('selected'=>true))));?>	
 				<?php /*}
 					else
 					{
@@ -247,7 +247,7 @@ $idContrato = 0;
 
 			<?php echo $form->labelEx($model,'personal_seguimiento'); ?>
 				<?php //if ($losValores){ ?>
-					<?php echo $form->dropDownList($model, 'personal_seguimiento',CHtml::listData(Personal::model()->findAll("activo = 'SI' and id > 0 order by 'nombre'"),'id','nombreCompleto'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>	
+					<?php echo $form->dropDownList($model, 'personal_seguimiento',CHtml::listData(Personal::model()->findAll(array('condition'=>"activo = 'SI' and id > 0" ,'order'=> 'nombres ASC')),'id','nombreCompleto'), array('class'=>'input-xxlarge', 'empty'=>'Ninguno'));?>	
 		</div>
 	</div>
 

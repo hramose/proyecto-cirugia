@@ -70,8 +70,10 @@ class ProductoInventarioController extends Controller
 	     Yii::app()->end();
 	   }
 	 else
+	 	$productoInventario = ProductoInventarioDetalle::model()->findAll("producto_inventario_id = $id and compra_id !=''");
 	    $this->render('view', array(
 	       'model'=>$this->loadModel($id),
+	       'productoInventario'=>$productoInventario,
 	     ));
 	}
 

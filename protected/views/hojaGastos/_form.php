@@ -24,11 +24,21 @@
 		$laCita = "0";
 	}
 
-	$datosCita = Citas::model()->findByPk($laCita);
-	$idPaciente = $datosCita->paciente_id;
-	$paciente = Paciente::model()->findByPk($idPaciente); 
-?>
+	if(isset($_GET['idPaciente']))
+	{
+		$idPaciente = $_GET['idPaciente'];
+		//$idPaciente = $datosCita->paciente_id;
+		$paciente = Paciente::model()->findByPk($idPaciente); 
+	}
+	else
+	{
+		$idPaciente = "0";
+	}
 
+	$datosCita = Citas::model()->findByPk($laCita);
+	
+?>
+<?php if ($laCita!=0): ?>
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
@@ -242,3 +252,11 @@ function quitarCampo(iddiv){
 }
 
 </script>
+
+<?php else: ?>
+	<br>
+	<div class="well">
+	<h3>Debe estar dentro de una cita para llenar una hoja de gastos.</h3>
+	<?php $this->endWidget(); ?>
+	</div>
+<?php endif ?>

@@ -34,8 +34,7 @@ else:
 
 <?php endif; ?>
 <div class="row">
-	<div class="span2"></div>
-	<div class="span8">
+	<div class="span6">
 		<?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
@@ -47,6 +46,13 @@ else:
 				'iva',
 				'productoPresentacion.presentacion',
 				'cantidad',
+			),
+		)); ?>
+	</div>
+	<div class="span6">
+		<?php $this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model,
+			'attributes'=>array(
 				array('name'=>'Unidad de Medida', 'value'=>$model->productoUnidadMedida->medida, ''),
 				'stock_minimo',
 				array('name'=>'Proveedor', 'value'=>$model->productoProveedor->nombre),
@@ -58,10 +64,45 @@ else:
 			),
 		)); ?>
 	</div>
-	<div class="span2"></div>
 </div>
 
 <?php 
   //----------------------- close the CJuiDialog widget ------------
   if (!empty($asDialog)) $this->endWidget();
 ?>
+
+<h3 class="text-center">Historial de Compras</h3>
+
+<div class="row">
+	<div class="span3"></div>
+	<div class="span6">
+	<table>
+		<tr>
+			<th>Compra</th>
+			<th>Fecha</th>
+			<th>Lote</th>
+			<th>Cantidad</th>
+			<th>Existencia</th>
+			<th>Costo Unitario</th>
+		</tr>
+
+	</table>
+		<?php 
+		foreach ($productoInventario as $producto_inventario) 
+		{
+			?>
+			<tr>
+				<td><?php echo $producto_inventario->compra_id; ?></td>
+				<td><?php echo $producto_inventario->productoCompras->fecha; ?></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<?php
+		}
+			
+		?>
+	</div>
+	<div class="span3"></div>
+</div>

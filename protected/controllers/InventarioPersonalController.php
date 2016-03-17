@@ -67,6 +67,19 @@ class InventarioPersonalController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		//La migración
+		// $todosProductos = ProductoInventario::model()->findAll("cantidad > 0");
+		// foreach ($todosProductos as $todos_productos)
+		// {
+		// 	$productoDetalle = new ProductoInventarioDetalle;
+		// 	$productoDetalle->producto_inventario_id = $todos_productos->id;
+		// 	$productoDetalle->lote = "---";
+		// 	$productoDetalle->cantidad_compra = $todos_productos->cantidad;
+		// 	$productoDetalle->existencia = $todos_productos->cantidad;
+		// 	$productoDetalle->save();
+		// }
+
+
 		if(isset($_POST['InventarioPersonal']))
 		{
 			$model->attributes=$_POST['InventarioPersonal'];
