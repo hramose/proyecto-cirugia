@@ -31,6 +31,8 @@ class VentasDetalle extends CActiveRecord
 	 */
 
 	public $vendedor_id;
+	public $nombre_paciente;
+	public $apellido_paciente;
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -41,7 +43,7 @@ class VentasDetalle extends CActiveRecord
 			array('valor, iva, total', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, venta_id, producto_id, cantidad, lote, paciente_id, vendedor_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
+			array('id, venta_id, nombre_paciente, apellido_paciente, producto_id, cantidad, lote, paciente_id, vendedor_id, fecha, valor, iva, total', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +98,7 @@ class VentasDetalle extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('venta_id',$this->venta_id);
 		$criteria->compare('producto_id',$this->producto_id);
 		$criteria->compare('cantidad',$this->cantidad);
@@ -106,8 +108,11 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
-		$criteria->with = array('venta');
+		$criteria->with = array('venta', 'paciente');
 		$criteria->compare('venta.vendedor_id', $this->vendedor_id);
+		//$criteria->with = array('paciente');
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -121,7 +126,7 @@ class VentasDetalle extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('venta_id',$this->venta_id);
 		$criteria->compare('producto_id',$this->producto_id);
 		$criteria->compare('cantidad',$this->cantidad);
@@ -131,8 +136,11 @@ class VentasDetalle extends CActiveRecord
 		$criteria->compare('iva',$this->iva,true);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('DATE_FORMAT(t.fecha, \'%d-%m-%Y\')',$this->fecha,true);
-		$criteria->with = array('venta');
+		$criteria->with = array('venta', 'paciente');
 		$criteria->compare('venta.vendedor_id', $this->vendedor_id);
+		//$criteria->with = array('paciente');
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

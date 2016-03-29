@@ -50,12 +50,24 @@ $lasVentas = Ventas::model()->findAll();
 			'value'=>'$data->id',
 			'htmlOptions'=>array('width'=>'30'),
 		),
+		// array(
+		// 	'header'=>'Compro',
+		// 	'name'=>'paciente_id',
+		// 	//'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
+		// 	'value'=>'$data[\'venta\'][\'paciente\'][\'nombreCompleto\']',
+		// 	'htmlOptions'=>array('width'=>'220'),
+		// ),
 		array(
-			'header'=>'Compro',
-			'name'=>'paciente_id',
-			'filter'=>CHtml::listData(Paciente::model()->findAll(array('order'=>'nombre ASC')), 'id','nombreCompleto'), // Colocamos un combo en el filtro
-			'value'=>'$data[\'venta\'][\'paciente\'][\'nombreCompleto\']',
-			'htmlOptions'=>array('width'=>'220'),
+		   'name'=>'nombre_paciente',
+		   'value'=>'$data->paciente->nombre',
+		   'htmlOptions'=>array('width'=>'100'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		),
+		array(
+		   'name'=>'apellido_paciente',
+		   'value'=>'$data->paciente->apellido',
+		   'htmlOptions'=>array('width'=>'100'),
+		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
 		),
 		//'venta_id',
 		array(
