@@ -1,0 +1,1 @@
+CREATE VIEW `paciente_nuevo_contrato` AS select paciente.id as paciente_id, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato_id, contratos.total, citas.id as cita_id, citas.linea_servicio_id from citas join paciente on paciente.id = citas.paciente_id join contratos on contratos.id = citas.contrato_id where citas.linea_servicio_id = 5

@@ -88,7 +88,13 @@ if ($tareas == 0)
                                     array('label'=>'Seguimientos Vencidos', 'url'=>array("/seguimientoComercial/vencidos")),
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
                                     array('label'=>'Citas no Confirmadas', 'url'=>array("/citas/sinConfirmar")),
+                                    array('label'=>'Estadisticas', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                'items' => array(
+                                    array('label'=>'Primera Vez y Contrato Servicio', 'url'=>array("/Promociones/activas")),
+                                    //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
+
                                     )), 
+                                    )),
 
                         )),
 
