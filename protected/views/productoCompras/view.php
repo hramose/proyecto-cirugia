@@ -12,7 +12,7 @@ $this->menu=array(
 
 //Para validar anular Compra
 $bandera = 0;
-
+$elCentroCmpra = "";
 ?>
 
 <h1>Compra #<?php echo $model->id; ?> - <?php echo $model->estado; ?></h1>
@@ -114,7 +114,7 @@ $bandera = 0;
 				{
 					$bandera = 1;
 				}
-
+				
 				if ($model->centro_compra_id == 0) {
 					$elCentroCmpra = "";
 				}

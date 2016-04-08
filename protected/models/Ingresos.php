@@ -215,9 +215,6 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria->with = array('paciente');
-		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
-		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

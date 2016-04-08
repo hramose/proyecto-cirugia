@@ -30,7 +30,8 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <DIV style='width:150%; overflow:scroll;'>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ingresos-grid',
 	'template'=>'{items}{summary}{pager}',
 	//'template'=>"{summary}\n{items}\n{pager}",
