@@ -51,7 +51,7 @@ $this->menu=array(
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-
+<DIV style='width:125%; overflow:scroll;'>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'paciente-grid',
 	'dataProvider'=>$model->search(),
@@ -71,6 +71,15 @@ $this->menu=array(
 		'email',
 		'telefono1',
 		'celular',
+		'pais',
+		'ciudad',
+		array(
+			'name'=>'fuente_contacto_id',
+			'htmlOptions'=>array('width'=>'120'),
+			'filter'=>CHtml::listData(FuenteContacto::model()->findAll(array('order'=>'fuente ASC')), 'id','fuente'), // Colocamos un combo en el filtro
+			'value'=>'$data[\'fuenteContacto\'][\'fuente\']',
+
+		),
 		/*'genero',*/
 		array(
 			'header'=>'Fecha Nacimiento',
@@ -136,7 +145,8 @@ $this->menu=array(
 			'template'=>'{view}{update}',
 		),
 	),
-)); 
+));
+
 
 Yii::app()->clientScript->registerScript('re-install-date-picker', "
 function reinstallDatePickerNacimiento(id, data) {
@@ -148,6 +158,8 @@ function reinstallDatePickerNacimiento(id, data) {
 ");
 
 ?>
+
+</DIV>
 
 <div id="exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">

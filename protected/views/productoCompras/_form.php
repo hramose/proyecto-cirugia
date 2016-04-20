@@ -688,7 +688,7 @@ function superTotal()
 			if ($("#ProductoCompras_descuento_tipo").val() == 0)
 				{
 					descuento = total_principal * ($("#ProductoCompras_descuento_valor").val()/100);
-					$("#ProductoCompras_descuento_total").val(descuento);
+					$("#ProductoCompras_descuento_total").val(descuento.toFixed(2));
 					total_orden = total_orden - descuento;
 					total_compra = total_compra - descuento;
 				};

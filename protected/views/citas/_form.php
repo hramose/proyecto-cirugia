@@ -45,7 +45,9 @@ else
 {$lafecha = "";}
 
 ?>
-
+<div class="alert alert-info">
+ <b>Atención:</b> Si al presionar el botón de Crear no sucede nada es debido a que no hay equipo disponible a la fecha y hora indicada.
+</div>
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>

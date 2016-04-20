@@ -57,7 +57,7 @@ class Paciente extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('referer_contact, estado_civil, ocupacion, tipo_vinculacion, Aseguradora, nombre_acompanante, acompanante_telefono, nombre_responsable, relacion_responsable, telefono_responsable, responsable, historia_id', 'required'),
-			array('fuente_contacto_id', 'required'),
+			array('fuente_contacto_id, pais', 'required'),
 			array('genero, tratamiento_interes_id, fuente_contacto_id', 'numerical', 'integerOnly'=>true),
 			array('nombre, apellido, n_identificacion, email, email2, telefono1, telefono2, celular, direccion, ciudad, pais, referer_contact, ocupacion, tipo_vinculacion, Aseguradora, nombre_acompanante, acompanante_telefono, nombre_responsable, relacion_responsable, telefono_responsable, historia_id', 'length', 'max'=>254),
 			array('estado_civil', 'length', 'max'=>20),
