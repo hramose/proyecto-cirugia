@@ -90,7 +90,7 @@ if ($tareas == 0)
                                     array('label'=>'Citas no Confirmadas', 'url'=>array("/citas/sinConfirmar")),
                                     array('label'=>'Estadisticas', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
-                                    array('label'=>'Primera Vez y Contrato Servicio', 'url'=>array("/Promociones/activas")),
+                                    array('label'=>'Panel de Estadisticas', 'url'=>array("/estadisticas/index")),
                                     //array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
 
                                     )), 

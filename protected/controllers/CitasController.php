@@ -242,6 +242,7 @@ class CitasController extends Controller
 			else
 			{
 				$reservaEquipos = new CitasEquipo;
+				$laInsidencia = 0; //Ojo con esto
 			}
 
 			$elPaciente = Paciente::model()->findByPk($_POST['Citas']['paciente_id']);
