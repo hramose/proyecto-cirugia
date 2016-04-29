@@ -4,7 +4,7 @@
 
 	$this->menu=array(
 		array('label'=>'Crear Citas Reservada', 'url'=>array('create')),
-		array('label'=>'Actualizar Citas Reservada', 'url'=>array('update', 'id'=>$model->id)),
+		//array('label'=>'Actualizar Citas Reservada', 'url'=>array('update', 'id'=>$model->id)),
 		array('label'=>'Buscar Citas Reservada', 'url'=>array('admin')),
 	);
 ?>

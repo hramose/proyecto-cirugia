@@ -235,7 +235,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 
 ?>
 	
-	<DIV style='height:750px; width:160%; overflow:scroll;'>
+	<DIV style='height:750px; width:300%; overflow:scroll;'>
 		<!-- <div style="width:300%;">Ancho de columnas de personal-->
 	<table class="table">
 		<thead>
@@ -260,7 +260,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 		?>
 		
 		
-			<td>
+			<td width="250px">
 				<?php /*echo "<b>".$los_medicos->nombreCompleto."</b> - <a href='index.php?r=citas/exportar&lafecha=$lafecha&elpersonal=$los_medicos->id'>[Exportar]</a>"; */?>
 				<table class="table table-bordered">
 					
