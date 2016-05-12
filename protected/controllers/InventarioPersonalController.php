@@ -144,7 +144,7 @@ class InventarioPersonalController extends Controller
 	 		{	
 	 			$idProducto = $_POST['id_producto_'.$i];
 	 			$loteProducto = $_POST['lote_'.$i];
-	 			$existencias = InventarioPersonalDetalle::model()->find("inventario_personal_id = $model->personal_id and producto_id = $idProducto and lote = $loteProducto");
+	 			$existencias = InventarioPersonalDetalle::model()->find("inventario_personal_id = $model->personal_id and producto_id = $idProducto and lote = '".$loteProducto."'");
 	 			if ($existencias) 
 	 			{
 	 				$existencias->cantidad = $existencias->cantidad + $_POST['cantidad_'.$i];

@@ -168,7 +168,15 @@ class VentasController extends Controller
 				if ($datosVenta->forma_pago == "Efectivo") 
 				{
 					$laCaja=CajaEfectivo::model()->findByPk($datosVenta->personal);
-					$laCaja->total = $laCaja->total - $datosVenta->total_venta;
+					//validar
+					if ($datosVenta->total2 > 0){
+						$laCaja->total = $laCaja->total - $datosVenta->total1;
+					}
+					else{
+						$laCaja->total = $laCaja->total - $datosVenta->total_venta;
+					}
+					
+					
 					$laCaja->update();
 
 					$datoCajaDetalle = CajaEfectivoDetalle::model()->find("venta_id = $datosVenta->id");
@@ -310,13 +318,23 @@ class VentasController extends Controller
 						//Nueva Caja
 						$nuevaCaja = new CajaEfectivo;
 						$nuevaCaja->personal_id = $model->personal;
-						$nuevaCaja->total = $model->total_venta;
+						if ($model->total2 > 0){
+							$nuevaCaja->total = $model->total1;
+						}
+						else{
+							$nuevaCaja->total = $model->total_venta;
+						}						
 						$nuevaCaja->save();
 
 						//Registrar Ingreso en el detalle de caja
 						$nuevaCajaDetalle = new CajaEfectivoDetalle;
 						$nuevaCajaDetalle->caja_efectivo_id = $nuevaCaja->personal_id;
-						$nuevaCajaDetalle->monto = $model->total_venta;
+						if ($model->total2 > 0){
+							$nuevaCajaDetalle->monto = $model->total1;
+						}
+						else{
+							$nuevaCajaDetalle->monto = $model->total_venta;
+						}	
 						$nuevaCajaDetalle->tipo = "Venta";
 						$nuevaCajaDetalle->venta_id = $model->id;
 						$nuevaCajaDetalle->fecha = date("Y-m-d H:i:s");
@@ -325,13 +343,23 @@ class VentasController extends Controller
 					else
 					{
 						//Actualizar Caja
-						$laCaja->total = $laCaja->total + $model->total_venta;
+						if ($model->total2 > 0){
+							$laCaja->total = $laCaja->total + $model->total1;
+						}
+						else{
+							$laCaja->total = $laCaja->total + $model->total_venta;
+						}			
 						$laCaja->save();
 
 						//Registrar Ingreso en el detalle de caja
 						$nuevaCajaDetalle = new CajaEfectivoDetalle;
 						$nuevaCajaDetalle->caja_efectivo_id = $model->personal;
-						$nuevaCajaDetalle->monto = $model->total_venta;
+						if ($model->total2 > 0){
+							$nuevaCajaDetalle->monto = $model->total1;
+						}
+						else{
+							$nuevaCajaDetalle->monto = $model->total_venta;
+						}			
 						$nuevaCajaDetalle->tipo = "Venta";
 						$nuevaCajaDetalle->venta_id = $model->id;
 						$nuevaCajaDetalle->fecha = date("Y-m-d H:i:s");

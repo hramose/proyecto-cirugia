@@ -342,7 +342,7 @@ class CitasController extends Controller
 			$model->hora_fin = $_POST['Citas']['hora_fin'] - 1;
 			$model->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
 			$model->contrato_id = $_POST['elContrato'];
-			$model->usuario_id = Yii::app()->user->usuarioId;
+			//$model->usuario_id = Yii::app()->user->usuarioId;
 			$model->actualizacion = $_POST['Citas']['actualizacion'];
 			//$model->equipo_adicional = $_POST['Citas']['equipo_adicional'];
 
