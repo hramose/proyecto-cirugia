@@ -20,12 +20,9 @@ else
 	);
 }
 
-
-
 //Calculo de Edad
 $anio_nacimiento = Yii::app()->dateformatter->format("yyyy",$model->paciente->fecha_nacimiento);
 $edadpaciente = date("Y") - $anio_nacimiento;
-
 ?>
 
 <script>

@@ -59,7 +59,7 @@
 
 <?php 
 	//$losProductos = ProductoInventario::model()->findAll("cantidad > 0");
-	$losProductos = ProductoInventarioDetalle::model()->findAll("existencia > 0");
+	$losProductos = ProductoInventarioDetalle::model()->findAll("existencia > 0 order by producto_inventario_id");
 
 ?>
 

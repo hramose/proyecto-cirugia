@@ -17,11 +17,11 @@
       // }
 
       function buscar($b) {
-             $elProducto = InventarioPersonalDetalle::model()->find("producto_id=$b and inventario_personal_id = ".Yii::app()->user->usuarioId);
+             $elProducto = InventarioPersonalDetalle::model()->find("id=$b and inventario_personal_id = ".Yii::app()->user->usuarioId);
                         //$ar = array("referencia"=>"Hola", "presentacion"=>"laaaa")
                         $ar = array("referencia"=>$elProducto->producto->producto_referencia,
                               "presentacion"=>$elProducto->producto->productoPresentacion->presentacion,
-                              "lote"=>$elProducto->producto->lote,
+                              "lote"=>$elProducto->lote,
                               "unidad"=>$elProducto->producto->productoUnidadMedida->corto,
                               "stock"=>$elProducto->cantidad);
                         $arr = json_encode($ar);

@@ -124,13 +124,13 @@ class ProductoComprasController extends Controller
 			 			if ($elProducto->save()) 
 			 			{
 			 				//Guardar detalle del inventario //Lotes **Quitar***
-			 				// $elProductoD = new ProductoInventarioDetalle;
-			 				// $elProductoD->producto_inventario_id = $_POST['producto_'.$i];
-			 				// $elProductoD->lote = $_POST['lote_'.$i];
-			 				// $elProductoD->cantidad_compra = $_POST['cantidad_'.$i];
-			 				// $elProductoD->existencia = $_POST['cantidad_'.$i];
-			 				// $elProductoD->compra_id = $model->id;
-			 				// $elProductoD->save();
+			 				$elProductoD = new ProductoInventarioDetalle;
+			 				$elProductoD->producto_inventario_id = $_POST['producto_'.$i];
+			 				$elProductoD->lote = $_POST['lote_'.$i];
+			 				$elProductoD->cantidad_compra = $_POST['cantidad_'.$i];
+			 				$elProductoD->existencia = $_POST['cantidad_'.$i];
+			 				$elProductoD->compra_id = $model->id;
+			 				$elProductoD->save();
 			 			}
 			 			
 			 			

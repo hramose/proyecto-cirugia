@@ -49,12 +49,12 @@ class RelacionHojaGastos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('paciente_id, hoja, asistencial_id, cita_id, linea_servicio_id, fecha, fecha_hora, costo, personal_id', 'required'),
-			array('paciente_id, asistencial_id, cita_id, linea_servicio_id, personal_id', 'numerical', 'integerOnly'=>true),
+			array('paciente_id, asistencial_id, cita_id, linea_servicio_id, personal_id, hoja_gastos_id, hoja_gastos_cirugia_id', 'numerical', 'integerOnly'=>true),
 			array('hoja', 'length', 'max'=>30),
 			array('costo', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, paciente_id, hoja, asistencial_id, nombre_paciente, apellido_paciente, n_identificacion, cita_id, linea_servicio_id, fecha, fecha_hora, costo, personal_id', 'safe', 'on'=>'search'),
+			array('id, paciente_id, hoja, asistencial_id, nombre_paciente, apellido_paciente, n_identificacion, cita_id, linea_servicio_id, fecha, fecha_hora, costo, personal_id, hoja_gastos_id, hoja_gastos_cirugia_id', 'safe', 'on'=>'search'),
 		);
 	}
 

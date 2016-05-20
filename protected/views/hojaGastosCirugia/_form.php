@@ -231,7 +231,8 @@
 		<table class "table" width="100%">
 			<tr>
 				<th width="5%"><small>Codigo</small></th>
-				<th width="20%"><small>Producto</small></th>
+				<th width="25%"><small>Producto</small></th>
+				<th width="5%"><small>Lote</small></th>
 				<th width="15%"><small>Cant.</small></th>
 				<th width="10%"><small>Unid. de Medida</small></th>
 				<th width="10%"></th>
@@ -280,9 +281,12 @@ function agregarCampo(){
 		"		 <select class='input-xlarge' name='producto_" + campos + "' id='producto_" + campos + "'>" +
 		"			<option value='0'></option>"+
 		"			<?php foreach($losProductos as $los_productos){ ?>"+
-		"			<option value='<?php echo $los_productos->producto_id; ?>'><?php echo $los_productos->producto->nombre_producto; ?></option>"+
+		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->producto->nombre_producto; ?></option>"+
 		"			<?php } ?>"+
 		"		 </select>"+
+		"     </td>" +
+		"     <td nowrap='nowrap'>" +
+		"        <input type='text' readonly='readonly' class='input-mini' placeholder='' name='lote_" + campos + "' id='lote_" + campos + "'>" +
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
 		"        <input type='text' class='input-mini' placeholder='' name='cantidad_" + campos + "' id='cantidad_" + campos + "'>" +
@@ -329,6 +333,7 @@ function agregarCampo(){
                           $("#codigo_" + posicion + "").val(variable.referencia);
                           $("#cantidad_" + posicion + "").val(1);
                           $("#medida_" + posicion + "").val(variable.medida);
+                          $("#lote_" + posicion + "").val(variable.lote);
                           $("#existencia_" + posicion + "").val(eval(variable.stock));
                           superTotal();
                                                              

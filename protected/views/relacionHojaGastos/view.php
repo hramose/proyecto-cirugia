@@ -10,14 +10,14 @@ $titulo = $model->hoja;
 //Los productos
 if ($model->hoja == "Hoja de Gastos") 
 {
-	$lahoja = HojaGastos::model()->find("cita_id = $model->cita_id");
-	$detalleHoja = HojaGastosDetalle::model()->findAll("hoja_gastos_id = $lahoja->id");
+	//$lahoja = HojaGastos::model()->find("id = $model->cita_id");
+	$detalleHoja = HojaGastosDetalle::model()->findAll("hoja_gastos_id = $model->hoja_gastos_id");
 }
 
 if ($model->hoja == "Hoja de Gastos Cirugia") 
 {
-	$lahoja = HojaGastosCirugia::model()->find("cita_id = $model->cita_id");
-	$detalleHoja = HojaGastosCirugiaDetalle::model()->findAll("hoja_gastos_cirugia_id = $lahoja->id");
+	//$lahoja = HojaGastosCirugia::model()->find("cita_id = $model->cita_id");
+	$detalleHoja = HojaGastosCirugiaDetalle::model()->findAll("hoja_gastos_cirugia_id = $model->hoja_gastos_cirugia_id");
 }
 
 
@@ -59,7 +59,7 @@ if ($model->hoja == "Hoja de Gastos Cirugia")
 				<th>Producto</th>
 				<th>Cantidad</th>
 				<th>U. Medida</th>
-				<th>Precio</th>
+				<th>Precio ($)</th>
 			</tr>
 		<?php 
 		foreach ($detalleHoja as $detalle_hoja) 
@@ -69,7 +69,7 @@ if ($model->hoja == "Hoja de Gastos Cirugia")
 				<td><?php echo $detalle_hoja->producto->nombre_producto; ?></td>
 				<td><?php echo $detalle_hoja->cantidad; ?></td>
 				<td><?php echo $detalle_hoja->producto->productoUnidadMedida->medida; ?></td>
-				<td><?php echo $detalle_hoja->producto->precio_publico; ?></td>
+				<td><?php echo number_format($detalle_hoja->producto->costo_iva,2); ?></td>
 			</tr>
 			<?php
 		}

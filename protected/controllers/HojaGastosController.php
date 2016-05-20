@@ -8,6 +8,7 @@ class HojaGastosController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
+	
 	/**
 	 * @return array action filters
 	 */
@@ -63,7 +64,7 @@ class HojaGastosController extends Controller
 	public function actionCreate()
 	{
 		$model=new HojaGastos;
-
+		$superTotal = 0;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -91,29 +92,42 @@ class HojaGastosController extends Controller
 			 			//Agregar a relación de Hoja de gstos
 			 			$elCosto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
 
-			 			$relacion = new RelacionHojaGastos;
-			 			$relacion->paciente_id = $model->paciente_id;
-			 			$relacion->n_identificacion = $datosCita->n_identificacion; 
-			 			$relacion->hoja = "Hoja de Gastos";
-			 			$relacion->asistencial_id = $datosCita->personal_id;
-			 			$relacion->cita_id = $datosCita->id;
-			 			$relacion->linea_servicio_id = $datosCita->linea_servicio_id;
-			 			$relacion->fecha = date("Y-m-d");
-			 			$relacion->fecha_hora = date("Y-m-d H:i:s");
-			 			$relacion->costo = $elCosto->costo_iva;
-			 			$relacion->personal_id = Yii::app()->user->usuarioId;
-			 			$relacion->save();
+			 			
 
-			 			//Reducir inventario
-			 			// $elProducto = ProductoInventario::model()->findByPk($_POST['producto_'.$i]);
-			 			// $elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
-			 			// $elProducto->save();
+			 			//Reducir inventario e inventario detalle
 
-			 			$elProducto = InventarioPersonalDetalle::model()->find('producto_id =' .$_POST['producto_'.$i]." and inventario_personal_id =".Yii::app()->user->usuarioId);
+			 			$elProducto = InventarioPersonalDetalle::model()->find('id =' .$_POST['producto_'.$i]." and inventario_personal_id =".Yii::app()->user->usuarioId);
 			 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
 			 			$elProducto->save();
-			 		}			 		
+
+			 			$elProductoDetalle = ProductoInventarioDetalle::model()->find('producto_inventario_id = ' .$elProducto->producto_id. ' and lote = "'.$_POST['lote_'.$i].'"');
+			 			$elProductoDetalle->existencia = $elProductoDetalle->existencia - $_POST['cantidad_'.$i];
+			 			if($elProductoDetalle->save())
+			 			{
+			 				$elProducto = ProductoInventario::model()->findByPk($elProductoDetalle->producto_inventario_id);
+				 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
+				 			$elProducto->save();	
+			 			}
+			 			$superTotal = $superTotal + $elCosto->costo_iva;
+			 			
+			 		}
+			 				 		
 			 	}
+			 	
+			 	$relacion = new RelacionHojaGastos;
+			 	$relacion->hoja_gastos_id = $model->id;
+	 			$relacion->paciente_id = $model->paciente_id;
+	 			$relacion->n_identificacion = $datosCita->n_identificacion; 
+	 			$relacion->hoja = "Hoja de Gastos";
+	 			$relacion->asistencial_id = $datosCita->personal_id;
+	 			$relacion->cita_id = $datosCita->id;
+	 			$relacion->linea_servicio_id = $datosCita->linea_servicio_id;
+	 			$relacion->fecha = date("Y-m-d");
+	 			$relacion->fecha_hora = date("Y-m-d H:i:s");
+	 			$relacion->costo = $superTotal;
+	 			$relacion->personal_id = Yii::app()->user->usuarioId;
+	 			$relacion->save();
+
 				$this->redirect(array('view','id'=>$model->id));
 		}
 

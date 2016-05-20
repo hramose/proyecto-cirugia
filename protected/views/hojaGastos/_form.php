@@ -150,7 +150,7 @@ function agregarCampo(){
 		"		 <select class='input-xlarge' name='producto_" + campos + "' id='producto_" + campos + "'>" +
 		"			<option value='0'></option>"+
 		"			<?php foreach($losProductos as $los_productos){ ?>"+
-		"			<option value='<?php echo $los_productos->producto_id; ?>'><?php echo $los_productos->producto->nombre_producto; ?></option>"+
+		"			<option value='<?php echo $los_productos->id; ?>'><?php echo $los_productos->producto->nombre_producto; ?></option>"+
 		"			<?php } ?>"+
 		"		 </select>"+
 		"     </td>" +
