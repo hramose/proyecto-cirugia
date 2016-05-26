@@ -521,7 +521,11 @@ class ContratosController extends Controller
 			 			$detalleP->save();
 			 		}
 
+			 		$ElTratamiento = ContratoDetalle::model()->find("presupuesto_id = $model->id");
+
 			 		$paraTotal = Contratos::model()->findByPk($model->id);
+			 		//Guardar tratamiento
+			 		$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
 			 		$paraTotal->total = $eltotal;
 			 		$paraTotal->saldo = $eltotal;
 			 		$paraTotal->save();
@@ -593,7 +597,10 @@ class ContratosController extends Controller
 				 		}
 			 		}
 
+			 		$ElTratamiento = ContratoDetalle::model()->find("contrato_id = $model->id");
+			 		
 			 		$paraTotal = Contratos::model()->findByPk($model->id);
+					$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
 			 		$paraTotal->total = $eltotal;
 			 		$paraTotal->saldo = $eltotal;
 			 		$paraTotal->save();
@@ -667,7 +674,10 @@ class ContratosController extends Controller
 				 		}
 			 		}
 
+					$ElTratamiento = ContratoDetalle::model()->find("contrato_id = $model->id");
+
 			 		$paraTotal = Contratos::model()->findByPk($model->id);
+			 		$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
 			 		$paraTotal->descuento = "Si";
 			 		$paraTotal->total = $eltotal;
 			 		$paraTotal->saldo = $eltotal - $sumaIngresos;
@@ -766,8 +776,6 @@ class ContratosController extends Controller
 		if(!isset($_GET['idPaciente']))
 		{
 		$model = new Contratos;
-
-
 			
 			//Buscar Presupuesto
 			$elpresupuesto = Presupuesto::model()->findByPk($_GET['idpresupuesto']);
@@ -804,6 +812,12 @@ class ContratosController extends Controller
 				}
 			 	$elpresupuesto->estado = "Contratado";
 			 	$elpresupuesto->save();
+
+			 	$ElTratamiento = ContratoDetalle::model()->find("contrato_id = $model->id");
+
+		 		$paraTotal = Contratos::model()->findByPk($model->id);
+		 		$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
+		 		$paraTotal->save();
 			}
 				$this->redirect(array('view','id'=>$model->id));
 		// 		
@@ -855,12 +869,18 @@ class ContratosController extends Controller
 					 			$detalleP->save();
 					 		}
 
-					 		$paraTotal = Contratos::model()->findByPk($model->id);
-					 		$paraTotal->total = $eltotal;
-					 		$paraTotal->saldo = $eltotal;
-					 		$paraTotal->save();
+					 		
 					 		
 					 	}
+
+					 	$ElTratamiento = ContratoDetalle::model()->find("contrato_id = $model->id");
+
+				 		$paraTotal = Contratos::model()->findByPk($model->id);
+				 		$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
+				 		$paraTotal->total = $eltotal;
+				 		$paraTotal->saldo = $eltotal;
+				 		$paraTotal->save();
+				 		
 					 	$this->redirect(array('view','id'=>$model->id));
 					 }
 			}

@@ -298,6 +298,9 @@ function agregarCampo(){
 		"        <input type='hidden' class='input-small' placeholder='' name='existencia_" + campos + "' id='existencia_" + campos + "'>" +
 		"     </td>" +
 		"     <td nowrap='nowrap'>" +
+		"        <input type='hidden' class='input-small' placeholder='' name='elid_" + campos + "' id='elid_" + campos + "'>" +
+		"     </td>" +
+		"     <td nowrap='nowrap'>" +
 		"        <a href='JavaScript:quitarCampo(" + campos +");' class='btn btn-mini btn-danger'> [x] </a>" +
 		"     </td>" +
 		"   </tr>" +
@@ -335,6 +338,7 @@ function agregarCampo(){
                           $("#medida_" + posicion + "").val(variable.medida);
                           $("#lote_" + posicion + "").val(variable.lote);
                           $("#existencia_" + posicion + "").val(eval(variable.stock));
+                          $("#elid_" + posicion + "").val(eval(variable.elid));
                           superTotal();
                                                              
                     }

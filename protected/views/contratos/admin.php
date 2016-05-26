@@ -65,13 +65,13 @@ $('.search-form form').submit(function(){
 		   'name'=>'n_identificacion',
 		   'value'=>'$data->paciente->n_identificacion',
 		   'htmlOptions'=>array('width'=>'50'),
-		   'headerHtmlOptions'=>array('style'=>'width:150px;text-align:center;'),
+		   'headerHtmlOptions'=>array('style'=>'width:100px;text-align:center;'),
 		),
 		array(
 			'name'=>'estado',
 			'filter' => array('Activo'=>'Activo','Anulado'=>'Anulado','Completado'=>'Completado','Liquidado'=>'Liquidado','Sin Confirmar'=>'Sin Confirmar'),
 			'value'=>'$data->estado',
-			'htmlOptions'=>array('width'=>'150'),
+			'htmlOptions'=>array('width'=>'50'),
 		),
 		array(
 			'header'=>'Fecha',
@@ -121,6 +121,13 @@ $('.search-form form').submit(function(){
 		// 	'name'=>'saldo_favor',
 		// 	'value'=>'number_format($data->saldo_favor,2)',
 		// ),
+		array(
+			'header'=>'Servicio Contratado',
+			'name'=>'tratamiento',
+			'value'=>'$data->tratamiento',
+			'htmlOptions'=>array('width'=>'150'),
+			
+		),
 		array(
 			'header'=>'Elaborado Por:',
 			'name'=>'usuario_id',

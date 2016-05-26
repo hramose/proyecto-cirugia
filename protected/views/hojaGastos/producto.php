@@ -23,7 +23,8 @@
                               "presentacion"=>$elProducto->producto->productoPresentacion->presentacion,
                               "lote"=>$elProducto->lote,
                               "unidad"=>$elProducto->producto->productoUnidadMedida->corto,
-                              "stock"=>$elProducto->cantidad);
+                              "stock"=>$elProducto->cantidad,
+                              "elid"=>$elProducto->producto_id);
                         $arr = json_encode($ar);
                         echo $arr;
                         

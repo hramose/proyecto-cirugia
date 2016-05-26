@@ -78,7 +78,7 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 			
 		  	<label>Observaciones:</label>
 		  	<textarea rows="6" class = "input-xxlarge" name ="observaciones" id="observaciones"></textarea>
-		  	<input id='variable' name='variable' type='hidden' />
+		  	<input id='variable' name='variable' hidden="hidden" />
 		  	
 		  </div>
 		   <input type="submit" value="Guardar" name="Guardar" class="btn btn-warning">
@@ -142,6 +142,8 @@ function agregarCampo(){
 	var contenedor= document.getElementById("contenedorcampos");
     contenedor.appendChild(NvoCampo);
 
+    //Numero de campos
+ document.getElementById("variable").value=variableJs;
 
     //Impedir ingresar letras
     $("#cantidad_"+ campos + "").keyup(function (){

@@ -11,6 +11,7 @@
                         $ar = array("referencia"=>$elProducto->producto->producto_referencia,
                               "medida"=>$elProducto->producto->productoUnidadMedida->medida,
                               "lote"=>$elProducto->lote,
+                              "elid"=>$elProducto->producto_id,
                               "stock"=>$elProducto->cantidad);
                         $arr = json_encode($ar);
                         echo $arr;

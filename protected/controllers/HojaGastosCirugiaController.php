@@ -73,6 +73,8 @@ class HojaGastosCirugiaController extends Controller
 	 */
 	public function actionCreate()
 	{
+
+
 		$model=new HojaGastosCirugia;
 		$superTotal = 0;
 
@@ -106,7 +108,7 @@ class HojaGastosCirugiaController extends Controller
 			 			$datosCita = Citas::model()->findByPk($idCita);
 			 			$detalleC = new HojaGastosCirugiaDetalle;
 			 			$detalleC->hoja_gastos_cirugia_id = $model->id;
-			 			$detalleC->producto_id = $_POST['producto_'.$i];
+			 			$detalleC->producto_id = $_POST['elid_'.$i];
 			 			$detalleC->cantidad = $_POST['cantidad_'.$i];
 			 			$detalleC->save();
 
@@ -129,7 +131,7 @@ class HojaGastosCirugiaController extends Controller
 				 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
 				 			$elProducto->save();	
 			 			}
-			 			$superTotal = $superTotal + $elCosto->costo_iva;
+			 			$superTotal = $superTotal + $elProducto->costo_iva;
 			 		}
 			 		
 			 	}
@@ -212,6 +214,17 @@ class HojaGastosCirugiaController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		// $invento = InventarioPersonalDetalle::model()->findAll();
+		// foreach ($invento as $elInvento) 
+		// {
+		// 	if ($elInvento->lote == NULL) 
+		// 	{
+		// 		$actual = InventarioPersonalDetalle::model()->find("id = $elInvento->id");
+		// 		$actual->lote = "---";
+		// 		$actual->update();
+		// 	}
+		// }
+
 		$model=new HojaGastosCirugia('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['HojaGastosCirugia']))

@@ -85,7 +85,7 @@ class HojaGastosController extends Controller
 			 		{
 			 			$detalleC = new HojaGastosDetalle;
 			 			$detalleC->hoja_gastos_id = $model->id;
-			 			$detalleC->producto_id = $_POST['producto_'.$i];
+			 			$detalleC->producto_id = $_POST['elid_'.$i];
 			 			$detalleC->cantidad = $_POST['cantidad_'.$i];
 			 			$detalleC->save();
 
@@ -108,7 +108,7 @@ class HojaGastosController extends Controller
 				 			$elProducto->cantidad = $elProducto->cantidad - $_POST['cantidad_'.$i];
 				 			$elProducto->save();	
 			 			}
-			 			$superTotal = $superTotal + $elCosto->costo_iva;
+			 			$superTotal = $superTotal + $elProducto->costo_iva;
 			 			
 			 		}
 			 				 		

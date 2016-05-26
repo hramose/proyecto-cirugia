@@ -49,7 +49,7 @@ class Contratos extends CActiveRecord
 			array('total, saldo, descuento_liquidacion, porcentaje_descuento_liquidacion', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, presupuesto_id, paciente_id, estado, comentario_liquidado, fecha_sola, descuento, saldo_favor, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, fecha, fechahora, n_identificacion, total, usuario_id, observaciones, observaciones_liquidacion, usuario_completo, fecha_completo', 'safe', 'on'=>'search'),
+			array('id, presupuesto_id, paciente_id, estado, comentario_liquidado, fecha_sola, descuento, saldo_favor, nombre_paciente, n_identificacion, apellido_paciente, vendedor_id, fecha, fechahora, n_identificacion, total, usuario_id, observaciones, observaciones_liquidacion, usuario_completo, fecha_completo, tratamiento', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,6 +97,7 @@ class Contratos extends CActiveRecord
 			'usuario_completo' => 'Usuario que Completo Contrato',
 			'fecha_completo' => 'Fecha en la que se Completo',
 			'comentario_liquidado' => 'Comentario de Liquidación',
+			'tratamiento' => 'Tratamiento',
 		);
 	}
 
@@ -132,6 +133,7 @@ class Contratos extends CActiveRecord
 		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('observaciones',$this->observaciones,true);
+		$criteria->compare('tratamiento',$this->tratamiento,true);
 		$criteria->compare('observaciones_liquidacion',$this->observaciones_liquidacion,true);
 		$criteria->compare('descuento_liquidacion',$this->descuento_liquidacion,true);
 		$criteria->compare('porcentaje_descuento_liquidacion',$this->porcentaje_descuento_liquidacion,true);

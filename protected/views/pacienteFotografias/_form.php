@@ -69,7 +69,7 @@ $laboratorios = Laboratorio::model()->findAll(array("condition" => "id > 0", 'or
 					            'onCancelled'=>'function(id,filename){ alert("cancelled"); }',
 					            'onMessage'=>'function(m){ alert(m); }',
 					            'allowedExtensions'=>array('jpg','png'), // server-side mime-type validated
-					            'sizeLimit'=>2000000, // limit in server-side and in client-side
+					            'sizeLimit'=>9000000, // limit in server-side and in client-side
 					            'uploadDir' => 'adjuntos/', // coco will @mkdir it
 					            // this arguments are used to send a notification
 					            // on a specific class when a new file is uploaded,
