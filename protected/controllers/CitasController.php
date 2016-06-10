@@ -312,6 +312,8 @@ class CitasController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
+	
+
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
@@ -355,15 +357,15 @@ class CitasController extends Controller
 
 			/////Actualizar equipo a reserva
 			//Buscar equipo de la linea de servicio seleccionada.
-			$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $laLineaServicio");
-			if ($equiposDisponibles) 
+			$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $laLineaServicio");
+			if(count($equiposDisponibles) > 0) 
 			{
 				$sihayDisponible = 0;
 				$lasuperllave = 0;
 				$lallave = 0;
 				//Consultar en agenda de equipos reservados
 				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
-				if ($agendaEquipos) 
+				if ($agendaEquipos) //Hay equipos reservados en esta fecha
 				{
 					//Verificar equipo en la agenda
 					
@@ -445,7 +447,7 @@ class CitasController extends Controller
 				}
 				else //Preparar ingreso de registro
 				{
-					$unEquipo = Equipos::model()->find("linea_servicio_id = $laLineaServicio");
+					$unEquipo = EquiposLineaServicio::model()->find("linea_servicio_id = $laLineaServicio");
 					//$reservaEquipos = new CitasEquipo;
 					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
 					if ($reservaEquipos) 
@@ -456,6 +458,7 @@ class CitasController extends Controller
 						$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 						$reservaEquipos->equipo_id = $unEquipo->id;
 						$reservaEquipos->linea_servicio_id = $laLineaServicio;
+						//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 					}
 					
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
@@ -480,10 +483,6 @@ class CitasController extends Controller
 				//$reservaEquipos = new CitasEquipo;
 			}
 
-
-
-
-
 			if($model->validate())
 			{
 			if($model->update())
@@ -502,18 +501,17 @@ class CitasController extends Controller
 				//}
 
 				//Terminar consulta de reserva de equipo
-				if(isset($reservaEquipos))	
-				{
 					// $reservaEquipos->hora_inicio = $horadeInicio;
 					// $reservaEquipos->hora_fin = $horadeFin;
 					// $reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+
 					$reservaEquipos->hora_inicio = $model->hora_inicio;
 					$reservaEquipos->hora_fin = $model->hora_fin;
 					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 					$reservaEquipos->cita_id = $model->id;
-					$reservaEquipos->update();
-					//Yii::app()->user->setFlash('error',"Se actualizo en equipo.");
-				}
+					$reservaEquipos->save();
+					//Yii::app()->user->setFlash('error',$laLineaServicio);
+				
 				
 				//Actualizar estado de Detalle de Contrato
 				if ($model->contrato_id != NULL) 
