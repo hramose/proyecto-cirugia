@@ -2,9 +2,9 @@
 	<h2>Estadísticas disponibles</h2>
 	<div class="row">
 		<div class="span4 text-center">
-			<h1 class="text-center text-success">25</h1>
+			<img  src="images/manos.png"/>
 			<h4 class="text-center">Primera Vez que visitan y contratan servicio</h4>
-			<a href="#" class="btn btn-primary">Ver</a>
+			<a href="index.php?r=estadisticas/primeraVisita" class="btn btn-primary">Ver</a>
 		</div>
 		<div class="span4"></div>
 		<div class="span4"></div>
