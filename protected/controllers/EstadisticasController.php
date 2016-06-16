@@ -18,42 +18,71 @@ class EstadisticasController extends Controller
 	}
 
 	public function actionExportarPrimeraVisita()
-	{	
-		$sql = "SELECT citas.id as cita, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id where citas.linea_servicio_id = 5 group by paciente";
+	{
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) 
+		{
 
-		 $rawData = Yii::app()->db->createCommand($sql);
-         
-        $model = new CSqlDataProvider($rawData, array( 
-                    'keyField' => 'cita', 
-                    'sort' => array(
-                        'attributes' => array(
-                            'cita'
-                        ),
-                        'defaultOrder' => array(
-                            'cita' => CSort::SORT_ASC, //default sort value
-                        ),
-                    ),
-                    'pagination' => array(
-                        'pageSize' => 9999999999,
-                    ),
-                ));
- 
+			if ($_POST['filtro'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-		$this->toExcel($model,
+				$sql = "SELECT citas.id as cita, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.fecha_cita between '$laFechaDesde' and '$laFechaHasta' group by paciente";
+
+				// //$attribs = array('estado'=>'Activo');
+				// $attribs = array();
+				// $criteria = new CDbCriteria(array('order'=>'id DESC'));
+				// $criteria->addBetweenCondition('fecha_cita', $laFechaDesde, $laFechaHasta);
+				// $rows = Citas::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$sql = "SELECT citas.id as cita, citas.fecha_cita,  CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 group by paciente";
+			}
+
+			$rawData = Yii::app()->db->createCommand($sql);
+			         
+			        $model = new CSqlDataProvider($rawData, array( 
+			                    'keyField' => 'cita', 
+			                    'sort' => array(
+			                        'attributes' => array(
+			                            'cita'
+			                        ),
+			                        'defaultOrder' => array(
+			                            'cita' => CSort::SORT_ASC, //default sort value
+			                        ),
+			                    ),
+			                    'pagination' => array(
+			                        'pageSize' => 9999999999,
+			                    ),
+			                ));
+		    
+		    // Export it
+		    $this->toExcel($model,
 		    	array(
 	            'cita::num_cita',
+	            'fecha_cita',
+	            'nombrepersonal',
 	            'nombre',
 	            'apellido',
 	            'n_identificacion',
 	            'contrato::num_contrato',
 	            'ctotal::total',
 	        ));
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$this->actionPrimeraVisita();
+		}
+		
 	}
 
 	public function actionPrimeraVisita()
 	{
 		$connection = Yii::app()->db;
-		$sql = "SELECT citas.id as cita, paciente.id as paciente, contratos.id as contrato, contratos.total as ctotal  from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id where citas.linea_servicio_id = 5 group by paciente";
+		$sql = "SELECT citas.id as cita, paciente.id as paciente, contratos.id as contrato, contratos.total as ctotal  from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 group by paciente";
 		$command = $connection->createCommand($sql);
 		$dataReader = $command->query();
 		$model = $dataReader->readAll();
