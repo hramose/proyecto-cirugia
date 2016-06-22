@@ -28,7 +28,7 @@ class EstadisticasController extends Controller
 				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
 				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
 
-				$sql = "SELECT citas.id as cita, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.fecha_cita between '$laFechaDesde' and '$laFechaHasta' group by paciente";
+				$sql = "SELECT citas.id as cita, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal, (contratos.total - contratos.saldo) as ingresos from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.fecha_cita between '$laFechaDesde' and '$laFechaHasta' group by paciente";
 
 				// //$attribs = array('estado'=>'Activo');
 				// $attribs = array();
@@ -38,7 +38,7 @@ class EstadisticasController extends Controller
 			}
 			else
 			{
-				$sql = "SELECT citas.id as cita, citas.fecha_cita,  CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 group by paciente";
+				$sql = "SELECT citas.id as cita, citas.fecha_cita,  CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion, contratos.id as contrato, contratos.total as ctotal, (contratos.total - contratos.saldo) as ingresos from paciente inner join citas on citas.paciente_id = paciente.id inner join contratos on contratos.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 group by paciente";
 			}
 
 			$rawData = Yii::app()->db->createCommand($sql);
@@ -69,6 +69,7 @@ class EstadisticasController extends Controller
 	            'n_identificacion',
 	            'contrato::num_contrato',
 	            'ctotal::total',
+	            'ingresos',
 	        ));
 		}
 		else

@@ -47,7 +47,7 @@ if ($tareas == 0)
                         //array('label'=>'Formularios', 'url'=>array('/site/page', 'view'=>'forms')),
                         //array('label'=>'Tablas', 'url'=>array('/site/page', 'view'=>'tables')),
                         //array('label'=>'Solicitudes', 'url'=>array('/correspondencia', 'view'=>'tables')
-                        array('label'=>'<i class="icon-user icon-white"></i> Pacientes <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-user icon-white"></i> Pacientes <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 7, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Ingresar', 'url'=>array('/paciente/create')),
                                 array('label'=>'Buscar', 'url'=>array('/paciente/admin')),
@@ -83,7 +83,7 @@ if ($tareas == 0)
                                     array('label'=>'Tareas Vencidas', 'url'=>array("/personalTareas/admin&filtro=2")),
                                     array('label'=>'Todas las Tareas', 'url'=>array("/personalTareas/admin")),
                                     )), 
-                                    array('label'=>'Modulo Gerencial', 'visible'=>Yii::app()->user->perfil == 5, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                    array('label'=>'Modulo Gerencial', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Seguimientos Vencidos', 'url'=>array("/seguimientoComercial/vencidos")),
                                     array('label'=>'Citas Vencidas', 'url'=>array("/citas/vencidas")),
@@ -98,50 +98,50 @@ if ($tareas == 0)
 
                         )),
 
-                        array('label'=>'<i class="icon-briefcase icon-white"></i> Contratos <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-briefcase icon-white"></i> Contratos <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 7, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Listado de Contratos', 'url'=>array('/contratos/admin')),
                                 array('label'=>'Listado de Presupuestos', 'url'=>array('/Presupuesto/admin')),
                         )),
 
-                        array('label'=>'<i class="icon-leaf icon-white"></i> Asistenciales <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-leaf icon-white"></i> Asistenciales <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Pagos a Asistenciales', 'url'=>array('/PagoCosmetologas/admin')),
                                 /*array('label'=>'Ordenes de Pago', 'url'=>array('/pacienteOrden/create')),*/
                                 /*array('label'=>'Autorizaciones Pendientes <span class="badge badge-success pull-right">'.$pendientes.'</span>', 'url'=>array('/reservacion/autorizar'), 'visible'=> !Yii::app()->user->isGuest and Yii::app()->user->cargo == "Administrador"),*/                                                       
                         )),
 
-                        array('label'=>'<i class="icon-inbox icon-white"></i> Caja <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-inbox icon-white"></i> Caja <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 7 or Yii::app()->user->perfil == 3, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
-                                array('label'=>'Cuentas por Cobrar', 'url'=>array('/cuentasXc/admin')),
-                                array('label'=>'Cuentas por Pagar', 'url'=>array('/ProductoCompras/cxp')),
-                                array('label'=>'Cuentas por Pagar Pagadas', 'url'=>array('/ProductoCompras/cxpp')),
-                                array('label'=>'Notas de Crédito', 'url'=>array('/NotaCredito/admin')),
-                                array('label'=>'Caja de Paciente', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Cuentas por Cobrar','visible'=>Yii::app()->user->perfil <> 7, 'url'=>array('/cuentasXc/admin')),
+                                array('label'=>'Cuentas por Pagar','visible'=>Yii::app()->user->perfil <> 7, 'url'=>array('/ProductoCompras/cxp')),
+                                array('label'=>'Cuentas por Pagar Pagadas','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoCompras/cxpp')),
+                                array('label'=>'Notas de Crédito','visible'=>Yii::app()->user->perfil <> 7, 'url'=>array('/NotaCredito/admin')),
+                                array('label'=>'Caja de Paciente','visible'=>Yii::app()->user->perfil <> 7, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Listado de Cajas', 'url'=>array("/paciente/cajas")),
                                     // array('label'=>'Ingresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
                                     // array('label'=>'Egresos', 'url'=>array("/pacienteMovimientos/update&id=1")),
                                     )),
-                                array('label'=>'Relación Hoja de Gastos', 'url'=>array('/RelacionHojaGastos/admin')),
+                                array('label'=>'Relación Hoja de Gastos','visible'=>Yii::app()->user->perfil <> 7, 'url'=>array('/RelacionHojaGastos/admin')),
                                 array('label'=>'Ingresos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                              'items' => array(
                             //     array('label'=>'Generar Ingreso', 'url'=>array('#')),
                                 array('label'=>'Listado de Ingresos', 'url'=>array('/ingresos/admin')),
                                 )),
-                                array('label'=>'Egresos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Egresos','visible'=>Yii::app()->user->perfil <> 7, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                             'items' => array(
                                 array('label'=>'Generar Egreso', 'url'=>array('/egresos/create')),
                                 array('label'=>'Listado de Egresos', 'url'=>array('/egresos/admin')),
                                 //array('label'=>'Exportar Egresos', 'url'=>array('/cajaEfectivo/index')),
                                 )),
-                                array('label'=>'Ventas', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Ventas', 'url' => '#','visible'=>Yii::app()->user->perfil <> 7, 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                             'items' => array(
                                 array('label'=>'Generar una Venta', 'url'=>array('/ventas/create')),
                                 array('label'=>'Listado de Ventas Realizadas', 'url'=>array('/ventas/admin')),
                                 array('label'=>'Relación de Productos', 'url'=>array('/ventasDetalle/admin')),
                                 )),
-                                array('label'=>'Estado de Caja', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Estado de Caja','visible'=>Yii::app()->user->perfil <> 7, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                             'items' => array(
                                 array('label'=>'Saldo', 'url'=>array('/cajaEfectivo/index')),
                                 )),
@@ -149,16 +149,16 @@ if ($tareas == 0)
                                 /*array('label'=>'Autorizaciones Pendientes <span class="badge badge-success pull-right">'.$pendientes.'</span>', 'url'=>array('/reservacion/autorizar'), 'visible'=> !Yii::app()->user->isGuest and Yii::app()->user->cargo == "Administrador"),*/                                                       
                         )),
 
-                        array('label'=>'<i class="icon-th-list icon-white"></i> Invetario <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 4, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-th-list icon-white"></i> Invetario <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Inventarios Personales', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Inventarios', 'url'=>array('/InventarioPersonal/admin')),
-                                    array('label'=>'Crear Inventario', 'url'=>array('/InventarioPersonal/create')),
-                                    array('label'=>'Crear Inventario', 'url'=>array('/InventarioPersonal/create')),
+                                    array('label'=>'Crear Inventario', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/InventarioPersonal/create')),
+                                    array('label'=>'Crear Inventario', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/InventarioPersonal/create')),
 
                                     )),
-                                array('label'=>'Inventario de Productos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Inventario de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Presentación de Productos', 'url'=>array('/ProductoPresentacion/admin')),
                                     array('label'=>'Categoría de Productos', 'url'=>array('/ProductoCategoria/admin')),
@@ -168,13 +168,13 @@ if ($tareas == 0)
                                     array('label'=>'Listar Inventario', 'url'=>array('/ProductoInventario/admin&tipo=0')),
 
                                     )),            
-                                array('label'=>'Compra de Productos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Compra de Productos', 'visible'=>Yii::app()->user->perfil <> 1 or Yii::app()->user->perfil <> 4, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Ingresar Compra', 'url'=>array('/ProductoCompras/create')),
                                     array('label'=>'Listar Compras', 'url'=>array('/ProductoCompras/admin')),
 
                                     )),                          
-                                    array('label'=>'Inventario de Activos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                    array('label'=>'Inventario de Activos', 'visible'=>Yii::app()->user->perfil <> 1 or Yii::app()->user->perfil <> 4, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     //array('label'=>'Categoría de Activos', 'url'=>array('/ActivoCategoria/admin')),
                                     array('label'=>'Ingresar Activo a Inventario', 'url'=>array('/ActivoInventario/create')),
@@ -183,7 +183,7 @@ if ($tareas == 0)
                                     array('label'=>'Orden de Pedido', 'url'=>array('/OrdenPedido/admin')),
                              )),
 
-                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Personal', 'url'=>array('/Personal/admin')),
                                 array('label'=>'Lineas de Servicio', 'url'=>array('/LineaServicio/admin')),

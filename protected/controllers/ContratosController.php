@@ -247,6 +247,45 @@ class ContratosController extends Controller
 		$total_nota_credito = 0;
 		$saldo_favor = 0;
 		$tipo_accion = "";
+		$tratamiendo_sindescuento = 0;
+		$tratamiento_condescuento = 0;
+
+		//Saldo a Favor*****************
+		$tratamientosRealizados = ContratosTratamientoRealizados::model()->findAll("contrato_id = $datosContrato->id");
+		if ($tratamientosRealizados) 
+		{
+			foreach ($tratamientosRealizados as $tratamientos_realizados) 
+			{
+				$preciosTratamiento = ContratoDetalle::model()->find("contrato_id = $tratamientos_realizados->contrato_id and linea_servicio_id = $tratamientos_realizados->linea_servicio_id");
+				$tratamiendo_sindescuento = $tratamiendo_sindescuento + $preciosTratamiento->vu;
+				$tratamiento_condescuento = $tratamiento_condescuento + $preciosTratamiento->vu_desc;
+			}
+		}
+
+		if ($datosContrato->saldo == $datosContrato->total) 
+		{
+			if ($datosContrato->descuento == "Si") {
+				$saldo_favor = $tratamiento_condescuento *-1;
+			}
+			else
+			{
+				$saldo_favor = $tratamiendo_sindescuento *-1;
+			}
+			
+		}
+		else
+		{
+			if ($datosContrato->descuento == "Si") {
+				$saldo_favor = ($datosContrato->total - $datosContrato->saldo)-$tratamiento_condescuento;
+			}
+			else
+			{
+				$saldo_favor = ($datosContrato->total - $datosContrato->saldo)-$tratamiendo_sindescuento;
+			}
+			
+		}
+
+		//$saldo_favor = ($datosContrato->total - $datosContrato->saldo)-$tratamiento_condescuento;	
 
 		//Suma de ingresos
 		$detalleIngresos = Ingresos::model()->findAll("contrato_id = $idContrato and estado = 'Activo'");
@@ -271,6 +310,7 @@ class ContratosController extends Controller
 
 		}
 
+		//$saldo_favor = $total_vu_suma;
 		//se esta liquidando un contrato inclumplido = Valores sin descuento
 
 		if ($datosContrato->saldo == 0) 
@@ -284,6 +324,7 @@ class ContratosController extends Controller
 			$saldo_favor = $sumaIngresos - $total_vu_suma;
 		}
 
+		
 		//---->>>***** Aca es donde se depositara a la caja personal
 		if ($saldo_favor > 0) //Es nota de crédito
 		{

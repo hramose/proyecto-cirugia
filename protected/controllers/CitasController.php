@@ -942,7 +942,7 @@ class CitasController extends Controller
 	public function actionCalendario()
 	{	
 		$dataProvider=new CActiveDataProvider('Citas');
-
+		$sumaIngresos = 0;
 		
 
 		if (isset($_POST['SeguimientoComercial'])) 

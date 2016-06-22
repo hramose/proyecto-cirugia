@@ -36,12 +36,14 @@
 			___________________________________
 			<br>
 			<p>DETALLES DE LA VENTA</p>
+			<small>
 			<?php 
 				foreach ($detalleVenta as $detalle_venta) 
 				{
-					echo $detalle_venta->producto->nombre_producto . " - CANT: " . $detalle_venta->cantidad . "<br><br>";
+					echo "* ".$detalle_venta->producto->nombre_producto . " - CANT: " . $detalle_venta->cantidad . "<br>";
 				}
 			?>
+			</small>
 			____________________________________
 			<br>
 			<p>DCTO:</p>
