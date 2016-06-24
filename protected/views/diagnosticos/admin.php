@@ -4,7 +4,7 @@
 
 
 $this->menu=array(
-	array('label'=>'Listar Diagnosticos', 'url'=>array('index')),
+	array('label'=>'Listar Diagnosticos','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('index')),
 	array('label'=>'Crear Diagnostico', 'url'=>array('create')),
 );
 

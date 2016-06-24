@@ -4,7 +4,7 @@
 
 
 $this->menu=array(
-	array('label'=>'Crear Fuente de Contacto', 'url'=>array('create')),
+	array('label'=>'Crear Fuente de Contacto','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Fuente de Contacto', 'url'=>array('admin')),
 );
 ?>

@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Laboratorio', 'url'=>array('create')),
+	array('label'=>'Crear Laboratorio','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Laboratorio', 'url'=>array('admin')),
 );
 ?>

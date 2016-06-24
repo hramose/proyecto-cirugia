@@ -4,7 +4,7 @@
 
 
 $this->menu=array(
-	array('label'=>'Crear Centro de Costo', 'url'=>array('create')),
+	array('label'=>'Crear Centro de Costo','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Centro de Costo', 'url'=>array('admin')),
 );
 ?>

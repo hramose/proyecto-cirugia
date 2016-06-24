@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Linea de Servicio', 'url'=>array('index')),
-	array('label'=>'Crear Linea de Servicio', 'url'=>array('create')),
-	array('label'=>'Actualizar Linea de Servicio', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Linea de Servicio', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Linea de Servicio', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Linea de Servicio', 'url'=>array('admin')),
 );
 ?>

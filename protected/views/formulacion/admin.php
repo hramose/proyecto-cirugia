@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Formulaciones', 'url'=>array('index')),
-	array('label'=>'Crear Formulación', 'url'=>array('create')),
+	array('label'=>'Crear Formulación','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

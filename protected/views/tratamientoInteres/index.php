@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Tratamiento de Interes', 'url'=>array('create')),
+	array('label'=>'Crear Tratamiento de Interes','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Tratamientos de Interes', 'url'=>array('admin')),
 );
 ?>

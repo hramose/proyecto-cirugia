@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Medicamentos Biológicos', 'url'=>array('index')),
-	array('label'=>'Crear Medicamento Biológico', 'url'=>array('create')),
+	array('label'=>'Crear Medicamento Biológico','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Medicamento Biológico', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Medicamentos Biológicos', 'url'=>array('admin')),
 );

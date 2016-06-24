@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Equipos', 'url'=>array('index')),
-	array('label'=>'Crear Equipo', 'url'=>array('create')),
+	array('label'=>'Crear Equipo','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Equipo', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Equipos', 'url'=>array('admin')),
 );

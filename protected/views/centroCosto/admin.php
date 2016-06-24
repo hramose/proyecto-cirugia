@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Centros de Costo', 'url'=>array('index')),
-	array('label'=>'Crear Centro de Costo', 'url'=>array('create')),
+	array('label'=>'Crear Centro de Costo', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

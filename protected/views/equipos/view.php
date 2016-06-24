@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Equipos', 'url'=>array('index')),
-	array('label'=>'Crear Equipo', 'url'=>array('create')),
-	array('label'=>'Actualizar Equipo', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Equipo','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Equipo','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Equipo', 'url'=>array('admin')),
 );
 ?>

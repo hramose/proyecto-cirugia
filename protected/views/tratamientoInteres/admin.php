@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Tratamientos de Interes', 'url'=>array('index')),
-	array('label'=>'Crear Tratamiento de Interes', 'url'=>array('create')),
+	array('label'=>'Crear Tratamiento de Interes','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

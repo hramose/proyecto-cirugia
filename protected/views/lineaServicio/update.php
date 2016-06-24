@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Linea de Servicios', 'url'=>array('index')),
-	array('label'=>'Crear Linea de Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Linea de Servicio','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Linea de Servicio', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Linea de Servicio', 'url'=>array('admin')),
 );

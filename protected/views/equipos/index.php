@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Equipo', 'url'=>array('create')),
+	array('label'=>'Crear Equipo', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 	array('label'=>'Buscar Equipo', 'url'=>array('admin')),
 );
 ?>

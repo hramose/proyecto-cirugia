@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Diagnostico', 'url'=>array('index')),
-	array('label'=>'Crear Diagnostico', 'url'=>array('create')),
-	array('label'=>'Actualizar Diagnostico', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Diagnostico','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Diagnostico','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	//array('label'=>'Borrar Diagnostico', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Buscar Diagnostico', 'url'=>array('admin')),
 );

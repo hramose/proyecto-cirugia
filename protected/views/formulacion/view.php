@@ -5,8 +5,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Formulaciones', 'url'=>array('index')),
-	array('label'=>'Crear Formulación', 'url'=>array('create')),
-	array('label'=>'Actualizar Formulación', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Formulación','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Formulación','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Formulación', 'url'=>array('admin')),
 );
 ?>

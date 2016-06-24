@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Laboratorios', 'url'=>array('index')),
-	array('label'=>'Crear Laboratorio', 'url'=>array('create')),
+	array('label'=>'Crear Laboratorio','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Laboratorio', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Laboratorio', 'url'=>array('admin')),
 );

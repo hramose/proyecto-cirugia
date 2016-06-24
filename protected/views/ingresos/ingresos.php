@@ -20,7 +20,6 @@
 	<p>NIT:  900385003-9</p>
 	<p>CALLE 87 N° 47 - 47</p>
 	<p>PBX: 3177190</p>
-	<p>del 1 al 2000</p>
 	<br>
 	<p>Recibo de caja No: <?php echo $elIngresos->id; ?></p>
 	<p>FECHA: <?php echo $elIngresos->fecha; ?></p>

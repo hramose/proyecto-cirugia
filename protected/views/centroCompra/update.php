@@ -3,7 +3,7 @@
 /* @var $model CentroCompra */
 
 $this->menu=array(
-	array('label'=>'Crear Centro de Compra', 'url'=>array('create')),
+	array('label'=>'Crear Centro de Compra','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Centro de Compra', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Centro de Compra', 'url'=>array('admin')),
 );

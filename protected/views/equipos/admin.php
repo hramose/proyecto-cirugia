@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Equipos', 'url'=>array('index')),
-	array('label'=>'Crear Equipo', 'url'=>array('create')),
+	array('label'=>'Crear Equipo', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

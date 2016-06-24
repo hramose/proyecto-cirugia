@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Lineas de Servicio', 'url'=>array('index')),
-	array('label'=>'Crear Linea de Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Linea de Servicio', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

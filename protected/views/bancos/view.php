@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Bancos', 'url'=>array('index')),
-	array('label'=>'Crear Banco', 'url'=>array('create')),
-	array('label'=>'Actualizar Banco', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Banco','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Banco','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Bancos', 'url'=>array('admin')),
 );
 ?>

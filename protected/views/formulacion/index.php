@@ -4,7 +4,7 @@
 
 
 $this->menu=array(
-	array('label'=>'Crear Formulación', 'url'=>array('create')),
+	array('label'=>'Crear Formulación','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Formulación', 'url'=>array('admin')),
 );
 ?>

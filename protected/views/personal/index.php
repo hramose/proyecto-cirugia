@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Ingresar Personal', 'url'=>array('create')),
+	array('label'=>'Ingresar Personal', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 	array('label'=>'Buscar Personal', 'url'=>array('admin')),
 );
 ?>

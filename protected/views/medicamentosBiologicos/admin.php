@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Medicamentos Biológicos', 'url'=>array('index')),
-	array('label'=>'Crear Medicamentos Biológicos', 'url'=>array('create')),
+	array('label'=>'Crear Medicamentos Biológicos','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

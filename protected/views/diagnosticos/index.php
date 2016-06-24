@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Diagnostico', 'url'=>array('create')),
+	array('label'=>'Crear Diagnostico','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Diagnostico', 'url'=>array('admin')),
 );
 ?>

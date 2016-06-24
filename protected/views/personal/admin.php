@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Personal', 'url'=>array('index')),
-	array('label'=>'Ingresar Personal', 'url'=>array('create')),
+	array('label'=>'Ingresar Personal', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

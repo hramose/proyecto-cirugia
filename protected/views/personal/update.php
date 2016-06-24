@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Personal', 'url'=>array('index')),
-	array('label'=>'Ingresar Personal', 'url'=>array('create')),
+	array('label'=>'Ingresar Personal','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Personal', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Personal', 'url'=>array('admin')),
 );

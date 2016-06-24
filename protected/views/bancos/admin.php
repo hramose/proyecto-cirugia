@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Bancos', 'url'=>array('index')),
-	array('label'=>'Crear Banco', 'url'=>array('create')),
+	array('label'=>'Crear Banco','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

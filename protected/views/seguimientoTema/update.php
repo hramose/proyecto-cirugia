@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Temas de Seguimiento', 'url'=>array('index')),
-	array('label'=>'Crear Tema de Seguimiento', 'url'=>array('create')),
+	array('label'=>'Crear Tema de Seguimiento','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Ver Tema de Seguimiento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Buscar Tema de Seguimiento', 'url'=>array('admin')),
 );

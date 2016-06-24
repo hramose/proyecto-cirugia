@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Tema de Seguimiento', 'url'=>array('create')),
+	array('label'=>'Crear Tema de Seguimiento','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Tema de Seguimiento', 'url'=>array('admin')),
 );
 ?>

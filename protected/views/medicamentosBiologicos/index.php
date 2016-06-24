@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->menu=array(
-	array('label'=>'Crear Medicamento Biológico', 'url'=>array('create')),
+	array('label'=>'Crear Medicamento Biológico','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 	array('label'=>'Buscar Medicamentos Biológicos', 'url'=>array('admin')),
 );
 ?>

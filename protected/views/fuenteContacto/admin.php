@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Fuentes de Contacto', 'url'=>array('index')),
-	array('label'=>'Crear Fuente de Contacto', 'url'=>array('create')),
+	array('label'=>'Crear Fuente de Contacto', 'visible'=>Yii::app()->user->perfil <> 1,'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

@@ -4,7 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Laboratorio', 'url'=>array('index')),
-	array('label'=>'Crear Laboratorio', 'url'=>array('create')),
+	array('label'=>'Crear Laboratorio','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

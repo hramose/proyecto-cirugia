@@ -158,13 +158,13 @@ if ($tareas == 0)
                                     array('label'=>'Crear Inventario', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/InventarioPersonal/create')),
 
                                     )),
-                                array('label'=>'Inventario de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Inventario de Productos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
-                                    array('label'=>'Presentación de Productos', 'url'=>array('/ProductoPresentacion/admin')),
-                                    array('label'=>'Categoría de Productos', 'url'=>array('/ProductoCategoria/admin')),
-                                    array('label'=>'Unidad de Medida de Productos', 'url'=>array('/ProductoUnidadMedida/admin')),
-                                    array('label'=>'Proveedor de Productos', 'url'=>array('/ProductoProveedor/admin')),
-                                    array('label'=>'Crear Producto', 'url'=>array('/ProductoInventario/create')),
+                                    array('label'=>'Presentación de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoPresentacion/admin')),
+                                    array('label'=>'Categoría de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoCategoria/admin')),
+                                    array('label'=>'Unidad de Medida de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoUnidadMedida/admin')),
+                                    array('label'=>'Proveedor de Productos', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoProveedor/admin')),
+                                    array('label'=>'Crear Producto', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/ProductoInventario/create')),
                                     array('label'=>'Listar Inventario', 'url'=>array('/ProductoInventario/admin&tipo=0')),
 
                                     )),            
@@ -183,7 +183,7 @@ if ($tareas == 0)
                                     array('label'=>'Orden de Pedido', 'url'=>array('/OrdenPedido/admin')),
                              )),
 
-                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-wrench icon-white"></i><span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                 array('label'=>'Personal', 'url'=>array('/Personal/admin')),
                                 array('label'=>'Lineas de Servicio', 'url'=>array('/LineaServicio/admin')),

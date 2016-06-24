@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	array('label'=>'Listar Tratamientos de Interes', 'url'=>array('index')),
-	array('label'=>'Crear Tratamientos de Interes', 'url'=>array('create')),
-	array('label'=>'Actualizar Tratamientos de Interes', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Crear Tratamientos de Interes','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
+	array('label'=>'Actualizar Tratamientos de Interes','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Tratamientos de Interes', 'url'=>array('admin')),
 );
 ?>

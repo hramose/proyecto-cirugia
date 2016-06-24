@@ -5,7 +5,7 @@
 
 $this->menu=array(
 	array('label'=>'Listar Centros de Compra', 'url'=>array('index')),
-	array('label'=>'Crear Centro de Compra', 'url'=>array('create')),
+	array('label'=>'Crear Centro de Compra','visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
