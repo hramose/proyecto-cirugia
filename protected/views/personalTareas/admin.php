@@ -66,7 +66,13 @@ else
 		array(
 			'name'=>'tarea',
 			'value'=>'$data->tarea',
-			'htmlOptions'=>array('width'=>'500'),
+			'htmlOptions'=>array('width'=>'200'),
+		),
+		array(
+			'header'=>'Último Comentario',
+			'name'=>'comentario_cierre',
+			'value'=>'$data->tarea',
+			'htmlOptions'=>array('width'=>'200'),
 		),
 		array(
 			'header'=>'Fecha a Cumplir',

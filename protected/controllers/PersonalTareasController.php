@@ -64,6 +64,7 @@ class PersonalTareasController extends Controller
 
 		$laTarea = PersonalTareas::model()->findByPk($id);
 		$laTarea->comentarios_responsable = $elComentario.$laTarea->comentarios_responsable;
+		$laTarea->comentario_cierre = $_POST['PersonalTareas']['comentarios_responsable'];
 		$laTarea->update();
 		if ($laTarea->update()) 
 		{
