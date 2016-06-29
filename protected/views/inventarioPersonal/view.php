@@ -53,9 +53,5 @@ if (Yii::app()->user->perfil != 2) {
 		</table>
 	</div>
 </div>
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'comentario',
-	),
-)); ?>
+<?php echo "<br><h4 class='text-center'>Comentarios</h4>";
+			echo $model->comentario ?>

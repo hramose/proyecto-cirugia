@@ -151,7 +151,7 @@ if ($tareas == 0)
 
                         array('label'=>'<i class="icon-th-list icon-white"></i> Invetario <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 1, 'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
-                                array('label'=>'Inventarios Personales', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
+                                array('label'=>'Inventarios Personales','visible'=>Yii::app()->user->perfil <> 1, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                                 'items' => array(
                                     array('label'=>'Inventarios', 'url'=>array('/InventarioPersonal/admin')),
                                     array('label'=>'Crear Inventario', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('/InventarioPersonal/create')),

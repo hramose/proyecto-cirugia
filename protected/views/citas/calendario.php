@@ -244,8 +244,21 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 				foreach ($losmedicos as $los_medicostitulo) 
 				{
 					?>
-						<th>						
-								<?php echo "<b><a href='index.php?r=citas/calendario&idpersonal=$los_medicostitulo->id_perfil&idEspecialista=$los_medicostitulo->id'>".$los_medicostitulo->nombreCompleto."</a></b> - <a href='index.php?r=citas/exportarAgenda&lafecha=$lafecha&elpersonal=$los_medicostitulo->id'>[Exportar]</a>"; ?>
+						<th>	
+
+							<?php 
+							if (isset($_GET['idpaciente']))
+							{
+								$numPaciente = $_GET['idpaciente'];
+								echo "<b><a href='index.php?r=citas/calendario&idpaciente=$numPaciente&idpersonal=$los_medicostitulo->id_perfil&idEspecialista=$los_medicostitulo->id'>".$los_medicostitulo->nombreCompleto."</a></b> - <a href='index.php?r=citas/exportarAgenda&lafecha=$lafecha&elpersonal=$los_medicostitulo->id'>[Exportar]</a>"; 
+							}
+							else
+							{
+								echo "<b><a href='index.php?r=citas/calendario&idpersonal=$los_medicostitulo->id_perfil&idEspecialista=$los_medicostitulo->id'>".$los_medicostitulo->nombreCompleto."</a></b> - <a href='index.php?r=citas/exportarAgenda&lafecha=$lafecha&elpersonal=$los_medicostitulo->id'>[Exportar]</a>"; 	
+							}
+								
+
+								?>
 						</th>
 					<?php
 				}

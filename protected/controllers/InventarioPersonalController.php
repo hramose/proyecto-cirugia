@@ -173,6 +173,10 @@ class InventarioPersonalController extends Controller
 	 			$elProducto->save();
 	 		}
 	 		}
+	 	$elComentario = date("d-m-Y H:m:s")."<br>-------------------------<br>".$_POST['InventarioPersonal']['comentario']."<br><br>";
+
+	 	$model->comentario = $elComentario.$model->comentario;
+	 	$model->save();
 
 		$this->redirect(array('view','id'=>$model->personal_id));
 		

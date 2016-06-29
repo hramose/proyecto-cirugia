@@ -91,6 +91,13 @@
 	   </div>
 	   </div>
 	</div>
+	
+	<?php $inventario = new InventarioPersonal; ?>
+	<div class="row">
+		<?php echo $form->labelEx($inventario,'comentario'); ?>
+		<?php echo $form->textArea($inventario,'comentario',array('rows'=>6, 'cols'=>50, 'class'=>'input-xxlarge')); ?>
+		<?php echo $form->error($inventario,'comentario'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class'=>'btn btn-primary')); ?>

@@ -71,7 +71,7 @@ else
 		array(
 			'header'=>'Último Comentario',
 			'name'=>'comentario_cierre',
-			'value'=>'$data->tarea',
+			'value'=>'$data->comentario_cierre',
 			'htmlOptions'=>array('width'=>'200'),
 		),
 		array(
