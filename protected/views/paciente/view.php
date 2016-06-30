@@ -788,7 +788,7 @@ if (count($elSeguimiento)>0) {
 	<div class="span6">
 		<!-- Contratos-->
 		<?php 
-			$elContrato = Contratos::model()->findAll("paciente_id = $model->id and estado != 'Anulado'");
+			$elContrato = Contratos::model()->findAll("paciente_id = $model->id");
 			if (count($elContrato)>0) {
 				?>
 				
