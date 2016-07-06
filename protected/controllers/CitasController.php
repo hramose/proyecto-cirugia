@@ -142,6 +142,8 @@ class CitasController extends Controller
 				
 					foreach ($equiposDisponibles as $equipos_disponibles)
 					{
+						//Verificar si hay mas de 1 equipo desponible
+
 						$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and equipo_id = $equipos_disponibles->equipo_id");
 						if ($agendaEquipos) 
 						{

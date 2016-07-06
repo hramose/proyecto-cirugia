@@ -212,7 +212,8 @@ class Citas extends CActiveRecord
 		}
 
 		//Validar uso de equipo
-		$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $this->linea_servicio_id and estado = 'Activo'");
+		//$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $this->linea_servicio_id and estado = 'Activo'");
+		$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $this->linea_servicio_id");
 		if ($equiposDisponibles) 
 		{
 			$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$lafecha' and linea_servicio_id = $this->linea_servicio_id");
@@ -293,7 +294,8 @@ class Citas extends CActiveRecord
 		}
 
 		//Validar uso de equipo
-		$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $this->linea_servicio_id and estado = 'Activo'");
+		//$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $this->linea_servicio_id and estado = 'Activo'");
+		$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $this->linea_servicio_id");
 		if ($equiposDisponibles) 
 		{
 
