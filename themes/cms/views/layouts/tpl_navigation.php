@@ -69,7 +69,7 @@ if ($tareas == 0)
                                 
                         )),
 
-                        array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 7,'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'<i class="icon-calendar icon-white"></i> Agenda <span class="caret"></span>', 'visible'=>Yii::app()->user->perfil == 1 or Yii::app()->user->perfil == 2 or Yii::app()->user->perfil == 3 or Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 4 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 7,'url'=>array('/site/page', 'view'=>'reportes'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
                                     array('label'=>'Agenda de Citas', 'url'=>array('/citas/citas')),
                                     array('label'=>'Listado de Citas', 'url'=>array('/citas/admin')),

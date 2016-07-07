@@ -134,6 +134,7 @@ class CitasController extends Controller
 				$laInsidencia = 0;
 				$lallave = 0;
 				$conteoEquipo = 0;
+				$hayuno = 0;
 
 				//Consultar en agenda de equipos reservados //Buscar equipo que tenga esa linea de servicio
 				//Contar cuantos equipos hay
@@ -171,20 +172,31 @@ class CitasController extends Controller
 							
 							if ($equipos_disponibles->equipo_id == $agenda_equipos->equipo_id) 
 							{
-								
 								$lallave = 1; //Si hay uno
-								if ($horadeInicio >= $agenda_equipos->hora_inicio and $horadeInicio <= $agenda_equipos->hora_fin)
+								if ($horadeInicio >= $agenda_equipos->hora_inicio and $horadeInicio <= $agenda_equipos->hora_fin and $agenda_equipos->fecha == $fechaCita and $agenda_equipos->equipo_id == $equipos_disponibles->equipo_id)
 								{
 									$laInsidencia = 1;	
 								}
 
-								if ($horadeFin >= $agenda_equipos->hora_inicio and $horadeFin <= $agenda_equipos->hora_fin) 
+								if ($horadeFin >= $agenda_equipos->hora_inicio and $horadeFin <= $agenda_equipos->hora_fin and $agenda_equipos->fecha == $fechaCita and $agenda_equipos->equipo_id == $equipos_disponibles->equipo_id) 
 								{
 									$laInsidencia = 1;
 								}								
 							}
 
+							//Si hay
+							if($laInsidencia == 0){
+								$hayuno = $equipos_disponibles->equipo_id;
+							}
+
+
 						}
+
+						if($hayuno > 0){
+							$laInsidencia = 0;
+							$equipos_disponibles->equipo_id = $hayuno;
+						}
+
 						if ($laInsidencia == 0 and $lallave == 1) 
 						{
 							$numerodeEquipo = $equipos_disponibles->equipo_id;
