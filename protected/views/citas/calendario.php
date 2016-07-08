@@ -301,7 +301,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								# code...
 								# Aca iran la reserva de cita
 								?>
-									<tr style="background-color: #c9c9c9;">
+									<tr style="background-color: #c9c9c9;" height=250>
 										<td width=10%>
 											<?php
 												echo trim($las_horas->hora)."<br>";
@@ -354,7 +354,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 									if ($color == 8) { $elcolor = "info";}
 								}
 						?>
-						<tr class='<?php echo $elcolor; ?>'>
+						<tr height=250 class='<?php echo $elcolor; ?>' >
 							<td width=10%>
 								<?php
 									echo trim($las_horas->hora)."<br>";
@@ -516,7 +516,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 								$color = 0;
 								$elidpaciente = 0;
 								?>
-								<tr>
+								<tr  height=250>
 									<td width=10%>
 										<?php
 											echo trim($las_horas->hora);
