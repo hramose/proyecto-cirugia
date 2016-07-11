@@ -63,6 +63,7 @@ class PacienteBaulController extends Controller
 	public function actionCreate()
 	{
 		$model=new PacienteBaul;
+		$paciente = Paciente::model()->findByPk($_GET['idPaciente']);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -70,11 +71,26 @@ class PacienteBaulController extends Controller
 		if(isset($_POST['PacienteBaul']))
 		{
 			$model->attributes=$_POST['PacienteBaul'];
+			$model->paciente_id = $_GET['idPaciente'];
+			$model->personal_id = Yii::app()->user->usuarioId;
+			$model->detalle = $_POST['PacienteBaul']['detalle'];
+			$model->fecha = date("Y-m-d H:i:s");
 			if($model->save())
+
+				$losarchivos = TempImagenes::model()->findAll();
+				foreach($losarchivos as $los_archivos)
+				{
+					$losAdjuntos = new PacienteBaulDetalle; //Tabla que queda
+					$losAdjuntos->paciente_baul_id = $model->id;	
+					$losAdjuntos->archivo = $los_archivos->archivo;
+					$losAdjuntos->save();
+				}
+				TempImagenes::model()->deleteAll();
+
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$paciente = Paciente::model()->findByPk($_GET['idPaciente']);
+		
 
 
 		$this->render('create',array(

@@ -46,6 +46,7 @@ $this->menu=array(
 	$diagnostico 				= HistorialDiagnostico::model()->count("paciente_id = $model->id");
 	$medicina 					= HistorialMedicinaBiologica::model()->count("paciente_id = $model->id");
 	$fotografias 				= PacienteFotografias::model()->count("paciente_id = $model->id");
+	$baul 						= PacienteBaul::model()->count("paciente_id = $model->id");
 	$archivoExamenes 			= PacienteResultadosLab::model()->count("paciente_id = $model->id");
 
 	//Suma de Saldos
@@ -230,6 +231,7 @@ $this->menu=array(
 	              	<?php if ($formulacion > 0) {	?>	<li><a href="#formulacion" data-toggle="tab"><b><small>Formulación</small></b></a></li> <?php } ?>
 	              	<?php if ($archivoExamenes > 0) {	?>	<li><a href="#archivoExamenes" data-toggle="tab"><b><small>Resultados de Laboratorio</small></b></a></li> <?php } ?>
 	              	<?php if ($fotografias > 0) {	?>	<li><a href="#fotografias" data-toggle="tab"><b><small>Fotografías</small></b></a></li> <?php } ?>
+	              	<?php if ($baul > 0) {	?>	<li><a href="#baul" data-toggle="tab"><b><small>Baul</small></b></a></li> <?php } ?>
 	              </ul>
 	              <div class="tab-content">
 	              	<?php if ($Ganamnesis >0) {	?>
@@ -626,6 +628,37 @@ $this->menu=array(
 		                </div>
 	                <?php }?>
 
+	                <?php if ($baul >0) {	?>
+		                <div class="tab-pane" id="baul">
+		                	<h5>Baúl de Pacientes</h5>
+		                	<table class="table table-condensed">
+		                		<tr>
+		                			<th>Fecha</th>
+		                			<th>Descripción</th>
+		                			<th>Archivos</th>
+		                			<th></th>
+		                		</tr>
+		                
+		                	<?php 
+		                		$losarchivos = PacienteBaul::model()->findAll("paciente_id = $model->id"); 
+						 		foreach ($losarchivos as $los_archivos)
+						 		{
+						 			$nArchivos 	= PacienteBaulDetalle::model()->count("paciente_baul_id = $los_archivos->id");
+						 			?>
+						 			<tr>
+						 				<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$los_archivos->fecha); ?></td>
+						 				<td><?php echo $los_archivos->detalle; ?></td>
+						 				<td><?php echo $nArchivos; ?></td>
+
+						 				<td><a href="index.php?r=pacienteBaul/view&id=<?php echo $los_archivos->id; ?>" class="btn btn-mini btn-info"><i class="icon-search icon-white"></i></a></td>
+						 			</tr>
+						 			<?php
+						 		}
+		                	?>
+		                	</table>
+		                </div>
+	                <?php }?>
+
 	                <?php if ($archivoExamenes >0) {	?>
 		                <div class="tab-pane" id="archivoExamenes">
 		                	<h5>Historial de Resultados de Examenes</h5>
@@ -874,6 +907,7 @@ if (count($elSeguimiento)>0) {
 					<li><a href="index.php?r=HistorialEvaluacionCosmetologica/create&idPaciente=<?php echo $model->id; ?>" data-toggle="modal">Evolución Cosmetológica</a></li>
 					<li><a href="index.php?r=HistorialFormulacion/create&idPaciente=<?php echo $model->id; ?>" data-toggle="modal">Formulación</a></li>
 					<li><a href="index.php?r=PacienteFotografias/create&idPaciente=<?php echo $model->id; ?>" data-toggle="modal">Fotos</a></li>
+					<li><a href="index.php?r=PacienteBaul/create&idPaciente=<?php echo $model->id; ?>" data-toggle="modal">Baul</a></li>
 					<li><a href="index.php?r=PacienteResultadosLab/create&idPaciente=<?php echo $model->id; ?>" data-toggle="modal">Resultado Laboratorios</a></li>
 				</ul>
 			</div>

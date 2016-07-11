@@ -255,9 +255,20 @@ echo
 		//Darle vuelta
 		$elarchivo = substr($filePath, strpos($filePath, '/')+1, strlen($filePath));
 		$elarchivo = substr($elarchivo, strpos($elarchivo, '/'), strlen($elarchivo));
-
+		$elarchivo = str_replace(' ', '', $elarchivo);
 		
 		if($tipoFoto == "T")//Temporal
+		{
+			$losTemporales = new TempImagenes;
+			$losTemporales->archivo = $elarchivo;
+			if ($losTemporales->save()) 
+			{
+				# code...
+			}
+
+		}
+
+		if($tipoFoto == "B")//Temporal
 		{
 			$losTemporales = new TempImagenes;
 			$losTemporales->archivo = $elarchivo;

@@ -419,7 +419,7 @@ $lafecha = "<script type='text/javascript'> document.write(variablejs) </script>
 										?>
 									</tr>
 									<tr>
-										<td><small><b>Observaciones: </b><?php echo $citas_programadas->comentario; ?></small></td>
+										<td><small><b>Observaciones: </b><?php echo substr($citas_programadas->comentario,0,100); ?></small></td>
 									</tr>
 								</table>
 								

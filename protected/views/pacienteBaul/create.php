@@ -1,14 +1,24 @@
 <?php
 /* @var $this PacienteBaulController */
 /* @var $model PacienteBaul */
-
+if(isset($_GET['idPaciente']))
+	{
+		$elPaciente = $_GET['idPaciente'];
+	}
+	else
+	{
+		$elPaciente = "0";
+	}
+	
+	$textoMenu = "Ver Ficha de Paciente";
+	$laRuta = "index.php?r=paciente/view&id=$elPaciente";
+	$urlComplemento = "&idPaciente=$model->paciente_id";
 
 $this->menu=array(
-	array('label'=>'List PacienteBaul', 'url'=>array('index')),
-	array('label'=>'Manage PacienteBaul', 'url'=>array('admin')),
+	array('label'=>"<i class='icon-circle-arrow-left'></i> ".$textoMenu, 'url'=>$laRuta),
 );
 ?>
 
-<h1>Agregar Elementos al Baúl de Paciente</h1>
+<h1>Agregar elementos al baúl de paciente</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
