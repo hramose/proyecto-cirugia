@@ -878,6 +878,7 @@ if (count($elSeguimiento)>0) {
 				</ul>
 			</div>
 			<a href="index.php?r=Ingresos/create&idPaciente=<?php echo $model->id; ?>" class="btn btn-small btn-inverse"><i class="icon-hdd icon-white"></i> Generar Ingreso</a>
+			<a href="index.php?r=PacienteBaul/create&idPaciente=<?php echo $model->id; ?>" class="btn btn-small"><i class="icon-plus"></i> Agregar al Baúl</a>
 		</div>
 		</div>
 	</div>
