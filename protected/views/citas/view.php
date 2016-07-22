@@ -182,7 +182,7 @@ if ($elEquipo)
 
 
 <?php if ($model->usuario_estado_id != NULL): ?>
-	<h4 class="text-center">Usuario que finalizo esta cita: <span class='text-info'><?php echo $model->usuarioEstado->nombreCompleto; ?></span></h4>	
+	<h4 class="text-center">Usuario que finalizo esta cita: <span class='text-info'><?php echo $model->usuarioEstado->nombreCompleto; ?> - <?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$model->fecha_accion); ?></span></h4>	
 <?php endif ?>
 
 <?php 

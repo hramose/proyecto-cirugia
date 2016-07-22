@@ -33,7 +33,7 @@ class PacienteBaul extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('paciente_id, detalle, personal_id, fecha', 'required'),
+			array('paciente_id, personal_id, fecha', 'required'),
 			array('paciente_id, personal_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

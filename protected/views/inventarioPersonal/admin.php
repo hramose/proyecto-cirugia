@@ -41,7 +41,6 @@ $('.search-form form').submit(function(){
 			'value'=>'$data->personal->nombreCompleto',
 			'htmlOptions'=>array('width'=>'300'),
 		),
-		'comentario',
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
