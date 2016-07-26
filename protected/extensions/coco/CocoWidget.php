@@ -229,6 +229,7 @@ echo
 
 					Yii::log('ACTION CALLED - RESULT=SUCCESS','info');
 					$fullpath = $result['fullpath'];
+					$fullpath = trim($fullpath);
 					/*Yii::app()->user->setFlash('success',".".$fullpath."  -  ".$this->userdata.".");	*/
 					$this->onFileUploaded($fullpath,$this->userdata, $this->tipoFoto);
 

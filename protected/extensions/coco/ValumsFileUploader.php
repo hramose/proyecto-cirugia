@@ -78,6 +78,8 @@ class ValumsFileUploader {
 
         $pathinfo = pathinfo($this->file->getName());
         $filename = $pathinfo['filename'];
+        $filename = str_replace(' ', '', $filename);
+
         //$filename = md5(uniqid());
         $ext = $pathinfo['extension'];
 
