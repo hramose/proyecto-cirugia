@@ -2617,7 +2617,7 @@ if ($elEquipo)
     <h3 id="myModalLabel"><div id="eltitulo"></div></h3>
   </div>
   <div class="modal-body">
- 	<p>Complete el siguiente formulario</p>
+ 	<p class="label label-important">Asegurece de haber completado los detalles de la cita. Llene el siguiente formulario.</p>
  	
 	 	<?php 
 	 	$form=$this->beginWidget('CActiveForm', array(
