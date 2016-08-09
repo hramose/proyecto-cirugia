@@ -255,6 +255,12 @@ else
 	 function validar() 
 	 {
 
+	 	if($("#Citas_linea_servicio_id").val() == null)
+		{
+			swal("Este contrato esta agotado seleccione otro.");
+			return false;
+		}
+
 		if($("#Citas_actualizacion").val() == "")
 		{
 			swal("Debe de agregar un comentario a la actualización.");
@@ -282,9 +288,21 @@ else
 	function ()
 	{
 			//Regrsar a cero los id de hora_inicio y hora_fin
-			$("#Citas_hora_inicio").val(1);
-			$("#Citas_hora_fin").val(2);
+			//$("#Citas_hora_inicio").val(1);
+			//$("#Citas_hora_fin").val(2);
 	}
+	)
+
+
+	$("#Citas_hora_inicio").change(
+		function ()
+		{
+			var linea = eval($("#Citas_linea_servicio_id").val());
+			$("#Citas_linea_servicio_id").val($("#Citas_linea_servicio_id").val()+1);
+			$("#Citas_linea_servicio_id").change();
+			$("#Citas_linea_servicio_id").val(linea);
+			alert($("#Citas_linea_servicio_id").val());
+		}
 	)
 
 

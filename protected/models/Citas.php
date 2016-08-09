@@ -250,7 +250,7 @@ class Citas extends CActiveRecord
 						{
 							//Aca se estan haciendo las pruebas
 							//$this->addError('hora_inicio', "El equipo esta reservado a esta Hora");
-							$this->addError($attribute, "El equipo esta reservado a esta Horasss");
+							$this->addError($attribute, "El equipo esta reservado a esta Hora");
 						}
 						else
 						{
@@ -259,7 +259,53 @@ class Citas extends CActiveRecord
 					}
 				}
 			}
+			else
+			{
+				//equiposDisponibles
+				foreach ($equiposDisponibles as $equipos_disponibles) {
+					# code...
+				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$lafecha' and equipo_id = $equipos_disponibles->equipo_id");
+				if ($agendaEquipos) 
+				{
+					//Verificar si hay mas de un equipo
+					if (count($equiposDisponibles) > 1) 
+					{
+						$numero_reservas = count($equiposDisponibles);
+						$numero_reservas_comparar = 0;
+						foreach ($agendaEquipos as $agenda_equipos) 
+						{
+							if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
+							{
+								$numero_reservas_comparar = $numero_reservas_comparar + 1;
+							}
 
+							if ($numero_reservas == $numero_reservas_comparar)
+							{
+								$this->addError('linea_servicio_id', "No hay equipo disponible a esta Hora");
+							}
+						}
+					}
+					else
+					{
+						//Es solo un equipo
+						foreach ($agendaEquipos as $agenda_equipos) 
+						{
+							//if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id)
+							if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
+							{
+								//Aca se estan haciendo las pruebas
+								//$this->addError('hora_inicio', "El equipo esta reservado a esta Hora");
+								$this->addError($attribute, "El equipo esta reservado a esta Hora");
+							}
+							else
+							{
+								
+							}
+						}
+					}
+				}
+			}//Termina foreach
+		}
 		}
 	}
 
