@@ -190,6 +190,7 @@ class ContratosController extends Controller
 	            'estado',
 	            'fecha_sola',
 	            'total',
+	            'saldo',
 	            'usuario.nombreCompleto::Elaborado Por',
 	            'vendedor.nombreCompleto::Vendido Por',
 	        ));

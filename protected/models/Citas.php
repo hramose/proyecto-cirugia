@@ -54,12 +54,15 @@ class Citas extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, paciente_id, personal_id, usuario_id, nombre_paciente, llego_clinica ,cedula_paciente, apellido_paciente, fecha_creacion, fecha_hora_creacion, usuario_estado_id, paciente_orden_id, confirmacion, fecha_confirmacion, fecha_accion, motivo_cancelacion, n_identificacion, contrato_id, equipo_adicional, linea_servicio_id, estado, fecha_cita, hora_inicio, hora_fin, correo, comentario, omitir_seguimiento, actualizacion', 'safe', 'on'=>'search'),
-			array('hora_inicio','validarHora', 'on'=>'nueva'),
-			array('hora_fin','validarHoraMenor', 'on'=>'nueva'),
-			array('hora_fin','validarHoraFin', 'on'=>'nueva'),
+			//array('hora_inicio','validarHora', 'on'=>'nueva'),
+			//array('hora_fin','validarHoraMenor', 'on'=>'nueva'),
+			//array('hora_fin','validarHoraFin', 'on'=>'nueva'),
+			//array('linea_servicio_id', 'validarHora', 'on'=>'nueva'),
+			//array('linea_servicio_id', 'validarHoraFin', 'on'=>'nueva'),
+			array('linea_servicio_id, hora_inicio, hora_fin', 'validarLinea'),
 			//array('hora_inicio','validarHoraAm'),
-			array('fecha_cita','validarFecha', 'on'=>'nueva'),
-			array('fecha_cita','validarHora', 'on'=>'nueva'),
+			array('fecha_cita','validarFecha'),
+			array('fecha_cita','validarHora'),
 		);
 	}
 
@@ -192,6 +195,74 @@ class Citas extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function validarLinea($attribute,$params)
+	{
+		$lafecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$this->fecha_cita);
+		$fechaCita = Citas::model()->findAll("fecha_cita = '$lafecha' and personal_id = '$this->personal_id' and estado != 'Cancelada'");
+		
+		if(count($fechaCita) > 0)
+		{
+			foreach ($fechaCita as $fecha_cita)
+			{
+				if ($this->hora_inicio >= $fecha_cita->hora_inicio and $this->hora_inicio <= $fecha_cita->hora_fin)
+				{
+					if($this->paciente_id != $fecha_cita->paciente_id)
+					{
+						$this->addError('linea_servicio_id', "Ya hay paciente a esta Hora");
+					}
+				}
+			}
+		}
+
+		//Validar uso de equipo
+		//$equiposDisponibles = Equipos::model()->findAll("linea_servicio_id = $this->linea_servicio_id and estado = 'Activo'");
+		$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $this->linea_servicio_id");
+		if ($equiposDisponibles) 
+		{
+			$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$lafecha' and linea_servicio_id = $this->linea_servicio_id");
+			if ($agendaEquipos) 
+			{
+				//Verificar si hay mas de un equipo
+				if (count($equiposDisponibles) > 1) 
+				{
+					$numero_reservas = count($equiposDisponibles);
+					$numero_reservas_comparar = 0;
+					foreach ($agendaEquipos as $agenda_equipos) 
+					{
+						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
+						{
+							$numero_reservas_comparar = $numero_reservas_comparar + 1;
+						}
+
+						if ($numero_reservas == $numero_reservas_comparar)
+						{
+							$this->addError('linea_servicio_id', "No hay equipo disponible a esta Hora");
+						}
+					}
+				}
+				else
+				{
+					//Es solo un equipo
+					foreach ($agendaEquipos as $agenda_equipos) 
+					{
+						//if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id)
+						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
+						{
+							//Aca se estan haciendo las pruebas
+							//$this->addError('hora_inicio', "El equipo esta reservado a esta Hora");
+							$this->addError($attribute, "El equipo esta reservado a esta Horasss");
+						}
+						else
+						{
+							
+						}
+					}
+				}
+			}
+
+		}
+	}
+
 	public function validarHora($attribute,$params)
 	{
 		$lafecha = Yii::app()->dateformatter->format("yyyy-MM-dd",$this->fecha_cita);
@@ -242,9 +313,11 @@ class Citas extends CActiveRecord
 					//Es solo un equipo
 					foreach ($agendaEquipos as $agenda_equipos) 
 					{
-						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id)
+						//if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin and $this->id != $agenda_equipos->cita_id)
+						if ($this->hora_inicio >= $agenda_equipos->hora_inicio and $this->hora_inicio <= $agenda_equipos->hora_fin)
 						{
-							$this->addError('hora_inicio', "El equipo esta reservado a esta Hora");
+							$this->addError('hora_inicio', "El equipo esta reservado a esta Horas");
+							//$this->addError('linea_servicio_id', "El equipo esta reservado a esta Hora");
 						}	
 					}
 				}

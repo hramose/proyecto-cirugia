@@ -276,7 +276,17 @@ else
 			{
 				return true; 
 			}
-		}
+	}
+
+	$("#Citas_linea_servicio_id").change(
+	function ()
+	{
+			//Regrsar a cero los id de hora_inicio y hora_fin
+			$("#Citas_hora_inicio").val(1);
+			$("#Citas_hora_fin").val(2);
+	}
+	)
+
 
 function antesdeEnviar()
 {
