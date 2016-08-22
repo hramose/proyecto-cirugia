@@ -22,7 +22,7 @@ public $userType = 'Front';
         if($this->userType=='Front') // This is front login
         {
             // check if login details exists in database
-                        $record=Usuarios::model()->findByAttributes(array('usuario'=>$this->username, 'estado'=>"Activo")); 
+            $record=Usuarios::model()->findByAttributes(array('usuario'=>$this->username, 'estado'=>"Activo")); 
             if($record===null)
             { 
                 $this->errorCode=self::ERROR_USERNAME_INVALID;

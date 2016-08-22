@@ -301,7 +301,6 @@ else
 			$("#Citas_linea_servicio_id").val($("#Citas_linea_servicio_id").val()+1);
 			$("#Citas_linea_servicio_id").change();
 			$("#Citas_linea_servicio_id").val(linea);
-			alert($("#Citas_linea_servicio_id").val());
 		}
 	)
 

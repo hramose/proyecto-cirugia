@@ -49,6 +49,7 @@ return array(
 
 		),
 		
+	
           'mail' => array(
 		    'class' => 'ext.yii-mail.YiiMail',
 		    'transportType' => 'php',

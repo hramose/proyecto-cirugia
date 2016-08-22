@@ -338,6 +338,7 @@ class CitasController extends Controller
 
 		if(isset($_POST['Citas']))
 		{
+			$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
 
 			//Copiar datos a tabla de actualizaciones
 			$citaAnterior = new CitasActualizacion;
@@ -363,7 +364,7 @@ class CitasController extends Controller
 			$model->actualizacion = $_POST['Citas']['actualizacion'];
 			//$model->equipo_adicional = $_POST['Citas']['equipo_adicional'];
 
-			$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
+			//$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
 			$horadeFin = $_POST['Citas']['hora_fin'];
 			$horadeInicio = $_POST['Citas']['hora_inicio'];
 
@@ -378,7 +379,8 @@ class CitasController extends Controller
 				$lasuperllave = 0;
 				$lallave = 0;
 				//Consultar en agenda de equipos reservados
-				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
+				//$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
+				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita'");
 				if ($agendaEquipos) //Hay equipos reservados en esta fecha
 				{
 					//Verificar equipo en la agenda
@@ -480,8 +482,8 @@ class CitasController extends Controller
 
 				if ($sihayDisponible == 1) 
 				{
-					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-					//$reservaEquipos = new CitasEquipo;
+					//$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
+					$reservaEquipos = new CitasEquipo;
 					$reservaEquipos->fecha = $fechaCita;
 					$reservaEquipos->hora_inicio = $model->hora_inicio;
 					$reservaEquipos->hora_fin = $model->hora_fin;
