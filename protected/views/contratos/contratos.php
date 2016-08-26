@@ -53,12 +53,12 @@ Prestación de Servicio bajo las siguientes clausulas.</p>
 			<small id="parrafo"><b>CUARTA:</b> Para procedimientos de Mad Laser y/o Cirugias en las que se realiza una programacion previa, 
 			el Paciente o CONTRATANTE debe llegar 20 minutos antes de la hora indicada, en caso de que el paciente llegue 30 minutos 
 			despues de la hora establecida, se suspenderá la programacion del procedimiento y se reprogramara para otra fecha, como 
-			consecuencia el paciente debe cancelar la suma de $300.000 Pesos correspondientes a gastos ocasionados por la reprogramacion 
+			consecuencia el paciente debe cancelar la suma de $400.000 Pesos correspondientes a gastos ocasionados por la reprogramacion 
 			del servicio, que serán descontados del dinero abonado al procedimiento.</small>
 			<br>
 			<small id="parrafo"><b>PARÁGRAFO 1:</b> Los cambios de fecha de procedimientos de M.A.D. Laser y/o Cirugias, se deben realizar con 
-			mínimo 72 horas hábiles de anticipación a la fecha programada, en caso contrario, el paciente o CONTRATANTE debe cancelar la 
-			suma de $300.000 Pesos, que serán descontados del dinero abonado al mismo.</small>
+			mínimo 96 horas hábiles de anticipación a la fecha programada, en caso contrario, el paciente o CONTRATANTE debe cancelar la 
+			suma de $400.000 Pesos, que serán descontados del dinero abonado al mismo.</small>
 			<br>
 			<small id="parrafo"><b>QUINTA:</b> Los tratamientos aquí contratados, tienen una vigencia de 18 meses a partir de la firma del presente 
 			contrato, si pasado este tiempo el paciente no se los ha realizado en su totalidad, perderá su derecho a hacerlo.</small>

@@ -520,12 +520,13 @@ class CitasController extends Controller
 					// $reservaEquipos->hora_inicio = $horadeInicio;
 					// $reservaEquipos->hora_fin = $horadeFin;
 					// $reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-
-					$reservaEquipos->hora_inicio = $model->hora_inicio;
-					$reservaEquipos->hora_fin = $model->hora_fin;
-					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-					$reservaEquipos->cita_id = $model->id;
-					$reservaEquipos->save();
+					if(count($equiposDisponibles) > 0){
+						$reservaEquipos->hora_inicio = $model->hora_inicio;
+						$reservaEquipos->hora_fin = $model->hora_fin;
+						$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+						$reservaEquipos->cita_id = $model->id;
+						$reservaEquipos->save();
+					}
 					//Yii::app()->user->setFlash('error',$laLineaServicio);
 				
 				

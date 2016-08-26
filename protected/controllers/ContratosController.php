@@ -98,7 +98,8 @@ class ContratosController extends Controller
 
 	public function actionAnular($id)
 	{
-		if ($_POST['clave'] == "super") //Es super usuario
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['clave'] == $clave->super_usuario) //Es super usuario
 		{
 			$datosContrato = Contratos::model()->findByPk($id);
 			$datosContrato->estado = "Anulado";
