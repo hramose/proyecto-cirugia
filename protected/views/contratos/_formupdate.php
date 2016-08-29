@@ -71,6 +71,7 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 				<tr>
 					<th width="23%">Linea de Servicio</th>
 					<th width="8%">Cantidad</th>
+					<th hidden="true">R</th>
 					<th width="12%">Valor Unitario</th>
 					<th width="8%">Descuento</th>
 					<th width="11%">V.U. con Descuento</th>
@@ -141,6 +142,8 @@ $lineasdeservicio = LineaServicio::model()->findAll(array("condition" => "estado
 		        	<input type='text' class='input-mini' maxlength = 2 placeholder='Cantidad' name='cantidad_<?php echo $campos; ?>' id='cantidad_<?php echo $campos; ?>' readonly='readonly' value ='<?php echo $losregistros->cantidad ?>'>
 		        <?php endif ?>
 		     </td>
+		     <!--Realiadas-->
+		     <td hidden="true"><input type='text' class='input-mini' maxlength = 2 placeholder='R' name='realizadas_<?php echo $campos; ?>' id='realizadas_<?php echo $campos; ?>' readonly='readonly' value ='<?php echo $losregistros->realizadas ?>'></td>
 		     <td nowrap='nowrap'>
 		        <input type='text' class='input-small' placeholder='V. Unitario' name='vu_<?php echo $campos; ?>' id='vu_<?php echo $campos; ?>' readonly='readonly' value ='<?php echo $losregistros->vu ?>'>
 		     </td>
