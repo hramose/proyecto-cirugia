@@ -81,6 +81,67 @@ class EstadisticasController extends Controller
 		
 	}
 
+
+	public function actionExportarPrimeraVisitaNo()
+	{
+		$clave = Configuraciones::model()->findByPk(1);
+		if ($_POST['claveNo'] == $clave->super_usuario) 
+		{
+
+			if ($_POST['filtroNo'] == 1) 
+			{
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+
+				$sql = "SELECT citas.id as cita, citas.linea_servicio_id, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion from paciente INNER join citas on citas.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.estado = 'Completada' and citas.fecha_cita between '$laFechaDesde' and '$laFechaHasta' and paciente.id not in (select contratos.paciente_id from contratos) group by paciente order by citas.fecha_cita";
+
+				// //$attribs = array('estado'=>'Activo');
+				// $attribs = array();
+				// $criteria = new CDbCriteria(array('order'=>'id DESC'));
+				// $criteria->addBetweenCondition('fecha_cita', $laFechaDesde, $laFechaHasta);
+				// $rows = Citas::model()->findAllByAttributes($attribs, $criteria);
+			}
+			else
+			{
+				$sql = "SELECT citas.id as cita, citas.linea_servicio_id, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion from paciente INNER join citas on citas.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.estado = 'Completada' and paciente.id not in (select contratos.paciente_id from contratos) group by paciente order by citas.fecha_cita";
+			}
+
+			$rawData = Yii::app()->db->createCommand($sql);
+			         
+			        $model = new CSqlDataProvider($rawData, array( 
+			                    'keyField' => 'cita', 
+			                    'sort' => array(
+			                        'attributes' => array(
+			                            'cita'
+			                        ),
+			                        'defaultOrder' => array(
+			                            'cita' => CSort::SORT_ASC, //default sort value
+			                        ),
+			                    ),
+			                    'pagination' => array(
+			                        'pageSize' => 9999999999,
+			                    ),
+			                ));
+		    
+		    // Export it
+		    $this->toExcel($model,
+		    	array(
+	            'cita::num_cita',
+	            'fecha_cita',
+	            'nombrepersonal',
+	            'nombre',
+	            'apellido',
+	            'n_identificacion',
+	        ));
+		}
+		else
+		{
+			Yii::app()->user->setFlash('error',"Clave incorrecta para realizar la exportación.");
+			$this->actionPrimeraVisita();
+		}
+		
+	}
+
 	public function actionPrimeraVisita()
 	{
 		$connection = Yii::app()->db;

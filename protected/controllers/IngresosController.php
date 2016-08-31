@@ -87,6 +87,7 @@ class IngresosController extends Controller
 			$model->vendedor_id = $_POST['Ingresos']['vendedor_id'];
 			$model->paciente_id = $_GET['idPaciente'];
 			$model->cita_id = $_POST["cita_id"];
+			$model->contrato_id = $_POST['Ingresos']["contrato_id"];
 			$model->n_identificacion = $elPaciente->n_identificacion;
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->fecha_sola = date("Y-m-d");
