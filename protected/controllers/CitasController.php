@@ -333,11 +333,21 @@ class CitasController extends Controller
 		$model=$this->loadModel($id);
 		$model->scenario = 'nueva';
 
+		
+
+
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Citas']))
 		{
+			//Limpiar Datos de citas equipo para evitar problemas
+			$agendaEquiposDelete = CitasEquipo::model()->findByPk($_GET['id']);
+			if ($agendaEquiposDelete) {
+				$agendaEquiposDelete->delete();
+			}
+			
+
 			$fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
 
 			//Copiar datos a tabla de actualizaciones
@@ -373,17 +383,42 @@ class CitasController extends Controller
 			/////Actualizar equipo a reserva
 			//Buscar equipo de la linea de servicio seleccionada.
 			$equiposDisponibles = EquiposLineaServicio::model()->findAll("linea_servicio_id = $laLineaServicio");
-			if(count($equiposDisponibles) > 0) 
+
+			if ($equiposDisponibles) 
 			{
 				$sihayDisponible = 0;
 				$lasuperllave = 0;
+				$laInsidencia = 0;
 				$lallave = 0;
-				//Consultar en agenda de equipos reservados
-				//$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
-				$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita'");
-				if ($agendaEquipos) //Hay equipos reservados en esta fecha
+				$conteoEquipo = 0;
+				$hayuno = 0;
+
+				//Consultar en agenda de equipos reservados //Buscar equipo que tenga esa linea de servicio
+				//Contar cuantos equipos hay
+
+				// $agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and linea_servicio_id = $laLineaServicio");
+				
+					foreach ($equiposDisponibles as $equipos_disponibles)
+					{
+						//Verificar si hay mas de 1 equipo desponible
+
+						$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita' and equipo_id = $equipos_disponibles->equipo_id");
+						if ($agendaEquipos) 
+						{
+							$conteoEquipo = 1;
+
+						}
+						else
+						{
+							$numerodeEquipo = $equipos_disponibles->equipo_id;
+						}
+					}
+
+
+				if ($conteoEquipo == 1) 
 				{
 					//Verificar equipo en la agenda
+					$agendaEquipos = CitasEquipo::model()->findAll("fecha = '$fechaCita'");
 					
 					foreach ($equiposDisponibles as $equipos_disponibles)
 					{
@@ -392,102 +427,84 @@ class CitasController extends Controller
 						foreach ($agendaEquipos as $agenda_equipos) 
 						{
 							
-							if ($equipos_disponibles->id == $agenda_equipos->equipo_id) 
+							if ($equipos_disponibles->equipo_id == $agenda_equipos->equipo_id) 
 							{
-								
 								$lallave = 1; //Si hay uno
-								if ($horadeInicio >= $agenda_equipos->hora_inicio and $horadeInicio <= $agenda_equipos->hora_fin)
+								if ($horadeInicio >= $agenda_equipos->hora_inicio and $horadeInicio <= $agenda_equipos->hora_fin and $agenda_equipos->fecha == $fechaCita and $agenda_equipos->equipo_id == $equipos_disponibles->equipo_id)
 								{
 									$laInsidencia = 1;	
 								}
 
-								if ($horadeFin >= $agenda_equipos->hora_inicio and $horadeFin <= $agenda_equipos->hora_fin) 
+								if ($horadeFin >= $agenda_equipos->hora_inicio and $horadeFin <= $agenda_equipos->hora_fin and $agenda_equipos->fecha == $fechaCita and $agenda_equipos->equipo_id == $equipos_disponibles->equipo_id) 
 								{
 									$laInsidencia = 1;
-								}
-
-								if ($laInsidencia == 1) {
-									//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$laInsidencia);
-									//$this->redirect(array('update','id'=>$model->id));
-								}
+								}								
 							}
 
-						
+							//Si hay
+							if($laInsidencia == 0){
+								$hayuno = $equipos_disponibles->equipo_id;
+							}
+
+
+						}
+
+						if($hayuno > 0){
+							$laInsidencia = 0;
+							$equipos_disponibles->equipo_id = $hayuno;
+						}
+
+						if ($laInsidencia == 0 and $lallave == 1) 
+						{
+							$numerodeEquipo = $equipos_disponibles->equipo_id;
 						}
 
 							//Comienza ingreso de equipo a reserva
-							//if ($laInsidencia == 0) 
-							//{
+							if ($laInsidencia == 0) 
+							{
 								if ($lasuperllave == 0) 
 								{
 									$lasuperllave = 1;
 									$lallave = 2; //Guardo
-									//$reservaEquipos = new CitasEquipo;
-									$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-									if ($reservaEquipos) 
-									{
-										$reservaEquipos->fecha = $fechaCita;
-										$reservaEquipos->hora_inicio = $model->hora_inicio;
-										$reservaEquipos->hora_fin = $model->hora_fin;
-										$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-										$reservaEquipos->equipo_id = $equipos_disponibles->id;
-										$reservaEquipos->linea_servicio_id = $laLineaServicio;
-									}
-									else
-									{
-										$reservaEquiposNuevo = new CitasEquipo;
-										$reservaEquiposNuevo->fecha = $fechaCita;
-										$reservaEquiposNuevo->hora_inicio = $model->hora_inicio;
-										$reservaEquiposNuevo->hora_fin = $model->hora_fin;
-										$reservaEquiposNuevo->hora_fin_mostrar = $model->hora_fin + 1;
-										$reservaEquiposNuevo->equipo_id = $equipos_disponibles->id;
-										$reservaEquiposNuevo->linea_servicio_id = $laLineaServicio;
-										$reservaEquiposNuevo->save();
-									}
-									
+									$reservaEquipos = new CitasEquipo;
+									$reservaEquipos->fecha = $fechaCita;
+									//$reservaEquipos->equipo_id = $equipos_disponibles->equipo_id;
+									$reservaEquipos->equipo_id = $numerodeEquipo;
+									$reservaEquipos->linea_servicio_id = $laLineaServicio;
 								}
-							//}
+							}
 
 						//Evaluar llave
 						if ($lallave == 0) 
 						{
 							if ($sihayDisponible == 0) 
 							{
-								$numerodeEquipo = $equipos_disponibles->id;
-								$sihayDisponible = 1;
+								$numerodeEquipo = $equipos_disponibles->equipo_id;
+								//$sihayDisponible = 1; EVALUAR
 							}
 							
 						}
+
+						
 					}
 
 				}
-				else //Preparar ingreso de registro
+				else //Preparar ingreso de registro pues no hay equipos agendados todos estan disponibles
 				{
 					$unEquipo = EquiposLineaServicio::model()->find("linea_servicio_id = $laLineaServicio");
-					//$reservaEquipos = new CitasEquipo;
-					$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-					if ($reservaEquipos) 
-					{
-						$reservaEquipos->fecha = $model->fecha_cita;
-						$reservaEquipos->hora_inicio = $model->hora_inicio;
-						$reservaEquipos->hora_fin = $model->hora_fin;
-						$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-						$reservaEquipos->equipo_id = $unEquipo->id;
-						$reservaEquipos->linea_servicio_id = $laLineaServicio;
-						//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
-					}
-					
+
+					//Es este :D
+					$reservaEquipos = new CitasEquipo;
+					$reservaEquipos->fecha = $fechaCita;
+					$reservaEquipos->equipo_id = $numerodeEquipo;
+					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"No debe de hacerlo aqui".$unEquipo->id);
 				}
 
 				if ($sihayDisponible == 1) 
 				{
-					//$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
 					$reservaEquipos = new CitasEquipo;
 					$reservaEquipos->fecha = $fechaCita;
-					$reservaEquipos->hora_inicio = $model->hora_inicio;
-					$reservaEquipos->hora_fin = $model->hora_fin;
-					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
 					$reservaEquipos->equipo_id = $numerodeEquipo;
 					$reservaEquipos->linea_servicio_id = $laLineaServicio;
 					//Yii::app()->user->setFlash('error',"Esta es una maravilla".$equipos_disponibles->id);
@@ -495,67 +512,53 @@ class CitasController extends Controller
 			}
 			else
 			{
-				$reservaEquipos = CitasEquipo::model()->findByPk($model->id);
-				//$reservaEquipos = new CitasEquipo;
+				$reservaEquipos = new CitasEquipo;
+				$laInsidencia = 0; //Ojo con esto
 			}
 
-			if($model->validate())
+				
+
+			if ($laInsidencia == 1) 
 			{
-			if($model->update())
-
-				
-				//Actualizar Cita Equipo
-				//$losEquipos = CitasEquipo::model()->findByPk($model->id);
-				//Si encuentra registros
-				//if($losEquipos)
-				//{
-					// $losEquipos->fechaCita = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['Citas']['fecha_cita']);
-					// $losEquipos->hora_inicio = $_POST['Citas']['hora_inicio'];
-					// $losEquipos->hora_fin = $_POST['Citas']['hora_fin'] - 1;
-					// $losEquipos->hora_fin_mostrar = $_POST['Citas']['hora_fin'];
-					// $losEquipos->update();
-				//}
-
-				//Terminar consulta de reserva de equipo
-					// $reservaEquipos->hora_inicio = $horadeInicio;
-					// $reservaEquipos->hora_fin = $horadeFin;
-					// $reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-					if(count($equiposDisponibles) > 0){
-						$reservaEquipos->hora_inicio = $model->hora_inicio;
-						$reservaEquipos->hora_fin = $model->hora_fin;
-						$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
-						$reservaEquipos->cita_id = $model->id;
-						$reservaEquipos->save();
-					}
-					//Yii::app()->user->setFlash('error',$laLineaServicio);
-				
-				
-				//Actualizar estado de Detalle de Contrato
-				if ($model->contrato_id != NULL) 
+				Yii::app()->user->setFlash('error',"No hay equipos disponibles para esta cita");
+				$this->redirect(array('citas/create&hora=1&idpaciente='.$model->paciente_id.'&medico='.$model->personal_id.'&fecha='.$model->fecha_cita));
+			}
+			else
+			{
+				if($model->update())
 				{
-					//Buscar Detalle
-					$detalleContrato = ContratoDetalle::model()->findAll("contrato_id = $model->contrato_id and estado = 'Activo'");
-					foreach ($detalleContrato as $detalle_contrato) 
+					//Actualizar estado de Detalle de Contrato
+					if ($model->contrato_id != NULL) 
 					{
-						if ($model->linea_servicio_id == $detalle_contrato->linea_servicio_id) 
+						//Buscar Detalle
+						$detalleContrato = ContratoDetalle::model()->findAll("contrato_id = $model->contrato_id and estado = 'Activo'");
+						foreach ($detalleContrato as $detalle_contrato) 
 						{
-							$paraActualizar = ContratoDetalle::model()->findByPk($detalle_contrato->id);
-							$paraActualizar->estado = "Programada";
-							$paraActualizar->update();
+							if ($model->linea_servicio_id == $detalle_contrato->linea_servicio_id) 
+							{
+								$paraActualizar = ContratoDetalle::model()->findByPk($detalle_contrato->id);
+								$paraActualizar->estado = "Programada";
+								$paraActualizar->save();
+							}
 						}
 					}
+
+					//Terminar consulta de reserva de equipo
+					$reservaEquipos->hora_inicio = $model->hora_inicio;
+					$reservaEquipos->hora_fin = $model->hora_fin;
+					$reservaEquipos->hora_fin_mostrar = $model->hora_fin + 1;
+					$reservaEquipos->cita_id = $model->id;
+					$reservaEquipos->save();
+
+					//Envio de Correo
+					if ($model->correo == "Si") {
+						$this->actionEnvioCorreo($model->id);
+					}
+					
+
+					$this->redirect(array('view','id'=>$model->id));
 				}
-
-				//Envio de Correo
-				if ($model->correo == "Si") {
-					$this->actionEnvioCorreo($model->id);
-				}
-
-				$citaAnterior->save();
-
-
-				$this->redirect(array('view','id'=>$model->id));
-		}
+			}
 		}
 
 		$this->render('update',array(
@@ -1301,28 +1304,32 @@ class CitasController extends Controller
 						$cuentasXC_detalle->save();
 					}
 
-					//Pago a Cosmetologa
-					$pagoCosmetologa = new PagoCosmetologas;
-					$pagoCosmetologa->n_identificacion = $lacita->paciente->n_identificacion;
-					$pagoCosmetologa->paciente_id = $lacita->paciente_id;
-					$pagoCosmetologa->linea_servicio_id = $lacita->linea_servicio_id;
-					$pagoCosmetologa->aprobo_id = Yii::app()->user->usuarioId;
-					$pagoCosmetologa->vendedor_id = $lacita->personal_id;
-					$pagoCosmetologa->cita_id = $lacita->id;
-					$pagoCosmetologa->valor_tratamiento = $lacita->lineaServicio->precio;
-					$pagoCosmetologa->misma_persona = "No";
-					$pagoCosmetologa->valor_comision = 0;
-					$pagoCosmetologa->porcentaje = 0;
-					$pagoCosmetologa->estado = "Activo";
-					$pagoCosmetologa->descarga = "No";
-					$pagoCosmetologa->fecha = date("Y-m-d H:i:s");
-					$pagoCosmetologa->fecha_sola = date("Y-m-d");
-					$pagoCosmetologa->sesion = "1/1";
-					$pagoCosmetologa->personal_id = $lacita->personal_id;
-					$pagoCosmetologa->saldo = $lacita->lineaServicio->precio * -1;
-					$pagoCosmetologa->total_pago = $lacita->lineaServicio->precio_pago;
-					$pagoCosmetologa->save();
-
+					//Buscar Citas en Pago a Cosmetologas
+					//$hayCitasenPago = PagoCosmetologas::model()->findAll("cita_id = $lacita->id");
+					//if (!$hayCitasenPago) {
+						//Pago a Cosmetologa
+						$pagoCosmetologa = new PagoCosmetologas;
+						$pagoCosmetologa->n_identificacion = $lacita->paciente->n_identificacion;
+						$pagoCosmetologa->paciente_id = $lacita->paciente_id;
+						$pagoCosmetologa->linea_servicio_id = $lacita->linea_servicio_id;
+						$pagoCosmetologa->aprobo_id = Yii::app()->user->usuarioId;
+						$pagoCosmetologa->vendedor_id = $lacita->personal_id;
+						$pagoCosmetologa->cita_id = $lacita->id;
+						$pagoCosmetologa->valor_tratamiento = $lacita->lineaServicio->precio;
+						$pagoCosmetologa->misma_persona = "No";
+						$pagoCosmetologa->valor_comision = 0;
+						$pagoCosmetologa->porcentaje = 0;
+						$pagoCosmetologa->estado = "Activo";
+						$pagoCosmetologa->descarga = "No";
+						$pagoCosmetologa->fecha = date("Y-m-d H:i:s");
+						$pagoCosmetologa->fecha_sola = date("Y-m-d");
+						$pagoCosmetologa->sesion = "1/1";
+						$pagoCosmetologa->personal_id = $lacita->personal_id;
+						$pagoCosmetologa->saldo = $lacita->lineaServicio->precio * -1;
+						$pagoCosmetologa->total_pago = $lacita->lineaServicio->precio_pago;
+						$pagoCosmetologa->save();
+					//}
+					
 					
 				}
 				else

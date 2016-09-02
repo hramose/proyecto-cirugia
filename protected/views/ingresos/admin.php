@@ -69,7 +69,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'name'=>'valor',
 			'value'=>'number_format($data->valor,2)',
 			'htmlOptions'=>array('width'=>'100'),
-			'footer'=>"<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
+			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
+
 		),
 		array(
 			'header'=>'Fecha',
