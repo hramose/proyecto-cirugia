@@ -106,7 +106,7 @@ class PagoCosmetologasController extends Controller
 
 				$attribs = array('estado'=>'Activo');
 				$criteria = new CDbCriteria(array('order'=>'id DESC'));
-				$criteria->addBetweenCondition('fecha', $laFechaDesde, $laFechaHasta);
+				$criteria->addBetweenCondition('fecha_sola', $laFechaDesde, $laFechaHasta);
 				$rows = PagoCosmetologas::model()->findAllByAttributes($attribs, $criteria);
 			}
 			else
