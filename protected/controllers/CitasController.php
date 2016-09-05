@@ -273,6 +273,19 @@ class CitasController extends Controller
 			$model->fecha_creacion = date("Y-m-d");
 			$model->fecha_hora_creacion = date("Y-m-d H:i:s");
 
+			//Verificar cantidad de citas
+			if($model->contrato_id != NULL)
+			{
+				$citasProgramadas = ContratoDetalle::model()->find("contrato_id = $model->contrato_id and linea_servicio_id = $model->linea_servicio_id and estado = 'Programada'");
+				if ($citasProgramadas) {
+						if (($citasProgramadas->realizadas + 1) == $citasProgramadas->cantidad) {
+						Yii::app()->user->setFlash('error',"No es posible agendar esta cita. Ya se ha superado el número de citas para este contrato");
+						$this->redirect(array('citas/create&hora=1&idpaciente='.$model->paciente_id.'&medico='.$model->personal_id.'&fecha='.$model->fecha_cita));
+					}
+				}
+				
+			}
+
 			if ($laInsidencia == 1) 
 			{
 				Yii::app()->user->setFlash('error',"No hay equipos disponibles para esta cita");

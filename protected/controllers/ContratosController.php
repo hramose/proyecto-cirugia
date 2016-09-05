@@ -86,6 +86,23 @@ class ContratosController extends Controller
 			$losMovimientos->fecha = date("Y-m-d H:i:s");
 			$losMovimientos->save();
 
+			//Ingreso a Ingresos
+			$encentrodecosto = CentroCosto::model()->find("nombre = 'Caja Personal'");
+
+			$model = new Ingresos;
+			$model->valor = $_POST['valor'];
+			$model->forma_pago = "Por Caja Personal";
+			$model->descripcion = "Ingreso a Contrato usando Caja Personal";
+			$model->paciente_id = $elContrato->paciente_id;
+			$model->contrato_id = $elContrato->id;
+			$model->n_identificacion = $elContrato->n_identificacion;
+			$model->centro_costo_id = $encentrodecosto->id;
+			$model->personal_id = Yii::app()->user->usuarioId;
+			$model->fecha = date("Y-m-d H:i:s");
+			$model->fecha_sola = date("Y-m-d");
+			$model->estado = "Activo";
+			$model->save();
+
 			Yii::app()->user->setFlash('success',"Se ha realizado con éxito el ingreso");
 			$this->redirect(array('view','id'=>$elContrato->id));
 

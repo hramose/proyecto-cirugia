@@ -6,7 +6,7 @@ $this->menu=array(
 	//array('label'=>'Listar Contrato', 'url'=>array('index')),
 	//array('label'=>'Actualizar Contrato', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Buscar Contratos', 'url'=>array('admin')),
-	array('label'=>'Regresar a Contrato', 'url'=>array('index.php/contrato/view&id='.$model->id)),
+	array('label'=>'Regresar a Contrato', 'url'=>array('contratos/view&id='.$model->id)),
 );
 ?>
 <h1>Ingreso a Contrato</h1>
