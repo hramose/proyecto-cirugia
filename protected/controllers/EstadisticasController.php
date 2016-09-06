@@ -90,8 +90,8 @@ class EstadisticasController extends Controller
 
 			if ($_POST['filtroNo'] == 1) 
 			{
-				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desde']);
-				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hasta']);
+				$laFechaDesde = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_desdeNo']);
+				$laFechaHasta = Yii::app()->dateformatter->format("yyyy-MM-dd",$_POST['fecha_hastaNo']);
 
 				$sql = "SELECT citas.id as cita, citas.linea_servicio_id, citas.fecha_cita, CONCAT(personal.nombres, ' ', personal.apellidos) as nombrepersonal, paciente.id as paciente, paciente.nombre, paciente.apellido, paciente.n_identificacion from paciente INNER join citas on citas.paciente_id = paciente.id inner join personal on personal.id = citas.personal_id where citas.linea_servicio_id = 5 and citas.estado = 'Completada' and citas.fecha_cita between '$laFechaDesde' and '$laFechaHasta' and paciente.id not in (select contratos.paciente_id from contratos) group by paciente order by citas.fecha_cita";
 
