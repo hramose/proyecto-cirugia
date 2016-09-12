@@ -375,6 +375,7 @@ class CitasController extends Controller
 			$citaAnterior->fin 				= $model->hora_fin_mostrar;
 			$citaAnterior->actualizacion 	= $_POST['Citas']['actualizacion'];
 			$citaAnterior->usuario 			= Yii::app()->user->name;
+			$citaAnterior->save();
 			//$citaAnterior->usuario 			= $model->usuario->nombreCompleto;
 
 

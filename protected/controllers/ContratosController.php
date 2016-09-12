@@ -331,17 +331,19 @@ class ContratosController extends Controller
 
 		//$saldo_favor = $total_vu_suma;
 		//se esta liquidando un contrato inclumplido = Valores sin descuento
+		if ($datosContrato->descuento == "No") {
+			if ($datosContrato->saldo == 0) 
+			{
+				//$saldo_favor = $sumaIngresos - $total_vu_descuento;
+				$saldo_favor = $sumaIngresos - $total_vu_suma;
+			}
 
-		if ($datosContrato->saldo == 0) 
-		{
-			//$saldo_favor = $sumaIngresos - $total_vu_descuento;
-			$saldo_favor = $sumaIngresos - $total_vu_suma;
+			if ($total_tratamientos_realizados <= $total_tratamiento) 
+			{
+				$saldo_favor = $sumaIngresos - $total_vu_suma;
+			}
 		}
-
-		if ($total_tratamientos_realizados <= $total_tratamiento) 
-		{
-			$saldo_favor = $sumaIngresos - $total_vu_suma;
-		}
+		
 
 		
 		//---->>>***** Aca es donde se depositara a la caja personal
@@ -354,7 +356,8 @@ class ContratosController extends Controller
 			{
 				$movimientosCaja = new PacienteMovimientos;
 				$movimientosCaja->paciente_id = $PacienteCaja->id;
-				$movimientosCaja->valor = $PacienteCaja->saldo;
+				//$movimientosCaja->valor = $PacienteCaja->saldo;
+				$movimientosCaja->valor = $saldo_favor;
 				$movimientosCaja->tipo = "Ingreso";
 				$movimientosCaja->sub_tipo = "Nota de Crédito";
 				$movimientosCaja->contrato_id = $datosContrato->id;
@@ -712,6 +715,7 @@ class ContratosController extends Controller
 	 			}
 
 	 			$eltotal = 0;
+	 			$total_vu_con_decuento = 0;
 			 	for ($i=0; $i <= 10; $i++) {
 			 		//$x = $i+1;
 			 		//
@@ -731,12 +735,20 @@ class ContratosController extends Controller
 				 			$detalleP->estado = "Activo";
 				 			$eltotal = $eltotal + $_POST['total_'.$i];
 				 			$detalleP->save();
+
+				 			$total_vu_con_decuento = $total_vu_con_decuento + $detalleP->vu_desc;
 				 		}
 			 		}
 
 					$ElTratamiento = ContratoDetalle::model()->find("contrato_id = $model->id");
 
+
+
 			 		$paraTotal = Contratos::model()->findByPk($model->id);
+			 		//Nuevo saldo a favor
+					$nuevoSaldoFavor = ($paraTotal->total - $paraTotal->saldo) - $total_vu_con_decuento;
+
+					$paraTotal->saldo_favor = $nuevoSaldoFavor;
 			 		$paraTotal->tratamiento = $ElTratamiento->lineaServicio->nombre;
 			 		$paraTotal->descuento = "Si";
 			 		$paraTotal->total = $eltotal;
@@ -1125,6 +1137,8 @@ class ContratosController extends Controller
 
 			if ($nuevoIngreso->save()) 
 			{
+				//Descontar de Caja Personal
+
 				$elContrato->saldo = $elContrato->saldo - $nuevoIngreso->valor;
 				$elContrato->update();
 				$elIngreso->contrato_asociado_id = $elContrato->id;

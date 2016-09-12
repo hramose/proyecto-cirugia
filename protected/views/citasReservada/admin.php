@@ -19,6 +19,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'citas-reservada-grid',
 	'dataProvider'=>$model->search(),
+	'afterAjaxUpdate' => 'reinstallDatePickerVentas', // (#1)
 	'filter'=>$model,
 	'columns'=>array(
 		array(
@@ -103,7 +104,17 @@ $this->menu=array(
 			'template'=>'{view}',
 		),
 	),
-)); ?>
+)); 
+
+Yii::app()->clientScript->registerScript('re-install-date-picker', "
+function reinstallDatePickerVentas(id, data) {
+        //use the same parameters that you had set in your widget else the datepicker will be refreshed by default
+    $('#datepicker_for_fecha_cita').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['es'],{'dateFormat':'dd-mm-yy'}));
+    //$('#datepicker_for_fecha').datepicker($.datepicker.regional[ 'es' ]);
+  //$('#datepicker_for_fecha').datepicker({dateFormat: 'dd-mm-yy'});
+}
+");
+?>
 
 <script>
     $(document).ready(function()
