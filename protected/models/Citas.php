@@ -61,6 +61,7 @@ class Citas extends CActiveRecord
 			//array('linea_servicio_id', 'validarHoraFin', 'on'=>'nueva'),
 			array('linea_servicio_id, hora_inicio, hora_fin', 'validarLinea'),
 			//array('hora_inicio','validarHoraAm'),
+			array('hora_fin','validarHoraFin'),
 			array('fecha_cita','validarFecha'),
 			array('fecha_cita','validarHora'),
 		);

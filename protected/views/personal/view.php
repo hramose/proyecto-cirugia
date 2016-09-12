@@ -4,8 +4,8 @@
 
 $this->menu=array(
 	//array('label'=>'Listar Personal', 'url'=>array('index')),
-	array('label'=>'Ingresar Personal', 'url'=>array('create')),
-	array('label'=>'Actualizar Personal', 'visible'=>Yii::app()->user->perfil <> 1, 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Ingresar Personal', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3, 'url'=>array('create')),
+	array('label'=>'Actualizar Personal', 'visible'=>Yii::app()->user->perfil == 5 or Yii::app()->user->perfil == 6 or Yii::app()->user->perfil == 3, 'url'=>array('update', 'id'=>$model->id)),
 	//array('label'=>'Borrar Personal', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Buscar Personal', 'url'=>array('admin')),
 );
