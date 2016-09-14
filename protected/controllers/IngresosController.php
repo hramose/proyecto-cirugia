@@ -93,7 +93,8 @@ class IngresosController extends Controller
 			$model->fecha_sola = date("Y-m-d");
 			$model->estado = "Activo";
 			if ($_POST['Ingresos']['personal_seguimiento'] == "") {
-				$model->personal_seguimiento = 26;
+				//$model->personal_seguimiento = 26; antes de Monteria
+				$model->personal_seguimiento = 1;
 			}
 			else
 			{
