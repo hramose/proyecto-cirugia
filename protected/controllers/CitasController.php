@@ -345,9 +345,7 @@ class CitasController extends Controller
 	{
 		$model=$this->loadModel($id);
 		$model->scenario = 'nueva';
-
-		
-
+		//$model->setScenario('update');
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -539,7 +537,7 @@ class CitasController extends Controller
 			}
 			else
 			{
-				if($model->update())
+				if($model->save())
 				{
 					//Actualizar estado de Detalle de Contrato
 					if ($model->contrato_id != NULL) 
