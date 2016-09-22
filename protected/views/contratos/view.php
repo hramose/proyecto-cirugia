@@ -335,8 +335,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_notaCredito->fecha_hora); ?></td>
 		<td>
 			<?php if ($model->saldo > $detalle_notaCredito->valor and $model->estado == "Activo"){ ?>
-				<a href="index.php?r=Contratos/vincularNota&idNota=<?php echo $detalle_notaCredito->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
-				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
+				<!-- <a href="index.php?r=Contratos/vincularNota&idNota=<?php //echo $detalle_notaCredito->id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a> -->
 			<?php }else{?>
 				<small>Supera saldo de contrato</small>
 			<?php } ?>
@@ -375,8 +374,7 @@ if (count($detalleContrato)>0) {
 		<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy H:mm:ss",$detalle_ingreso->fecha); ?></td>
 		<td>
 			<?php if ($model->saldo >= $detalle_ingreso->valor and $model->estado == "Activo"){ ?>
-				<a href="index.php?r=Contratos/vincular&idIngreso=<?php echo $detalle_ingreso->id; ?>&idContrato=<?php echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>
-				<!-- <a href="index.php?r=Ingresos/create&idPaciente=<?php //echo $model->paciente_id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a>	 -->
+				<!-- <a href="index.php?r=Contratos/vincular&idIngreso=<?php //echo $detalle_ingreso->id; ?>&idContrato=<?php //echo $model->id; ?>" class="btn btn-mini btn-warning"><i class="icon-random icon-white"></i> Vincular</a> -->
 			<?php }else{?>
 				<small>Supera saldo de contrato</small>
 			<?php } ?>
