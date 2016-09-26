@@ -80,7 +80,7 @@ class ContratosController extends Controller
 			$losMovimientos->valor = $_POST['valor'];
 			$losMovimientos->tipo = "Egreso";
 			$losMovimientos->sub_tipo = "Ingreso a Contrato";
-			$losMovimientos->descripcion = "Ingreso a Contrato usando Caja Personal";
+			$losMovimientos->descripcion = "Ingreso a Contrato N° ". $elContrato->id ." usando Caja Personal";
 			$losMovimientos->contrato_id = $elContrato->id;
 			$losMovimientos->usuario_id = Yii::app()->user->usuarioId;
 			$losMovimientos->fecha = date("Y-m-d H:i:s");

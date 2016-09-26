@@ -1008,5 +1008,11 @@ function validar() {
 		swal({   title: "No ha seleccionado metodo de pago",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
 	 	return false
 	}
+
+	if($("#Ventas_vendedor_id").val() == "") 
+	{
+		swal({   title: "No ha seleccionado vendedor",   text: "Seleccione una opción",   timer: 2000,   showConfirmButton: false });	
+	 	return false
+	}
 }
 </script>

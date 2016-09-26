@@ -170,11 +170,13 @@ class HojaGastosCirugiaController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['HojaGastosCirugia']))
 		{
 			$model->attributes=$_POST['HojaGastosCirugia'];
+			$model->observaciones = $_POST['HojaGastosCirugia']['observaciones'];
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

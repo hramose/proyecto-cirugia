@@ -151,6 +151,7 @@ class HojaGastosController extends Controller
 		if(isset($_POST['HojaGastos']))
 		{
 			$model->attributes=$_POST['HojaGastos'];
+			$model->observaciones = $_POST['HojaGastos']['observaciones'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
