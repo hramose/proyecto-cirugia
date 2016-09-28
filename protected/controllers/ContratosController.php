@@ -98,6 +98,7 @@ class ContratosController extends Controller
 			$model->n_identificacion = $elContrato->n_identificacion;
 			$model->centro_costo_id = $encentrodecosto->id;
 			$model->personal_id = Yii::app()->user->usuarioId;
+			$model->vendedor_id = Yii::app()->user->usuarioId;
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->fecha_sola = date("Y-m-d");
 			$model->estado = "Activo";
