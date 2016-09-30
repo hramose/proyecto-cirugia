@@ -99,6 +99,7 @@ class ContratosController extends Controller
 			$model->centro_costo_id = $encentrodecosto->id;
 			$model->personal_id = Yii::app()->user->usuarioId;
 			$model->vendedor_id = Yii::app()->user->usuarioId;
+			$model->personal_seguimiento = Yii::app()->user->usuarioId;
 			$model->fecha = date("Y-m-d H:i:s");
 			$model->fecha_sola = date("Y-m-d");
 			$model->estado = "Activo";
@@ -379,13 +380,16 @@ class ContratosController extends Controller
 					$notadeCredito->personal_id = Yii::app()->user->usuarioId;
 					$notadeCredito->save();
 
+					//Buscar Centro de Costo
+					$centrodecosto = CentroCosto::model()->find("nombre = 'Nota Credito'");
+
 					$nuevoIngreso = new Ingresos;
 					$nuevoIngreso->paciente_id = $datosContrato->paciente_id;
 					$nuevoIngreso->n_identificacion = $datosContrato->n_identificacion;
 					//$nuevoIngreso->contrato_id = $datosContrato->id;
 					$nuevoIngreso->valor = $saldo_favor;
 					$nuevoIngreso->descripcion = "Ingreso a caja de paciente por Nota de Crédito N° ". $notadeCredito->id;
-					$nuevoIngreso->centro_costo_id = 60;
+					$nuevoIngreso->centro_costo_id = $centrodecosto->id;
 					$nuevoIngreso->forma_pago = "Nota de Crédito";
 					$nuevoIngreso->fecha_sola = date("Y-m-d");
 					$nuevoIngreso->fecha = date("Y-m-d H:i:s");

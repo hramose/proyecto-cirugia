@@ -204,6 +204,17 @@ class PagoCosmetologasController extends Controller
 	 */
 	public function actionIndex()
 	{
+
+		//Actualización pago a cosmetologas
+		$pagocosmetologa = PagoCosmetologas::model()->findAll("saldo < 0");
+		foreach ($pagocosmetologa as $pago_cosmetologa) {
+			
+				$elcontrato = Contratos::model()->findByPk($pago_cosmetologa->contrato_id);
+				if ($elcontrato) {
+				$pago_cosmetologa->saldo = $elcontrato->saldo_favor;
+				$pago_cosmetologa->save();
+			}
+		}
 		$dataProvider=new CActiveDataProvider('PagoCosmetologas');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
