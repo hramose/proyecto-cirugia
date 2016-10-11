@@ -98,7 +98,7 @@
 						'dateFormat' => 'dd-mm-yy',
 						'changeMonth'=>true,
         				'changeYear'=>true,
-        				'yearRange'=>'1920:2000',
+        				'yearRange'=>'2016:2030',
 					),
 					'htmlOptions'=>array(
 						'style'=>'height:20px;width:80px;'

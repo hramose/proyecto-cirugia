@@ -1469,7 +1469,14 @@ class CitasController extends Controller
 			$pagoCosmetologa->porcentaje = $datosCita->lineaServicio->porcentaje;
 			$pagoCosmetologa->valor_comision = 0;
 			//Calculo de Pago por porcentaje
-			$pagoTotal = (($datosContratos->vu_desc / 1.16) - $datosContratos->lineaServicio->insumo) * ($datosContratos->lineaServicio->porcentaje / 100);
+			if($datosContratos->vu_desc == 0)
+			{
+				$pagoTotal = (($datosContratos->vu / 1.16) - $datosContratos->lineaServicio->insumo) * ($datosContratos->lineaServicio->porcentaje / 100);
+			}
+			else
+			{
+				$pagoTotal = (($datosContratos->vu_desc / 1.16) - $datosContratos->lineaServicio->insumo) * ($datosContratos->lineaServicio->porcentaje / 100);
+			}
 		}
 		else
 		{ 
