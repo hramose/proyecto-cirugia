@@ -573,6 +573,12 @@ class IngresosController extends Controller
 						$datoContrato->saldo = $datoContrato->saldo + $ingresoActual;
 						$datoContrato->save();
 					}
+					else
+					{
+						//Buscar Caja Personal de Paciente
+						$cajaPersonal = Paciente::model()->find("paciente_id = $elIngreso->paciente_id");
+						
+					}
 
 					//Actualizar caja si es efectivo
 					if ($elIngreso->forma_pago == "Efectivo")
