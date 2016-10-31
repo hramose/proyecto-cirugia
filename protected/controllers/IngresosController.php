@@ -564,6 +564,9 @@ class IngresosController extends Controller
 				$elIngreso->valor = $elIngreso->valor - ($elIngreso->valor * 2);
 				$elIngreso->estado = "Anulado";
 				$elIngreso->observacion_anular = $_POST['observacion_anular'];
+
+				$iddepaciente = $elIngreso->paciente_id;
+
 				if ($elIngreso->save()) 
 				{
 					if ($elIngreso->contrato_id != NULL)
@@ -576,8 +579,21 @@ class IngresosController extends Controller
 					else
 					{
 						//Buscar Caja Personal de Paciente
-						$cajaPersonal = Paciente::model()->find("paciente_id = $elIngreso->paciente_id");
-						
+						$cajaPersonal = Paciente::model()->findByPk($iddepaciente);
+						$cajaPersonal->saldo = $cajaPersonal->saldo - $ingresoActual;
+						$cajaPersonal->update();
+
+						//Movimientos
+						$movimientosCaja = new PacienteMovimientos;
+						$movimientosCaja->paciente_id = $iddepaciente;
+						$movimientosCaja->valor = ($ingresoActual * -1);
+						$movimientosCaja->tipo = "Anulado";
+						$movimientosCaja->ingreso_id = $id;
+						$movimientosCaja->sub_tipo = "Ingreso sin Contrato Anulado";
+						$movimientosCaja->descripcion = "Se anula ingreso a caja personal";
+						$movimientosCaja->usuario_id = Yii::app()->user->usuarioId;
+						$movimientosCaja->fecha = date("Y-m-d H:i:s");
+						$movimientosCaja->save();
 					}
 
 					//Actualizar caja si es efectivo
