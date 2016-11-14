@@ -50,6 +50,7 @@ class ProductoInventarioDetalle extends CActiveRecord
 		return array(
 			'productoInventario' => array(self::BELONGS_TO, 'ProductoInventario', 'producto_inventario_id'),
 			'productoCompras' => array(self::BELONGS_TO, 'ProductoCompras', 'compra_id'),
+
 		);
 	}
 

@@ -76,7 +76,7 @@ else:
 <div class="row">
 	<div class="span3"></div>
 	<div class="span6">
-	<table>
+	<table class="table">
 		<tr>
 			<th>Compra</th>
 			<th>Fecha</th>
@@ -86,23 +86,26 @@ else:
 			<th>Costo Unitario</th>
 		</tr>
 
-	</table>
+	
 		<?php 
 		foreach ($productoInventario as $producto_inventario) 
 		{
 			?>
 			<tr>
 				<td><?php echo $producto_inventario->compra_id; ?></td>
-				<td><?php echo $producto_inventario->productoCompras->fecha; ?></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo Yii::app()->dateformatter->format("dd-MM-yyyy",$producto_inventario->productoCompras->fecha); ?></td>
+				<td><?php echo $producto_inventario->lote; ?></td>
+				<td><?php echo $producto_inventario->cantidad_compra; ?></td>
+				<td><?php echo $producto_inventario->existencia; ?></td>
+				<td><?php 
+					$resultado_costo = productoCompraDetalle::model()->find("producto_compra_id = $producto_inventario->compra_id and producto_id = $producto_inventario->producto_inventario_id");
+					echo '$ '.$resultado_costo->valor; 
+				?></td>
 			</tr>
 			<?php
-		}
-			
+		}	
 		?>
+	</table>
 	</div>
 	<div class="span3"></div>
 </div>

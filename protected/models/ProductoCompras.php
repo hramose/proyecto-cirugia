@@ -77,12 +77,12 @@ class ProductoCompras extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'productoCompraDetalles' => array(self::HAS_MANY, 'ProductoCompraDetalle', 'producto_compra_id'),
 			'productoProveedor' => array(self::BELONGS_TO, 'ProductoProveedor', 'producto_proveedor_id'),
 			'laRetencion' => array(self::BELONGS_TO, 'ProductoRetenciones', 'retencion_id'),
 			'centroCosto' => array(self::BELONGS_TO, 'CentroCosto', 'centro_costo_id'),
 			'centroCompra' => array(self::BELONGS_TO, 'CentroCompra', 'centro_compra_id'),
 			'personal' => array(self::BELONGS_TO, 'Personal', 'personal_id'),
+			'productoCompraDetalles' => array(self::HAS_MANY, 'ProductoCompraDetalle', 'producto_compra_id'),
 		);
 	}
 
