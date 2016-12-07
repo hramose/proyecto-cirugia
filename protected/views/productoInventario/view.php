@@ -98,7 +98,7 @@ else:
 				<td><?php echo $producto_inventario->cantidad_compra; ?></td>
 				<td><?php echo $producto_inventario->existencia; ?></td>
 				<td><?php 
-					$resultado_costo = productoCompraDetalle::model()->find("producto_compra_id = $producto_inventario->compra_id and producto_id = $producto_inventario->producto_inventario_id");
+					$resultado_costo = ProductoCompraDetalle::model()->find("producto_compra_id = $producto_inventario->compra_id and producto_id = $producto_inventario->producto_inventario_id");
 					echo '$ '.$resultado_costo->valor; 
 				?></td>
 			</tr>

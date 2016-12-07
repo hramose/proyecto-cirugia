@@ -382,7 +382,7 @@ class EgresosController extends Controller
         				   <b>Usuario que Creo:</b><br>'.$model->personal->nombreCompleto.'<br><br>','text/html');//codificar el html de la vista
         $message->from =('noresponder@smadiaclinic.com'); // alias del q envia
         //recorrer a los miembros del equipo
-        $message->setTo(array('gerencia@smadiaclinic.com')); // a quien se le envia
+        $message->setTo(array('gerencia@smadiaclinic.com', 'admon@smadiaclinic.com')); // a quien se le envia
         //$message->setTo('gerencia@smadiaclinic.com hramirez@myrs.com.co'); // a quien se le envia
         Yii::app()->mail->send($message);
 

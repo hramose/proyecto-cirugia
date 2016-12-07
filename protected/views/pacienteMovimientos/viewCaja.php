@@ -14,7 +14,6 @@ $this->menu=array(
 
 $detalleMovimientos = PacienteMovimientos::model()->findAll("paciente_id = $model->id");
 
-
 ?>
 
 <h1>Caja de Paciente #<?php echo $model->id; ?></h1>

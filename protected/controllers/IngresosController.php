@@ -46,7 +46,7 @@ class IngresosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'exportar'),
+				'actions'=>array('admin', 'adminTranferencia','delete', 'exportar'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -638,6 +638,71 @@ class IngresosController extends Controller
 	 * Manages all models.
 	 */
 	public function actionAdmin()
+	{
+		$model=new Ingresos('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Ingresos']))
+		{
+			$model->attributes=$_GET['Ingresos'];
+		}
+
+		$losIngresos = Ingresos::model()->count();
+		if ($losIngresos == 0) {
+			$this->render('vacio',array(
+			'model'=>$model,
+			));
+		}
+		else
+		{
+			$this->render('admin',array(
+			'model'=>$model,
+			));	
+		}
+	}
+
+	public function actionAdminTranferencia()
+	{
+		
+		
+		
+		$model=new Ingresos('searchTransferencias');	
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['filtro']))
+		{
+			/*if ($_GET['filtro'] == 1) {
+				$model->centro_costo_id != 98;
+			}
+			if ($_GET['filtro'] == 2) {
+				$model->centro_costo_id = 98;	
+			}*/
+		}
+
+		if(isset($_GET['Ingresos']))
+		{
+			$model->attributes=$_GET['Ingresos'];
+			
+		}
+
+		
+
+		$losIngresos = Ingresos::model()->count();
+		if ($losIngresos == 0) {
+			$this->render('vacio',array(
+			'model'=>$model,
+			));
+		}
+		else
+		{
+			
+			$this->render('transferencias',array(
+			'model'=>$model,
+			));	
+			
+			
+		}
+	}
+
+	public function actionTransferencias()
 	{
 		$model=new Ingresos('search');
 		$model->unsetAttributes();  // clear any default values

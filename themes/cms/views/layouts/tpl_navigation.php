@@ -126,9 +126,11 @@ if ($tareas == 0)
                                 array('label'=>'Relación Hoja de Gastos','visible'=>Yii::app()->user->perfil <> 7, 'url'=>array('/RelacionHojaGastos/admin')),
                                 array('label'=>'Ingresos', 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                              'items' => array(
-                            //     array('label'=>'Generar Ingreso', 'url'=>array('#')),
-                                array('label'=>'Listado de Ingresos', 'url'=>array('/ingresos/admin')),
+                                //  array('label'=>'Generar Ingreso', 'url'=>array('#')),
+                                array('label'=>'Listado de Ingresos', 'url'=>array('/ingresos/admin&filtro=1')),
+                                array('label'=>'Transferencias a Paciente', 'url'=>array('/ingresos/adminTranferencia')),
                                 )),
+
                                 array('label'=>'Egresos','visible'=>Yii::app()->user->perfil <> 7, 'url' => '#', 'itemOptions' =>   array('class' => 'dropdown-submenu'),
                             'items' => array(
                                 array('label'=>'Generar Egreso', 'url'=>array('/egresos/create')),

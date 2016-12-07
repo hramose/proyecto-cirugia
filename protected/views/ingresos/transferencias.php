@@ -19,10 +19,9 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
-
 ?>
 
-<h1>Buscar Ingresos - <a href="#exportar" class="btn btn-warning" role="button" data-toggle="modal"><i class="icon-share-alt icon-white"></i> Exportar</a></h1>
+<h1>Buscar Ingresos - Transferencias a Paciente - <a href="#exportar" class="btn btn-warning" role="button" data-toggle="modal"><i class="icon-share-alt icon-white"></i> Exportar</a></h1>
 
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
@@ -36,7 +35,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ingresos-grid',
 	'template'=>'{items}{summary}{pager}',
 	//'template'=>"{summary}\n{items}\n{pager}",
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->searchTransferencias(),
 	'afterAjaxUpdate' => 'reinstallDatePickerIngresos', // (#1)
 	'filter'=>$model,
 	'columns'=>array(
@@ -70,7 +69,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'name'=>'valor',
 			'value'=>'number_format($data->valor,2)',
 			'htmlOptions'=>array('width'=>'100'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
+			'footer'=>$model->searchSumaTransferencia()->itemCount===0 ? '' : "<h6>$ ".number_format($model->getTotal($model->searchSumaTransferencia()),2).'</h6>',
 
 		),
 		array(
@@ -106,13 +105,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'htmlOptions'=>array('width'=>'80'),
 		),
 		'descripcion',
-		array(
-			'header'=>'Centro de Costo',
-			'name'=>'centro_costo_id',
-			'filter'=>CHtml::listData(CentroCosto::model()->findAll(array('order'=>'nombre ASC')), 'id','nombre'), // Colocamos un combo en el filtro
-			'value'=>'$data[\'centroCosto\'][\'nombre\']',
-			'htmlOptions'=>array('width'=>'200'),
-		),
 		'forma_pago',
 		array(
 			'header'=>'Vendido por:',
@@ -127,6 +119,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>'$data->contrato_id',
 			'htmlOptions'=>array('width'=>'40'),
 		),
+		
 		array(
 			'name'=>'estado',
 			'filter' => array('Activo'=>'Activo','Anulado'=>'Anulado'),
