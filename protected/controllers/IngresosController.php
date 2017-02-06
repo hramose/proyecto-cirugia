@@ -46,7 +46,7 @@ class IngresosController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'adminTranferencia','delete', 'exportar'),
+				'actions'=>array('admin', 'adminTranferencia', 'delete', 'exportar'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -662,28 +662,14 @@ class IngresosController extends Controller
 
 	public function actionAdminTranferencia()
 	{
-		
-		
-		
 		$model=new Ingresos('searchTransferencias');	
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['filtro']))
-		{
-			/*if ($_GET['filtro'] == 1) {
-				$model->centro_costo_id != 98;
-			}
-			if ($_GET['filtro'] == 2) {
-				$model->centro_costo_id = 98;	
-			}*/
-		}
 
 		if(isset($_GET['Ingresos']))
 		{
 			$model->attributes=$_GET['Ingresos'];
 			
 		}
-
-		
 
 		$losIngresos = Ingresos::model()->count();
 		if ($losIngresos == 0) {

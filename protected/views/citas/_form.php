@@ -203,10 +203,12 @@ else
 							$elDetalle = ContratoDetalle::model()->findAll("contrato_id = $los_contratos->id and estado != 'Completada'");
 							foreach ($elDetalle as $el_detalle) 
 							{
+								$citasProgramadasDetalle = Citas::model()->count("(estado = 'Programada') and contrato_id = $los_contratos->id and linea_servicio_id = $el_detalle->linea_servicio_id");
+
 								echo "<b class='text-info'>".$el_detalle->lineaServicio->nombre." (".$el_detalle->realizadas." de ".$el_detalle->cantidad.")</b>";
 								if ($el_detalle->estado == "Programada") 
 								{
-									echo " - <b class='text-warning'>1 Agendado</b><br>";
+									echo " - <b class='text-warning'>". $citasProgramadasDetalle ." Agendado</b><br>";
 								}
 								else
 								{

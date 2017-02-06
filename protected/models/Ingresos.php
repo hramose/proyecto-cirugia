@@ -167,11 +167,10 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria->addCondition("centro_costo_id != $centroid");
+		$criteria->addCondition("centro_costo_id < '$centroid'");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
-
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -185,7 +184,6 @@ class Ingresos extends CActiveRecord
 		    //'value'=>'sprintf(\'%02s:%02s\',$data->hours,$data->minutes)',
 		    //'type'=>'text',
 			//'footer'=>$provider->itemCount===0 ? '' : $model->getTotal(),
-			//'criteria'=>array('condition'=>'saldo > 0'),
 		));
 	}
 
@@ -283,7 +281,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria->addCondition("centro_costo_id != $centroid");
+		$criteria->addCondition("centro_costo_id != '$centroid'");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 
