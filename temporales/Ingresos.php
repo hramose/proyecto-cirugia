@@ -138,6 +138,10 @@ class Ingresos extends CActiveRecord
 		$buscar = "'Transferencia a Paciente'";
 		$centro = CentroCosto::model()->find("nombre = $buscar");
 		$centroid = $centro->id;
+		
+		$buscar1 = "'Nota Credito'";
+		$centro1 = CentroCosto::model()->find("nombre = $buscar1");
+		$centroid2 = $centro1->id;
 
 		$criteria=new CDbCriteria;
 
@@ -148,7 +152,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
 		$criteria->compare('valor',$this->valor,true);
 		$criteria->compare('descripcion',$this->descripcion,true);
-		$criteria->compare('centro_costo_id',$this->centro_costo_id);
+		$criteria->compare('centro_costo_id',$this->centro_costo_id, true);
 		$criteria->compare('forma_pago',$this->forma_pago, true);
 		$criteria->compare('fecha',$this->fecha,true);
 		//$criteria->compare('fecha_sola',$this->fecha_sola,true);
@@ -167,7 +171,8 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria->addCondition("centro_costo_id != '$centroid'");
+		//$criteria->addCondition("t.centro_costo_id < '$centroid'", 'or', "t.centro_costo_id > '$centroid'");
+		$criteria->addCondition("centro_costo_id <> $centroid and centro_costo_id <> $centroid2");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
@@ -195,41 +200,41 @@ class Ingresos extends CActiveRecord
 		$centro = CentroCosto::model()->find("nombre = $buscar");
 		$centroid = $centro->id;
 
-		$criteria2=new CDbCriteria;
+		$criteria=new CDbCriteria;
 
-		$criteria2->compare('t.id',$this->id);
-		$criteria2->compare('paciente_id',$this->paciente_id);
-		$criteria2->compare('contrato_id',$this->contrato_id);
-		$criteria2->compare('cita_id',$this->cita_id);
-		$criteria2->compare('t.n_identificacion',$this->n_identificacion,true);
-		$criteria2->compare('valor',$this->valor,true);
-		$criteria2->compare('descripcion',$this->descripcion,true);
-		$criteria2->compare('centro_costo_id',$this->centro_costo_id);
-		$criteria2->compare('forma_pago',$this->forma_pago, true);
-		$criteria2->compare('fecha',$this->fecha,true);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('paciente_id',$this->paciente_id);
+		$criteria->compare('contrato_id',$this->contrato_id);
+		$criteria->compare('cita_id',$this->cita_id);
+		$criteria->compare('t.n_identificacion',$this->n_identificacion,true);
+		$criteria->compare('valor',$this->valor,true);
+		$criteria->compare('descripcion',$this->descripcion,true);
+		$criteria->compare('centro_costo_id',$this->centro_costo_id);
+		$criteria->compare('forma_pago',$this->forma_pago, true);
+		$criteria->compare('fecha',$this->fecha,true);
 		//$criteria->compare('fecha_sola',$this->fecha_sola,true);
-		$criteria2->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
-		$criteria2->compare('cheques_cantidad',$this->cheques_cantidad);
-		$criteria2->compare('cheques_banco_cuenta_id',$this->cheques_banco_cuenta_id);
-		$criteria2->compare('cheques_total',$this->cheques_total,true);
-		$criteria2->compare('tarjeta_tipo',$this->tarjeta_tipo,true);
-		$criteria2->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
-		$criteria2->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
-		$criteria2->compare('t.estado',$this->estado,true);
-		$criteria2->compare('tarjeta_banco_cuenta_id',$this->tarjeta_banco_cuenta_id);
-		$criteria2->compare('consigna_banco_o',$this->consigna_banco_o,true);
-		$criteria2->compare('consigna_cuenta_o',$this->consigna_cuenta_o,true);
-		$criteria2->compare('consigna_banco_d_cuenta_id',$this->consigna_banco_d_cuenta_id);
-		$criteria2->compare('personal_id',$this->personal_id);
-		$criteria2->compare('vendedor_id',$this->vendedor_id);
-		$criteria2->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria2->addCondition("centro_costo_id != $centroid");
-		$criteria2->with = array('paciente');
-		$criteria2->compare('paciente.nombre', $this->nombre_paciente, true );
-		$criteria2->compare('paciente.apellido', $this->apellido_paciente, true );
+		$criteria->compare('DATE_FORMAT(fecha_sola, \'%d-%m-%Y\')',$this->fecha_sola,true);
+		$criteria->compare('cheques_cantidad',$this->cheques_cantidad);
+		$criteria->compare('cheques_banco_cuenta_id',$this->cheques_banco_cuenta_id);
+		$criteria->compare('cheques_total',$this->cheques_total,true);
+		$criteria->compare('tarjeta_tipo',$this->tarjeta_tipo,true);
+		$criteria->compare('tarjeta_aprobacion',$this->tarjeta_aprobacion,true);
+		$criteria->compare('tarjeta_entidad',$this->tarjeta_entidad,true);
+		$criteria->compare('t.estado',$this->estado,true);
+		$criteria->compare('tarjeta_banco_cuenta_id',$this->tarjeta_banco_cuenta_id);
+		$criteria->compare('consigna_banco_o',$this->consigna_banco_o,true);
+		$criteria->compare('consigna_cuenta_o',$this->consigna_cuenta_o,true);
+		$criteria->compare('consigna_banco_d_cuenta_id',$this->consigna_banco_d_cuenta_id);
+		$criteria->compare('personal_id',$this->personal_id);
+		$criteria->compare('vendedor_id',$this->vendedor_id);
+		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
+		$criteria->addCondition("centro_costo_id = $centroid");
+		$criteria->with = array('paciente');
+		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
+		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria2,
+			'criteria'=>$criteria,
 			'pagination'=>array('pageSize'=>20),
 			'sort'=>array(
 			    'defaultOrder'=>'fecha DESC',
@@ -252,6 +257,10 @@ class Ingresos extends CActiveRecord
 		$buscar = "'Transferencia a Paciente'";
 		$centro = CentroCosto::model()->find("nombre = $buscar");
 		$centroid = $centro->id;
+		
+		$buscar1 = "'Nota Credito'";
+		$centro1 = CentroCosto::model()->find("nombre = $buscar1");
+		$centroid2 = $centro1->id;
 
 		$criteria=new CDbCriteria;
 
@@ -281,7 +290,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('personal_id',$this->personal_id);
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
-		$criteria->addCondition("centro_costo_id != '$centroid'");
+		$criteria->addCondition("centro_costo_id <> $centroid and centro_costo_id <> $centroid2");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 
