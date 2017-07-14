@@ -139,6 +139,10 @@ class Ingresos extends CActiveRecord
 		$centro = CentroCosto::model()->find("nombre = $buscar");
 		$centroid = $centro->id;
 
+		$buscar = "'Nota Credito'";
+		$centro = CentroCosto::model()->find("nombre = $buscar");
+		$centroid2 = $centro->id;
+
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('t.id',$this->id);
@@ -168,6 +172,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
 		$criteria->addCondition("centro_costo_id != '$centroid'");
+		$criteria->addCondition("centro_costo_id != '$centroid2'");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 		$criteria->compare('paciente.apellido', $this->apellido_paciente, true );
@@ -252,6 +257,10 @@ class Ingresos extends CActiveRecord
 		$buscar = "'Transferencia a Paciente'";
 		$centro = CentroCosto::model()->find("nombre = $buscar");
 		$centroid = $centro->id;
+		
+		$buscar = "'Nota Credito'";
+		$centro = CentroCosto::model()->find("nombre = $buscar");
+		$centroid2 = $centro->id;
 
 		$criteria=new CDbCriteria;
 
@@ -282,6 +291,7 @@ class Ingresos extends CActiveRecord
 		$criteria->compare('vendedor_id',$this->vendedor_id);
 		$criteria->compare('personal_seguimiento',$this->personal_seguimiento);
 		$criteria->addCondition("centro_costo_id != '$centroid'");
+		$criteria->addCondition("centro_costo_id != '$centroid2'");
 		$criteria->with = array('paciente');
 		$criteria->compare('paciente.nombre', $this->nombre_paciente, true );
 

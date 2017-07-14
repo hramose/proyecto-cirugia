@@ -19,7 +19,6 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
-
 ?>
 
 <h1>Buscar Ingresos - <a href="#exportar" class="btn btn-warning" role="button" data-toggle="modal"><i class="icon-share-alt icon-white"></i> Exportar</a></h1>
@@ -70,8 +69,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'name'=>'valor',
 			'value'=>'number_format($data->valor,2)',
 			'htmlOptions'=>array('width'=>'100'),
-			'footer'=>$model->searchSuma()->itemCount===0 ? '' : "<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
-
+			'footer'=>"<h6>$ ".number_format($model->getTotal($model->searchSuma()),2).'</h6>',
 		),
 		array(
 			'header'=>'Fecha',
@@ -113,6 +111,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>'$data[\'centroCosto\'][\'nombre\']',
 			'htmlOptions'=>array('width'=>'200'),
 		),
+		
 		'forma_pago',
 		array(
 			'header'=>'Vendido por:',
@@ -127,6 +126,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>'$data->contrato_id',
 			'htmlOptions'=>array('width'=>'40'),
 		),
+		
 		array(
 			'name'=>'estado',
 			'filter' => array('Activo'=>'Activo','Anulado'=>'Anulado'),

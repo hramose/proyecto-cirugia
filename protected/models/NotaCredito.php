@@ -115,6 +115,11 @@ class NotaCredito extends CActiveRecord
 			'criteria'=>$criteria,
 			'criteria'=>array('condition'=>'t.contrato_asociado_id is NULL'),
 			'pagination'=>array('pageSize'=>20),
+			'sort'=>array(
+			    'defaultOrder'=>'fecha DESC',
+			    'attributes'=>array(
+			),
+			),
 		));
 	}
 
